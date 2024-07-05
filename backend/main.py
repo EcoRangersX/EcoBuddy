@@ -30,9 +30,7 @@ def ai_assistant_endpoint():
 )  # Ustawianie endpointa do artykułów  i metody http requesta
 def article_endpoint():
     if request.method == "GET":
-        with open(
-            "article_list.json", "r"
-        ) as file:  # otwieranie pliku z uzyskanymi artykułami
+        with open("article_list.json", "r") as file:  # otwieranie pliku z uzyskanymi artykułami
             article_list = json.load(file)
 
             file.close()
