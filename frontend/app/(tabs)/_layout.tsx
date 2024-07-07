@@ -1,84 +1,83 @@
-import { Tabs } from 'expo-router';
 import React from 'react';
 
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import HomeScreen from './index';
+import QuizScreen from './quiz';
+import ArticlesScreen from './articles';
+import AiAssistantScreen from './ai-assistant';
+import ProfileScreen from './profile';
+
+const Tabs = createBottomTabNavigator();
 
 export default function TaLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors['light'].tint,
+    <Tabs.Navigator
+      screenOptions={({ route }) => ({
         headerShown: false,
-      }}>
+      })}>
       <Tabs.Screen
-        name="articles"
-        options={{
-          title: 'Articles',
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon
-              provider='Ionicons'
-              name='search'
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="quiz"
+        name="Quiz"
+        component={QuizScreen}
         options={{
           title: 'Quiz',
           tabBarIcon: ({ color }) => (
             <TabBarIcon
-              provider='MaterialIcons'
-              name='question-answer'
+              provider="MaterialIcons"
+              name="question-answer"
               color={color}
             />
           ),
         }}
       />
       <Tabs.Screen
-        name="index"
+        name="Articles"
+        component={ArticlesScreen}
+        options={{
+          title: 'Articles',
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon provider="MaterialIcons" name="article" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Home"
+        component={HomeScreen}
         options={{
           title: 'Home',
           tabBarIcon: ({ color }) => (
-            <TabBarIcon
-              provider='Ionicons'
-              name='home'
-              color={color}
-            />
+            <TabBarIcon provider="Ionicons" name="home" color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="ai-assistant"
+        name="Ai-Assistant"
+        component={AiAssistantScreen}
         options={{
-          title: 'Assistant',
+          title: 'Ai-Assistant',
           tabBarIcon: ({ color }) => (
             <TabBarIcon
-              provider='MaterialIcons'
-              name='assistant'
+              provider="MaterialIcons"
+              name="assistant"
               color={color}
             />
           ),
         }}
       />
       <Tabs.Screen
-        name="profile"
+        name="Profile"
+        component={ProfileScreen}
         options={{
           title: 'Profile',
           tabBarIcon: ({ color }) => (
             <TabBarIcon
-              provider='FontAwesome6'
-              name='circle-user'
+              provider="FontAwesome6"
+              name="circle-user"
               color={color}
             />
           ),
         }}
       />
-    </Tabs>
+    </Tabs.Navigator>
   );
 }
