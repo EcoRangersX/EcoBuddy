@@ -6,9 +6,8 @@ function Header () {
 
   return (
     <Appbar.Header mode='center-aligned'>
-      <Appbar.BackAction onPress={() => navigation.goBack()} />
-      <Appbar.Content title="EcoBuddy" />
-      <Appbar.Action onPress={() => navigation.navigate('index')} icon="cog" />
+      <Appbar.Content title="EcoBuddy-AI" />
+      <Appbar.Action onPress={() => navigation.navigate('Profile')} icon="cog" />
     </Appbar.Header>
   );
 };
