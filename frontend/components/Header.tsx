@@ -6,7 +6,7 @@ function Header () {
 
   return (
     <Appbar.Header mode='center-aligned'>
-      <Appbar.Content title="EcoBuddy-AI" />
+      <Appbar.Content title="Eco-AI" />
       <Appbar.Action onPress={() => navigation.navigate('Profile')} icon="cog" />
     </Appbar.Header>
   );
