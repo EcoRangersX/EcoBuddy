@@ -1,10 +1,12 @@
 from flask import Flask, request
+from flask_cors import CORS
 from groq import Groq
 from ai_assistant import Assistant
 import json
 
 
 app = Flask("Eco buddy")
+CORS(app)
 
 # api do modeli (llama3 70B)
 
@@ -22,6 +24,7 @@ def ai_assistant_endpoint():
         data = request.json.get(
             "userPrompt"
         )  # otrzymywanie prompta którego podał użytkownik
+        print(f"Received request with data: {data}")
         if data:
             response = ai_assistant.request_post(data)
             return response, 200
@@ -54,4 +57,4 @@ def api():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=8080)
+    app.run(host="0.0.0.0", port=8080, debug=True)
