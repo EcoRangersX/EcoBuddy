@@ -5,6 +5,8 @@ import {
   FlatList,
   Text,
 } from 'react-native';
+import Header from '@/components/Header';
+import SendIcon from '@/components/icons/SendIcon';
 import { TextInput } from 'react-native-paper';
 import { useState, useEffect } from 'react';
 import { useAskAI } from '@/hooks/useAskAI';
@@ -15,16 +17,17 @@ interface Message {
 }
 
 interface aiResponse {
+  id: string;
   response: string;
 }
 
 export default function AiAssistantScreen() {
-  const [question, setQuestion] = useState<string>('');
+  const [prompt, setPrompt] = useState<string>('');
   const [messages, setMessages] = useState<Message[]>([]);
   const [aiResponses, setAiResponses] = useState<aiResponse[]>([]);
   const [combinedList, setCombinedList] = useState<(Message | Response)[]>([]);
 
-  const { askAI, aiResponse, loading, error } = useAskAI();
+  const { askAI, aiResponse, error, loading } = useAskAI();
 
   useEffect(() => {
     const newCombinedList: (Message | Response)[] = [];
@@ -37,20 +40,33 @@ export default function AiAssistantScreen() {
     setCombinedList(newCombinedList);
   }, [messages, aiResponses]);
 
-  const handleSubmit = async () => {
-    if (question.trim()) {
-      setMessages([...messages, { id: Date.now().toString(), text: question }]);
-    }
-    await askAI(question);
-    console.log(aiResponse);
-
+  useEffect(() => {
     if (aiResponse) {
-      setAiResponses([...aiResponses, { response: aiResponse.response }]);
+      const newResponse = {
+        id: Date.now().toString(),
+        response: aiResponse.response,
+      };
+      setAiResponses([...aiResponses, newResponse]);
     }
+  }, [aiResponse]);
 
-    setQuestion('');
-    Keyboard.dismiss();
+  const handleSubmit = async () => {
+    if (prompt) {
+      const newMessage = { id: Date.now().toString(), prompt: prompt };
+      setMessages([...messages, newMessage]);
+      setPrompt('');
+      Keyboard.dismiss();
+      await askAI(prompt);
+    }
   };
+
+  if (error) {
+    return (
+      <View className="flex-1 justify-center items-center">
+        <Text className="text-red-500">{error}</Text>
+      </View>
+    );
+  }
 
   return (
     <View className="flex-1">
@@ -58,40 +74,32 @@ export default function AiAssistantScreen() {
       <FlatList
         data={combinedList}
         renderItem={({ item }) =>
-          'text' in item ? (
-            <View className="mb-2 p-2 bg-gray-200 rounded">
+          'prompt' in item ? (
+            <View className="mb-2 p-3 bg-gray-200 rounded">
               <Text className="text-lg">{item.prompt}</Text>
             </View>
           ) : (
-            <View className="mb-2 p-2 bg-green-200 rounded">
-              <Text className="text-lg">{item.response}</Text>
+            <View className="mb-2 p-3 bg-green-200 rounded">
+              <Text className="text-lg">
+                {loading ? 'Loading ...' : item.response}
+              </Text>
             </View>
           )
         }
-        keyExtractor={item =>
-          'text' in item ? item.id : `response-${item.id}`
-        }
-        className="flex-1 mb-4"
       />
       {/* TouchableWithoutFeedback component allows users to exit the input field */}
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View className="p-2 flex-1 justify-end">
-          <TextInput
+        <View className="justify-center p-8 flex-row items-center">
+            <TextInput
             placeholder="Ask me anything about ecology..."
             mode="outlined"
             multiline={true}
-            value={question}
-            onChangeText={setQuestion}
+            value={prompt}
+            onChangeText={setPrompt}
             theme={{ colors: { primary: 'green' } }}
-            className="w-full max-h-48 p-2"
-            right={
-              <TextInput.Icon
-                icon={'send'}
-                color="green"
-                onPress={handleSubmit}
-              />
-            }
+            className="w-full max-h-48 p-1"
           />
+          <SendIcon onPress={handleSubmit} size={28} />
         </View>
       </TouchableWithoutFeedback>
     </View>
