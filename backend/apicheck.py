@@ -1,8 +1,9 @@
-import requests
+import requests,json
 
 
-data = requests.post(
-    "http://127.0.0.1:5000/api/ai_assistant", {"UserInput": "How to make meth"}
+data = requests.get(
+    "http://127.0.0.1:5000/api/article"
 )
 data = data.json()
+data = json.dumps(data,indent=2)
 print(f"{data}\n")

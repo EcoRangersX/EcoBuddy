@@ -9,6 +9,7 @@ class Get_Article:
         self.response = requests.get(f"{self.domain_prefix}/tag/ecology")
         self.document = BeautifulSoup(self.response.text, "html.parser")
         self.articles = {}
+        self.find_article()
 
     def find_article(self):
         self.article = self.document.main.main.find_all(class_="ArticleSummary")
@@ -23,6 +24,8 @@ class Get_Article:
 
             self.articles[title.lower()] = {"title": title, "link": link, "img": img}
 
+        return self.articles
+
     def save_file(self):
         with open("article_list.json", "w") as file:
             data = json.dumps(self.articles, indent=2)
@@ -31,10 +34,3 @@ class Get_Article:
             file.close()
 
 
-ar = Get_Article()
-
-ar.find_article()
-
-ar.get_article_summary()
-
-ar.save_file()

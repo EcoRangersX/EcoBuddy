@@ -1,6 +1,7 @@
 from flask import Flask, request
 from groq import Groq
-from backend.ai_assistant import Assistant
+from ai_assistant import Assistant
+from news import Get_Article
 import json
 
 
@@ -12,6 +13,10 @@ api_key = {"ApiKey": "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"}
 
 modelprovider = Groq(api_key=api_key["ApiKey"])  # api key na razie nie ukryty
 ai_assistant = Assistant(aiprovider=modelprovider)
+
+articles = Get_Article()
+articles = articles.get_article_summary()
+
 
 
 @app.route(
@@ -26,16 +31,11 @@ def ai_assistant_endpoint():
 
 
 @app.route(
-    "/api/tests/atricle", methods=["GET"]
+    "/api/article", methods=["GET"]
 )  # Ustawianie endpointa do artykułów  i metody http requesta
 def article_endpoint():
     if request.method == "GET":
-        with open("article_list.json", "r") as file:  # otwieranie pliku z uzyskanymi artykułami
-            article_list = json.load(file)
-
-            file.close()
-
-        return {"Aricles": article_list}
+        return {"Aricles": articles}
 
 
 @app.route("/api")  # endpoint do dokumentacji
