@@ -2,6 +2,7 @@ from flask import Flask, request
 from flask_cors import CORS
 from groq import Groq
 from ai_assistant import Assistant
+from news import Get_Articles
 import json
 
 app = Flask("Eco buddy")
@@ -10,6 +11,11 @@ CORS(app)
 # api do modeli (llama3 70B)
 
 api_key = {"ApiKey": "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"}
+
+modelprovider = Groq(api_key=api_key["ApiKey"])  # api key na razie nie ukryty
+ai_assistant = Assistant(aiprovider=modelprovider)
+
+articles = Get_Articles().get_articles_summary()
 
 model_provider = Groq(api_key=api_key["ApiKey"])  # api key na razie nie ukryty
 ai_assistant = Assistant(ai_provider=model_provider)
@@ -31,18 +37,11 @@ def ai_assistant_endpoint():
 
 
 @app.route(
-    "/api/tests/article", methods=["GET"]
+    "/api/articles", methods=["GET"]
 )  # Ustawianie endpointa do artykułów  i metody http requesta
 def article_endpoint():
     if request.method == "GET":
-        with open(
-            "article_list.json", "r"
-        ) as file:  # otwieranie pliku z uzyskanymi artykułami
-            article_list = json.load(file)
-
-            file.close()
-
-        return {"Articles": article_list}
+        return {"Aricles": articles}
 
 
 @app.route("/api")  # endpoint do dokumentacji
