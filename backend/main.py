@@ -4,7 +4,6 @@ from groq import Groq
 from ai_assistant import Assistant
 import json
 
-
 app = Flask("Eco buddy")
 CORS(app)
 
@@ -24,7 +23,6 @@ def ai_assistant_endpoint():
         data = request.json.get(
             "userPrompt"
         )  # otrzymywanie prompta którego podał użytkownik
-        print(f"Received request with data: {data}")
         if data:
             response = ai_assistant.request_post(data)
             return response, 200
