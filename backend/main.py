@@ -1,8 +1,11 @@
+import json
+
 from flask import Flask, request
 from groq import Groq
+
 from ai_assistant import Assistant
 from news import Get_Articles
-import json
+from air_quality import Air_quality
 
 
 app = Flask("Eco buddy")
@@ -11,16 +14,16 @@ app = Flask("Eco buddy")
 
 api_key = {"ApiKey": "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"}
 
-modelprovider = Groq(api_key=api_key["ApiKey"])  # api key na razie nie ukryty
+modelprovider = Groq(api_key=api_key["ApiKey"])
+
+# api key na razie nie ukryty
 ai_assistant = Assistant(aiprovider=modelprovider)
-
 articles = Get_Articles().get_articles_summary()
+air_quality = Air_quality()
 
 
-
-@app.route(
-    "/api/ai_assistant", methods=["POST"]
-)  # deklaracja endpointa do asystenta i metody http requesta
+# deklaracja endpointa do asystenta i metody http requesta
+@app.route("/api/ai_assistant", methods=["POST"])
 def ai_assistant_endpoint():
     if request.method == "POST":
         data = request.form[
@@ -29,12 +32,26 @@ def ai_assistant_endpoint():
         return ai_assistant.request_post(data)
 
 
-@app.route(
-    "/api/articles", methods=["GET"]
-)  # Ustawianie endpointa do artykułów  i metody http requesta
+# Ustawianie endpointa do artykułów  i metody http requesta
+@app.route("/api/articles", methods=["GET"])
 def article_endpoint():
     if request.method == "GET":
         return {"Aricles": articles}
+
+
+@app.route("/api/air_quality", methods=["POST"])
+def air_quality_endpoint():
+    if request.method == "POST":
+        element = request.form["Element"]
+        latitude = request.form["latitude"]
+        longitude = request.form["longitude"]
+        print(f"{element} {latitude} {longitude}")
+
+        concentration = air_quality.get_air_quality_data(
+            latitude=latitude, longitude=longitude, element=element
+        )
+
+        return {f"{element} concentration": concentration}
 
 
 @app.route("/api")  # endpoint do dokumentacji

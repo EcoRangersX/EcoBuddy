@@ -22,7 +22,11 @@ class Get_Articles:
             title = header.find("div").text
             img = articlesummary.find("img")["src"]
 
-            self.articles_dict[title.lower()] = {"title": title, "link": link, "img": img}
+            self.articles_dict[title.lower()] = {
+                "title": title,
+                "link": link,
+                "img": img,
+            }
 
         return self.articles_dict
 
@@ -32,5 +36,3 @@ class Get_Articles:
 
             file.write(data)
             file.close()
-
-
