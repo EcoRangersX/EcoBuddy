@@ -1,8 +1,13 @@
+import json
+
 from flask import Flask, request
 from flask_cors import CORS
 from groq import Groq
+
 from ai_assistant import Assistant
 from news import Get_Articles
+from air_quality import Air_quality
+
 
 app = Flask("Eco buddy")
 CORS(app)
@@ -15,32 +20,42 @@ model_provider = Groq(api_key=api_key["ApiKey"])  # api key na razie nie ukryty
 ai_assistant = Assistant(ai_provider=model_provider)
 
 articles = Get_Articles().get_articles_summary()
-
-model_provider = Groq(api_key=api_key["ApiKey"])  # api key na razie nie ukryty
-ai_assistant = Assistant(ai_provider=model_provider)
+air_quality = Air_quality()
 
 
-@app.route(
-    "/api/ai_assistant", methods=["POST"]
-)  # deklaracja endpointa do asystenta i metody http requesta
+# deklaracja endpointa do asystenta i metody http requesta
+@app.route("/api/ai_assistant", methods=["POST"])
 def ai_assistant_endpoint():
-    if request.method == "POST":
-        data = request.json.get(
-            "userPrompt"
-        )  # otrzymywanie prompta którego podał użytkownik
-        if data:
-            response = ai_assistant.request_post(data)
-            return response, 200
-        else:
-            return {"error": "No prompt provided"}, 400
+    data = request.json.get(
+        "userPrompt"
+    )  # otrzymywanie prompta którego podał użytkownik
+    if data:
+        response = ai_assistant.request_post(data)
+        return response, 200
+    else:
+        return {"error": "No prompt provided"}, 400
 
 
-@app.route(
-    "/api/articles", methods=["GET"]
-)  # Ustawianie endpointa do artykułów  i metody http requesta
+# Ustawianie endpointa do artykułów  i metody http requesta
+@app.route("/api/articles", methods=["GET"])
 def article_endpoint():
     if request.method == "GET":
         return {"Aricles": articles}
+
+
+@app.route("/api/air_quality", methods=["POST"])
+def air_quality_endpoint():
+    if request.method == "POST":
+        element = request.form["Element"]
+        latitude = request.form["latitude"]
+        longitude = request.form["longitude"]
+        print(f"{element} {latitude} {longitude}")
+
+        concentration = air_quality.get_air_quality_data(
+            latitude=latitude, longitude=longitude, element=element
+        )
+
+        return {f"{element} concentration": concentration}
 
 
 @app.route("/api")  # endpoint do dokumentacji
