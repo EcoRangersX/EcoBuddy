@@ -33,7 +33,7 @@ class Assistant:
 
     # post request
     def request_post(self, user_prompt: str) -> dict:
-        # prompt = prompt  # + self.PROMPT # tworzenie odpowiedniego prompta  do naszych zapotrzebowań
-        response = self.get_ai_response(prompt=user_prompt)
+        prompt = user_prompt + self.PROMPT # tworzenie odpowiedniego prompta  do naszych zapotrzebowań
+        response = self.get_ai_response(prompt=prompt)
 
         return {"response": response}  # zwrot jsona jako odpowiedź na post request

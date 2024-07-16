@@ -1,4 +1,4 @@
-import json
+
 
 from flask import Flask, request
 from flask_cors import CORS
@@ -49,7 +49,6 @@ def air_quality_endpoint():
         element = request.form["Element"]
         latitude = request.form["latitude"]
         longitude = request.form["longitude"]
-        print(f"{element} {latitude} {longitude}")
 
         concentration = air_quality.get_air_quality_data(
             latitude=latitude, longitude=longitude, element=element
