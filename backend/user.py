@@ -6,7 +6,9 @@ with open('constants.json','r') as file:
     print(symbols)
 
 
-class Authentication:
-    def __init__(self):
-        pass
+class User:
+    def __init__(self,password: str,login: str):
+        self.password = password
+        self.login = login
+        
         

@@ -8,6 +8,10 @@ from ai_assistant import Assistant
 from news import Get_Articles
 from air_quality import Air_quality
 
+from user import User
+from decrypt import decrypt
+from encrypt_password import encrypt
+
 
 app = Flask("Eco buddy")
 CORS(app)
@@ -31,9 +35,9 @@ def ai_assistant_endpoint():
     )  # otrzymywanie prompta którego podał użytkownik
     if data:
         response = ai_assistant.request_post(data)
-        return response, 200
+        return response
     else:
-        return {"error": "No prompt provided"}, 400
+        return {"error": "No prompt provided"}
 
 
 # Ustawianie endpointa do artykułów  i metody http requesta
@@ -55,6 +59,21 @@ def air_quality_endpoint():
         )
 
         return {f"{element} concentration": concentration}
+    
+@app.route("/api/user/login",methods=['POST'])
+def login_endpoint():
+    if request.method == "POST":
+        login = request.form['Login']
+        password = request.form['Password']
+        pass
+
+
+        
+
+@app.route("/api/user/register",methods=['POST'])
+@app.route("/api/user/authorize",methods=['POST'])
+
+
 
 
 @app.route("/api")  # endpoint do dokumentacji
@@ -64,6 +83,8 @@ def api():
             "/ai_assistant": "Eco assistant that helps you find answers to questions related to ecology To get answer send POST request to endpoint and pavload of type {UserInput: <your data> }"
         }
     }
+
+
 
 
 if __name__ == "__main__":
