@@ -1,7 +1,7 @@
 import requests
 
 
-class Air_quality:
+class Air_data:
     api_key = "196745f493a13cdf45ef558729bf6996"  # tak wiem nie ukryty
     chemical_elements = None
 
@@ -18,6 +18,7 @@ class Air_quality:
             ],
             "AQI": self.response_json["list"][0]['main']['aqi'],
         }
+    
 
 
 """
