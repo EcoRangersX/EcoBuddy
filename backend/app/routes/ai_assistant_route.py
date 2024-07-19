@@ -10,10 +10,7 @@ ai_assistant = Assistant()
 
 @assistant_bp.route("/", methods=["POST"])
 def ai_assistant_endpoint():
-    data = request.json.get(
-        "UserInput"
-      )  # otrzymywanie prompta którego podał użytkownik
-   
+    data = request.json["UserInput"]  # otrzymywanie prompta którego podał użytkownik
     if data:
         response = ai_assistant.request_post(data)
         return response

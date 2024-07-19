@@ -1,16 +1,23 @@
 from flask import Blueprint, request
+from app.services import Account
 
 
 auth_bp = Blueprint('auth',__name__,url_prefix='/api/auth')
 
+account = Account()
+
 @auth_bp.route("/login",methods=['POST'])
 def login():
-    pass
+    print(request.json)
+    #account.setup_account_data()
+    return {'smth': 's'}
 
 @auth_bp.route("/register",methods=['POST'])
 def register():
-    pass
+    #account.setup_account_data()
+    return {'smth': 's'}
 
 @auth_bp.route("/authorize",methods=['POST'])
 def authorize():
-    pass
+    #account.setup_account_data()
+    return {'smth': 's'}

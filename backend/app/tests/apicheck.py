@@ -23,6 +23,8 @@ def test_air_quality():
 def test_docs():
     return requests.get('http://127.0.0.1:5000/api/docs/endpoints')
 
+def test_login():
+    return requests.post('http://127.0.0.1:5000/api/auth/login',json={'siema': 'test', 'hola': 'js'})
 
 
 def test_api(features: list):
@@ -42,6 +44,10 @@ def test_api(features: list):
         elif feature == "DOCS":
             result = test_docs()
             print(f"DOCS: {json.dumps(result.json(),indent=2)}")
+        
+        elif feature == 'LOGIN':
+            result = test_login()
+            
 
 
         else:

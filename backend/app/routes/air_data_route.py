@@ -8,20 +8,12 @@ air_data = Air_data()
 @air_bp.route("/air_quality", methods=["POST"])
 def air_quality_endpoint():
     if request.method == "POST":
-        element = request.json.get(
-            "Element"
+        data = request.json
+        element = data['Element']
             
-            )
-        latitude = request.json.get(
-            "latitude"
-            
-            )
-        longitude = request.json.get(
-            "longitude"
-            
-            )
-        print(f'{element} {latitude} {longitude}')
-     
+        latitude = data['latitude']
+    
+        longitude = data['longitude']
 
         concentration = air_data.get_air_quality_data(
             latitude=latitude, longitude=longitude, element=element
