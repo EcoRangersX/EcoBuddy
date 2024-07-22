@@ -2,3 +2,4 @@ groq
 flask
 bs4
 requests
+flask-cors
