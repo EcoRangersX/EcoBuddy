@@ -24,13 +24,11 @@ Ensure you have a requirements.txt file with all the necessary dependencies list
 
 Run `pip3 install -r requirements.txt` to install the dependencies.
 
-**Run main.py File:**
-Use `python3 main.py` to run the project.
+**Run project**
+Use `python3 run.py` to run the project.
 
 
 ## TEST BACKEND
-To test api you can use `apicheck.py` and see if everything works as intended.
-
-Use `python3 main.py` (If not already used) then `python3 apicheck.py`
+To test api you can use `test.py` and see if everything works as intended.
 
 

@@ -24,7 +24,10 @@ def test_docs():
     return requests.get('http://127.0.0.1:5000/api/docs/endpoints')
 
 def test_login():
-    return requests.post('http://127.0.0.1:5000/api/auth/login',json={'siema': 'test', 'hola': 'js'})
+    return requests.post('http://127.0.0.1:5000/api/auth/login',json={'Email': 'siemano1@gmail.com', 'Password':'siemano1k'})
+
+def test_register():
+    return requests.post('http://127.0.0.1:5000/api/auth/register',json={'Email': 'siemano1@gmail.com','Password': 'siemano1k','Name': 'siemano1'})
 
 
 def test_api(features: list):
@@ -47,9 +50,12 @@ def test_api(features: list):
         
         elif feature == 'LOGIN':
             result = test_login()
+            print(f'LOGIN: {json.dumps(result.json(),indent=2)}')
+        
+        elif feature == 'REGISTER':
+            result = test_register()
+            print(f'REGISTER: {json.dumps(result.json(),indent=2)}')
             
-
-
         else:
             print("SMTH went wrong")
             return
