@@ -35,8 +35,3 @@ def register():
     register =account.reqister()
     return register
 
-@auth_bp.route("/authorize",methods=['POST'])
-def authorize():
-  
-    #account.setup_user_data()
-    return {'smth': 's'}

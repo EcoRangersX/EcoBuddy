@@ -9,8 +9,8 @@ def create_app():
     CORS(app)
 
     app.register_blueprint(air_bp)
-    app.register_blueprint(articles_bp)
-    app.register_blueprint(assistant_bp)
+    app.register_blueprint(news_bp)
+    app.register_blueprint(ai_bp)
     app.register_blueprint(auth_bp)
     app.register_blueprint(docs_bp)
 

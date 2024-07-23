@@ -11,12 +11,12 @@ def air_quality_endpoint():
         data = request.json
         element = data['Element']
             
-        latitude = data['latitude']
+        latitude = data['Latitude']
     
-        longitude = data['longitude']
+        longitude = data['Longitude']
 
-        concentration = air_data.get_air_quality_data(
+        air_quality_data = air_data.get_air_quality_data(
             latitude=latitude, longitude=longitude, element=element
         )
 
-        return {f"{element} concentration": concentration}
+        return {f"Air_quality_data": air_quality_data}

@@ -12,11 +12,15 @@ class Air_data:
 
         self.response_json = self.response.json()
 
+        aqi = self.response_json["list"][0]['main']['aqi']
+        aqi_levels = ['Good','Fair','Modedrate','Poor','Very Poor']
+        aqi = aqi_levels[aqi-1]
+
+        concentration = f'{self.response_json["list"][0]["components"][element]}ug/m3'
+
         return {
-            "concentration of element": self.response_json["list"][0]["components"][
-                element
-            ],
-            "AQI": self.response_json["list"][0]['main']['aqi'],
+            "Concentration_of_element": concentration,
+            "AQI": aqi,
         }
     
 

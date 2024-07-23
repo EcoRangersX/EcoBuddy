@@ -3,21 +3,19 @@ import json
 
 
 def test_articles():
-    return requests.get("http://127.0.0.1:5000/api/articles")
-
+    return requests.get("http://127.0.0.1:5000/api/news/articles")
 
 def test_ai_assistant():
     test_prompt = "What is ecology?"
     return requests.post(
-        "http://127.0.0.1:5000/api/ai_assistant", json={"UserInput": test_prompt}
+        "http://127.0.0.1:5000/api/ai/ai_assistant", json={"UserInput": test_prompt}
     )
 
-
 def test_air_quality():
-    example_lat, example_long = (51.9189046, 19.1343786)
+    example_lat, example_long = (50.063843899589884, 19.942991724503248)
     return requests.post(
         "http://127.0.0.1:5000/api/air/air_quality",
-        json={"Element": "no2", "latitude": example_lat, "longitude": example_long},
+        json={"Element": "no2", "Latitude": example_lat, "Longitude": example_long},
     )
 
 def test_docs():
@@ -28,7 +26,6 @@ def test_login():
 
 def test_register():
     return requests.post('http://127.0.0.1:5000/api/auth/register',json={'Email': 'siemano1@gmail.com','Password': 'siemano1k','Name': 'siemano1'})
-
 
 def test_api(features: list):
     for feature in features:
