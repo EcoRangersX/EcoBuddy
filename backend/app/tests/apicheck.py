@@ -15,7 +15,7 @@ def test_air_quality():
     example_lat, example_long = (50.063843899589884, 19.942991724503248)
     return requests.post(
         "http://127.0.0.1:5000/api/air/air_quality",
-        json={"Element": "no2", "Latitude": example_lat, "Longitude": example_long},
+        json={"Latitude": example_lat, "Longitude": example_long},
     )
 
 def test_docs():

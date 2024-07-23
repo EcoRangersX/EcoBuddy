@@ -5,7 +5,7 @@ class Air_data:
     api_key = "196745f493a13cdf45ef558729bf6996"  # tak wiem nie ukryty
     chemical_elements = None
 
-    def get_air_quality_data(self, latitude: float, longitude: float, element: str):
+    def get_air_quality_data(self, latitude: float, longitude: float):
         self.response = requests.get(
             url=f"http://api.openweathermap.org/data/2.5/air_pollution?lat={latitude}&lon={longitude}&appid={self.api_key}"
         )
@@ -16,10 +16,10 @@ class Air_data:
         aqi_levels = ['Good','Fair','Modedrate','Poor','Very Poor']
         aqi = aqi_levels[aqi-1]
 
-        concentration = f'{self.response_json["list"][0]["components"][element]}ug/m3'
+        concentrations = self.response_json["list"][0]["components"]
 
         return {
-            "Concentration_of_element": concentration,
+            "Concentration_of_elements": concentrations,
             "AQI": aqi,
         }
     

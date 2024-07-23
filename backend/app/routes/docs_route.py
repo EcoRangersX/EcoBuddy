@@ -23,7 +23,6 @@ def endpoints():
     {
     "Air quality -- To get data send POST request with json that looks like this:":
     {
-    'Element': "<chemical element name you want to get data about>",
     'Latitude': "<latitude of place you want to get data about>",
     'Longitude': "<longitude of place you want to get data about>"
     }

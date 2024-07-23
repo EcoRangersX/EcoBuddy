@@ -9,14 +9,13 @@ air_data = Air_data()
 def air_quality_endpoint():
     if request.method == "POST":
         data = request.json
-        element = data['Element']
             
         latitude = data['Latitude']
     
         longitude = data['Longitude']
 
         air_quality_data = air_data.get_air_quality_data(
-            latitude=latitude, longitude=longitude, element=element
+            latitude=latitude, longitude=longitude
         )
 
         return {f"Air_quality_data": air_quality_data}
