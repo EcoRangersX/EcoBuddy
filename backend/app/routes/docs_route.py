@@ -21,40 +21,109 @@ def endpoints():
 
 "/api/air/air_quality": 
     {
-    "Air quality -- To get data send POST request with json that looks like this:":
-    {
-    'Latitude': "<latitude of place you want to get data about>",
-    'Longitude': "<longitude of place you want to get data about>"
-    }
+        "POST request":
+        {
+                'Latitude': "<latitude of place you want to get data about>",
+                'Longitude': "<longitude of place you want to get data about>"
+        },
+
+        "Response":
+        {
+            "Air_quality_data": {
+                "AQI": "Fair",
+                "Concentration_of_elements": {
+                "co": 186.92,
+                "nh3": 4.81,
+                "no": 0,
+                "no2": 6.17,
+                "o3": 66.52,
+                "pm10": 4.91,
+                "pm2_5": 3.16,
+                "so2": 3.28
+                }
+            }
+        }
     },
     
 "/api/auth/login": 
     {
-    "Login -- To login to account send POST request with json that looks like this":
-    {
-    'Email': "<email of account to login>",
-    'Password': "<password of account>"
-    }
+        "POST request":
+        {
+            'Email': "<email of account to login>",
+            'Password': "<password of account>"
+        },
+
+        "Response":
+        {
+            'Response': 'Logged succesfully!',
+            'Error_msg': None
+        }
+    
     },
 
 "/api/auth/register": 
     {
-    "Register -- To register an account send POST request with json that looks like this": 
-    {
-    'Name': "<name of account>",
-    'Email': "<email of account>",
-    'Password': "<password of account>"
-    }
+        "Post request": 
+        {
+            'Name': "<name of account>",
+            'Email': "<email of account>",
+            'Password': "<password of account>"
+        },
+
+        "Response":
+        {
+            'Response': 'Registered succesfully',
+            'Error_msg': None
+        }
     },
-"/api/ai/ai_assistant": {"Eco assistant -- To get answer send POST request with json that looks like this": 
+
+"/api/ai/ai_assistant": 
     {
-    'UserInput': "<your prompt>"
-    }
+        "Post request": 
+        {
+            'UserInput': "<your prompt>"
+        },
+
+        "Response":
+        {
+            "Response": "<generated text>"
+        }
     },   
 
-"/api/news/articles": "Articles -- To get articles about ecology send GET request",
-"/api/docs/blueprints": "Blueprints -- To see what kind of blueprints api serves send GET request",
-"/api/docs/endpoints": "Endpoints -- To see what kind of endpoints api serves send GET request"
+"/api/news/articles": 
+    {
+        "Get request response":
+        { 
+            "Aricles": 
+            {
+                "<article name>": 
+                {
+                    "img": "<img link>",
+                    "link": "<article link>",
+                    "title": "<article title>"
+                },
+                "<article2 name>": 
+                {
+                    "img": "<img link>",
+                    "link": "<article link>",
+                    "title": "<article title>"
+                }
+                
+
+            }
+            
+        }
+    },
+"/api/docs/blueprints": 
+    {
+        "Get request response": 'Json with key "Blueprints" and values of routes to blueprints'
+        
+
+    },
+"/api/docs/endpoints": 
+    {
+        "Get request response": 'Json with key "Endpoints" and values of routes to endpoints'
+    }
             
 }
 }

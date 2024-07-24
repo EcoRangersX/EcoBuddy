@@ -1,11 +1,14 @@
 from groq import Groq
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 class Assistant:
     
     PROMPT = "Check if this question is about ecology.\
     If so, go straight to the answer otherwise just say 'I can't answer it'  here is the question remember stick to the rules: "
     
-    api_key = "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"
+    api_key = os.environ.get("GROQ_API_KEY")
     model_provider = Groq(api_key=api_key)
     # dzwonienie do api groq o odpowiedź na pytanie użytkownika
     def get_ai_response(self, prompt: str):
