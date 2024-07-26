@@ -27,6 +27,14 @@ def test_login():
 def test_register():
     return requests.post('http://127.0.0.1:5000/api/auth/register',json={'Email': 'siemano1@gmail.com','Password': 'siemano1k','Name': 'siemano1'})
 
+def test_quiz():
+    return requests.post(
+        url='http://127.0.0.1:5000/api/ai/quiz_generator',
+        json={'Theme': 'ecology',
+              'Amount_of_questions': 5,
+              'Yes_or_no_answers': 'Yes',
+              'Possible_answers': 2})
+
 def test_api(features: list):
     for feature in features:
         if feature == "ARTICLES":
@@ -52,6 +60,10 @@ def test_api(features: list):
         elif feature == 'REGISTER':
             result = test_register()
             print(f'REGISTER: {json.dumps(result.json(),indent=2)}')
+
+        elif feature == 'QUIZ':
+            result = test_quiz()
+            print(f'QUIZ: {json.dumps(result.json(),indent=2)}')
             
         else:
             print("SMTH went wrong")
