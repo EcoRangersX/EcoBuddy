@@ -1,5 +1,5 @@
 import { Text, View } from 'react-native';
-import GetGeolocation from './geolocation';
+import GetGeolocation from '@/components/Geolocation';
 
 export default function ProfileScreen() {
   return (
