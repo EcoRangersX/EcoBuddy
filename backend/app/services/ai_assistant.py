@@ -1,13 +1,15 @@
 from groq import Groq
+from dotenv import load_dotenv
+import os
 
-
+load_dotenv()
 class Assistant:
-    def __init__(self, ai_provider: Groq):
-        self.PROMPT = "Check if this question is about ecology.\
-                       If so, go straight to the answer otherwise just say 'I can't answer it' "
-
-        self.model_provider = ai_provider
-
+    
+    PROMPT = "Check if this question is about ecology.\
+    If so, go straight to the answer otherwise just say 'I can't answer it'  here is the question remember stick to the rules: "
+    
+    api_key = os.environ.get("GROQ_API_KEY")
+    model_provider = Groq(api_key=api_key)
     # dzwonienie do api groq o odpowiedź na pytanie użytkownika
     def get_ai_response(self, prompt: str):
         response = self.model_provider.chat.completions.create(  # zapytanie do api
@@ -30,10 +32,10 @@ class Assistant:
                 constructed_response += part.choices[0].delta.content
 
         return constructed_response
-
     # post request
     def request_post(self, user_prompt: str) -> dict:
-        # prompt = prompt  # + self.PROMPT # tworzenie odpowiedniego prompta  do naszych zapotrzebowań
-        response = self.get_ai_response(prompt=user_prompt)
+        prompt = self.PROMPT + user_prompt# tworzenie odpowiedniego prompta  do naszych zapotrzebowań
+        response = self.get_ai_response(prompt=prompt)
 
-        return {"response": response}  # zwrot jsona jako odpowiedź na post request
+        return {"Response": response}  # zwrot jsona jako odpowiedź na post request
+    
