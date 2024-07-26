@@ -114,6 +114,42 @@ def endpoints():
             
         }
     },
+"/api/ai/quiz_generator": 
+    {
+        "Post request":
+        {
+            'Theme': "<theme of quiz>",
+            'Amount_of_questions': "<amount of questions in quiz>",
+            'Yes_or_no_answers': "<True if answers are yes or no, False if multiple choice>",
+            'Possible_answers': "<amount of possible answers !if yes or no then pass the value 2!>"
+        },
+
+        "Response":
+        {
+            "Quiz": 
+            {
+                "Questions": 
+                {
+                    "question1": 
+                    {
+                        "Answer1": "<answer1>",
+                        "Answer2": "<answer2>"
+                    },
+                    "question2": 
+                    {
+                        "Answer1": "<answer1>",
+                        "Answer2": "<answer2>"
+                    }
+                },
+                "Answer_key": 
+                {
+                    "q1": "<correct answer for question1>",
+                    "q2": "<correct answer for question2>"
+                }
+                
+            }
+        }
+    },
 "/api/docs/blueprints": 
     {
         "Get request response": 'Json with key "Blueprints" and values of routes to blueprints'
