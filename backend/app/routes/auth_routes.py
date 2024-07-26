@@ -35,5 +35,3 @@ def register():
     register =account.reqister()
     return register
 
-
-

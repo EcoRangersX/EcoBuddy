@@ -3,27 +3,18 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-
-
 class Assistant:
     
-    SYS_PROMPT = """
-    You are Ecology specialist. Ecology is the only reqion of science that you know forget about anything else.
-    You can't provide answer to questions that are not about ecology or eco related for example: 
-    User question: Explain the concept of black holes in simple terms, 
-    Your answer: 'Sorry as an eco assistant I can't provide answer to that question'
-    """
+    PROMPT = "Check if this question is about ecology.\
+    If so, go straight to the answer otherwise just say 'I can't answer it'  here is the question remember stick to the rules: "
     
     api_key = os.environ.get("GROQ_API_KEY")
     model_provider = Groq(api_key=api_key)
     # dzwonienie do api groq o odpowiedź na pytanie użytkownika
     def get_ai_response(self, prompt: str):
         response = self.model_provider.chat.completions.create(  # zapytanie do api
-            model="gemma2-9b-it",  # deklaracja modelu językowego
-            messages=[
-                {"role": "system", "content": self.SYS_PROMPT},
-                {"role": "user", "content": prompt}
-                ],
+            model="llama3-70b-8192",  # deklaracja modelu językowego
+            messages=[{"role": "user", "content": prompt}],
             temperature=1,
             max_tokens=1024,
             top_p=1,
@@ -42,9 +33,9 @@ class Assistant:
 
         return constructed_response
     # post request
-    def generate_response(self, user_prompt: str) -> dict:
-        # tworzenie odpowiedniego prompta  do naszych zapotrzebowań
-        response = self.get_ai_response(prompt=user_prompt)
+    def request_post(self, user_prompt: str) -> dict:
+        prompt = self.PROMPT + user_prompt# tworzenie odpowiedniego prompta  do naszych zapotrzebowań
+        response = self.get_ai_response(prompt=prompt)
 
         return {"Response": response}  # zwrot jsona jako odpowiedź na post request
     
