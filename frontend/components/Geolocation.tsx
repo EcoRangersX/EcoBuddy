@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
-import { Platform, Text, View, StyleSheet } from 'react-native';
+import { Platform, Text, View } from 'react-native';
 import * as Device from 'expo-device';
 import * as Location from 'expo-location';
+import useGeocode from '@/hooks/useGetAdress';
 
-export default function App() {
+export default function GetGeolocation() {
   const [location, setLocation] = useState<Location.LocationObject | null>(
     null,
   );
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const { address, error, getGeocode } = useGeocode();
 
   useEffect(() => {
     (async () => {
@@ -26,32 +28,30 @@ export default function App() {
 
       let currentLocation = await Location.getCurrentPositionAsync({});
       setLocation(currentLocation);
+
+      if (currentLocation) {
+        getGeocode({
+          lat: currentLocation.coords.latitude,
+          lng: currentLocation.coords.longitude,
+        });
+      }
     })();
   }, []);
 
-  let text = 'Waiting..';
+  let locationInfo = 'Waiting..';
   if (errorMsg) {
-    text = errorMsg;
+    locationInfo = errorMsg;
   } else if (location) {
-    text = `Latitude: ${location.coords.latitude}, Longitude: ${location.coords.longitude}`;
+    if (address) {
+      locationInfo = `\n Address: ${address}`;
+    }
+  } else if (error) {
+    locationInfo = error;
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.paragraph}>{text}</Text>
+    <View className="">
+      <Text className="text-lg text-center">{locationInfo}</Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  paragraph: {
-    fontSize: 18,
-    textAlign: 'center',
-  },
-});
