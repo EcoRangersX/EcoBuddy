@@ -6,12 +6,14 @@ interface WeatherDataElementProps {
   elementName: string;
   value: number;
   status: string;
+  unit: string;
 }
 
 export default function WeatherDataElement({
   elementName,
   value,
   status,
+  unit,
 }: WeatherDataElementProps) {
   const elementIcon = (elementName: string) => {
     switch (elementName.toLocaleLowerCase()) {
@@ -54,7 +56,7 @@ export default function WeatherDataElement({
       <View className={Styles.flexColStyles}>
         <View className={Styles.flexRowStyles}>
           <Text className={Styles.valueTextStyles}>{value}</Text>
-          <Text className={Styles.unitTextStyles}>km/h</Text>
+          <Text className={Styles.unitTextStyles}>{unit}</Text>
         </View>
         <Text className={Styles.statusTextStyles}>{status.toUpperCase()}</Text>
       </View>
