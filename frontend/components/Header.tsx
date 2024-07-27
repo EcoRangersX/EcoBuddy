@@ -10,7 +10,6 @@ function Header() {
   const toggleMenu = () => {
     setVisible(!visible);
   };
-  console.log(`The current state of the menu is ${visible}`);
 
   return (
     <Appbar.Header mode="center-aligned">

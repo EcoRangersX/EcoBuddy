@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from 'react';
-import { View, Animated, Easing } from 'react-native';
+import { useRef, useEffect } from 'react';
+import { View, Animated, Easing, TouchableOpacity } from 'react-native';
 import { Drawer, Portal } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { CloseSideBarIcon } from '@/components/icons/HomeIcons';
@@ -36,18 +36,19 @@ export default function SideMenu({ visible, closeMenu }: SideMenuProps) {
       <View>
         <Animated.View
           style={{ transform: [{ translateX: slideAnim }] }}
-          className="bg-white h-full w-[75%] mt-10">
-          <Drawer.Section className="">
-            <Drawer.Item label='Close SideBar' onPress={closeMenu}>
-            </Drawer.Item>
-            {/* <CloseSideBarIcon size={30} /> */}
+          className="flex bg-white h-full w-[75%] mt-10 relative">
+          <TouchableOpacity
+            onPress={closeMenu}
+            className="absolute top-2 right-2">
+            <CloseSideBarIcon size={30} />
+          </TouchableOpacity>
+          <Drawer.Section className="mt-9">
             <Drawer.Item
               label="Quizzes"
               onPress={() => {
                 navigation.navigate('quiz');
                 closeMenu();
               }}
-              className="mb-4"
             />
             <Drawer.Item
               label="Profile"
