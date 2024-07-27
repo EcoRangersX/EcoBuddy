@@ -1,24 +1,15 @@
-import React from 'react';
-
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Tabs } from 'expo-router';
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import HomeScreen from './index';
-import QuizScreen from './quiz';
-import ArticlesScreen from './articles';
-import AiAssistantScreen from './ai-assistant';
-import ProfileScreen from './profile';
 
-const Tabs = createBottomTabNavigator();
-
-export default function TaLayout() {
+export default function TabLayout() {
   return (
-    <Tabs.Navigator
-      screenOptions={({ route }) => ({
+    <Tabs
+      initialRouteName="articles"
+      screenOptions={({}) => ({
         headerShown: false,
       })}>
       <Tabs.Screen
-        name="Quiz"
-        component={QuizScreen}
+        name="quiz"
         options={{
           title: 'Quiz',
           tabBarIcon: ({ color }) => (
@@ -31,8 +22,7 @@ export default function TaLayout() {
         }}
       />
       <Tabs.Screen
-        name="Articles"
-        component={ArticlesScreen}
+        name="articles"
         options={{
           title: 'Articles',
           tabBarIcon: ({ color }) => (
@@ -41,8 +31,7 @@ export default function TaLayout() {
         }}
       />
       <Tabs.Screen
-        name="Home"
-        component={HomeScreen}
+        name="index"
         options={{
           title: 'Home',
           tabBarIcon: ({ color }) => (
@@ -51,8 +40,7 @@ export default function TaLayout() {
         }}
       />
       <Tabs.Screen
-        name="Ai-Assistant"
-        component={AiAssistantScreen}
+        name="ai-assistant"
         options={{
           title: 'Ai-Assistant',
           tabBarIcon: ({ color }) => (
@@ -65,8 +53,7 @@ export default function TaLayout() {
         }}
       />
       <Tabs.Screen
-        name="Profile"
-        component={ProfileScreen}
+        name="profile"
         options={{
           title: 'Profile',
           tabBarIcon: ({ color }) => (
@@ -78,6 +65,6 @@ export default function TaLayout() {
           ),
         }}
       />
-    </Tabs.Navigator>
+    </Tabs>
   );
 }
