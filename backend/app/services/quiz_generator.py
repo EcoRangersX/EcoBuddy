@@ -2,10 +2,11 @@ from groq import Groq
 from dotenv import load_dotenv
 import os
 import json
+from app.utils import Groq_parent
 
 load_dotenv()
 
-class Quiz_generator():
+class Quiz_generator(Groq_parent):
     SYS_PROMPT = '''You are quiz generator that generates quizes in json format:
     {"Questions":{
     "put question here": {"Answer1": "xyz","Answer2": "xyz"},
@@ -14,12 +15,11 @@ class Quiz_generator():
     "Answer_key": {"q1": "Answer1","q2": "Answer2"}}
     in answer key you names of correct answers for each question. 
     and only returns this json quiz nothing else.'''
-    api_key = os.environ.get('GROQ_API_KEY')
-    model_provider = Groq(api_key=api_key)
+    
 
     def get_quiz(self, prompt: str):
-        response = self.model_provider.chat.completions.create(  # zapytanie do api
-            model="gemma2-9b-it",  # deklaracja modelu językowego
+        response = self.ai_model_provider.chat.completions.create(  # zapytanie do api
+            model="llama3-70b-8192",  # deklaracja modelu językowego
             messages=[
                 {"role": "system", "content": self.SYS_PROMPT},
                 {"role": "user", "content": prompt}

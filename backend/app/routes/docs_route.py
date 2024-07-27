@@ -44,6 +44,24 @@ def endpoints():
             }
         }
     },
+
+"/api/air/weather":
+    {
+        "POST request":
+        {
+            'Latitude': "<latitude of place you want to get data about>",
+            'Longitude': "<longitude of place you want to get data about>"
+        },
+        "Response":
+        {
+            "Weather_data": {
+                "Humidity": "93%",
+                "Temp": "12.0 C",
+                "Wind_speed": "1.54m/s"
+            }
+        }
+    },
+    
     
 "/api/auth/login": 
     {

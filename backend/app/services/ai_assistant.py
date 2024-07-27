@@ -1,9 +1,10 @@
 from groq import Groq
 from dotenv import load_dotenv
 import os
+from app.utils import Groq_parent
 
 load_dotenv()
-class Assistant:
+class Assistant(Groq_parent):
     
     PROMPT = """
     You are Ecology specialist. Ecology is the only reqion of science that you know forget about anything else.
@@ -11,12 +12,9 @@ class Assistant:
     User question: Explain the concept of black holes in simple terms, 
     Your answer: 'Sorry as an eco assistant I can't provide answer to that question'
     """
-    
-    api_key = os.environ.get("GROQ_API_KEY")
-    model_provider = Groq(api_key=api_key)
     # dzwonienie do api groq o odpowiedź na pytanie użytkownika
     def get_ai_response(self, prompt: str):
-        response = self.model_provider.chat.completions.create(  # zapytanie do api
+        response = self.ai_model_provider.chat.completions.create(  # zapytanie do api
             model="llama3-70b-8192",  # deklaracja modelu językowego
             messages=[
                 {"role": "system", "content": self.PROMPT},
