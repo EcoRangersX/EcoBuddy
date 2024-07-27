@@ -30,7 +30,7 @@ const CloseSideBarIcon = ({ size = 24, color = 'black' }: BasicIconProps) => {
   );
 };
 
-const WindIcon = ({ size = 24, color = 'black' }: BasicIconProps) => {
+const WindIcon = ({ size = 24, color = 'white' }: BasicIconProps) => {
   return <MaterialIcons name="air" size={size} color={color} />;
 };
 

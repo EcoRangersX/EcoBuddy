@@ -37,13 +37,13 @@ export default function SideMenu({ visible, closeMenu }: SideMenuProps) {
         <Animated.View
           style={{ transform: [{ translateX: slideAnim }] }}
           className="flex bg-white h-full w-[75%] mt-10 relative">
-          <View className='flex flex-row items-center p-5'>
-            <Text className='text-base'>Username123</Text>
+          <View className="flex flex-row items-center p-5">
+            <Text className="text-base">Username123</Text>
             <TouchableOpacity
-            onPress={closeMenu}
-            className="absolute right-2 top-2">
-            <CloseSideBarIcon size={30} />
-          </TouchableOpacity>
+              onPress={closeMenu}
+              className="absolute right-2 top-2">
+              <CloseSideBarIcon size={30} />
+            </TouchableOpacity>
           </View>
           <Drawer.Section className="">
             <Drawer.Item
