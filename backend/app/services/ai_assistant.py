@@ -19,7 +19,7 @@ class Assistant:
         response = self.model_provider.chat.completions.create(  # zapytanie do api
             model="llama3-70b-8192",  # deklaracja modelu językowego
             messages=[
-                {"system": "user", "content": self.PROMPT},
+                {"role": "system", "content": self.PROMPT},
                 {"role": "user", "content": prompt}
                 ],
             temperature=1,
