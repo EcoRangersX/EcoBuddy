@@ -1,8 +1,7 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import Svg from 'react-native-svg';
 import { AnimatedCircularProgress  } from 'react-native-circular-progress';
-import LocationIcon from '@/components/icons/LocationIcon';
-import ViewDetailsIcon from '@/components/icons/ViewDetailsIcon';
+import { LocationIcon, ViewDetailsIcon } from '@/components/icons/HomeIcons';
 
 const AQIComponent = () => {
   const aqiValue = 36; // Static data for now
