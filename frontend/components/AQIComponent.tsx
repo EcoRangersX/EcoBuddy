@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import Svg from 'react-native-svg';
 import { AnimatedCircularProgress  } from 'react-native-circular-progress';
 import LocationIcon from '@/components/icons/LocationIcon';
+import ViewDetailsIcon from '@/components/icons/ViewDetailsIcon';
 
 const AQIComponent = () => {
   const aqiValue = 36; // Static data for now
@@ -36,8 +37,9 @@ const AQIComponent = () => {
         </Svg>
       </View>
       <Text className="text-white text-sm mb-4">EU AQI</Text>
-      <TouchableOpacity className="bg-white px-5 py-2 rounded-full">
-        <Text className="text-[#3ac5c9] text-base">View Details</Text>
+      <TouchableOpacity className="flex flex-row items-center bg-white px-7 py-2 rounded-full">
+        <Text className="text-black text-base mr-2">View Details</Text>
+        <ViewDetailsIcon size={30} />
       </TouchableOpacity>
     </View>
   );

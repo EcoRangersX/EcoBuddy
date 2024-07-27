@@ -1,19 +1,19 @@
-import Svg, { Path } from 'react-native-svg';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 interface ViewDetailsIconProps {
   color?: string;
-  width?: number;
-  height?: number;
+  size?: number;
 }
 
 const ViewDetailsIcon = ({
-  color = '#3ac5c9',
-  width = 24,
-  height = 24,
+  color = '#000000',
+  size = 24,
 }: ViewDetailsIconProps) => (
-  <Svg width={width} height={height} viewBox="0 0 24 24">
-    <Path d="M..." fill={color} />
-  </Svg>
+  <MaterialCommunityIcons
+    name="arrow-top-right-thin-circle-outline"
+    size={size}
+    color={color}
+  />
 );
 
 export default ViewDetailsIcon;
