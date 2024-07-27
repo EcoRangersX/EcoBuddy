@@ -10,7 +10,9 @@ export default function HomeScreen() {
       <View className="mt-10 items-center">
         <AQIComponent />
       </View>
-      <WeatherDataElement />
+      <View className='mt-5 items-center'>
+        <WeatherDataElement elementName='wind' value={26} status="low" />
+      </View>
     </View>
   );
 }
