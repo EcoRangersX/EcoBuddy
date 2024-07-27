@@ -42,7 +42,7 @@ export default function SideMenu({ visible, closeMenu }: SideMenuProps) {
             </Drawer.Item>
             {/* <CloseSideBarIcon size={30} /> */}
             <Drawer.Item
-              label="First Item"
+              label="Quizzes"
               onPress={() => {
                 navigation.navigate('quiz');
                 closeMenu();
@@ -50,7 +50,7 @@ export default function SideMenu({ visible, closeMenu }: SideMenuProps) {
               className="mb-4"
             />
             <Drawer.Item
-              label="Second Item"
+              label="Profile"
               onPress={() => {
                 navigation.navigate('profile');
                 closeMenu();
