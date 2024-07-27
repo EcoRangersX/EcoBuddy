@@ -1,5 +1,12 @@
 import { Text, View, TouchableOpacity } from 'react-native';
-import { PollenIcon, WindIcon } from '@/components/icons/HomeIcons';
+import {
+  PollenIcon,
+  WindIcon,
+  HumidityIcon,
+  TemperatureIcon,
+  UvIndexIcon,
+  PressureIcon,
+} from '@/components/icons/HomeIcons';
 import capitalize from '@/utility/capitalizeWord';
 
 interface WeatherDataElementProps {
@@ -18,17 +25,19 @@ export default function WeatherDataElement({
   const elementIcon = (elementName: string) => {
     switch (elementName.toLocaleLowerCase()) {
       case 'temp.':
-        return '🌡️';
+        return <TemperatureIcon />;
       case 'humidity':
-        return '💧';
+        return <HumidityIcon />;
       case 'pollen':
-        return <PollenIcon size={36} />;
+        return <PollenIcon />;
       case 'wind':
-        return <WindIcon size={36} />;
+        return <WindIcon />;
       case 'pressure':
-        return '📊';
+        return <PressureIcon />;
+      case "uv index":
+        return <UvIndexIcon />;
       default:
-        return '🌡️';
+        return <TemperatureIcon />;
     }
   };
 
