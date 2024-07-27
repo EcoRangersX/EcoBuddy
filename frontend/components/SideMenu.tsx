@@ -1,17 +1,17 @@
 import { useState, useRef, useEffect } from 'react';
-import { View, TouchableWithoutFeedback, Animated, Easing } from 'react-native';
-import { Drawer, Portal, Modal } from 'react-native-paper';
+import { View, Animated, Easing } from 'react-native';
+import { Drawer, Portal } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
+import { CloseSideBarIcon } from '@/components/icons/HomeIcons';
 
 interface SideMenuProps {
   visible: boolean;
-  onDismiss: () => void;
+  closeMenu: () => void;
 }
 
-export default function SideMenu({ visible, onDismiss }: SideMenuProps) {
+export default function SideMenu({ visible, closeMenu }: SideMenuProps) {
   const navigation = useNavigation();
-  const [active, setActive] = useState<string>('');
-  const slideAnim = useRef(new Animated.Value(-500)).current
+  const slideAnim = useRef(new Animated.Value(-300)).current;
 
   useEffect(() => {
     if (visible) {
@@ -23,47 +23,42 @@ export default function SideMenu({ visible, onDismiss }: SideMenuProps) {
       }).start();
     } else {
       Animated.timing(slideAnim, {
-        toValue: -500,
+        toValue: -300,
         duration: 350,
         easing: Easing.ease,
         useNativeDriver: true,
       }).start();
     }
-  }, [visible, slideAnim])
+  }, [visible, slideAnim]);
 
   return (
     <Portal>
-      <Modal visible={visible} onDismiss={onDismiss}>
-        <TouchableWithoutFeedback onPress={onDismiss}>
-          <View>
-            <TouchableWithoutFeedback>
-              <Animated.View style={{ transform: [{ translateX: slideAnim }]}} className="bg-white h-full w-[75%]">
-                <Drawer.Section className="p-2">
-                  <Drawer.Item
-                    label="First Item"
-                    active={active === 'first'}
-                    onPress={() => {
-                      setActive('first');
-                      navigation.navigate('quiz');
-                      onDismiss();
-                    }}
-                    className="mb-4"
-                  />
-                  <Drawer.Item
-                    label="Second Item"
-                    active={active === 'second'}
-                    onPress={() => {
-                      setActive('second');
-                      navigation.navigate('profile');
-                      onDismiss();
-                    }}
-                  />
-                </Drawer.Section>
-              </Animated.View>
-            </TouchableWithoutFeedback>
-          </View>
-        </TouchableWithoutFeedback>
-      </Modal>
+      <View>
+        <Animated.View
+          style={{ transform: [{ translateX: slideAnim }] }}
+          className="bg-white h-full w-[75%] mt-10">
+          <Drawer.Section className="">
+            <Drawer.Item label='Close SideBar' onPress={closeMenu}>
+            </Drawer.Item>
+            {/* <CloseSideBarIcon size={30} /> */}
+            <Drawer.Item
+              label="First Item"
+              onPress={() => {
+                navigation.navigate('quiz');
+                closeMenu();
+              }}
+              className="mb-4"
+            />
+            <Drawer.Item
+              label="Second Item"
+              onPress={() => {
+                navigation.navigate('profile');
+                closeMenu();
+              }}
+            />
+          </Drawer.Section>
+        </Animated.View>
+      </View>
     </Portal>
   );
 }
