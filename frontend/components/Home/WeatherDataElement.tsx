@@ -41,12 +41,25 @@ export default function WeatherDataElement({
     }
   };
 
+  const borderColor = ( status: string ) => {
+    switch (status) {
+      case 'low':
+        return 'border-[#03c13d]';
+      case 'moderate':
+        return 'border-[#f6b930]';
+      case 'high':
+        return 'border-[#ff0000]';
+      default:
+        return 'border-[#03c13d]';
+    }
+  }
+
   const Styles = {
     containerStyles:
       'flex bg-[#56cade] p-3 rounded-2xl items-center shadow-2xl shadow-[#5662f6] relative',
     rowStyles: 'flex flex-row items-center gap-7 relative',
     elementTextStyles:
-      'flex text-white text-base border-b-[4px] border-[#03c13d] pb-[px]',
+      `flex text-white text-base border-b-[4px] ${borderColor(status)} pb-[px]`,
     flexColStyles: 'flex flex-col items-center mr-10',
     flexRowStyles: 'flex flex-row items-baseline',
     valueTextStyles: 'text-white text-3xl',
