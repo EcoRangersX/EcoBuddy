@@ -34,6 +34,6 @@ Use `python3 run.py` to run the project.
 
 
 ## TEST BACKEND
-To test api you can use `test.py` and see if everything works as intended.
+To test api you can use `python3 test.py` and see if everything works as intended.
 
 

@@ -114,17 +114,17 @@ def endpoints():
         { 
             "Aricles": 
             {
-                "<article name>": 
+                "<article title>": 
                 {
                     "img": "<img link>",
-                    "link": "<article link>",
-                    "title": "<article title>"
+                    "link": "<article link>"
+                 
                 },
-                "<article2 name>": 
+                "<article2 title>": 
                 {
                     "img": "<img link>",
-                    "link": "<article link>",
-                    "title": "<article title>"
+                    "link": "<article link>"
+                    
                 }
                 
 

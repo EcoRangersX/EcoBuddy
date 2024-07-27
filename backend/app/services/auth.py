@@ -1,4 +1,4 @@
-from app.database import *
+from app.database import User
 import re
 
 
