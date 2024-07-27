@@ -10,17 +10,15 @@ function Header() {
   const toggleMenu = () => {
     setVisible(!visible);
   };
+  console.log(`The current state of the menu is ${visible}`);
 
   return (
     <Appbar.Header mode="center-aligned">
-      <Appbar.Action
-        icon="menu"
-        onPress={toggleMenu}
-      />
-      <SideMenu visible={visible} onDismiss={toggleMenu} />
+      <Appbar.Action icon="menu" onPress={toggleMenu} />
+      <SideMenu visible={visible} closeMenu={toggleMenu} />
       <Appbar.Content title="EcoBuddy" />
       <Appbar.Action
-        onPress={() => navigation.navigate('Profile')}
+        onPress={() => navigation.navigate('profile')}
         icon="cog"
       />
     </Appbar.Header>
