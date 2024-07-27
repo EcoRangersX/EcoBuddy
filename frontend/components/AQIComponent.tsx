@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import Svg from 'react-native-svg';
 import { AnimatedCircularProgress  } from 'react-native-circular-progress';
+import LocationIcon from '@/components/icons/LocationIcon';
 
 const AQIComponent = () => {
   const aqiValue = 36; // Static data for now
@@ -9,7 +10,10 @@ const AQIComponent = () => {
 
   return (
     <View className="bg-[#38d26e] p-5 rounded-[30px] w-[80%] items-center justify-center">
-      <Text className="text-white text-base mb-3">{location}</Text>
+      <View className='flex flex-row items-center mb-3'>
+        <LocationIcon color='white' />
+        <Text className="text-white text-base ml-1">{location}</Text>
+      </View>
       <View className="items-center justify-center">
         <Svg width={170} height={170} viewBox="0 0 170 170">
           <AnimatedCircularProgress
