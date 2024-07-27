@@ -4,7 +4,7 @@ import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 export default function TabLayout() {
   return (
     <Tabs
-      initialRouteName="articles"
+      initialRouteName="index"
       screenOptions={({}) => ({
         headerShown: false,
       })}>
