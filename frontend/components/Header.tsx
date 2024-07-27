@@ -19,7 +19,7 @@ function Header() {
         onPress={toggleMenu} // This will toggle the visibility of the SideMenu
       />
       <SideMenu visible={visible} onDismiss={toggleMenu} />
-      <Appbar.Content title="Eco-AI" />
+      <Appbar.Content title="EcoBuddy" />
       <Appbar.Action
         onPress={() => navigation.navigate('Profile')}
         icon="cog"
