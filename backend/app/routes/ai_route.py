@@ -1,10 +1,12 @@
 from flask import Blueprint, request
 from app.services import Assistant
+from app.services import Quiz_generator
 
 
 ai_bp = Blueprint('ai',__name__,url_prefix='/api/ai')
 
 ai_assistant = Assistant()
+quiz_generator = Quiz_generator()
 
 
 
@@ -16,3 +18,9 @@ def ai_assistant_endpoint():
         return response
     else:
         return {"error": "No prompt provided"}
+    
+
+@ai_bp.route("/quiz_generator", methods=["POST"])
+def quiz_generator_endpoint():
+    return {'Quiz': quiz_generator.generate_quiz(request.json)}
+    
