@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import { View, Animated, Easing, TouchableOpacity } from 'react-native';
+import { View, Animated, Easing, TouchableOpacity, Text } from 'react-native';
 import { Drawer, Portal } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { CloseSideBarIcon } from '@/components/icons/HomeIcons';
@@ -37,12 +37,15 @@ export default function SideMenu({ visible, closeMenu }: SideMenuProps) {
         <Animated.View
           style={{ transform: [{ translateX: slideAnim }] }}
           className="flex bg-white h-full w-[75%] mt-10 relative">
-          <TouchableOpacity
+          <View className='flex flex-row items-center p-5'>
+            <Text className='text-base'>Username123</Text>
+            <TouchableOpacity
             onPress={closeMenu}
-            className="absolute top-2 right-2">
+            className="absolute right-2 top-2">
             <CloseSideBarIcon size={30} />
           </TouchableOpacity>
-          <Drawer.Section className="mt-9">
+          </View>
+          <Drawer.Section className="">
             <Drawer.Item
               label="Quizzes"
               onPress={() => {
