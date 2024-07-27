@@ -1,4 +1,4 @@
-import { Appbar, Drawer } from 'react-native-paper';
+import { Appbar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import SideMenu from '@/components/SideMenu';
@@ -12,11 +12,10 @@ function Header() {
   };
 
   return (
-    
     <Appbar.Header mode="center-aligned">
       <Appbar.Action
-        icon="menu" // Use a menu icon or any appropriate icon
-        onPress={toggleMenu} // This will toggle the visibility of the SideMenu
+        icon="menu"
+        onPress={toggleMenu}
       />
       <SideMenu visible={visible} onDismiss={toggleMenu} />
       <Appbar.Content title="EcoBuddy" />
