@@ -7,7 +7,7 @@ export default function HomeScreen() {
   return (
     <View>
       <Header />
-      <View className='mt-10 items-center'>
+      <View className='mt-5 items-center'>
         <AQIComponent />
       </View>
       <View className='mt-5 p-5'>
