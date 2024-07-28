@@ -46,6 +46,21 @@ const pressureLevel = (value: number) => {
   return 'moderate';
 };
 
+const tempColors: { [status: string]: string } = {
+  cold: '#03c13d',
+  cool: '#56cade',
+  moderate: '#f6b930',
+  warm: '#ff7f00',
+  hot: '#ff0000',
+};
+
+const windColors: { [status: string]: string } = {
+  low: '#2abb49',
+  moderate: '#f6b930',
+  high: '#ff7f00',
+  'very high': '#ff0000',
+};
+
 export {
   pollenLevel,
   windLevel,
@@ -53,4 +68,6 @@ export {
   humidityLevel,
   pressureLevel,
   uvIndexLevel,
+  tempColors,
+  windColors,
 };
