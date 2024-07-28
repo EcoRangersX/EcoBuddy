@@ -23,6 +23,15 @@ export default function WeatherDataSlider() {
   const showLeftGradient = scrollPosition > 0;
   const showRightGradient = scrollPosition < contentWidth - containerWidth;
 
+  const weatherElements = [
+    { weatherElement: 'temp.', value: 32, unit: '°C' },
+    { weatherElement: 'wind', value: 8, unit: 'km/h' },
+    { weatherElement: 'pollen', value: 342, unit: 'grains/m³' },
+    { weatherElement: 'uv index', value: 12, unit: '' },
+    { weatherElement: 'humidity', value: 17, unit: '%RH' },
+    { weatherElement: 'pressure', value: 1011, unit: 'hPa' },
+  ]
+
   return (
     <View className='relative' onLayout={handleLayout}>
       {/* Left Gradient */}
@@ -56,12 +65,14 @@ export default function WeatherDataSlider() {
           } as ViewStyle
         }
       >
-        <WeatherDataElement weatherElement="temp." value={32} unit="°C" />
-        <WeatherDataElement weatherElement="wind" value={8} unit="km/h" />
-        <WeatherDataElement weatherElement="pollen" value={342} unit="grains/m³" />
-        <WeatherDataElement weatherElement="uv index" value={12} unit="" />
-        <WeatherDataElement weatherElement="humidity" value={17} unit="%RH" />
-        <WeatherDataElement weatherElement="pressure" value={1011} unit="hPa" />
+        {weatherElements.map((element, index) => (
+          <WeatherDataElement
+            key={index}
+            weatherElement={element.weatherElement}
+            value={element.value}
+            unit={element.unit}
+          />
+        ))}
       </ScrollView>
       {/* Right Gradient */}
       {showRightGradient && (
