@@ -8,6 +8,14 @@ import {
   PressureIcon,
 } from '@/components/icons/HomeIcons';
 import capitalize from '@/utility/capitalizeWord';
+import {
+  tempLevel,
+  windLevel,
+  pollenLevel,
+  uvIndexLevel,
+  pressureLevel,
+  humidityLevel,
+} from '@/utility/weatherDataLevels';
 
 interface WeatherDataElementProps {
   elementName: string;
@@ -40,7 +48,7 @@ export default function WeatherDataElement({
   };
 
   const borderColor = (status: string) => {
-    if (elementName === "temp.") {
+    if (elementName === 'temp.') {
       switch (status) {
         case 'cold':
           return 'border-[#03c13d]';
@@ -55,34 +63,38 @@ export default function WeatherDataElement({
         default:
           return 'border-[#03c13d]';
       }
+    } else if (elementName === 'wind') {
+      switch (status) {
+        case 'low':
+          return 'border-[#2abb49]';
+        case 'moderate':
+          return 'border-[#f6b930]';
+        case 'high':
+          return 'border-[#ff7f00]';
+        case 'very high':
+          return 'border-[#ff0000]';
+        default:
+          return 'border-[#2abb49]';
+      }
     }
     return 'border-[#2abb49]';
   };
 
-  const tempLevel = () => {
-    if (value < 0) return 'cold';
-    if (value >= 0 && value < 15) return 'cool';
-    if (value >= 15 && value < 25) return 'moderate';
-    if (value >= 25 && value < 35) return 'warm';
-    if (value >= 35) return 'hot';
-    return 'warm';
-  };
-
-  const windLevel = () => {
-    if (value < 10) return 'low';
-    if (value >= 10 && value < 20) return 'moderate';
-    if (value >= 20 && value < 30) return 'high';
-    if (value >= 30) return 'very high';
-    return 'moderate';
-  }
-
   const status = (elementName: string) => {
     if (elementName === 'temp.') {
-      return tempLevel();
+      return tempLevel(value);
     } else if (elementName === 'wind') {
-      return windLevel();
+      return windLevel(value);
+    } else if (elementName === 'pollen') {
+      return pollenLevel(value);
+    } else if (elementName === 'uv index') {
+      return uvIndexLevel(value);
+    } else if (elementName === 'humidity') {
+      return humidityLevel(value);
+    } else if (elementName === 'pressure') {
+      return pressureLevel(value);
     }
-    return "normal";
+    return 'moderate';
   };
 
   const Styles = {
@@ -112,7 +124,9 @@ export default function WeatherDataElement({
           <Text className={Styles.valueTextStyles}>{value}</Text>
           <Text className={Styles.unitTextStyles}>{unit}</Text>
         </View>
-        <Text className={Styles.statusTextStyles}>{status(elementName).toUpperCase()}</Text>
+        <Text className={Styles.statusTextStyles}>
+          {status(elementName).toUpperCase()}
+        </Text>
       </View>
     </View>
   );
