@@ -15,21 +15,23 @@ import {
   uvIndexLevel,
   pressureLevel,
   humidityLevel,
+  tempColors,
+  windColors,
 } from '@/utility/weatherDataLevels';
 
 interface WeatherDataElementProps {
-  elementName: string;
+  weatherElement: string;
   value: number;
   unit: string;
 }
 
 export default function WeatherDataElement({
-  elementName,
+  weatherElement,
   value,
   unit,
 }: WeatherDataElementProps) {
   const elementIcon = (elementName: string) => {
-    switch (elementName.toLocaleLowerCase()) {
+    switch (elementName.toLowerCase()) {
       case 'temp.':
         return <TemperatureIcon />;
       case 'humidity':
@@ -47,63 +49,46 @@ export default function WeatherDataElement({
     }
   };
 
-  const borderColor = (status: string) => {
-    if (elementName === 'temp.') {
-      switch (status) {
-        case 'cold':
-          return 'border-[#03c13d]';
-        case 'cool':
-          return 'border-[#56cade]';
-        case 'moderate':
-          return 'border-[#f6b930]';
-        case 'warm':
-          return 'border-[#ff7f00]';
-        case 'hot':
-          return 'border-[#ff0000]';
-        default:
-          return 'border-[#03c13d]';
-      }
-    } else if (elementName === 'wind') {
-      switch (status) {
-        case 'low':
-          return 'border-[#2abb49]';
-        case 'moderate':
-          return 'border-[#f6b930]';
-        case 'high':
-          return 'border-[#ff7f00]';
-        case 'very high':
-          return 'border-[#ff0000]';
-        default:
-          return 'border-[#2abb49]';
-      }
+  const weatherStatus = (value: number) => {
+    switch (weatherElement.toLowerCase()) {
+      case 'temp.':
+        return tempLevel(value);
+      case 'wind':
+        return windLevel(value);
+      case 'pollen':
+        return pollenLevel(value);
+      case 'uv index':
+        return uvIndexLevel(value);
+      case 'humidity':
+        return humidityLevel(value);
+      case 'pressure':
+        return pressureLevel(value);
+      default:
+        return 'moderate';
     }
-    return 'border-[#2abb49]';
   };
 
-  const status = (elementName: string) => {
-    if (elementName === 'temp.') {
-      return tempLevel(value);
-    } else if (elementName === 'wind') {
-      return windLevel(value);
-    } else if (elementName === 'pollen') {
-      return pollenLevel(value);
-    } else if (elementName === 'uv index') {
-      return uvIndexLevel(value);
-    } else if (elementName === 'humidity') {
-      return humidityLevel(value);
-    } else if (elementName === 'pressure') {
-      return pressureLevel(value);
+  const borderColor = (status: string) => {
+    let color = '';
+    switch (weatherElement.toLowerCase()) {
+      case 'temp.':
+        color = tempColors[status];
+        break;
+      case 'wind':
+        color = windColors[status];
+        break;
+      default:
+        color = '#2abb49';
+        break;
     }
-    return 'moderate';
+    return `border-[${color}]`;
   };
 
   const Styles = {
     containerStyles:
       'flex bg-[#199ee7] p-3 rounded-2xl items-center shadow-2xl shadow-[#5662f6] relative',
     rowStyles: 'flex flex-row items-center gap-7 relative',
-    elementTextStyles: `flex text-white text-base border-b-[4px] ${borderColor(
-      status(elementName),
-    )} pb-[px]`,
+    elementTextStyles: `flex text-white text-base border-b-[4px] ${borderColor(weatherStatus(value))} mb-2`,
     flexColStyles: 'flex flex-col items-center mr-10',
     flexRowStyles: 'flex flex-row items-baseline',
     valueTextStyles: 'text-white text-3xl',
@@ -115,9 +100,9 @@ export default function WeatherDataElement({
     <View className={Styles.containerStyles}>
       <View className={Styles.rowStyles}>
         <Text className={Styles.elementTextStyles}>
-          {capitalize(elementName)}
+          {capitalize(weatherElement)}
         </Text>
-        <TouchableOpacity>{elementIcon(elementName)}</TouchableOpacity>
+        <TouchableOpacity>{elementIcon(weatherElement)}</TouchableOpacity>
       </View>
       <View className={Styles.flexColStyles}>
         <View className={Styles.flexRowStyles}>
@@ -125,9 +110,9 @@ export default function WeatherDataElement({
           <Text className={Styles.unitTextStyles}>{unit}</Text>
         </View>
         <Text className={Styles.statusTextStyles}>
-          {status(elementName).toUpperCase()}
+          {weatherStatus(value).toUpperCase()}
         </Text>
       </View>
     </View>
   );
-}
+};
