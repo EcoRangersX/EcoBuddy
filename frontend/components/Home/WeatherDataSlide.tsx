@@ -14,9 +14,9 @@ export default function WeatherDataSlide() {
         } as ViewStyle
       }>
       <WeatherDataElement weatherElement="temp." value={32} unit="°C" />
-      <WeatherDataElement weatherElement="wind" value={24} unit="km/h" />
-      <WeatherDataElement weatherElement="pollen" value={21} unit="grains/m³" />
-      <WeatherDataElement weatherElement="uv index" value={6} unit="" />
+      <WeatherDataElement weatherElement="wind" value={8} unit="km/h" />
+      <WeatherDataElement weatherElement="pollen" value={342} unit="grains/m³" />
+      <WeatherDataElement weatherElement="uv index" value={12} unit="" />
       <WeatherDataElement weatherElement="humidity" value={17} unit="%RH" />
       <WeatherDataElement weatherElement="pressure" value={1011} unit="hPa" />
     </ScrollView>
