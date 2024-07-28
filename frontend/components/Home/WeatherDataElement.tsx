@@ -16,8 +16,14 @@ import {
   pressureLevel,
   humidityLevel,
 } from '@/utility/weatherDataLevels';
-import { tempColors, windColors } from '@/constants/Colors';
-
+import {
+  tempColors,
+  windColors,
+  pressureColors,
+  humidityColors,
+  uvIndexColors,
+  pollenColors,
+} from '@/constants/Colors';
 
 interface WeatherDataElementProps {
   weatherElement: string;
@@ -68,7 +74,8 @@ export default function WeatherDataElement({
     }
   };
 
-  const borderColor = (status: string) => {
+  const borderColor = (value: number) => {
+    const status = weatherStatus(value);
     let color = '';
     switch (weatherElement.toLowerCase()) {
       case 'temp.':
@@ -76,6 +83,18 @@ export default function WeatherDataElement({
         break;
       case 'wind':
         color = windColors[status];
+        break;
+      case 'pollen':
+        color = pollenColors[status];
+        break;
+      case 'uv index':
+        color = uvIndexColors[status];
+        break;
+      case 'humidity':
+        color = humidityColors[status];
+        break;
+      case 'pressure':
+        color = pressureColors[status];
         break;
       default:
         color = '#2abb49';
@@ -88,9 +107,7 @@ export default function WeatherDataElement({
     containerStyles:
       'flex bg-[#199ee7] p-3 rounded-2xl items-center shadow-2xl shadow-[#5662f6] relative',
     rowStyles: 'flex flex-row items-center gap-7 relative',
-    elementTextStyles: `flex text-white text-base border-b-[4px] ${borderColor(
-      weatherStatus(value),
-    )} mb-2`,
+    elementTextStyles: `flex text-white text-base border-b-[4px] ${borderColor(value)} mb-2`,
     flexColStyles: 'flex flex-col items-center mr-10',
     flexRowStyles: 'flex flex-row items-baseline',
     valueTextStyles: 'text-white text-3xl',
