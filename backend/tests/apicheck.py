@@ -18,6 +18,13 @@ def test_air_quality():
         json={"Latitude": example_lat, "Longitude": example_long},
     )
 
+def test_weather():
+    example_lat, example_long = (50.063843899589884, 19.942991724503248)
+    return requests.post(
+        "http://127.0.0.1:5000/api/air/weather",
+        json={"Latitude": example_lat, "Longitude": example_long},
+        )
+
 def test_docs():
     return requests.get('http://127.0.0.1:5000/api/docs/endpoints')
 
@@ -64,6 +71,10 @@ def test_api(features: list):
         elif feature == 'QUIZ':
             result = test_quiz()
             print(f'QUIZ: {json.dumps(result.json(),indent=2)}')
+
+        elif feature == 'WEATHER':
+            result = test_weather()
+            print(f'WEATHER: {json.dumps(result.json(),indent=2)}')
             
         else:
             print("SMTH went wrong")
