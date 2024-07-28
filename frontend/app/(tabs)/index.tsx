@@ -1,17 +1,17 @@
 import { View } from 'react-native';
 import AQIComponent from '@/components/Home/AQIComponent';
 import Header from '@/components/Header';
-import WeatherDataSlide from '@/components/Home/WeatherDataSlide';
+import WeatherDataSlider from '@/components/Home/WeatherDataSlider';
 
 export default function HomeScreen() {
   return (
     <View>
       <Header />
-      <View className="mt-10 items-center">
+      <View className='mt-5 items-center'>
         <AQIComponent />
       </View>
-      <View >
-        <WeatherDataSlide />
+      <View className='mt-5 p-5'>
+        <WeatherDataSlider />
       </View>
     </View>
   );

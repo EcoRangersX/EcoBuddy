@@ -9,15 +9,15 @@ const AQIComponent = () => {
   const location = "Gniezno, Greater Poland"; // Static data for now
 
   return (
-    <View className="bg-[#38d26e] p-5 rounded-[30px] w-[80%] items-center justify-center">
+    <View className="bg-[#38d26e] p-5 rounded-[30px] w-[90%] items-center justify-center">
       <View className='flex flex-row items-center mb-3'>
         <LocationIcon color='white' />
         <Text className="text-white text-base ml-1">{location}</Text>
       </View>
       <View className="items-center justify-center">
-        <Svg width={170} height={170} viewBox="0 0 170 170">
+        <Svg width={190} height={190} viewBox="0 0 190 190">
           <AnimatedCircularProgress
-            size={170}
+            size={190}
             width={8}
             fill={aqiValue}
             tintColor="#3dbcab"
