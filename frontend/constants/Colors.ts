@@ -16,6 +16,12 @@ const Colors = {
   },
 };
 
+const basicWeatherElementColors: { [status: string]: string } = {
+  low: '#2abb49',
+  moderate: '#f6b930',
+  high: '#ff7f00',
+};
+
 const tempColors: { [status: string]: string } = {
   cold: '#03c13d',
   cool: '#56cade',
@@ -25,17 +31,35 @@ const tempColors: { [status: string]: string } = {
 };
 
 const windColors: { [status: string]: string } = {
-  low: '#2abb49',
-  moderate: '#f6b930',
-  high: '#ff7f00',
+  ...basicWeatherElementColors,
   'very high': '#ff0000',
 };
 
 const pollenColors: { [status: string]: string } = {
-  low: '#2abb49',
-  moderate: '#f6b930',
-  high: '#ff7f00',
+  ...basicWeatherElementColors,
   'very high': '#ff0000',
 };
 
-export { Colors, tempColors, windColors };
+const uvIndexColors: { [status: string]: string } = {
+  ...basicWeatherElementColors,
+  'very high': '#ff0000',
+  extreme: '#ff0000',
+};
+
+const humidityColors: { [status: string]: string } = {
+  ...basicWeatherElementColors,
+};
+
+const pressureColors: { [status: string]: string } = {
+  ...basicWeatherElementColors,
+};
+
+export {
+  Colors,
+  tempColors,
+  windColors,
+  pollenColors,
+  uvIndexColors,
+  humidityColors,
+  pressureColors,
+};
