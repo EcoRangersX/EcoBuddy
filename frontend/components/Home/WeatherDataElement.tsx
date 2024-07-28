@@ -103,37 +103,25 @@ export default function WeatherDataElement({
     return color;
   };
 
-  const Styles = {
-    container:
-      'flex bg-[#199ee7] p-3 rounded-2xl items-center shadow-2xl shadow-[#5662f6] relative',
-    iconAndElement: 'flex flex-row items-center gap-7 relative',
-    weatherElementText: `flex text-white text-base border-b-[4px] mb-2`,
-    flexCol: 'flex flex-col items-center mr-10',
-    flexRow: 'flex flex-row items-baseline',
-    valueText: 'text-white text-3xl',
-    unitText: 'text-white text-[10px]',
-    weatherStatusText: 'text-white text-[10px] mr-10',
-  };
-
   const borderColorStyle = {
     borderBottomColor: borderColor(value),
     borderBottomWidth: 4,
   };
 
   return (
-    <View className={Styles.container}>
-      <View className={Styles.iconAndElement}>
-        <Text style={[borderColorStyle]} className={Styles.weatherElementText}>
+     <View className="flex bg-[#199ee7] p-3 rounded-2xl items-center shadow-2xl shadow-[#5662f6] relative">
+      <View className="flex flex-row items-center gap-2 relative">
+        <Text style={borderColorStyle} className="flex text-white text-base mb-2 rounded-b">
           {capitalize(weatherElement)}
         </Text>
         <TouchableOpacity>{elementIcon(weatherElement)}</TouchableOpacity>
       </View>
-      <View className={Styles.flexCol}>
-        <View className={Styles.flexRow}>
-          <Text className={Styles.valueText}>{value}</Text>
-          <Text className={Styles.unitText}>{unit}</Text>
+      <View className="flex flex-col items-center">
+        <View className="flex flex-row items-baseline">
+          <Text className="text-white text-3xl">{value}</Text>
+          <Text className="text-white text-xs">{unit}</Text>
         </View>
-        <Text className={Styles.weatherStatusText}>
+        <Text className="text-white text-xs">
           {weatherStatus(value).toUpperCase()}
         </Text>
       </View>
