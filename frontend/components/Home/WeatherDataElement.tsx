@@ -109,7 +109,7 @@ export default function WeatherDataElement({
   };
 
   return (
-     <View className="flex bg-[#199ee7] p-3 rounded-2xl items-center shadow-2xl shadow-[#5662f6] relative">
+     <View className="flex bg-[#199ee7] p-3 rounded-2xl items-center relative">
       <View className="flex flex-row items-center gap-7 relative">
         <Text style={borderColorStyle} className="flex text-white text-base mb-2 rounded-b">
           {capitalize(weatherElement)}
