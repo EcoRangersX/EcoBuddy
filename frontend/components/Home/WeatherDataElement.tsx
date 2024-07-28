@@ -1,4 +1,4 @@
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import {
   PollenIcon,
   WindIcon,
@@ -100,35 +100,40 @@ export default function WeatherDataElement({
         color = '#2abb49';
         break;
     }
-    return `border-[${color}]`;
+    return color;
   };
 
   const Styles = {
-    containerStyles:
+    container:
       'flex bg-[#199ee7] p-3 rounded-2xl items-center shadow-2xl shadow-[#5662f6] relative',
-    rowStyles: 'flex flex-row items-center gap-7 relative',
-    elementTextStyles: `flex text-white text-base border-b-[4px] ${borderColor(value)} mb-2`,
-    flexColStyles: 'flex flex-col items-center mr-10',
-    flexRowStyles: 'flex flex-row items-baseline',
-    valueTextStyles: 'text-white text-3xl',
-    unitTextStyles: 'text-white text-[10px]',
-    statusTextStyles: 'text-white text-[10px] mr-10',
+    iconAndElement: 'flex flex-row items-center gap-7 relative',
+    weatherElementText: `flex text-white text-base border-b-[4px] mb-2`,
+    flexCol: 'flex flex-col items-center mr-10',
+    flexRow: 'flex flex-row items-baseline',
+    valueText: 'text-white text-3xl',
+    unitText: 'text-white text-[10px]',
+    weatherStatusText: 'text-white text-[10px] mr-10',
+  };
+
+  const borderColorStyle = {
+    borderBottomColor: borderColor(value),
+    borderBottomWidth: 4,
   };
 
   return (
-    <View className={Styles.containerStyles}>
-      <View className={Styles.rowStyles}>
-        <Text className={Styles.elementTextStyles}>
+    <View className={Styles.container}>
+      <View className={Styles.iconAndElement}>
+        <Text style={[borderColorStyle]} className={Styles.weatherElementText}>
           {capitalize(weatherElement)}
         </Text>
         <TouchableOpacity>{elementIcon(weatherElement)}</TouchableOpacity>
       </View>
-      <View className={Styles.flexColStyles}>
-        <View className={Styles.flexRowStyles}>
-          <Text className={Styles.valueTextStyles}>{value}</Text>
-          <Text className={Styles.unitTextStyles}>{unit}</Text>
+      <View className={Styles.flexCol}>
+        <View className={Styles.flexRow}>
+          <Text className={Styles.valueText}>{value}</Text>
+          <Text className={Styles.unitText}>{unit}</Text>
         </View>
-        <Text className={Styles.statusTextStyles}>
+        <Text className={Styles.weatherStatusText}>
           {weatherStatus(value).toUpperCase()}
         </Text>
       </View>
