@@ -16,42 +16,48 @@ const Colors = {
   },
 };
 
-const basicWeatherElementColors: { [status: string]: string } = {
-  low: '#2abb49',
-  moderate: '#f6b930',
-  high: '#ff7f00',
-};
-
 const tempColors: { [status: string]: string } = {
-  cold: '#03c13d',
-  cool: '#56cade',
-  moderate: '#f6b930',
-  warm: '#ff7f00',
-  hot: '#ff0000',
+  cold: '#03c13d', // Dark Green
+  moderate: '#56cade', // Blue
+  warm: '#ff7f00', // Orange
+  hot: '#ff0000', // Red
+  'very hot': '#b30000', // Dark Red
 };
 
 const windColors: { [status: string]: string } = {
-  ...basicWeatherElementColors,
-  'very high': '#ff0000',
+  calm: '#2abb49', // Green
+  breezy: '#56cade', // Blue
+  windy: '#ff7f00', // Orange
+  stormy: '#ff0000', // Red
 };
 
 const pollenColors: { [status: string]: string } = {
-  ...basicWeatherElementColors,
-  'very high': '#ff0000',
+  low: '#2abb49', // Green
+  moderate: '#56cade', // Blue
+  high: '#ff7f00', // Orange
+  'very high': '#ff0000', // Red
 };
 
 const uvIndexColors: { [status: string]: string } = {
-  ...basicWeatherElementColors,
-  'very high': '#ff0000',
-  extreme: '#ff0000',
+  low: '#2abb49', // Green
+  moderate: '#56cade', // Blue
+  high: '#ff7f00', // Orange
+  'very high': '#ff0000', // Red
+  extreme: '#b30000', // Dark Red
 };
 
 const humidityColors: { [status: string]: string } = {
-  ...basicWeatherElementColors,
+  dry: '#2abb49', // Green
+  comfortable: '#56cade', // Blue
+  humid: '#ff7f00', // Orange
+  'very humid': '#ff0000', // Red
 };
 
 const pressureColors: { [status: string]: string } = {
-  ...basicWeatherElementColors,
+  low: '#2abb49', // Green
+  normal: '#56cade', // Blue
+  high: '#ff7f00', // Orange
+  'very high': '#b30000', // Dark Red
 };
 
 export {
