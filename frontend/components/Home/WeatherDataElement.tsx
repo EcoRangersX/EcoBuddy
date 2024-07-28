@@ -1,64 +1,129 @@
 import { Text, View, TouchableOpacity } from 'react-native';
-import { PollenIcon, WindIcon } from '@/components/icons/HomeIcons';
+import {
+  PollenIcon,
+  WindIcon,
+  HumidityIcon,
+  TemperatureIcon,
+  UvIndexIcon,
+  PressureIcon,
+} from '@/components/icons/HomeIcons';
 import capitalize from '@/utility/capitalizeWord';
+import {
+  tempLevel,
+  windLevel,
+  pollenLevel,
+  uvIndexLevel,
+  pressureLevel,
+  humidityLevel,
+} from '@/utility/weatherDataLevels';
+import {
+  tempColors,
+  windColors,
+  pressureColors,
+  humidityColors,
+  uvIndexColors,
+  pollenColors,
+} from '@/constants/Colors';
 
 interface WeatherDataElementProps {
-  elementName: string;
+  weatherElement: string;
   value: number;
-  status: string;
   unit: string;
 }
 
 export default function WeatherDataElement({
-  elementName,
+  weatherElement,
   value,
-  status,
   unit,
 }: WeatherDataElementProps) {
   const elementIcon = (elementName: string) => {
-    switch (elementName.toLocaleLowerCase()) {
+    switch (elementName.toLowerCase()) {
       case 'temp.':
-        return '🌡️';
+        return <TemperatureIcon />;
       case 'humidity':
-        return '💧';
+        return <HumidityIcon />;
       case 'pollen':
-        return <PollenIcon size={36} />;
+        return <PollenIcon />;
       case 'wind':
-        return <WindIcon size={36} />;
+        return <WindIcon />;
       case 'pressure':
-        return '📊';
+        return <PressureIcon />;
+      case 'uv index':
+        return <UvIndexIcon />;
       default:
-        return '🌡️';
+        return <TemperatureIcon />;
     }
   };
 
-  const Styles = {
-    containerStyles:
-      'flex bg-[#56cade] p-3 rounded-2xl items-center shadow-2xl shadow-[#5662f6] relative',
-    rowStyles: 'flex flex-row items-center gap-7 relative',
-    elementTextStyles:
-      'flex text-white text-base border-b-[4px] border-[#03c13d] pb-[px]',
-    flexColStyles: 'flex flex-col items-center mr-10',
-    flexRowStyles: 'flex flex-row items-baseline',
-    valueTextStyles: 'text-white text-3xl',
-    unitTextStyles: 'text-white text-[10px]',
-    statusTextStyles: 'text-white text-[10px] mr-10',
+  const weatherStatus = (value: number) => {
+    switch (weatherElement.toLowerCase()) {
+      case 'temp.':
+        return tempLevel(value);
+      case 'wind':
+        return windLevel(value);
+      case 'pollen':
+        return pollenLevel(value);
+      case 'uv index':
+        return uvIndexLevel(value);
+      case 'humidity':
+        return humidityLevel(value);
+      case 'pressure':
+        return pressureLevel(value);
+      default:
+        return 'moderate';
+    }
+  };
+
+  const borderColor = (value: number) => {
+    const status = weatherStatus(value);
+    let color = '';
+    switch (weatherElement.toLowerCase()) {
+      case 'temp.':
+        color = tempColors[status];
+        break;
+      case 'wind':
+        color = windColors[status];
+        break;
+      case 'pollen':
+        color = pollenColors[status];
+        break;
+      case 'uv index':
+        color = uvIndexColors[status];
+        break;
+      case 'humidity':
+        color = humidityColors[status];
+        break;
+      case 'pressure':
+        color = pressureColors[status];
+        break;
+      default:
+        color = '#2abb49';
+        break;
+    }
+    return color;
+  };
+
+  const borderColorStyle = {
+    borderBottomColor: borderColor(value),
+    borderBottomWidth: 4,
   };
 
   return (
-    <View className={Styles.containerStyles}>
-      <View className={Styles.rowStyles}>
-        <Text className={Styles.elementTextStyles}>
-          {capitalize(elementName)}
+     <View className="flex bg-[#199ee7] p-3 rounded-2xl items-center shadow-2xl shadow-[#5662f6] relative">
+      <View className="flex flex-row items-center gap-7 relative">
+        <Text style={borderColorStyle} className="flex text-white text-base mb-2 rounded-b">
+          {capitalize(weatherElement)}
         </Text>
-        <TouchableOpacity>{elementIcon(elementName)}</TouchableOpacity>
+        <TouchableOpacity>{elementIcon(weatherElement)}</TouchableOpacity>
       </View>
-      <View className={Styles.flexColStyles}>
-        <View className={Styles.flexRowStyles}>
-          <Text className={Styles.valueTextStyles}>{value}</Text>
-          <Text className={Styles.unitTextStyles}>{unit}</Text>
+      <View className="flex flex-col items-center">
+        <View className="flex flex-row items-baseline">
+          <Text className="text-white text-3xl">{value}</Text>
+          <Text className="text-white text-xs">{unit}</Text>
         </View>
-        <Text className={Styles.statusTextStyles}>{status.toUpperCase()}</Text>
+        <Text className="text-white text-xs">
+          {weatherStatus(value).toUpperCase()}
+        </Text>
       </View>
     </View>
   );

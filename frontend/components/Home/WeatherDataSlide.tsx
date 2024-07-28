@@ -1,12 +1,24 @@
 import WeatherDataElement from '@/components/Home/WeatherDataElement';
-import { View } from 'react-native';
+import { ScrollView, ViewStyle } from 'react-native';
 
 export default function WeatherDataSlide() {
   return (
-    <View className="flex flex-row p-5 items-center">
-      <WeatherDataElement elementName="wind" value={26} unit="km/h" status="low" />
-      <WeatherDataElement elementName="pollen" value={26} unit="%" status="low" />
-      <WeatherDataElement elementName="pollen" value={26} unit="%" status="low" />
-    </View>
+    <ScrollView
+      horizontal={true}
+      contentContainerStyle={
+        {
+          flexDirection: 'row',
+          padding: 20,
+          gap: 20,
+          alignItems: 'center',
+        } as ViewStyle
+      }>
+      <WeatherDataElement weatherElement="temp." value={32} unit="°C" />
+      <WeatherDataElement weatherElement="wind" value={8} unit="km/h" />
+      <WeatherDataElement weatherElement="pollen" value={342} unit="grains/m³" />
+      <WeatherDataElement weatherElement="uv index" value={12} unit="" />
+      <WeatherDataElement weatherElement="humidity" value={17} unit="%RH" />
+      <WeatherDataElement weatherElement="pressure" value={1011} unit="hPa" />
+    </ScrollView>
   );
 }
