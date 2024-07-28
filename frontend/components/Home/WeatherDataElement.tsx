@@ -15,9 +15,9 @@ import {
   uvIndexLevel,
   pressureLevel,
   humidityLevel,
-  tempColors,
-  windColors,
 } from '@/utility/weatherDataLevels';
+import { tempColors, windColors } from '@/constants/Colors';
+
 
 interface WeatherDataElementProps {
   weatherElement: string;
@@ -88,7 +88,9 @@ export default function WeatherDataElement({
     containerStyles:
       'flex bg-[#199ee7] p-3 rounded-2xl items-center shadow-2xl shadow-[#5662f6] relative',
     rowStyles: 'flex flex-row items-center gap-7 relative',
-    elementTextStyles: `flex text-white text-base border-b-[4px] ${borderColor(weatherStatus(value))} mb-2`,
+    elementTextStyles: `flex text-white text-base border-b-[4px] ${borderColor(
+      weatherStatus(value),
+    )} mb-2`,
     flexColStyles: 'flex flex-col items-center mr-10',
     flexRowStyles: 'flex flex-row items-baseline',
     valueTextStyles: 'text-white text-3xl',
@@ -115,4 +117,4 @@ export default function WeatherDataElement({
       </View>
     </View>
   );
-};
+}
