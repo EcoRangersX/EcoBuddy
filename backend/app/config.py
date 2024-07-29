@@ -1,4 +1,8 @@
-from .database import *
+from .database import setup_database
 
 class Config:
-   setup_database()
+   def __init__(self):
+      setup_database()
+
+
+   

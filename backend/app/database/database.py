@@ -5,6 +5,8 @@ conn = sqlite3.connect('database.db',check_same_thread=False)
 cursor = conn.cursor()
 
 def setup_database():
+
+    
     cursor.execute("DROP TABLE IF EXISTS articles")
     conn.commit()
     cursor.execute(

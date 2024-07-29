@@ -1,4 +1,4 @@
-from .database import *
+from .database import conn,cursor
 
 class Article:
     def __init__(self,title,link,img):

@@ -8,7 +8,7 @@ class Get_articles:
     domain_prefix = "https://www.the-scientist.com"
     response = requests.get(
         url=f"{domain_prefix}/tag/ecology"
-        )
+    )
     document = BeautifulSoup(response.text, "html.parser")
 
     def find_article(self):
@@ -24,6 +24,7 @@ class Get_articles:
             img = articlesummary.find("img")["src"]
             article = Article(link=link, title=title, img=img)
             if not article.check_if_article_exists():
+              
                 article.insert_to_database()
 
     

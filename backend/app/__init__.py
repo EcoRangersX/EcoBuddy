@@ -2,12 +2,13 @@ from flask import Flask
 from flask_cors import CORS
 from .routes import *
 from .services import Get_articles
-from .database.database import *
 from .config import Config
 
 
 def create_app():
+
     Config()
+    
     app = Flask("Eco buddy")
     articles = Get_articles()
     CORS(app)

@@ -39,7 +39,8 @@ def endpoints():
                 "o3": 66.52,
                 "pm10": 4.91,
                 "pm2_5": 3.16,
-                "so2": 3.28
+                "so2": 3.28,
+                "! Values are in ug/m3 !": 'space taker'
                 }
             }
         }
@@ -55,9 +56,10 @@ def endpoints():
         "Response":
         {
             "Weather_data": {
-                "Humidity": "93%",
-                "Temp": "12.0 C",
-                "Wind_speed": "1.54m/s"
+                "Pressure": "<value in hPa>",
+                "Humidity": "<value in precentage>",
+                "Temp": "<value in celsius>",
+                "Wind_speed": "<value in km/h>"
             }
         }
     },

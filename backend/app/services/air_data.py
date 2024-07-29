@@ -13,7 +13,6 @@ class Air_data:
         )
 
         self.response_json = self.response.json()
-        print(self.response_json)
 
         aqi = self.response_json["list"][0]['main']['aqi']
         aqi_levels = ['Good','Fair','Modedrate','Poor','Very Poor']
@@ -32,12 +31,15 @@ class Air_data:
         )
 
         self.response_json = self.response.json()
-      
 
+        temp = round(self.response_json['main']['temp'] - 273.15,1)
+        wind_speed = round( self.response_json['wind']['speed']*3.6 , 2)
+        
         self.response = {
-            'Temp': f"{round(self.response_json['main']['temp'] - 273.15,1)} C",
-            'Wind_speed':f"{round(self.response_json['wind']['speed'],2)}m/s",
-            'Humidity':f"{self.response_json['main']['humidity']}%"
+            'Pressure': f"{self.response_json['main']['pressure']}",
+            'Temp': f"{temp}",
+            'Wind_speed':f"{wind_speed}",
+            'Humidity':f"{self.response_json['main']['humidity']}"
             }
 
         return self.response
