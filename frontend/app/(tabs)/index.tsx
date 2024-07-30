@@ -20,8 +20,18 @@ export default function HomeScreen() {
       <View>
         <Text className="text-left text-xl ml-5 font-bold">Education</Text>
         <View className="flex flex-col gap-5">
-          <EducationSection title="Quiz" items={quizTitles} />
-          <EducationSection title='Ai Questions' items={aiQuestions} />
+          <EducationSection
+            title="Quiz"
+            items={quizTitles}
+            titleSectionColor="#57d272"
+          />
+          <EducationSection
+            title="Ai Questions"
+            items={aiQuestions}
+            elementBgColor='#d2f5fb'
+            titleSectionColor="#49b6c8"
+            bgColor="#c1f1fa"
+          />
         </View>
       </View>
     </ScrollView>
