@@ -2,16 +2,23 @@ import { Text, TouchableOpacity, View } from 'react-native';
 
 interface QuizItemProps {
   title: string;
+  textColor: string;
+  elementBgColor: string;
 }
 
-const QuizItem = ({ title }: QuizItemProps) => {
+const QuizItem = ({ title, textColor, elementBgColor }: QuizItemProps) => {
   return (
-    <View className=''>
-      <TouchableOpacity className="bg-green-200 rounded-xl p-2">
-        <Text className="text-center text-base text-black font-semibold">{title}</Text>
+    <View>
+      <TouchableOpacity
+        style={{ backgroundColor: elementBgColor }}
+        className="rounded-xl p-2 shadow-sm shadow-black">
+        <Text
+          style={{ color: textColor }}
+          className="text-center text-base font-semibold">
+          {title}
+        </Text>
       </TouchableOpacity>
     </View>
-    
   );
 };
 
