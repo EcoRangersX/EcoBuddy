@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import WeatherDataSlider from '@/components/Home/WeatherDataSlider';
 import ChemicalElementsSlider from '@/components/Home/ChemicalElementsSlider';
 import EducationSection from '@/components/Home/EducationSection';
-import { aiQuestions, quizTitles } from '@/constants/EducationItems';
+import { aiQuestions, quizTitles, articleTitles } from '@/constants/EducationItems';
 
 export default function HomeScreen() {
   return (
@@ -31,6 +31,11 @@ export default function HomeScreen() {
             elementBgColor='#d2f5fb'
             titleSectionColor="#49b6c8"
             bgColor="#c1f1fa"
+          />
+          <EducationSection 
+            title="Articles"
+            items={articleTitles}
+            titleSectionColor="#57d272"
           />
         </View>
       </View>
