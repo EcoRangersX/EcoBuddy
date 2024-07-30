@@ -1,4 +1,4 @@
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 import AQIComponent from '@/components/Home/AQIComponent';
 import Header from '@/components/Header';
 import WeatherDataSlider from '@/components/Home/WeatherDataSlider';
@@ -17,9 +17,12 @@ export default function HomeScreen() {
         <WeatherDataSlider />
       </View>
       <ChemicalElementsSlider />
-      <View className="flex flex-col gap-5 mt-5 ">
-        <EducationSection title='Quiz' items={quizTitles} />
-        {/* <EducationSection title='Ai Questions' items={aiQuestions} /> */}
+      <View>
+        <Text className="text-left text-xl ml-5 font-bold">Education</Text>
+        <View className="flex flex-col gap-5">
+          <EducationSection title="Quiz" items={quizTitles} />
+          <EducationSection title='Ai Questions' items={aiQuestions} />
+        </View>
       </View>
     </ScrollView>
   );
