@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import QuizSection from './QuizSection';
 
 interface EducationSectionProps {
@@ -8,11 +8,10 @@ interface EducationSectionProps {
 
 const EducationSection = ({ title, items }: EducationSectionProps) => {
   return (
-    <View className="p-6 rounded-lg shadow-lg">
-      <Text className="text-center text-2xl font-bold mb-4">{title}</Text>
-      <View className="flex-col justify-around">
-        <QuizSection title="Quiz" items={items} />
-      </View>
+    <View className="p-6">
+      {/* <View className="flex-col justify-around"> */}
+        <QuizSection title={title} items={items} />
+      {/* </View> */}
     </View>
   );
 };

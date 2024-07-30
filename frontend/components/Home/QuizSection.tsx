@@ -9,11 +9,15 @@ interface QuizSectionProps {
 
 const QuizSection: React.FC<QuizSectionProps> = ({ title, items }) => {
   return (
-    <View className="p-4 bg-green-100 rounded-lg shadow-lg m-2">
-      <Text className="text-left text-lg text-black font-bold mb-2 px-2">{title}</Text>
-      <View className="flex-row flex-wrap justify-between">
+    <View className="p-4 bg-green-300 rounded-lg shadow-lg ml-4">
+      <Text className="text-left text-lg text-black font-bold px-5">
+        {title}
+      </Text>
+      <View className="flex">
         {items.map((item, index) => (
-          <QuizItem key={index} title={item} />
+          <View key={index} className="w-1/2 p-2">
+            <QuizItem title={item} />
+          </View>
         ))}
       </View>
     </View>

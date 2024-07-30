@@ -1,15 +1,17 @@
-import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 
-interface QuizAiItemProps {
+interface QuizItemProps {
   title: string;
 }
 
-const QuizItem: React.FC<QuizAiItemProps> = ({ title }) => {
+const QuizItem = ({ title }: QuizItemProps) => {
   return (
-    <TouchableOpacity className="bg-green-200 rounded-full p-4 m-2 shadow-md flex-1">
-      <Text className="text-center text-base text-green-700 font-semibold">{title}</Text>
-    </TouchableOpacity>
+    <View className=''>
+      <TouchableOpacity className="bg-green-200 rounded-md">
+      <Text className="text-center text-base text-black font-semibold">{title}</Text>
+      </TouchableOpacity>
+    </View>
+    
   );
 };
 
