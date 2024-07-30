@@ -9,11 +9,11 @@ interface QuizSectionProps {
 
 const QuizSection: React.FC<QuizSectionProps> = ({ title, items }) => {
   return (
-    <View className="p-4 bg-green-300 rounded-lg shadow-lg ml-4">
+    <View className="p-4 bg-green-300 rounded-xl shadow-lg ml-4">
       <Text className="text-left text-lg text-black font-bold px-5">
         {title}
       </Text>
-      <View className="flex">
+      <View className="flex flex-row flex-wrap">
         {items.map((item, index) => (
           <View key={index} className="w-1/2 p-2">
             <QuizItem title={item} />

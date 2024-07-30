@@ -7,8 +7,8 @@ interface QuizItemProps {
 const QuizItem = ({ title }: QuizItemProps) => {
   return (
     <View className=''>
-      <TouchableOpacity className="bg-green-200 rounded-md">
-      <Text className="text-center text-base text-black font-semibold">{title}</Text>
+      <TouchableOpacity className="bg-green-200 rounded-xl p-2">
+        <Text className="text-center text-base text-black font-semibold">{title}</Text>
       </TouchableOpacity>
     </View>
     

@@ -9,9 +9,7 @@ interface EducationSectionProps {
 const EducationSection = ({ title, items }: EducationSectionProps) => {
   return (
     <View className="p-6">
-      {/* <View className="flex-col justify-around"> */}
-        <QuizSection title={title} items={items} />
-      {/* </View> */}
+      <QuizSection title={title} items={items} />
     </View>
   );
 };
