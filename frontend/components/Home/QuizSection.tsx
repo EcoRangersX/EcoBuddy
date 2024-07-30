@@ -30,9 +30,9 @@ const QuizSection: React.FC<QuizSectionProps> = ({
           {title}
         </Text>
       </View>
-      <View className="flex flex-row flex-wrap mt-12">
+      <View className="mt-12">
         {items.map((item, index) => (
-          <View key={index} className="w-1/2 p-2">
+          <View key={index} className="w-full py-2">
             <QuizItem title={item} textColor={elementTextColor} elementBgColor={elementBgColor} />
           </View>
         ))}
