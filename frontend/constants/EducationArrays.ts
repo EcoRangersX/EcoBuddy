@@ -37,29 +37,9 @@ export const ecoTips = [
     description: "Even when turned off, electronics use energy. Unplugging them saves energy and reduces your electricity bill.",
   },
   {
-    title: "Take Shorter Showers",
-    description: "Conserve water by taking shorter showers. It helps to reduce water usage and saves energy used to heat the water.",
-  },
-  {
     title: "Use Public Transportation or Carpool",
     description: "Reduce carbon emissions by using public transportation or carpooling. It decreases the number of vehicles on the road.",
   },
-  {
-    title: "Recycle and Compost",
-    description: "Properly recycle and compost to reduce waste. It helps to divert waste from landfills and reduces your environmental impact.",
-  },
-  {
-    title: "Support Local and Organic Produce",
-    description: "Buying local and organic produce reduces carbon emissions from transportation and supports sustainable farming practices.",
-  },
-  {
-    title: "Reduce, Reuse, and Recycle",
-    description: "Follow the three Rs: reduce waste, reuse items whenever possible, and recycle properly to minimize your environmental footprint.",
-  },
-  {
-    title: "Plant Trees and Support Reforestation",
-    description: "Planting trees and supporting reforestation projects help to combat climate change by absorbing carbon dioxide from the atmosphere.",
-  }
 ];
 
 export { quizTitles, aiQuestions, articleTitles };

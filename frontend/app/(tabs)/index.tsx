@@ -8,7 +8,9 @@ import {
   aiQuestions,
   quizTitles,
   articleTitles,
+  ecoTips
 } from '@/constants/EducationArrays';
+import EcoTipList from '@/components/Home/EcoTipList';
 
 export default function HomeScreen() {
   return (
@@ -46,6 +48,12 @@ export default function HomeScreen() {
             titleSectionColor="#57d272"
           />
         </View>
+      </View>
+      <View>
+        <Text className="text-left text-xl ml-5 font-bold">
+          Eco tips of the day
+        </Text>
+        <EcoTipList ecoTips={ecoTips} />
       </View>
     </ScrollView>
   );
