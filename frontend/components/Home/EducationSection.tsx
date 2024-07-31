@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import QuizSection from './QuizSection';
+import QuizList from './QuizList';
 
 interface EducationSectionProps {
   title: string;
@@ -20,7 +20,7 @@ const EducationSection = ({
 }: EducationSectionProps) => {
   return (
     <View className="p-6">
-      <QuizSection
+      <QuizList
         title={title}
         items={items}
         elementTextColor={elementTextColor}

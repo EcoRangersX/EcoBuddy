@@ -1,8 +1,7 @@
-import React from 'react';
 import { View, Text } from 'react-native';
 import QuizItem from './QuizItem';
 
-interface QuizSectionProps {
+interface QuizListProps {
   title: string;
   items: string[];
   elementTextColor: string;
@@ -11,14 +10,14 @@ interface QuizSectionProps {
   bgColor?: string;
 }
 
-const QuizSection: React.FC<QuizSectionProps> = ({
+const QuizList = ({
   title,
   items,
   elementTextColor,
   elementBgColor,
   titleSectionColor,
   bgColor,
-}) => {
+}: QuizListProps) => {
   return (
     <View
       style={{ backgroundColor: bgColor }}
@@ -41,4 +40,4 @@ const QuizSection: React.FC<QuizSectionProps> = ({
   );
 };
 
-export default QuizSection;
+export default QuizList;
