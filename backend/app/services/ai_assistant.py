@@ -12,6 +12,7 @@ class Assistant(Groq_parent):
     User question: Explain the concept of black holes in simple terms, 
     Your answer: 'Sorry as an eco assistant I can't provide answer to that question'
     """
+
     # dzwonienie do api groq o odpowiedź na pytanie użytkownika
     def get_ai_response(self, prompt: str):
         response = self.ai_model_provider.chat.completions.create(  # zapytanie do api
