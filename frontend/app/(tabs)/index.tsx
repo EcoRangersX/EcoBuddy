@@ -10,7 +10,7 @@ import {
   articleTitles,
   ecoTips
 } from '@/constants/EducationArrays';
-import EcoTipsSection from '@/components/Home/EcoTipsSection';
+import EcoTipList from '@/components/Home/EcoTipList';
 
 export default function HomeScreen() {
   return (
@@ -53,7 +53,7 @@ export default function HomeScreen() {
         <Text className="text-left text-xl ml-5 font-bold">
           Eco tips of the day
         </Text>
-        <EcoTipsSection ecoTips={ecoTips} />
+        <EcoTipList ecoTips={ecoTips} />
       </View>
     </ScrollView>
   );

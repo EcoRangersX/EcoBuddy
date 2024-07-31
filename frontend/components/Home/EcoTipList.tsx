@@ -2,15 +2,15 @@ import { View } from 'react-native';
 import EcoTip from './EcoTip';
 
 interface EcoTipProps {
-    title: string;
-    description: string;
+  title: string;
+  description: string;
 }
 
-interface EcoTipsSectionProps {
+interface EcoTipListProps {
   ecoTips: EcoTipProps[];
 }
 
-const EcoTipsSection = ({ ecoTips }: EcoTipsSectionProps) => {
+const EcoTipList = ({ ecoTips }: EcoTipListProps) => {
   return (
     <View className="flex flex-col">
       {ecoTips.map((tip, index) => (
@@ -20,4 +20,4 @@ const EcoTipsSection = ({ ecoTips }: EcoTipsSectionProps) => {
   );
 };
 
-export default EcoTipsSection;
+export default EcoTipList;
