@@ -49,6 +49,7 @@ export default function HomeScreen() {
           />
         </View>
       </View>
+      {/* Eco Tips of the day Section */}
       <View>
         <Text className="text-left text-xl ml-5 font-bold">
           Eco tips of the day

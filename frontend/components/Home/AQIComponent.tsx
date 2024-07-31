@@ -3,11 +3,13 @@ import Svg from 'react-native-svg';
 import { AnimatedCircularProgress  } from 'react-native-circular-progress';
 import { LocationIcon, ViewDetailsIcon } from '@/components/icons/HomeIcons';
 
-const AQIComponent = () => {
-  const aqiValue = 36; // Static data for now
-  const aqiStatus = "Good"; // Static data for now
-  const location = "Gniezno, Greater Poland"; // Static data for now
+interface AQIComponentProps {
+  aqiValue?: number;
+  aqiStatus?: string;
+  location?: string;
+}
 
+const AQIComponent = ({ aqiValue = 36, aqiStatus = "Good", location = "Gniezno, Greater Poland"}: AQIComponentProps) => {
   return (
     <View className="bg-[#38d26e] p-5 rounded-[30px] w-[90%] items-center justify-center">
       <View className='flex flex-row items-center mb-3'>
