@@ -2,14 +2,15 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import Svg from 'react-native-svg';
 import { AnimatedCircularProgress  } from 'react-native-circular-progress';
 import { LocationIcon, ViewDetailsIcon } from '@/components/icons/HomeIcons';
+import capitalize from '@/utility/capitalizeWord';
 
 interface AQIComponentProps {
-  aqiValue?: number;
-  aqiStatus?: string;
-  location?: string;
+  value: number;
+  status: string;
+  location: string;
 }
 
-const AQIComponent = ({ aqiValue = 36, aqiStatus = "Good", location = "Gniezno, Greater Poland"}: AQIComponentProps) => {
+const AQIComponent = ({ value, status, location }: AQIComponentProps) => {
   return (
     <View className="bg-[#38d26e] p-5 rounded-[30px] w-[90%] items-center justify-center">
       <View className='flex flex-row items-center mb-3'>
@@ -21,7 +22,7 @@ const AQIComponent = ({ aqiValue = 36, aqiStatus = "Good", location = "Gniezno, 
           <AnimatedCircularProgress
             size={190}
             width={8}
-            fill={aqiValue}
+            fill={value}
             tintColor="#3dbcab"
             backgroundColor="#fff"
             lineCap="round"
@@ -29,8 +30,8 @@ const AQIComponent = ({ aqiValue = 36, aqiStatus = "Good", location = "Gniezno, 
             {
               () => (
                 <View className='flex flex-col'>
-                  <Text className="text-white text-4xl self-center">{aqiValue}</Text>
-                  <Text className="text-white text-lg self-center">{aqiStatus}</Text>
+                  <Text className="text-white text-4xl self-center">{value}</Text>
+                  <Text className="text-white text-lg self-center">{capitalize(status)}</Text>
                 </View>
               )
             }
