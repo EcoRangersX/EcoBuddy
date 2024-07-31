@@ -26,7 +26,7 @@ const QuizSection: React.FC<QuizSectionProps> = ({
       <View
         style={{ backgroundColor: titleSectionColor }}
         className="absolute left-4 w-[65%] rounded-full px-4 py-2 shadow-md shadow-black">
-        <Text className="text-lg text-center text-black font-bold">
+        <Text className="text-base text-center text-black font-bold">
           {title}
         </Text>
       </View>
