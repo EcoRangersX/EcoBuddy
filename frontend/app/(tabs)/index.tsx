@@ -18,7 +18,7 @@ export default function HomeScreen() {
       <Header />
       {/* AQI Component */}
       <View className="mt-5 items-center">
-        <AQIComponent />
+        <AQIComponent value={36} status='good' location='Gniezno, Greater Poland' />
       </View>
       {/* Weather Data Section */}
       <View className="mt-5 p-5">
