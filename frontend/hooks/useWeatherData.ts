@@ -2,14 +2,14 @@ import axios from 'axios';
 import { useState } from 'react';
 import { BASE_API_URL } from '@/constants/Urls';
 
-interface AIResponse {
+interface WeatherDataResponse {
   response: string;
 }
 
 export function useWeatherData() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [weatherData, setWeatherData] = useState<AIResponse | null>(null);
+  const [weatherData, setWeatherData] = useState<WeatherDataResponse | null>(null);
 
   async function getWeatherData() {
     setLoading(true);

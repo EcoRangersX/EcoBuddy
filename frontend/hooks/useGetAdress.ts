@@ -16,9 +16,11 @@ export default function useGeocode() {
   const [address, setAddress] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  const BASE_API_URL = 'https://api.opencagedata.com/geocode/v1/json';
+
   const getGeocode = async (location: Location) => {
     const { lat, lng } = location;
-    const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=${OPENCAGE_API_KEY}`;
+    const url = `${BASE_API_URL}}?q=${lat}+${lng}&key=${OPENCAGE_API_KEY}`;
 
     try {
       const response = await axios.get(url);
