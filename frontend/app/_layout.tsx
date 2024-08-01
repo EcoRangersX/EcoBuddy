@@ -15,8 +15,8 @@ export {
 SplashScreen.preventAutoHideAsync();
 
 export const unstable_settings = {
-  initialRouteName: "(tabs)"
-}
+  initialRouteName: '(tabs)',
+};
 
 export default function RootLayout() {
   const [loaded] = useFonts({
@@ -36,7 +36,7 @@ export default function RootLayout() {
   return (
     <PaperProvider>
       <ThemeProvider value={DefaultTheme}>
-        <Stack>
+        <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
         </Stack>
