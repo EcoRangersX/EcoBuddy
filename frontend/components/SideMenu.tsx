@@ -1,8 +1,8 @@
 import { useRef, useEffect } from 'react';
 import { View, Animated, Easing, TouchableOpacity, Text } from 'react-native';
-import { Drawer, Portal } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
+import { Portal } from 'react-native-paper';
 import { CloseSideBarIcon } from '@/components/icons/HomeIcons';
+import TabsDropdown from './TabsDropdown';
 
 interface SideMenuProps {
   visible: boolean;
@@ -10,7 +10,6 @@ interface SideMenuProps {
 }
 
 export default function SideMenu({ visible, closeMenu }: SideMenuProps) {
-  const navigation = useNavigation();
   const slideAnim = useRef(new Animated.Value(-300)).current;
 
   useEffect(() => {
@@ -45,22 +44,7 @@ export default function SideMenu({ visible, closeMenu }: SideMenuProps) {
               <CloseSideBarIcon size={30} />
             </TouchableOpacity>
           </View>
-          <Drawer.Section className="">
-            <Drawer.Item
-              label="Quizzes"
-              onPress={() => {
-                navigation.navigate('quiz');
-                closeMenu();
-              }}
-            />
-            <Drawer.Item
-              label="Profile"
-              onPress={() => {
-                navigation.navigate('profile');
-                closeMenu();
-              }}
-            />
-          </Drawer.Section>
+          <TabsDropdown closeMenu={closeMenu} />
         </Animated.View>
       </View>
     </Portal>
