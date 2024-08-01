@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { BASE_API_URL } from '@/constants/Urls';
 
 interface AIResponse {
   response: string;
@@ -31,8 +32,6 @@ interface AIResponse {
 // );
 
 export function useAskAI() {
-  const BASE_API_URL = process.env.EXPO_PUBLIC_BASE_API_URL;
-
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [aiResponse, setAIResponse] = useState<AIResponse | null>(null);
