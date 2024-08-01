@@ -24,11 +24,16 @@ Ensure you have a requirements.txt file with all the necessary dependencies list
 
 Run `pip3 install -r requirements.txt` to install the dependencies.
 
+**Setup environmetal variables**
+Create .env file in backend folder like this:
+GROQ_API_KEY = <groq api key>
+OPEN_WEATHER_API_KEY = <open weather api key>
+
 **Run project**
 Use `python3 run.py` to run the project.
 
 
 ## TEST BACKEND
-To test api you can use `test.py` and see if everything works as intended.
+To test api you can use `python3 test.py` and see if everything works as intended.
 
 

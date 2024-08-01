@@ -8,5 +8,4 @@ news_bp = Blueprint('news',__name__,url_prefix='/api/news')
 def article_endpoint():
     if request.method == "GET":
         articles = Get_articles().get_articles_summary()
-
         return {"Aricles": articles}

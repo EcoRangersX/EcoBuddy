@@ -19,3 +19,20 @@ def air_quality_endpoint():
         )
 
         return {f"Air_quality_data": air_quality_data}
+    
+
+
+@air_bp.route("/weather", methods=["POST"])
+def weather_endpoint():
+    if request.method == "POST":
+        data = request.json
+            
+        latitude = data['Latitude']
+    
+        longitude = data['Longitude']
+
+        weather_data = air_data.get_weather_data(
+            latitude=latitude, longitude=longitude
+        )
+
+        return {f"Weather_data": weather_data}

@@ -1,20 +1,61 @@
-import { View, Text } from 'react-native';
-import { TextInput } from 'react-native-paper';
+import { ScrollView, View, Text } from 'react-native';
+import AQIComponent from '@/components/Home/AQIComponent';
+import Header from '@/components/Header';
+import WeatherDataSlider from '@/components/Home/WeatherDataSlider';
+import ChemicalElementsSlider from '@/components/Home/ChemicalElementsSlider';
+import EducationSection from '@/components/Home/EducationSection';
+import {
+  aiQuestions,
+  quizTitles,
+  articleTitles,
+  ecoTips
+} from '@/constants/EducationArrays';
+import EcoTipList from '@/components/Home/EcoTipList';
 
 export default function HomeScreen() {
   return (
-    <View>
-      <Text className="flex justify-center bg-green-700 text-[23px]">
-        Main age
-      </Text>
-      <View className="p-5">
-        <TextInput
-        mode="outlined"
-        label="Outlined input"
-        placeholder="Type something"
-        right={<TextInput.Affix text="/100" />}
-      />
+    <ScrollView>
+      <Header />
+      {/* AQI Component */}
+      <View className="mt-5 items-center">
+        <AQIComponent />
       </View>
-    </View>
+      {/* Weather Data Section */}
+      <View className="mt-5 p-5">
+        <WeatherDataSlider />
+      </View>
+      {/* Air pollution signals Section */}
+      <ChemicalElementsSlider />
+      {/* Education Section */}
+      <View>
+        <Text className="text-left text-xl ml-5 font-bold">Education</Text>
+        <View className="flex flex-col gap-5">
+          <EducationSection
+            title="Quiz"
+            items={quizTitles}
+            titleSectionColor="#57d272"
+          />
+          <EducationSection
+            title="Ai Questions"
+            items={aiQuestions}
+            elementBgColor="#d2f5fb"
+            titleSectionColor="#49b6c8"
+            bgColor="#c1f1fa"
+          />
+          <EducationSection
+            title="Articles"
+            items={articleTitles}
+            titleSectionColor="#57d272"
+          />
+        </View>
+      </View>
+      {/* Eco Tips of the day Section */}
+      <View>
+        <Text className="text-left text-xl ml-5 font-bold">
+          Eco tips of the day
+        </Text>
+        <EcoTipList ecoTips={ecoTips} />
+      </View>
+    </ScrollView>
   );
 }

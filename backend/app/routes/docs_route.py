@@ -44,6 +44,24 @@ def endpoints():
             }
         }
     },
+
+"/api/air/weather":
+    {
+        "POST request":
+        {
+            'Latitude': "<latitude of place you want to get data about>",
+            'Longitude': "<longitude of place you want to get data about>"
+        },
+        "Response":
+        {
+            "Weather_data": {
+                "Humidity": "93%",
+                "Temp": "12.0 C",
+                "Wind_speed": "1.54m/s"
+            }
+        }
+    },
+    
     
 "/api/auth/login": 
     {
@@ -96,17 +114,17 @@ def endpoints():
         { 
             "Aricles": 
             {
-                "<article name>": 
+                "<article title>": 
                 {
                     "img": "<img link>",
-                    "link": "<article link>",
-                    "title": "<article title>"
+                    "link": "<article link>"
+                 
                 },
-                "<article2 name>": 
+                "<article2 title>": 
                 {
                     "img": "<img link>",
-                    "link": "<article link>",
-                    "title": "<article title>"
+                    "link": "<article link>"
+                    
                 }
                 
 
