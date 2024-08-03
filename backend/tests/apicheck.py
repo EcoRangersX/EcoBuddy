@@ -43,11 +43,18 @@ def test_quiz():
               'Yes_or_no_answers': 'Yes',
               'Possible_answers': 2})
 
+def test_article_component():
+    return requests.post('http://127.0.0.1:5000/api/news/article_component',json={'Component': 'title','Amount': 5})
+
 def test_api(features: list):
     for feature in features:
         if feature == "ARTICLES":
             result = test_articles()
             print(f"ARTICLES: \n {json.dumps(result.json(),indent=2)}")
+
+        elif feature == 'ARTICLE_COMPONENT':
+            result = test_article_component()
+            print(f"ARTICLE_COMPONENT: \n {json.dumps(result.json(),indent=2)}")
 
         elif feature == "AI_ASSISTANT":
             result = test_ai_assistant()

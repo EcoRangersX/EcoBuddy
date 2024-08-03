@@ -27,20 +27,23 @@ def endpoints():
                 'Longitude': "<longitude of place you want to get data about>"
         },
 
-        "Response":
+        "Post request response":
         {
-            "Air_quality_data": {
-                "AQI": "Fair",
-                "Concentration_of_elements": {
-                "co": 186.92,
-                "nh3": 4.81,
-                "no": 0,
-                "no2": 6.17,
-                "o3": 66.52,
-                "pm10": 4.91,
-                "pm2_5": 3.16,
-                "so2": 3.28,
-                "! Values are in ug/m3 !": 'space taker'
+            "Air_quality_data": 
+            {
+                "AQI": "<aqi value in word for example: fair,good,...>",
+                "City": "<city name by longitude and latitude>",
+                "Concentration_of_elements": 
+                {
+                    "co": 186.92,
+                    "nh3": 4.81,
+                    "no": 0,
+                    "no2": 6.17,
+                    "o3": 66.52,
+                    "pm10": 4.91,
+                    "pm2_5": 3.16,
+                    "so2": 3.28,
+                    "! Values are in ug/m3 !": 'space taker'
                 }
             }
         }
@@ -53,9 +56,10 @@ def endpoints():
             'Latitude': "<latitude of place you want to get data about>",
             'Longitude': "<longitude of place you want to get data about>"
         },
-        "Response":
+        "Post request response":
         {
-            "Weather_data": {
+            "Weather_data": 
+            {
                 "Pressure": "<value in hPa>",
                 "Humidity": "<value in precentage>",
                 "Temp": "<value in celsius>",
@@ -73,10 +77,10 @@ def endpoints():
             'Password': "<password of account>"
         },
 
-        "Response":
+        "Post request response":
         {
-            'Response': 'Logged succesfully!',
-            'Error_msg': None
+            'Response': 'for example: Logged succesfully!',
+            'Error_msg': 'None or error msg'
         }
     
     },
@@ -90,10 +94,10 @@ def endpoints():
             'Password': "<password of account>"
         },
 
-        "Response":
+        "Post request response":
         {
-            'Response': 'Registered succesfully',
-            'Error_msg': None
+            'Response': 'for example: Registered succesfully',
+            'Error_msg': 'None or error msg'
         }
     },
 
@@ -104,7 +108,7 @@ def endpoints():
             'UserInput': "<your prompt>"
         },
 
-        "Response":
+        "Post request response":
         {
             "Response": "<generated text>"
         }
@@ -132,6 +136,19 @@ def endpoints():
 
             }
             
+        }
+    },
+"/api/news/article_component":
+    {
+        "Post request":
+        {
+            "Component": '<component name: title,img,link>',
+            "Amount": '<amount of results int>'
+        },
+        "Post request response":
+        {
+            "Article_<component name>_1": '<component>',
+            "Article_<component name>_2": '<component>'
         }
     },
 "/api/ai/quiz_generator": 

@@ -3,6 +3,9 @@ from flask_cors import CORS
 from .routes import *
 from .services import Get_articles
 from .config import Config
+from .globals import globals
+
+globals = globals
 
 
 def create_app():

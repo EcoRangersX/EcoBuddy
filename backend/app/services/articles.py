@@ -7,15 +7,15 @@ from app.models import Article
 
 
 class Get_articles:
-    def __init__(self):
+        
+    def find_article(self):
         self.domain_prefix = "https://www.the-scientist.com"
         self.response = requests.get(
             url=f"{self.domain_prefix}/tag/ecology"
         )
         self.document = BeautifulSoup(self.response.text, "html.parser")
-
-    def find_article(self):
         self.articles = self.document.main.main.find_all(class_="ArticleSummary")
+      
 
     def insert_articles_to_database(self):
         self.find_article()
@@ -42,12 +42,13 @@ class Get_articles:
         return to_return
             
     def get_articles_component(self,component: str,amount: int) -> list:
-        command = f'SELECT {component} FROM ARTICLES'
+        command = f'SELECT {component} FROM articles'
         cursor.execute(command)
         list_of_components = cursor.fetchall()
         components_to_return = []
         for i in range(amount):
-            components_to_return.append(list_of_components[randint(0,len(list_of_components))])
+            components_to_return.append(list_of_components[i])
+   
 
         return components_to_return
 
