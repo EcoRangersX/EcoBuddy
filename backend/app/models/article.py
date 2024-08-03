@@ -1,4 +1,5 @@
-from .database import conn,cursor
+from app.database import *
+
 
 class Article:
     def __init__(self,title,link,img):
@@ -25,6 +26,7 @@ class Article:
             return False
         else:
             return True
-
- 
+        
     
+
+

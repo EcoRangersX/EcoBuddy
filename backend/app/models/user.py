@@ -1,9 +1,10 @@
-from .database import *
+from app.database import *
 
 class User:
-    name: str = None
-    email: str = None
-    password: str = None
+    def __init__(self):
+        self.name: str = None
+        self.email: str = None
+        self.password: str = None
 
     def check_if_user_exists(self) -> list:
        
@@ -56,21 +57,6 @@ class User:
         for i in values_to_get:
             values_to_get_str+= f',{i}'
 
-        cursor.execute(f"SELECT {values_to_get_str[1:]} FROM users")
+        cursor.execute(f"SELECT {values_to_get_str[1:]} FROM users WHERE email= :email",{'email': self.email})
     
         return cursor.fetchall()
-        
-
-# for i in range(10):
-#     u = User()
-#     u.name = f'john{i}'
-#     u.email = f'john{i}@gmail.com'
-#     u.password = f'john{i}k'
-#     u.insert_to_database()
-        
-
-
-
-    
-
-

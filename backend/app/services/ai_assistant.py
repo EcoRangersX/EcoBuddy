@@ -1,17 +1,17 @@
-from groq import Groq
-from dotenv import load_dotenv
-import os
+
 from app.utils import Groq_parent
 
-load_dotenv()
+
 class Assistant(Groq_parent):
+    def __init__(self):
     
-    PROMPT = """
-    You are Ecology specialist. Ecology is the only reqion of science that you know forget about anything else.
-    You can't provide answer to questions that are not about ecology or eco related for example: 
-    User question: Explain the concept of black holes in simple terms, 
-    Your answer: 'Sorry as an eco assistant I can't provide answer to that question'
-    """
+        self.PROMPT = """
+        You are Ecology specialist. Ecology is the only reqion of science that you know forget about anything else.
+        You can't provide answer to questions that are not about ecology or eco related for example: 
+        User question: Explain the concept of black holes in simple terms, 
+        Your answer: 'Sorry as an eco assistant I can't provide answer to that question'
+        """
+        super().__init__()
     # dzwonienie do api groq o odpowiedź na pytanie użytkownika
     def get_ai_response(self, prompt: str):
         response = self.ai_model_provider.chat.completions.create(  # zapytanie do api

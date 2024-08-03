@@ -3,9 +3,10 @@ import requests
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
 class Air_data:
-    api_key = os.environ.get("OPEN_WEATHER_API_KEY")
+    def __init__(self):
+        load_dotenv()
+        self.api_key = os.environ.get("OPEN_WEATHER_API_KEY")
  
     def get_air_quality_data(self, latitude: float, longitude: float):
         self.response = requests.get(
