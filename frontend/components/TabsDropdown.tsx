@@ -11,7 +11,7 @@ const TabsDropdown = ({ closeMenu }: TabsDropdownProps) => {
   const items = [
     { label: 'Quiz', value: 'quiz' },
     { label: 'Articles', value: 'articles' },
-    { label: 'Home', value: 'index' },
+    { label: 'Home', value: '/' },
     { label: 'Ai-Assistant', value: 'ai-assistant' },
     { label: 'Profile', value: 'profile' },
   ];
