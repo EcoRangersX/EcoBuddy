@@ -1,8 +1,10 @@
-// frontend/components/AqiDisplay.tsx
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 
-const AqiDisplay: React.FC<{ aqi: number }> = ({ aqi }) => {
+interface AqiDisplayProps {
+    aqi: number;
+}
+
+const AqiDisplay = ({ aqi }: AqiDisplayProps) => {
     const getStatus = (aqi: number) => {
         if (aqi <= 50) return 'good';
         // Add more conditions as needed
@@ -10,30 +12,11 @@ const AqiDisplay: React.FC<{ aqi: number }> = ({ aqi }) => {
     };
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.aqi}>{aqi}</Text>
-            <Text style={styles.status}>{getStatus(aqi)}</Text>
+        <View className='flex items-center justify-center p-5 rounded-lg bg-green-500'>
+            <Text className='text-4xl font-bold text-white'>{aqi}</Text>
+            <Text className='text-lg text-white'>{getStatus(aqi)}</Text>
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 20,
-        borderRadius: 10,
-        backgroundColor: '#00E676', // Adjust color based on AQI
-    },
-    aqi: {
-        fontSize: 36,
-        fontWeight: 'bold',
-        color: '#fff',
-    },
-    status: {
-        fontSize: 18,
-        color: '#fff',
-    },
-});
 
 export default AqiDisplay;

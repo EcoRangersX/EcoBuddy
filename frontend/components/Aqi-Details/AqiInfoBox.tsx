@@ -1,26 +1,18 @@
-// frontend/components/AqiInfoBox.tsx
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
+import { Colors } from '@/constants/Colors';
 
-const AqiInfoBox: React.FC<{ info: string }> = ({ info }) => {
-    return (
-        <View style={styles.container}>
-            <Text style={styles.info}>{info}</Text>
-        </View>
-    );
+interface AqiInfoBoxProps {
+  info: string;
+}
+
+const AqiInfoBox = ({ info }: AqiInfoBoxProps) => {
+  return (
+    <View
+      style={{ borderColor: Colors.light.borderBox }}
+      className="p-3 border-2 rounded-[30px] mt-2">
+      <Text className="text-lg text-black">{info}</Text>
+    </View>
+  );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        padding: 20,
-        borderRadius: 10,
-        backgroundColor: '#E0F7FA',
-        marginTop: 10,
-    },
-    info: {
-        fontSize: 16,
-        color: '#00796B',
-    },
-});
 
 export default AqiInfoBox;
