@@ -1,6 +1,6 @@
 from app.database import cursor,conn
 
-class Articles:
+class Migrate_articles:
     def __init__(self):
         cursor.execute("""CREATE TABLE IF NOT EXISTS articles(
                     title text,

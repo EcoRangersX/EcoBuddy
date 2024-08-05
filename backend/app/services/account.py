@@ -32,18 +32,10 @@ class Account:
 
     
     def login(self):
-        values = self.user.get_values(['email','password'])
-
-        for email,password in values:
-            if self.user.email != email:
-                continue
-
-            if self.user.password != password:
-                continue
-
-            return True
-        
-        return False
+        if self.user.email and self.user.password:
+            return self.user.login()
+        else:
+            return False
 
     def reqister(self):
         if self.user.check_if_user_exists():
@@ -55,11 +47,7 @@ class Account:
         else:
             return {'Response': None,
                     'Error_msg': 'Something went wrong'}
-    
 
-
-    def check_for_duplicates(self):
-        pass
     
     
 

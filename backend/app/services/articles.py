@@ -1,12 +1,11 @@
 from bs4 import BeautifulSoup
 import requests
-from random import randint
-from app.database import *
+from app.database import cursor
 from app.models import Article
 
 
 
-class Get_articles:
+class Articles:
         
     def find_article(self):
         self.domain_prefix = "https://www.the-scientist.com"
@@ -42,16 +41,15 @@ class Get_articles:
         return to_return
             
     def get_articles_component(self,component: str,amount: int) -> list:
-        command = f'SELECT {component} FROM articles'
+        command = f'SELECT {component} FROM articles LIMIT {amount}'
         cursor.execute(command)
         list_of_components = cursor.fetchall()
-        components_to_return = []
-        for i in range(amount):
-            components_to_return.append(list_of_components[i])
-   
 
-        return components_to_return
+        to_return = {}
+        for itr in range(amount):
+            to_return[f'article_{component}_{itr+1}'] = list_of_components[itr][0]
 
+        return to_return
         
 
 

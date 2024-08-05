@@ -9,7 +9,7 @@ class User:
     def check_if_user_exists(self) -> list:
        
 
-        cursor.execute("SELECT * FROM users WHERE email LIKE :email AND name LIKE :name",{'email': self.email,'name': self.name})
+        cursor.execute("SELECT * FROM users WHERE email= :email AND name=:name",{'email': self.email,'name': self.name})
 
         return cursor.fetchall()
 
@@ -51,12 +51,13 @@ class User:
         else:
             return True
 
-    def get_values(self,values_to_get: list) -> list:
-       
-        values_to_get_str = ''
-        for i in values_to_get:
-            values_to_get_str+= f',{i}'
-
-        cursor.execute(f"SELECT {values_to_get_str[1:]} FROM users WHERE email= :email",{'email': self.email})
+   
     
-        return cursor.fetchall()
+    def login(self):
+        cursor.execute("SELECT * FROM users WHERE email= :email AND password= :password",{'email': self.email,'password': self.password})
+        result = cursor.fetchall()
+
+        if result: 
+            return True
+        
+        return False
