@@ -1,20 +1,18 @@
 import { View, Text } from 'react-native';
-import { BoxStyles } from '@/constants/GlobalStyles';
+import { styles } from '@/constants/GlobalStyles';
 
 const AqiExplanationSection = () => {
   return (
     <View className="px-2 rounded-lg mt-7">
-      <View className="bg-[#62cabc] py-2 rounded-[30px] shadow-md shadow-black">
+      <View
+        style={styles.sectionTitle
+        }>
         <Text className="text-lg font-bold text-white text-center">
           What is AQI?
         </Text>
       </View>
       <View
-        style={{
-          borderColor: BoxStyles.borderColor,
-          borderRadius: BoxStyles.borderRadius,
-          borderWidth: BoxStyles.borderWidth,
-        }}
+        style={styles.BoxStyles}
         className="mt-4 p-3">
         <Text className="text-base text-[#3baec2]">
           The Air Quality Index (AQI){' '}

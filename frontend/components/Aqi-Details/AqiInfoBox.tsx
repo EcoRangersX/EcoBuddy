@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-import { BoxStyles } from '@/constants/GlobalStyles';
+import { styles } from '@/constants/GlobalStyles';
 
 interface AqiInfoBoxProps {
   info: string;
@@ -8,11 +8,7 @@ interface AqiInfoBoxProps {
 const AqiInfoBox = ({ info }: AqiInfoBoxProps) => {
   return (
     <View
-      style={{
-        borderColor: BoxStyles.borderColor,
-        borderRadius: BoxStyles.borderRadius,
-        borderWidth: BoxStyles.borderWidth,
-      }}
+      style={styles.BoxStyles}
       className="flex p-3">
       <Text className="text-lg text-black">{info}</Text>
     </View>
