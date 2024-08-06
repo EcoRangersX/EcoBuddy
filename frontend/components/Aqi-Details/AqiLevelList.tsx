@@ -1,9 +1,8 @@
-import React from 'react';
 import { View } from 'react-native';
 import AqiLevelItem from './AqiLevelItem';
 import { AqiLevelColors } from '@/constants/Colors';
 
-const AqiLevelList: React.FC = () => {
+const AqiLevelList = () => {
     const aqiLevels = [
         { range: '0 - 50', description: 'Good', bgColor: AqiLevelColors.good },
         { range: '51 - 100', description: 'Moderate', bgColor: AqiLevelColors.moderate },
@@ -27,5 +26,5 @@ const AqiLevelList: React.FC = () => {
     );
 };
 
-export default AqiLevelList;
+export { AqiLevelList };
 
