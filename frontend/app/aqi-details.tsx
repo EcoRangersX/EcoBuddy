@@ -4,6 +4,7 @@ import AqiDisplay from '@/components/Aqi-Details/AqiDisplay';
 import AqiInfoBox from '@/components/Aqi-Details/AqiInfoBox';
 import AqiExplanationSection from '@/components/Aqi-Details/AqiExplanationSection';
 import AqiLevelList from '@/components/Aqi-Details/AqiLevelList';
+import AqiMeasureExplanationSection from '@/components/Aqi-Details/AqiMeasureExplanationSection';
 
 export default function AQIDetails() {
   return (
@@ -19,6 +20,7 @@ export default function AQIDetails() {
         <View className="mt-2">
           <AqiLevelList />
         </View>
+        <AqiMeasureExplanationSection />
       </View>
     </ScrollView>
   );
