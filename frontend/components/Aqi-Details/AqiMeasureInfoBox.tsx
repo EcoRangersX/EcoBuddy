@@ -4,7 +4,7 @@ import { styles } from '@/constants/GlobalStyles';
 const AqiMeasureInfoBox = () => {
   return (
     <View
-      style={styles.BoxStyles}
+      style={styles.boxStyles}
       className="flex p-2 ">
       <Text className="text-black text-base">
         The AQI is calculated based on the concentrations of several pollutants

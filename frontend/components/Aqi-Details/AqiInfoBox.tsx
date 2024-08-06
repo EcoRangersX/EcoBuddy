@@ -8,7 +8,7 @@ interface AqiInfoBoxProps {
 const AqiInfoBox = ({ info }: AqiInfoBoxProps) => {
   return (
     <View
-      style={styles.BoxStyles}
+      style={styles.boxStyles}
       className="flex p-3">
       <Text className="text-lg text-black">{info}</Text>
     </View>
