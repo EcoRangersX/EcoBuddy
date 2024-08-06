@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import AqiDisplay from '@/components/Aqi-Details/AqiDisplay';
 import AqiInfoBox from '@/components/Aqi-Details/AqiInfoBox';
 import AqiExplanationSection from '@/components/Aqi-Details/AqiExplanationSection';
+import AqiLevelList from '@/components/Aqi-Details/AqiLevelList';
 
 export default function AQIDetails() {
   return (
@@ -15,6 +16,9 @@ export default function AQIDetails() {
           <AqiInfoBox info="Moderate air quality. People with respiratory or heart conditions may be affected." />
         </View>
         <AqiExplanationSection />
+        <View className="mt-2">
+          <AqiLevelList />
+        </View>
       </View>
     </ScrollView>
   );
