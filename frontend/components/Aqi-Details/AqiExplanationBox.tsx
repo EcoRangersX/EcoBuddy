@@ -3,7 +3,7 @@ import { styles } from '@/constants/GlobalStyles';
 
 const AqiExplanationBox = () => {
   return (
-    <View style={styles.boxStyles} className="mt-4 p-3">
+    <View style={styles.boxStyles}>
       <Text className="text-base text-[#3baec2]">
         The Air Quality Index (AQI){' '}
         <Text className="text-black">

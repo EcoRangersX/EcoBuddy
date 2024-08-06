@@ -3,9 +3,7 @@ import { styles } from '@/constants/GlobalStyles';
 
 const AqiMeasureInfoBox = () => {
   return (
-    <View
-      style={styles.boxStyles}
-      className="flex p-2 ">
+    <View style={styles.boxStyles}>
       <Text className="text-black text-base">
         The AQI is calculated based on the concentrations of several pollutants
         in the air. The primary pollutants that contribute to the AQI are:
