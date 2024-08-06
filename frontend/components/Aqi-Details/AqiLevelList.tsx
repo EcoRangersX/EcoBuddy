@@ -5,16 +5,16 @@ import { AqiLevelColors } from '@/constants/Colors';
 
 const AqiLevelList: React.FC = () => {
     const aqiLevels = [
-        { range: '0 - 50', description: 'good', bgColor: AqiLevelColors.good },
-        { range: '51 - 100', description: 'moderate', bgColor: AqiLevelColors.moderate },
-        { range: '101 - 150', description: 'sensitive groups', bgColor: AqiLevelColors.sensitiveGroups },
-        { range: '151 - 200', description: 'unhealthy', bgColor: AqiLevelColors.unhealthy },
-        { range: '201 - 300', description: 'very unhealthy', bgColor: AqiLevelColors.veryUnhealthy },
-        { range: '301 - 500', description: 'hazardous', bgColor: AqiLevelColors.hazardous },
+        { range: '0 - 50', description: 'Good', bgColor: AqiLevelColors.good },
+        { range: '51 - 100', description: 'Moderate', bgColor: AqiLevelColors.moderate },
+        { range: '101 - 150', description: 'Sensitive groups', bgColor: AqiLevelColors.sensitiveGroups },
+        { range: '151 - 200', description: 'Unhealthy', bgColor: AqiLevelColors.unhealthy },
+        { range: '201 - 300', description: 'Very unhealthy', bgColor: AqiLevelColors.veryUnhealthy },
+        { range: '301 - 500', description: 'Hazardous', bgColor: AqiLevelColors.hazardous },
     ];
 
     return (
-        <View className="p-4 bg-gray-100 rounded-lg">
+        <View className="p-2">
             {aqiLevels.map((level, index) => (
                 <AqiLevelItem
                     key={index}
