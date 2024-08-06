@@ -26,5 +26,5 @@ const AqiLevelList = () => {
     );
 };
 
-export default AqiLevelList;
+export { AqiLevelList };
 
