@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  BoxStyles: {
+  boxStyles: {
     borderColor: '#2cec53',
     borderRadius: 30,
     borderWidth: 2,
@@ -15,6 +15,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 60,
   },
+  section: {
+    paddingHorizontal: 8,
+    marginTop: 28,
+  }
 });
 
 export { styles };
