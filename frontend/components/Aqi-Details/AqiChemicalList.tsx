@@ -12,7 +12,7 @@ const AqiChemicalList = () => {
     ];
 
     return (
-        <View className="p-4 bg-teal-50 rounded-lg shadow-md">
+        <View className="p-2 rounded-lg">
             {chemicals.map((chemical, index) => (
                 <AqiChemicalItem
                     key={index}
