@@ -16,7 +16,7 @@ export default function AQIDetails() {
           <AqiInfoBox info="Moderate air quality. People with respiratory or heart conditions may be affected." />
         </View>
         <AqiExplanationSection />
-        <View className="mt-5">
+        <View className="mt-2">
           <AqiLevelList />
         </View>
       </View>

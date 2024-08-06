@@ -13,12 +13,14 @@ const AqiLevelItem: React.FC<AqiLevelItemProps> = ({
   bgColor,
 }) => {
   return (
-    <View
-      style={{ backgroundColor: bgColor }}
-      className="flex-row items-center mb-4 rounded-full flex-1 mr-2 p-2">
-      <Text className="text-white font-semibold text-center">{range}</Text>
-      <View className="flex-1 ml-2 p-2 rounded-full bg-white">
-        <Text className="text-center font-medium">{description}</Text>
+    <View className="flex-row items-center mb-4 rounded-full flex-1 shadow-lg shadow-black relative bg-white p-2">
+      <View className="p-2 rounded-full bg-white">
+        <Text className="text-black font-semibold text-center">{range}</Text>
+      </View>
+      <View
+        style={{ backgroundColor: bgColor }}
+        className="p-3 rounded-full absolute right-2 w-[65%] flex-wrap">
+        <Text className="text-center text-white font-medium">{description}</Text>
       </View>
     </View>
   );
