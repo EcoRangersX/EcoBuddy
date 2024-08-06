@@ -9,7 +9,7 @@ const AqiInfoBox = ({ info }: AqiInfoBoxProps) => {
   return (
     <View
       style={{ borderColor: Colors.light.borderBox }}
-      className="p-3 border-2 rounded-[30px] mt-2">
+      className="flex p-3 border-2 rounded-[30px]">
       <Text className="text-lg text-black">{info}</Text>
     </View>
   );
