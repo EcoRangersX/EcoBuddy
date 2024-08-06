@@ -7,7 +7,7 @@ interface AqiChemicalItemProps {
 
 const AqiChemicalItem = ({ name, description }: AqiChemicalItemProps) => {
     return (
-        <View className="flex flex-row items-center mb-5 p-2 bg-[#bff1f9] rounded-[30px] shadow-lg shadow-black">
+        <View className="flex flex-row items-center mb-5 p-2 bg-[#bff1f9] rounded-[30px] shadow-md shadow-black">
             <View className="p-2 bg-[#3baec2] rounded-full absolute top-0 left-5 w-1/3">
                 <Text className="text-white font-bold text-center">{name}</Text>
             </View>
