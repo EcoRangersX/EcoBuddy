@@ -11,7 +11,9 @@ const AqiExplanationSection = () => {
           What is AQI?
         </Text>
       </View>
-      <AqiExplanationBox />
+      <View className='mt-3'>
+        <AqiExplanationBox />
+      </View>
       <View className="mt-2">
         {/* AQI Level List */}
         <AqiLevelList />

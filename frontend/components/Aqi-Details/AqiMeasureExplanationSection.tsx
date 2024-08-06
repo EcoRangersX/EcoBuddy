@@ -5,14 +5,18 @@ import { styles } from '@/constants/GlobalStyles';
 
 const AqiMeasureExplanationSection = () => {
   return (
-    <View className=" rounded-lg shadow-xl">
-      <View style={styles.sectionTitle} className='p-2'>
-        <Text className="text-white font-bold text-base">
+    <View style={styles.section} className="rounded-lg shadow-xl">
+      <View style={styles.sectionTitle}>
+        <Text className="text-white text-center font-bold text-base">
           How is AQI Measured?
         </Text>
       </View>
-      <AqiMeasureInfoBox />
-      <AqiChemicalList />
+      <View className='mt-3'>
+        <AqiMeasureInfoBox />
+      </View>
+      <View>
+        <AqiChemicalList />
+      </View>
     </View>
   );
 };
