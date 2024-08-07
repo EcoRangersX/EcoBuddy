@@ -4,7 +4,9 @@ from .articles import Articles
 from .account import Account
 from .quiz_generator import Quiz_generator
 from .quizes import Quizes
+from .ai_questions import Ai_questions
+from .eco_tips import Eco_tips
 
-__all__ = ['Assistant','Air_data','Articles','Account','Quiz_generator','Quizes']
+__all__ = ['Assistant','Air_data','Articles','Account','Quiz_generator','Quizes','Ai_questions','Eco_tips']
 
 

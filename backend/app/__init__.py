@@ -25,6 +25,7 @@ def create_app():
     app.register_blueprint(ai_bp)
     app.register_blueprint(auth_bp)
     app.register_blueprint(docs_bp)
+    app.register_blueprint(eco_tips_bp)
 
     return app
 

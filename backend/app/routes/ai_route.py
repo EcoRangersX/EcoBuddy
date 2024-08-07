@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from app.services import Assistant
 from app.services import Quiz_generator
+from app.services import Ai_questions
 
 
 ai_bp = Blueprint('ai',__name__,url_prefix='/api/ai')
@@ -23,4 +24,9 @@ def ai_assistant_endpoint():
 @ai_bp.route("/quiz_generator", methods=["POST"])
 def quiz_generator_endpoint():
     return {'Quiz': quiz_generator.generate_quiz(request.json)}
+
+
+@ai_bp.route('/example_questions',methods=['POST'])
+def ai_example_questions():
+    return {'Questions': Ai_questions().get_ai_questions(amount=request.json['Amount'])}
     

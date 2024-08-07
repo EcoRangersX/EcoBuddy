@@ -20,5 +20,11 @@ class Ai_tester():
                 }
             )
         
+        example_questions = requests.post(
+            url = 'http://127.0.0.1:5000/api/ai/example_questions',
+            json={'Amount': 5}
+        )
+        
         print(f"\nAI RESPONSE: \n{json.dumps(eco_buddy_response.json(),indent=2)}")
         print(f'\nQUIZ GENERATOR: \n{json.dumps(quiz_generator_response.json(),indent=2)}')
+        print(f'\nAI_QUESTIONS: \n{json.dumps(example_questions.json(),indent=2)}')

@@ -19,6 +19,59 @@ def endpoints():
         "Endpoints": 
 {
 
+"/api/quizes/quiz":
+    {
+        "POST request":
+        {
+            'Titles': "<True if you want to get titles of quizes, False if you want to get just quizes>",
+            'Amount': "<amount of quizes you want to get>"
+        },
+        "Post request response":
+        {
+            "Quizes":
+            {
+                "<quiz title>":
+                {
+                    "Answer_key": 
+                    {
+                        "q1": "Answer1",
+                        "q2": "Answer1"
+                    },
+                    "Questions": 
+                    {
+                        "dsfsdfs": 
+                        {
+                            "Answer1": "babla",
+                            "Answer2": "idfidfhid"
+                        },
+                        "sdsdsd": 
+                        {
+                            "Answer1": "blabla",
+                            "Answer2": "blbla"
+                        }
+                    },
+                    "Title": "Quiz1"
+                }
+            }
+        }
+    },
+"/api/quizes/quiz_titles":
+    {
+        "POST request":
+        {
+            'Amount': "<amount of titles you want to get>"
+        },
+
+        "Post request response":
+        {
+            "Quiz_titles": 
+            [
+                "<quiz title>",
+                "<quiz title>"
+            ]
+        }
+    },
+
 "/api/air/air_quality": 
     {
         "POST request":
@@ -196,6 +249,38 @@ def endpoints():
 "/api/docs/endpoints": 
     {
         "Get request response": 'Json with key "Endpoints" and values of routes to endpoints'
+    },
+
+"/api/ai/example_question":
+    {
+        "POST request":
+        {
+            'Amount': '<amount of questions you want to receive>'
+        },
+        "POST request response":
+        [
+            "question1",
+            "question2",
+            "question3"
+        ]
+        
+    },
+"/api/eco_tips/get_eco_tips":
+    {
+        "POST request":
+        {
+            'Amount': '<amount of eco tips you want to receive>'
+        },
+        "POST request response":
+        {
+            'Eco_tips':
+            {
+                'title1': 'eco_tip1',
+                'title2': 'eco_tip2',
+                'title3': 'eco_tip3',
+                'title4': 'eco_tip4'
+            }
+        }
     }
             
 }
