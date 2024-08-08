@@ -1,4 +1,5 @@
 import { View, Text, TouchableOpacity } from 'react-native';
+import { StartQuizIcon } from '../Icons/QuizzesIcons';
 
 type StartQuizProps = {
   level: string;
@@ -8,21 +9,28 @@ type StartQuizProps = {
   onStart?: () => void;
 };
 
-const StartQuiz = ({ level, questionsCount, title, description, onStart }: StartQuizProps) => {
+const StartQuiz = ({
+  level,
+  questionsCount,
+  title,
+  description,
+  onStart,
+}: StartQuizProps) => {
   return (
-    <View className="p-4 bg-white rounded-lg shadow-md">
-      <View className="flex-row justify-between mb-2">
-        <Text className="bg-green-200 text-green-800 px-2 py-1 rounded-full text-sm">{level}</Text>
-        <Text className="bg-gray-200 text-gray-800 px-2 py-1 rounded-full text-sm">questions: {questionsCount}</Text>
+    <View className="p-4 bg-white mb-4 rounded-[30px] shadow-md shadow-black">
+      <View className="flex-row gap-2 mb-3">
+        <Text className="bg-white text-black py-1 px-2 shadow-md shadow-black rounded-full text-sm">
+          {level}
+        </Text>
+        <Text className="bg-white text-black px-2 py-1 shadow-md shadow-black rounded-full text-sm">
+          Questions: {questionsCount}
+        </Text>
       </View>
-      <Text className="text-xl font-bold text-teal-700 mb-2">{title}</Text>
-      <Text className="text-gray-600 mb-4">{description}</Text>
-      <TouchableOpacity onPress={onStart} className="flex-row items-center bg-teal-500 px-4 py-2 rounded-full">
-        <Text className="text-white font-bold mr-2">Start Quiz</Text>
-        <View className="bg-white p-2 rounded-full">
-          <Text className="text-teal-500 font-bold">{'>'}</Text>
-        </View>
-      </TouchableOpacity>
+      <View className="flex-row items-center justify-between bg-[#74c6d4] px-4 py-2 rounded-full">
+        <Text className="text-white font-bold mr-2">{title}</Text>
+        <StartQuizIcon quiz_id={16} />
+      </View>
+      <Text className="text-gray-600 mt-1">{description}</Text>
     </View>
   );
 };
