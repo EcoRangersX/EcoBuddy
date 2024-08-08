@@ -4,6 +4,8 @@ import AqiDisplay from '@/components/Aqi-Details/AqiDisplay';
 import AqiInfoBox from '@/components/Aqi-Details/AqiInfoBox';
 import AqiExplanationSection from '@/components/Aqi-Details/AqiExplanationSection';
 import AqiMeasureExplanationSection from '@/components/Aqi-Details/AqiMeasureExplanationSection';
+import AirQualityTipList from '@/components/Aqi-Details/AirQualityTipList';
+import { airQualityTips } from '@/constants/StaticData';
 
 export default function AQIDetails() {
   return (
@@ -16,7 +18,9 @@ export default function AQIDetails() {
         <Text className="text-xl">Air Quality Index</Text>
 
         {/* AQI Display section */}
-        <AqiDisplay aqi={14} lastUpdate={14.42} />
+        <View className="mt-2">
+          <AqiDisplay aqi={14} lastUpdate={14.42} />
+        </View>
 
         <View className="mt-5">
           {/* AQI Info Box */}
@@ -28,6 +32,8 @@ export default function AQIDetails() {
 
         {/* AQI Measure Explanation section */}
         <AqiMeasureExplanationSection />
+
+        <AirQualityTipList tips={airQualityTips} />
       </View>
     </ScrollView>
   );
