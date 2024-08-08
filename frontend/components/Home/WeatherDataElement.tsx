@@ -6,7 +6,7 @@ import {
   TemperatureIcon,
   UvIndexIcon,
   PressureIcon,
-} from '@/components/icons/HomeIcons';
+} from '@/components/Icons/HomeIcons';
 import capitalize from '@/utility/capitalizeWord';
 import {
   tempLevel,
