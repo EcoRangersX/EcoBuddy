@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
 import { StartQuizIcon } from '../Icons/QuizzesIcons';
 
 type StartQuizProps = {
@@ -14,15 +14,14 @@ const StartQuiz = ({
   questionsCount,
   title,
   description,
-  onStart,
 }: StartQuizProps) => {
   return (
     <View className="p-4 bg-white mb-4 rounded-[30px] shadow-md shadow-black">
       <View className="flex-row gap-2 mb-3">
-        <Text className="bg-white text-black py-1 px-2 shadow-md shadow-black rounded-full text-sm">
+        <Text className="bg-white text-black py-1 px-2 shadow-md shadow-black rounded-full text-xs">
           {level}
         </Text>
-        <Text className="bg-white text-black px-2 py-1 shadow-md shadow-black rounded-full text-sm">
+        <Text className="bg-white text-black px-2 py-1 shadow-md shadow-black rounded-full text-xs">
           Questions: {questionsCount}
         </Text>
       </View>
