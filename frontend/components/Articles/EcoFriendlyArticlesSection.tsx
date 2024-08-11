@@ -8,8 +8,8 @@ interface EcoFriendlyArticlesSectionProps {
 
 const EcoFriendlyArticlesSection = ({ articles }: EcoFriendlyArticlesSectionProps) => {
   return (
-    <View className="">
-      <Text className="text-xl mb-4">Explore Eco-Friendly Insights</Text>
+    <View>
+      <Text className="text-lg font-semibold ml-5 mt-2">Explore Eco-Friendly Insights</Text>
       {articles.map((article, index) => (
         <Article
           key={index}
