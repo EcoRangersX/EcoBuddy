@@ -1,15 +1,6 @@
 import { View, Text } from 'react-native';
 import { StartQuizIcon } from '../Icons/QuizzesIcons';
-
-export interface StartQuizProps {
-  quiz_id: number;
-  level: 'Beginner' | 'Intermediate' | 'Expert';
-  questionsCount: number;
-  bgColor?: string;
-  titleBgColor?: string;
-  title: string;
-  description: string;
-}
+import { StartQuizProps } from '@/types/quizzes';
 
 const StartQuiz = ({
   quiz_id,
@@ -23,7 +14,7 @@ const StartQuiz = ({
   return (
     <View
       style={{ backgroundColor: bgColor }}
-      className="p-4 mb-4 rounded-[30px] shadow-md shadow-black">
+      className="p-4 mb-4 rounded-[30px] shadow-md shadow-black border-2 border-[#4ac965]">
       <View className="flex-row gap-2 mb-3">
         <Text className="bg-white text-black py-1 px-2 shadow-md shadow-black rounded-full text-xs">
           {level}
