@@ -12,7 +12,7 @@ const LeaderboardUserItem = ({
   };
 
   return (
-    <View className="flex-row bg-white shadow-sm items-center  justify-between shadow-black rounded-full p-3 border-2 border-[#4ac965]">
+    <View className="flex-row bg-white shadow-sm items-center  justify-between shadow-black rounded-full p-3 mb-3 border-2 border-[#4ac965]">
       <View>
         <Text className="text-base text-black">{username}</Text>
       </View>
