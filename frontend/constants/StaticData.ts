@@ -54,4 +54,28 @@ const quizOfTheDay: StartQuizProps = {
   ],
 };
 
-export { airQualityTips, quizzes, quizOfTheDay };
+const takenQuizzes = [
+  {
+    title: 'Ecology basics',
+    correctAnswers: 8,
+    quizQuestions: 10,
+  },
+  {
+    title: 'Climate Change',
+    correctAnswers: 12,
+    quizQuestions: 15,
+  },
+  {
+    title: 'Sustainable Development',
+    correctAnswers: 17,
+    quizQuestions: 20,
+  },
+  {
+    title: 'Conservation Biology',
+    correctAnswers: 21,
+    quizQuestions: 25,
+  },
+];
+
+
+export { airQualityTips, quizzes, takenQuizzes, quizOfTheDay };

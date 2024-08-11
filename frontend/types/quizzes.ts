@@ -8,3 +8,10 @@ export interface StartQuizProps {
   description: string[] | string;
   quizOfTheDay?: boolean;
 }
+
+export interface QuizResultProps {
+  title: string;
+  correctAnswers: number;
+  quizQuestions: number;
+  bgColor?: string;
+}
