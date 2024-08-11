@@ -9,9 +9,9 @@ const Article = ({
   image_url,
 }: ArticleProps) => {
   return (
-    <View className="bg-white rounded-lg overflow-hidden shadow-lg m-2">
+    <View className="bg-white rounded-[30px] overflow-hidden shadow-lg shadow-black m-4">
       <Image
-        className="w-full h-36"
+        className="w-full h-40"
         source={{ uri: image_url }}
         resizeMode="cover"
       />
