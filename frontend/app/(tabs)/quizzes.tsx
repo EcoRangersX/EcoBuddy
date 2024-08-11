@@ -3,10 +3,15 @@ import Header from '@/components/Header';
 import TestKnowledgeSection from '@/components/Quizzes/TestKnowledgeSection';
 import QuizOfTheDaySection from '@/components/Quizzes/QuizOfTheDaySection';
 import YourScoresSection from '@/components/Quizzes/YourScoresSection';
-import { quizzes, quizOfTheDay, takenQuizzes } from '@/constants/StaticData';
+import {
+  quizzes,
+  quizOfTheDay,
+  takenQuizzes,
+  leaderboardUsers,
+} from '@/constants/StaticData';
+import LeaderbordSection from '@/components/LeaderboardSection';
 
 export default function QuizzesScreen() {
-
   return (
     <ScrollView>
       <Header />
@@ -20,7 +25,12 @@ export default function QuizzesScreen() {
           questionsCount={quizOfTheDay.questionsCount}
         />
       </View>
-      <YourScoresSection streak={1} bestStreak={11} takenQuizzes={takenQuizzes} />
+      <YourScoresSection
+        streak={1}
+        bestStreak={11}
+        takenQuizzes={takenQuizzes}
+      />
+      <LeaderbordSection users={leaderboardUsers} />
     </ScrollView>
   );
 }
