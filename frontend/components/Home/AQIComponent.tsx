@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import Svg from 'react-native-svg';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import { LocationIcon, ViewDetailsIcon } from '@/components/icons/HomeIcons';
+import { LocationIcon, ViewDetailsIcon } from '@/components/Icons/HomeIcons';
 import capitalize from '@/utility/capitalizeWord';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
