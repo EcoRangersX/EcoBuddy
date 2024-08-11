@@ -1,12 +1,12 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { LeaderboardUserItemProps } from '@/types/quizzes';
 
-interface LeaderboardUserItem {
-  username: string;
-  username_profile_url: string;
-  score: number;
-}
 
-const LeaderboardUserItem = ({ username, username_profile_url, score }) => {
+const LeaderboardUserItem = ({
+  username,
+  username_profile_url,
+  score,
+}: LeaderboardUserItemProps) => {
   const handleProfileImagePress = () => {
     console.log('Profile Image Pressed');
   };
