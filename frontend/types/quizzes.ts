@@ -15,3 +15,9 @@ export interface QuizResultProps {
   quizQuestions: number;
   bgColor?: string;
 }
+
+export interface LeaderboardUserItemProps {
+  username: string;
+  username_profile_url: string;
+  score: number;
+}
