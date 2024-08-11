@@ -122,56 +122,42 @@ const ecoFriendlyArticles = [
     article_id: 1,
     description:
       'Learn simple and effective ways to reduce your environmental impact through everyday habits. This guide covers everything from energy conservation to eco-friendly shopping tips.',
-    image_url: 'https://example.com/path_to_image1.png',
+    image_url: 'https://i.postimg.cc/ry0TvfG4/article-image.png',
   },
   {
-    title: '10 Tips for Reducing Plastic Waste',
+    title: '10 Ways to Reduce Your Carbon Footprint Today',
     article_id: 2,
     description:
-      'Discover practical tips for minimizing plastic waste in your daily life, from reusable bags to plastic-free packaging alternatives.',
-    image_url: 'https://example.com/path_to_image2.png',
+      'A practical guide to minimizing your carbon emissions, from energy-efficient home improvements to sustainable travel choices.',
+    image_url: 'https://i.postimg.cc/8PNyh5CC/image-1.png',
   },
   {
-    title: 'How to Start a Home Garden',
+    title: 'The Impact of Plastic Pollution on Oceans',
     article_id: 3,
     description:
-      'A beginner’s guide to starting your own home garden, including tips on choosing the right plants, soil preparation, and sustainable gardening practices.',
-    image_url: 'https://example.com/path_to_image3.png',
+      'Explore the devastating effects of plastic waste on marine life and what you can do to help reduce ocean pollution.',
+    image_url: 'https://i.postimg.cc/yxBTXQsG/image.png',
   },
   {
-    title: 'The Benefits of Composting',
+    title: 'The Impact of Plastic Pollution on Oceans',
     article_id: 4,
     description:
-      'Learn about the environmental and personal benefits of composting, and get started with our easy-to-follow composting guide.',
-    image_url: 'https://example.com/path_to_image4.png',
+      'An introduction to renewable energy sources like solar, wind, and hydroelectric power, and their role in combating climate change.',
+    image_url: 'https://i.postimg.cc/P5NQ48nd/image.png',
   },
   {
-    title: 'Eco-Friendly Travel Tips',
+    title: 'How Climate Change is Affecting Global Biodiversity',
     article_id: 5,
     description:
-      'Explore ways to reduce your carbon footprint while traveling, from choosing sustainable accommodations to minimizing waste on the go.',
-    image_url: 'https://example.com/path_to_image5.png',
+      'Understand the connection between climate change and the loss of species around the world, and what actions are being taken to protect biodiversity.',
+    image_url: 'https://i.postimg.cc/8kHdgb11/image.png',
   },
   {
-    title: 'Green Energy Solutions for Your Home',
+    title: 'What You Need to Know About Pollen and Air Quality',
     article_id: 6,
     description:
-      'Discover various green energy solutions that can help you reduce your home’s carbon footprint, including solar panels, wind turbines, and energy-efficient appliances.',
-    image_url: 'https://example.com/path_to_image6.png',
-  },
-  {
-    title: 'Sustainable Fashion: How to Build an Eco-Friendly Wardrobe',
-    article_id: 7,
-    description:
-      'Learn how to make more sustainable fashion choices, from buying second-hand clothing to choosing eco-friendly fabrics and supporting ethical brands.',
-    image_url: 'https://example.com/path_to_image7.png',
-  },
-  {
-    title: 'The Importance of Water Conservation',
-    article_id: 8,
-    description:
-      'Understand the importance of water conservation and discover practical tips for reducing water usage in your home and garden.',
-    image_url: 'https://example.com/path_to_image8.png',
+      'An overview of how pollen levels affect air quality and health, especially for those with allergies, and tips for managing exposure.',
+    image_url: 'https://i.postimg.cc/2894V8bM/image.png',
   },
 ];
 
