@@ -16,11 +16,12 @@ const Article = ({
         resizeMode="cover"
       />
       <View className="p-4">
-        <Text className="text-lg font-semibold mb-2">{title}</Text>
-        <Text className="text-gray-700 mb-4">{description}</Text>
-        <View className="flex-row justify-between items-center">
-          <SaveToFavoriteIcon article_id={article_id} />
-          <TouchableOpacity className="bg-green-600 py-2 px-4 rounded-full">
+        <Text className="text-lg font-semibold mb-1">{title}</Text>
+        <Text className="text-gray-800 mb-1">{description}</Text>
+
+        <View className="flex-row justify-end items-center space-x-4">
+          <SaveToFavoriteIcon size={32} article_id={article_id} />
+          <TouchableOpacity className="bg-[#22a054] py-2 px-5 rounded-full">
             <Text className="text-white text-base font-medium">Read</Text>
           </TouchableOpacity>
         </View>

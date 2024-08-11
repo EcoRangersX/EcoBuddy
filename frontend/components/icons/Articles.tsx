@@ -1,4 +1,4 @@
-import TouchableNativeFeedback from 'react-native-gesture-handler/lib/typescript/components/touchables/TouchableNativeFeedback.android';
+import { TouchableOpacity } from 'react-native';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
 interface BasicIconProps {
@@ -21,9 +21,11 @@ const SaveToFavoriteIcon = ({
   };
 
   return (
-    <TouchableNativeFeedback onPress={() => handleSaveToFavorite(article_id)}>
+    <TouchableOpacity
+      className="bg-white h-12 w-12 items-center justify-center rounded-full shadow-md shadow-black"
+      onPress={() => handleSaveToFavorite(article_id)}>
       <FontAwesome6 name="bookmark" size={size} color={color} />
-    </TouchableNativeFeedback>
+    </TouchableOpacity>
   );
 };
 
