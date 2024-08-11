@@ -1,6 +1,6 @@
 import { Text, View } from 'react-native';
 import StartQuizList from './StartQuizList';
-import { StartQuizProps } from './StartQuiz';
+import { StartQuizProps } from '@/types/quizzes';
 
 const TestKnowledgeSection = () => {
   const quizzes: StartQuizProps[] = [
@@ -30,7 +30,7 @@ const TestKnowledgeSection = () => {
     },
     {
       quiz_id: 4,
-      level: 'Expert',
+      level: 'Advanced',
       questionsCount: 25,
       title: 'Conservation Biology',
       description:
