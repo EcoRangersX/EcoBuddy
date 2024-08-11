@@ -79,31 +79,37 @@ const takenQuizzes = [
 
 const leaderboardUsers = [
   {
+    user_id: 1,
     username: 'alice_wonder',
     score: 120,
     profile_image_url: 'https://randomuser.me/api/portraits/women/1.jpg',
   },
   {
+    user_id: 2,
     username: 'bob_builder',
     score: 250,
     profile_image_url: 'https://randomuser.me/api/portraits/men/1.jpg',
   },
   {
+    user_id: 3,
     username: 'charlie_chaplin',
     score: 180,
     profile_image_url: 'https://randomuser.me/api/portraits/men/2.jpg',
   },
   {
+    user_id: 4,
     username: 'diana_prince',
     score: 300,
     profile_image_url: 'https://randomuser.me/api/portraits/women/2.jpg',
   },
   {
+    user_id: 5,
     username: 'edward_snow',
     score: 220,
     profile_image_url: 'https://randomuser.me/api/portraits/men/3.jpg',
   },
   {
+    user_id: 6,
     username: 'fiona_apple',
     score: 150,
     profile_image_url: 'https://randomuser.me/api/portraits/women/3.jpg',

@@ -18,6 +18,7 @@ export interface QuizResultProps {
 
 export interface LeaderboardUserItemProps {
   username: string;
-  username_profile_url: string;
+  user_id: number;
+  profile_image_url: string;
   score: number;
 }
