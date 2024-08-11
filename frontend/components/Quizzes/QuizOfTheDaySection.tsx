@@ -22,6 +22,7 @@ const QuizOfTheDaySection = ({
         titleBgColor={titleBgColor}
         title={title}
         description={description}
+        quizOfTheDay={true}
       />
     </View>
   );

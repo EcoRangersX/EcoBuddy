@@ -9,8 +9,12 @@ export default function QuizzesScreen() {
     quiz_id: 1,
     level: 'Beginner',
     questionsCount: 5,
-    title: 'Ecology Quiz',
-    description: 'Test your knowledge about ecology',
+    title: 'Human Impact on the Environment',
+    description: [
+      'How human activities like deforestation, urbanization, and agriculture affect the environment.',
+      'The concept of ecological footprints and how to reduce them.',
+      'Case studies of significant environmental changes caused by human actions.',
+    ],
   };
 
   return (
