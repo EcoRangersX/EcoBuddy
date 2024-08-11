@@ -8,7 +8,7 @@ export interface QuizStreakProps {
 
 const QuizStreak = ({ streak, bestStreak  }: QuizStreakProps) => {
   return (
-    <View className="bg-white flex-row items-center justify-between rounded-xl p-2 border-2 border-[#4ac965]">
+    <View className="bg-white flex-row items-center justify-around rounded-xl p-2 border-2 border-[#4ac965]">
       <View className='items-center'>
         <Text className="text-base">Streak</Text>
         <View className="bg-white rounded-full items-center justify-center py-2 flex-row">
@@ -16,7 +16,8 @@ const QuizStreak = ({ streak, bestStreak  }: QuizStreakProps) => {
           <Text className="text-xl font-semibold font-row">{streak} days</Text>
         </View>
       </View>
-      <View className='items-center'>
+      {/* Best Personal Streak */}
+      <View className=''>
         <Text className="text-base">Best Personal</Text>
         <View className="bg-white rounded-full items-center justify-center py-2 flex-row">
           <StreakIcon size={36} />

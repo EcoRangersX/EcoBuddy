@@ -11,7 +11,7 @@ const QuizResult = ({
   return (
     <View
       style={{ backgroundColor: bgColor }}
-      className="flex-row rounded-full items-center justify-between shadow-md shadow-black mb-3 p-2">
+      className="flex-row rounded-full items-center justify-between shadow-sm shadow-black mb-3 p-2">
       <Text className="text-white font-semibold">{title}</Text>
       <View className="bg-[#85d897] rounded-full p-2">
         <Text className="text-white">
