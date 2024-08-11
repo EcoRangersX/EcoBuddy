@@ -7,9 +7,11 @@ interface YourScoresSectionProps {
 
 const YourScoresSection = ({ streak }: YourScoresSectionProps) => {
   return (
-    <View>
-      <Text className="text-xl">Your Scores</Text>
-      <CurrentQuizStreak streak={streak} />
+    <View className="p-3">
+      <Text className="text-xl mb-4">Your Scores</Text>
+      <View>
+        <CurrentQuizStreak streak={streak} />
+      </View>
     </View>
   );
 };
