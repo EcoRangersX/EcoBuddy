@@ -77,5 +77,43 @@ const takenQuizzes = [
   },
 ];
 
+const leaderboardUsers = [
+  {
+    username: 'alice_wonder',
+    score: 120,
+    profile_image_url: 'https://randomuser.me/api/portraits/women/1.jpg',
+  },
+  {
+    username: 'bob_builder',
+    score: 250,
+    profile_image_url: 'https://randomuser.me/api/portraits/men/1.jpg',
+  },
+  {
+    username: 'charlie_chaplin',
+    score: 180,
+    profile_image_url: 'https://randomuser.me/api/portraits/men/2.jpg',
+  },
+  {
+    username: 'diana_prince',
+    score: 300,
+    profile_image_url: 'https://randomuser.me/api/portraits/women/2.jpg',
+  },
+  {
+    username: 'edward_snow',
+    score: 220,
+    profile_image_url: 'https://randomuser.me/api/portraits/men/3.jpg',
+  },
+  {
+    username: 'fiona_apple',
+    score: 150,
+    profile_image_url: 'https://randomuser.me/api/portraits/women/3.jpg',
+  },
+];
 
-export { airQualityTips, quizzes, takenQuizzes, quizOfTheDay };
+export {
+  airQualityTips,
+  quizzes,
+  takenQuizzes,
+  quizOfTheDay,
+  leaderboardUsers,
+};
