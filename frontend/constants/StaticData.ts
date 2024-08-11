@@ -116,10 +116,70 @@ const leaderboardUsers = [
   },
 ];
 
+const ecoFriendlyArticles = [
+  {
+    title: 'The Basics of Sustainable Living',
+    article_id: 1,
+    description:
+      'Learn simple and effective ways to reduce your environmental impact through everyday habits. This guide covers everything from energy conservation to eco-friendly shopping tips.',
+    image_url: 'https://example.com/path_to_image1.png',
+  },
+  {
+    title: '10 Tips for Reducing Plastic Waste',
+    article_id: 2,
+    description:
+      'Discover practical tips for minimizing plastic waste in your daily life, from reusable bags to plastic-free packaging alternatives.',
+    image_url: 'https://example.com/path_to_image2.png',
+  },
+  {
+    title: 'How to Start a Home Garden',
+    article_id: 3,
+    description:
+      'A beginner’s guide to starting your own home garden, including tips on choosing the right plants, soil preparation, and sustainable gardening practices.',
+    image_url: 'https://example.com/path_to_image3.png',
+  },
+  {
+    title: 'The Benefits of Composting',
+    article_id: 4,
+    description:
+      'Learn about the environmental and personal benefits of composting, and get started with our easy-to-follow composting guide.',
+    image_url: 'https://example.com/path_to_image4.png',
+  },
+  {
+    title: 'Eco-Friendly Travel Tips',
+    article_id: 5,
+    description:
+      'Explore ways to reduce your carbon footprint while traveling, from choosing sustainable accommodations to minimizing waste on the go.',
+    image_url: 'https://example.com/path_to_image5.png',
+  },
+  {
+    title: 'Green Energy Solutions for Your Home',
+    article_id: 6,
+    description:
+      'Discover various green energy solutions that can help you reduce your home’s carbon footprint, including solar panels, wind turbines, and energy-efficient appliances.',
+    image_url: 'https://example.com/path_to_image6.png',
+  },
+  {
+    title: 'Sustainable Fashion: How to Build an Eco-Friendly Wardrobe',
+    article_id: 7,
+    description:
+      'Learn how to make more sustainable fashion choices, from buying second-hand clothing to choosing eco-friendly fabrics and supporting ethical brands.',
+    image_url: 'https://example.com/path_to_image7.png',
+  },
+  {
+    title: 'The Importance of Water Conservation',
+    article_id: 8,
+    description:
+      'Understand the importance of water conservation and discover practical tips for reducing water usage in your home and garden.',
+    image_url: 'https://example.com/path_to_image8.png',
+  },
+];
+
 export {
   airQualityTips,
   quizzes,
   takenQuizzes,
   quizOfTheDay,
   leaderboardUsers,
+  ecoFriendlyArticles
 };
