@@ -116,10 +116,56 @@ const leaderboardUsers = [
   },
 ];
 
+const ecoFriendlyArticles = [
+  {
+    title: 'The Basics of Sustainable Living',
+    article_id: 1,
+    description:
+      'Learn simple and effective ways to reduce your environmental impact through everyday habits. This guide covers everything from energy conservation to eco-friendly shopping tips.',
+    image_url: 'https://i.postimg.cc/ry0TvfG4/article-image.png',
+  },
+  {
+    title: '10 Ways to Reduce Your Carbon Footprint Today',
+    article_id: 2,
+    description:
+      'A practical guide to minimizing your carbon emissions, from energy-efficient home improvements to sustainable travel choices.',
+    image_url: 'https://i.postimg.cc/8PNyh5CC/image-1.png',
+  },
+  {
+    title: 'The Impact of Plastic Pollution on Oceans',
+    article_id: 3,
+    description:
+      'Explore the devastating effects of plastic waste on marine life and what you can do to help reduce ocean pollution.',
+    image_url: 'https://i.postimg.cc/yxBTXQsG/image.png',
+  },
+  {
+    title: 'The Impact of Plastic Pollution on Oceans',
+    article_id: 4,
+    description:
+      'An introduction to renewable energy sources like solar, wind, and hydroelectric power, and their role in combating climate change.',
+    image_url: 'https://i.postimg.cc/P5NQ48nd/image.png',
+  },
+  {
+    title: 'How Climate Change is Affecting Global Biodiversity',
+    article_id: 5,
+    description:
+      'Understand the connection between climate change and the loss of species around the world, and what actions are being taken to protect biodiversity.',
+    image_url: 'https://i.postimg.cc/8kHdgb11/image.png',
+  },
+  {
+    title: 'What You Need to Know About Pollen and Air Quality',
+    article_id: 6,
+    description:
+      'An overview of how pollen levels affect air quality and health, especially for those with allergies, and tips for managing exposure.',
+    image_url: 'https://i.postimg.cc/2894V8bM/image.png',
+  },
+];
+
 export {
   airQualityTips,
   quizzes,
   takenQuizzes,
   quizOfTheDay,
   leaderboardUsers,
+  ecoFriendlyArticles
 };
