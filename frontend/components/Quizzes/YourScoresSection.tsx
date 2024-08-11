@@ -1,19 +1,26 @@
 import { Text, View } from 'react-native';
-import CurrentQuizStreak from './CurrentQuizStreak';
-import QuizResult from './QuizResult';
+import QuizStreak from './QuizStreak';
+import TakenQuizzesList from './TakenQuizzesList';
+import { QuizResultProps } from '@/types/quizzes';
 
 interface YourScoresSectionProps {
   streak: number;
+  bestStreak: number;
+  takenQuizzes: QuizResultProps[];
 }
 
-const YourScoresSection = ({ streak }: YourScoresSectionProps) => {
+const YourScoresSection = ({
+  streak,
+  bestStreak,
+  takenQuizzes,
+}: YourScoresSectionProps) => {
   return (
     <View className="p-3">
-      <Text className="text-xl mb-4">Your Scores</Text>
-      <View className=''>
-        <CurrentQuizStreak streak={streak} />
+      <Text className="text-xl mb-2">Your Scores</Text>
+      <View className="mb-3">
+        <QuizStreak streak={streak} bestStreak={bestStreak} />
       </View>
-      <QuizResult title='Climate Change' correctAnswers={12} quizQuestions={15} />
+      <TakenQuizzesList takenQuizzes={takenQuizzes} />
     </View>
   );
 };
