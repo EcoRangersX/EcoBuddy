@@ -7,12 +7,13 @@ interface LeaderboardUserListProps {
 }
 
 const LeaderboardUserList = ({ users }: LeaderboardUserListProps) => {
-  return (<View className="bg-white rounded-[30px] p-2">
+  return (<View className="bg-white rounded-xl p-2">
     {users.map((user, index) => (
       <LeaderboardUserItem
         key={index}
+        user_id={user.user_id}
         username={user.username}
-        username_profile_url={user.username_profile_url}
+        profile_image_url={user.profile_image_url}
         score={user.score}
       />
     ))}
