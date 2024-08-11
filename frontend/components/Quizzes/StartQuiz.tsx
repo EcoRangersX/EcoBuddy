@@ -10,6 +10,7 @@ const StartQuiz = ({
   titleBgColor = '#74c6d4',
   title,
   description,
+  quizOfTheDay = false,
 }: StartQuizProps) => {
   return (
     <View
@@ -31,7 +32,19 @@ const StartQuiz = ({
         <Text className="text-white font-bold mr-2">{title}</Text>
         <StartQuizIcon quiz_id={quiz_id} />
       </View>
-      <Text className="text-gray-600 mt-1">{description}</Text>
+      {/* Description as a Bullet List */}
+      {quizOfTheDay ? (
+        <View className="m-2">
+          { Array.isArray(description) && description.map((point, index) => (
+            <View key={index} className="flex-row items-start my-1">
+              <Text className="text-lg leading-5 mr-1">{'\u2022'}</Text>
+              <Text className="flex-1 text-base leading-5">{point}</Text>
+            </View>
+          ))}
+        </View>
+      ) : (
+        <Text className="text-gray-600 mt-1">{description}</Text>
+      )}
     </View>
   );
 };

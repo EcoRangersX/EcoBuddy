@@ -5,5 +5,6 @@ export interface StartQuizProps {
   bgColor?: string;
   titleBgColor?: string;
   title: string;
-  description: string;
+  description: string[] | string;
+  quizOfTheDay?: boolean;
 }
