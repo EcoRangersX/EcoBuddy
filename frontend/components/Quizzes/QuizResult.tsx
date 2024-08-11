@@ -1,24 +1,23 @@
 import { View, Text } from 'react-native';
+import { QuizResultProps } from '@/types/quizzes';
 
-interface QuizResultProps {
-  title: string;
-  correctAnswers: number;
-  quizQuestions: number;
-	bgColor?: string;
-}
 
 const QuizResult = ({
   title,
   correctAnswers,
   quizQuestions,
-	bgColor = "#55c96d",
+  bgColor = '#55c96d',
 }: QuizResultProps) => {
   return (
-    <View style={{backgroundColor: bgColor}} className="flex-row rounded-full items-center justify-between shadow-md shadow-black mb-2">
-      <Text>{title}</Text>
-			<View className='bg-[#86cb95] rounded-full'>
-				<Text>{correctAnswers}/{quizQuestions}</Text>
-			</View>
+    <View
+      style={{ backgroundColor: bgColor }}
+      className="flex-row rounded-full items-center justify-between shadow-md shadow-black mb-3 p-2">
+      <Text className="text-white font-semibold">{title}</Text>
+      <View className="bg-[#85d897] rounded-full p-2">
+        <Text className="text-white">
+          {correctAnswers}/{quizQuestions}
+        </Text>
+      </View>
     </View>
   );
 };
