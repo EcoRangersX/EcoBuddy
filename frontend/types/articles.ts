@@ -4,3 +4,7 @@ export interface ArticleProps {
   description: string;
   image_url: string;
 }
+
+export interface FilteredArticleProps {
+  article: { id: number; title: string; previewImageUrl: string };
+}
