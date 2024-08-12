@@ -1,5 +1,5 @@
 import { TouchableOpacity } from 'react-native';
-import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import { FontAwesome6, MaterialIcons } from '@expo/vector-icons';
 
 interface BasicIconProps {
   color?: string;
@@ -29,4 +29,12 @@ const SaveToFavoriteIcon = ({
   );
 };
 
-export { SaveToFavoriteIcon };
+const SearchIcon = ({ size = 24, color = "white" }: BasicIconProps) => {
+  return (
+    <TouchableOpacity className="bg-[#71d285] rounded-full items-center justify-center shadow-md shadow-black w-12 h-12">
+      <MaterialIcons name="search" size={size} color={color} />
+    </TouchableOpacity>
+  );
+};
+
+export { SaveToFavoriteIcon, SearchIcon };
