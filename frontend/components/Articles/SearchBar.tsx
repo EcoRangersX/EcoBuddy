@@ -1,30 +1,26 @@
 import { View, TextInput } from 'react-native';
-import { useState } from 'react';
 import { SearchIcon, ClearQueryIcon } from '../Icons/Articles';
-import { ArticleProps } from '@/types/articles';
 
 interface SearchBarProps {
-  filteredArticles: ArticleProps[];
+  query: string;
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
+  clearQuery: () => void;
+  onFocus: () => void;
 }
 
-const SearchBar = ({}: SearchBarProps) => {
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const clearSearchQuery = () => {
-    setSearchQuery('');
-  };
-
+const SearchBar = ({ query, setQuery, clearQuery, onFocus }: SearchBarProps) => {
   return (
     <View className="bg-white border-2 border-[#4ac965] shadow-md shadow-black rounded-full flex-row items-center justify-around px-4 py-2">
       <TextInput
         className="w-[85%] h-12"
         placeholder="Search articles"
-        value={searchQuery}
-        onChangeText={setSearchQuery}
+        value={query}
+        onChangeText={setQuery}
+        onFocus={() => onFocus()}
       />
-      {searchQuery?.length > 0 ? (
+      {query?.length > 0 ? (
         <View className="flex-row items-center">
-          <ClearQueryIcon size={36} onPress={() => clearSearchQuery()} />
+          <ClearQueryIcon size={36} onPress={() => clearQuery()} />
           <SearchIcon size={36} />
         </View>
       ) : (
