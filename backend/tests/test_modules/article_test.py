@@ -4,9 +4,9 @@ import requests,json
 class Article_tester():
     def __init__(self):
 
-        articles_components = requests.post(
+        articles_components = requests.get(
             url='http://127.0.0.1:5000/api/news/article_component',
-            json={
+            params={
                 'Component': 'title',
                 'Amount': 5
                 }

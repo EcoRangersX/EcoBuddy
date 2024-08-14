@@ -21,12 +21,12 @@ def endpoints():
 
 "/api/quizes/quiz":
     {
-        "POST request":
+        "GET request parameters":
         {
             'Titles': "<True if you want to get titles of quizes, False if you want to get just quizes>",
             'Amount': "<amount of quizes you want to get>"
         },
-        "Post request response":
+        "GET request response":
         {
             "Quizes":
             {
@@ -57,12 +57,12 @@ def endpoints():
     },
 "/api/quizes/quiz_titles":
     {
-        "POST request":
+        "GET request parameters":
         {
             'Amount': "<amount of titles you want to get>"
         },
 
-        "Post request response":
+        "GET request response":
         {
             "Quiz_titles": 
             [
@@ -71,16 +71,15 @@ def endpoints():
             ]
         }
     },
-
 "/api/air/air_quality": 
     {
-        "POST request":
+        "GET request parameters":
         {
                 'Latitude': "<latitude of place you want to get data about>",
                 'Longitude': "<longitude of place you want to get data about>"
         },
 
-        "Post request response":
+        "GET request response":
         {
             "Air_quality_data": 
             {
@@ -101,15 +100,14 @@ def endpoints():
             }
         }
     },
-
 "/api/air/weather":
     {
-        "POST request":
+        "GET request parameters":
         {
             'Latitude': "<latitude of place you want to get data about>",
             'Longitude': "<longitude of place you want to get data about>"
         },
-        "Post request response":
+        "GET request response":
         {
             "Weather_data": 
             {
@@ -119,9 +117,7 @@ def endpoints():
                 "Wind_speed": "<value in km/h>"
             }
         }
-    },
-    
-    
+    },  
 "/api/auth/login": 
     {
         "POST request":
@@ -137,7 +133,6 @@ def endpoints():
         }
     
     },
-
 "/api/auth/register": 
     {
         "Post request": 
@@ -153,20 +148,18 @@ def endpoints():
             'Error_msg': 'None or error msg'
         }
     },
-
 "/api/ai/ai_assistant": 
     {
-        "Post request": 
+        "GET request parameters": 
         {
             'UserInput': "<your prompt>"
         },
 
-        "Post request response":
+        "GET request response":
         {
             "Response": "<generated text>"
         }
     },   
-
 "/api/news/articles": 
     {
         "Get request response":
@@ -193,12 +186,12 @@ def endpoints():
     },
 "/api/news/article_component":
     {
-        "Post request":
+        "GET request parameters":
         {
             "Component": '<component name: title,img,link>',
             "Amount": '<amount of results int>'
         },
-        "Post request response":
+        "GET request response":
         {
             "Article_<component name>_1": '<component>',
             "Article_<component name>_2": '<component>'
@@ -206,12 +199,12 @@ def endpoints():
     },
 "/api/ai/quiz_generator": 
     {
-        "Post request":
+        "GET request parameters":
         {
             'Theme': "<theme of quiz>",
             'Amount_of_questions': "<amount of questions in quiz>",
             'Yes_or_no_answers': "<True if answers are yes or no, False if multiple choice>",
-            'Possible_answers': "<amount of possible answers !if yes or no then pass the value 2!>"
+            'Possible_answers': "<amount of possible answers !if yes or no then leave it empty!>"
         },
 
         "Response":
@@ -250,14 +243,13 @@ def endpoints():
     {
         "Get request response": 'Json with key "Endpoints" and values of routes to endpoints'
     },
-
 "/api/ai/example_question":
     {
-        "POST request":
+        "GET request parameters":
         {
             'Amount': '<amount of questions you want to receive>'
         },
-        "POST request response":
+        "GET request response":
         [
             "question1",
             "question2",
@@ -267,11 +259,11 @@ def endpoints():
     },
 "/api/eco_tips/get_eco_tips":
     {
-        "POST request":
+        "GET request parameters":
         {
             'Amount': '<amount of eco tips you want to receive>'
         },
-        "POST request response":
+        "GET request response":
         {
             'Eco_tips':
             {

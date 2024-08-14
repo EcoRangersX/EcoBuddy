@@ -4,17 +4,17 @@ import requests,json
 class Air_tester():
     def __init__(self):
         example_lat, example_long = (50.063843899589884, 19.942991724503248)
-        air_quality_response = requests.post(
+        air_quality_response = requests.get(
             url="http://127.0.0.1:5000/api/air/air_quality",
-            json={"Latitude": example_lat, 
+            params={"Latitude": example_lat, 
                   "Longitude": example_long
                   }
 
             )
     
-        weather_response = requests.post(
+        weather_response = requests.get(
             url="http://127.0.0.1:5000/api/air/weather",
-            json={
+            params={
                 "Latitude": example_lat,
                 "Longitude": example_long
                 }

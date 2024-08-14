@@ -1,33 +1,10 @@
-from bs4 import BeautifulSoup
-import requests
+
 from app.database import cursor
-from app.models import Article
+
 
 
 
 class Articles:
-        
-    def find_article(self):
-        self.domain_prefix = "https://www.the-scientist.com"
-        self.response = requests.get(
-            url=f"{self.domain_prefix}/tag/ecology"
-        )
-        self.document = BeautifulSoup(self.response.text, "html.parser")
-        self.articles = self.document.main.main.find_all(class_="ArticleSummary")
-      
-
-    def insert_articles_to_database(self):
-        self.find_article()
-        for articlesummary in self.articles:
-            header = articlesummary.find("header")
-
-            link = self.domain_prefix + header.find("a")["href"]
-            title = header.find("div").text
-            img = articlesummary.find("img")["src"]
-            article = Article(link=link, title=title, img=img)
-            if not article.check_if_article_exists():
-              
-                article.insert_to_database()
  
     def get_articles_summary(self) -> dict:
         cursor.execute("SELECT * FROM articles")

@@ -3,15 +3,15 @@ import requests,json
 
 class Quiz_tester():
     def __init__(self):
-        titles = requests.post(
+        titles = requests.get(
             url='http://127.0.0.1:5000/api/quizes/quiz_titles',
-            json={
+            params={
                 'Amount': 5
                 }
             )
-        quizes = requests.post(
+        quizes = requests.get(
             url='http://127.0.0.1:5000/api/quizes/quiz',
-            json={
+            params={
                 'Titles': True,
                 'Amount': 5
                 }

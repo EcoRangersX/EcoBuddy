@@ -1,11 +1,10 @@
 from flask import Flask
 from flask_cors import CORS
 from .routes import *
-from .services import Articles
 from .config import Config
 from .globals import globals
 
-globals = globals
+globals_dict = globals
 
 
 def create_app():
@@ -13,11 +12,9 @@ def create_app():
     Config()
     
     app = Flask("Eco buddy")
-    articles = Articles()
+    
     CORS(app)
 
-    
-    articles.insert_articles_to_database()
 
     app.register_blueprint(quizes_bp)
     app.register_blueprint(air_bp)

@@ -10,14 +10,14 @@ def article_endpoint():
         articles = Articles().get_articles_summary()
         return {"Aricles": articles}
     
-@news_bp.route("/article_component",methods=['POST'])
+@news_bp.route("/article_component",methods=['GET'])
 def article_component_endpoint():
-    if request.method == 'POST':
+    if request.method == 'GET':
     
-        data = request.json
+        data = request.args
 
-        component_name = data['Component']
-        amount = data['Amount']
+        component_name = data.get('Component_name',default='title',type=str)
+        amount = data.get('Amount',default=5,type=int)
 
         article_component = Articles().get_articles_component(
             component=component_name,
