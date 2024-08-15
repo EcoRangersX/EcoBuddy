@@ -1,8 +1,8 @@
-import sqlite3
 import re
 
 class Quiz_checker():
     def __init__(self,json_rep_of_quiz: dict):
+        
         self.questions = json_rep_of_quiz['Questions']
         self.answer_key = json_rep_of_quiz['Answer_key']
 
@@ -48,48 +48,3 @@ class Quiz_checker():
         if self.check_amounts() and self.check_answer_key() and self.check_questions():
             return True
         return False
-def insert_quiz(json_quiz: dict):
-    quiz_check = Quiz_checker(json_quiz)
-
-    if quiz_check.check_quiz():
-        conn = sqlite3.connect('database.db')
-        cursor = conn.cursor()
-        cursor.execute('SELECT quiz FROM quizes WHERE title = :title',{'title': json_quiz['Title']})
-        if cursor.fetchone():
-            print('Quiz already exists')
-            return False
-        cursor.execute('INSERT INTO quizes VALUES (:title,:quiz)',{'title': json_quiz['Title'],'quiz': str(json_quiz)})
-        conn.commit()
-        conn.close()
-        print('all good')
-        return True
-    else:
-        print('smth went wrong try again or check the quiz')
-        return False
-
-
-d = {
-    "Title": "Quiz2",
-    "Answer_key": {
-            "q1": "Answer1",
-            "q2": "Answer1"
-          },
-    "Questions": {
-        "sdsdsd": {
-            "Answer1": "blabla",
-            "Answer2": "blbla"
-        },
-        "dsfsdfs": {
-            "Answer1": "babla",
-            "Answer2": "idfidfhid"
-        }
-    }
-}
-
-
-insert_quiz(d)
-
-
-
-
-        
