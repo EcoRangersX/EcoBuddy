@@ -161,11 +161,45 @@ const ecoFriendlyArticles = [
   },
 ];
 
+const filteredArticles = [
+  {
+    id: 1,
+    title: 'The Basics of Sustainable Living',
+    previewImageUrl: 'https://i.postimg.cc/ry0TvfG4/article-image.png',
+  },
+  {
+    id: 2,
+    title: '10 Ways to Reduce Your Carbon Footprint Today',
+    previewImageUrl: 'https://i.postimg.cc/8PNyh5CC/image-1.png',
+  },
+  {
+    id: 3,
+    title: 'The Impact of Plastic Pollution on Oceans',
+    previewImageUrl: 'https://i.postimg.cc/yxBTXQsG/image.png',
+  },
+  {
+    id: 4,
+    title: 'The Impact of Plastic Pollution on Oceans',
+    previewImageUrl: 'https://i.postimg.cc/P5NQ48nd/image.png',
+  },
+  {
+    id: 5,
+    title: 'How Climate Change is Affecting Global Biodiversity',
+    previewImageUrl: 'https://i.postimg.cc/8kHdgb11/image.png',
+  },
+  {
+    id: 6,
+    title: 'What You Need to Know About Pollen and Air Quality',
+    previewImageUrl: 'https://i.postimg.cc/2894V8bM/image.png',
+  },
+];
+
 export {
   airQualityTips,
   quizzes,
   takenQuizzes,
   quizOfTheDay,
   leaderboardUsers,
-  ecoFriendlyArticles
+  ecoFriendlyArticles,
+  filteredArticles,
 };
