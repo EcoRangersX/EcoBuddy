@@ -1,5 +1,6 @@
 from flask import Blueprint,request
 from app.services import Articles
+from app.services import Articles
 
 
 news_bp = Blueprint('news',__name__,url_prefix='/api/news')
@@ -7,6 +8,7 @@ news_bp = Blueprint('news',__name__,url_prefix='/api/news')
 @news_bp.route("/articles", methods=["GET"])
 def article_endpoint():
     if request.method == "GET":
+        articles = Articles().get_articles_summary()
         articles = Articles().get_articles_summary()
         return {"Aricles": articles}
     

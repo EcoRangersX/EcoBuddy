@@ -5,14 +5,24 @@ air_bp = Blueprint('air',__name__, url_prefix='/api/air')
 
 
 
+
+@air_bp.route("/air_quality", methods=["GET"])
 @air_bp.route("/air_quality", methods=["GET"])
 def air_quality_endpoint():
     air_data = Air_data()
     if request.method == "GET":
         data = request.args
+    air_data = Air_data()
+    if request.method == "GET":
+        data = request.args
             
         latitude = data.get('Latitude',default=None, type=float)
+        latitude = data.get('Latitude',default=None, type=float)
     
+        longitude = data.get('Longitude',default=None, type=float)
+
+        if not latitude or not longitude:
+            return {"Error_msg": "Please provide Latitude and Longitude"}
         longitude = data.get('Longitude',default=None, type=float)
 
         if not latitude or not longitude:
