@@ -1,13 +1,19 @@
-from app.models import Ai_question
-from app.database import cursor
+from app.database.models import Ai_question
+from app.database import conn
+
+
+
 
 
 class Ai_questions():
+    def __init__(self):
+        self.cursor = conn.cursor()
+        
     def get_ai_questions(self,amount: int = 1) -> list:
 
-        cursor.execute("SELECT question FROM ai_questions LIMIT :amount",{'amount': amount})
+        self.cursor.execute("SELECT question FROM ai_questions LIMIT :amount",{'amount': amount})
 
-        questions = cursor.fetchall()
+        questions = self.cursor.fetchall()
         to_return = []
         for i in questions:
             to_return.append(i[0])

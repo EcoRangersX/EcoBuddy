@@ -1,14 +1,15 @@
-from app.database import cursor
-from app.models import Eco_tip
-
-
+from app.database import conn
+from app.database.models import Eco_tip
 
 
 class Eco_tips():
+    def __init__(self):
+        
+        self.cursor = conn.cursor()
     def get_eco_tips(self,amount: int=1):
-        cursor.execute("SELECT * FROM eco_tips LIMIT :amount", {'amount':amount})
+        self.cursor.execute("SELECT * FROM eco_tips LIMIT :amount", {'amount':amount})
 
-        eco_tips_list = cursor.fetchall()
+        eco_tips_list = self.cursor.fetchall()
      
         eco_tips = {}
 

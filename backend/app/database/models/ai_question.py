@@ -1,11 +1,13 @@
-from app.database import conn,cursor
+from app.database import conn
+
 
 class Ai_question():
     def __init__(self,ai_question: str):
         self.question: str = ai_question
+        self.cursor = conn.cursor()
 
     def insert_into_database(self):
-        cursor.execute(
+        self.cursor.execute(
             """INSERT INTO ai_questions VALUES(
             :question
             )
@@ -20,11 +22,11 @@ class Ai_question():
             return False
         
     def get_from_database(self):
-        cursor.execute(
+        self.cursor.execute(
             """SELECT question FROM ai_questions 
             WHERE 
             question=:question
             """,
             {'question': self.question})
         
-        return cursor.fetchone()
+        return self.cursor.fetchone()

@@ -77,7 +77,7 @@ eco_tips = [
     ["Practice Gratitude", "Appreciate the Earth's resources and be thankful for what we have."]]
 
 globals = {
-    'debug': True,
+    'debug': False,
     'Ai_questions': ai_questions,
     'Eco_tips': eco_tips
     

@@ -3,10 +3,11 @@ from app.services import Air_data
 
 air_bp = Blueprint('air',__name__, url_prefix='/api/air')
 
-air_data = Air_data()
+
 
 @air_bp.route("/air_quality", methods=["GET"])
 def air_quality_endpoint():
+    air_data = Air_data()
     if request.method == "GET":
         data = request.args
             
@@ -27,6 +28,7 @@ def air_quality_endpoint():
 
 @air_bp.route("/weather", methods=["GET"])
 def weather_endpoint():
+    air_data = Air_data()
     if request.method == "GET":
         data = request.args
             

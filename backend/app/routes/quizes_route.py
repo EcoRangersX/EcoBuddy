@@ -1,7 +1,5 @@
 from flask import Blueprint,request
-from app.database import cursor
 from app.services import Quizes
-import json
 import yaml
 
 quizes_bp = Blueprint('quizes',__name__,url_prefix='/api/quizes')

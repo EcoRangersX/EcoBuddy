@@ -6,13 +6,9 @@ from app.services import Ai_questions
 
 ai_bp = Blueprint('ai',__name__,url_prefix='/api/ai')
 
-ai_assistant = Assistant()
-quiz_generator = Quiz_generator()
-
-
-
 @ai_bp.route("/ai_assistant", methods=["GET"])
 def ai_assistant_endpoint():
+    ai_assistant = Assistant()
     data = request.args.get('UserInput',default=None, type=str)  # otrzymywanie prompta którego podał użytkownik
     if data:
         response = ai_assistant.request_post(data)
@@ -23,6 +19,7 @@ def ai_assistant_endpoint():
 
 @ai_bp.route("/quiz_generator", methods=["GET"])
 def quiz_generator_endpoint():
+    quiz_generator = Quiz_generator()
     args = request.args
     parameters = {
         'Theme': args.get('Theme', default='Ecology' ,type=str),

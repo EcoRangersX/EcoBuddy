@@ -1,4 +1,6 @@
-from app.database import cursor,conn
+from app.database import conn
+
+
 
 
 class Eco_tip():
@@ -6,9 +8,11 @@ class Eco_tip():
         self.description = description
         self.title = title
 
+        self.cursor = conn.cursor()
+
 
     def insert_into_database(self):
-        cursor.execute("INSERT INTO eco_tips VALUES(:title, :description)",
+        self.cursor.execute("INSERT INTO eco_tips VALUES(:title, :description)",
                        {
                            "title": self.title,
                            "description": self.description
@@ -23,6 +27,6 @@ class Eco_tip():
         return False
 
     def get_from_database(self):
-        cursor.execute("SELECT title FROM eco_tips WHERE title= :title",{'title': self.title})
+        self.cursor.execute("SELECT title FROM eco_tips WHERE title= :title",{'title': self.title})
 
-        return cursor.fetchone()
+        return self.cursor.fetchone()

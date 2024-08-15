@@ -1,5 +1,5 @@
 from app.database import cursor,conn
-from app.models import Eco_tip
+from app.database.models import Eco_tip
 from app.globals import globals
 
 

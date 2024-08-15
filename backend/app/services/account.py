@@ -1,4 +1,4 @@
-from app.models import User
+from app.database.models import User
 import re
 
 

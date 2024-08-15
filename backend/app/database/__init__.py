@@ -1,6 +1,6 @@
 
 from .database import conn, cursor
-from app.migrations import *
+from .migrations import *
 
 __all__ = ['conn','cursor']
 

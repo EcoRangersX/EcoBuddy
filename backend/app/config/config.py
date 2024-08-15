@@ -1,5 +1,5 @@
-from .database import setup_database
-from .globals import globals
+from app.database import setup_database
+from app.globals import globals
 
 class Config:
    def __init__(self):

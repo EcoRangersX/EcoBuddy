@@ -1,9 +1,13 @@
-from app.database import conn,cursor
+from app.database import conn
+
+
 
 class Quiz():
     def __init__(self,title: str,quiz: str):
         self.title = title
         self.quiz = quiz
+
+        self.cursor = conn.cursor()
 
     def check_if_already_in_database(self):
         if self.get_from_database():
@@ -13,7 +17,7 @@ class Quiz():
 
 
     def insert_into_database(self):
-        cursor.execute(
+        self.cursor.execute(
             """INSERT INTO quizes VALUES(
             :title,
             :quiz
@@ -24,11 +28,11 @@ class Quiz():
         conn.execute()
 
     def get_from_database(self):
-        cursor.execute(
+        self.cursor.execute(
             """SELECT quiz FROM quizes 
             WHERE 
             title=:title
             """,
             {'title': self.title})
         
-        return cursor.fetchone()
+        return self.cursor.fetchone()

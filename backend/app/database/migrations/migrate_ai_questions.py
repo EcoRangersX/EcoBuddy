@@ -1,6 +1,8 @@
-from app.database import conn,cursor
-from app.models import Ai_question
+from app.database import conn, cursor
+from app.database.models import Ai_question
 from app.globals import globals
+
+
 
 class Migrate_ai_questions():
     def __init__(self):

@@ -1,6 +1,5 @@
-from groq import Groq
+
 from dotenv import load_dotenv
-import os
 import json
 from app.utils import Groq_parent
 

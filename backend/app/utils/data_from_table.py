@@ -1,7 +1,8 @@
 
 def data_from_table(table_name: str,values: list = None) -> list:
-    from app.database import cursor
+    from app.database import conn
 
+    cursor = conn.cursor()
     if not values:
         cursor.execute(f'SELECT * FROM {table_name}')
         return cursor.fetchall()

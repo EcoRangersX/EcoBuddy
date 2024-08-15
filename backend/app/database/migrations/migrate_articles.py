@@ -1,5 +1,5 @@
 from app.database import cursor,conn
-from app.models import Article
+from app.database.models import Article
 from app.utils import scrape_articles
 
 class Migrate_articles:
