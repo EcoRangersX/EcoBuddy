@@ -1,5 +1,15 @@
-from .user import User
-from .article import Article
-from .database import conn, cursor, setup_database
 
-__all__ = ['conn','cursor','setup_database']
+from .database import conn, cursor
+from .migrations import *
+
+__all__ = ['conn','cursor']
+
+def setup_database(debug: bool):
+    if debug:
+        cursor.execute("DROP TABLE IF EXISTS articles")
+        cursor.execute("DROP TABLE IF EXISTS users")
+    Migrate_articles()
+    Migrate_users()
+    Migrate_quizes()
+    Migrate_ai_questions()
+    Migrate_eco_tips()
