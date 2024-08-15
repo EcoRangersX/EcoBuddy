@@ -13,7 +13,10 @@ const chemicalElements = [
 function ChemicalElementsSlider () {
   return (
     <View className="p-4">
-      <Text className="text-lg font-bold mb-2">Air pollution signals</Text>
+      <View className='flex flex-row items-baseline gap-1'>
+        <Text className="text-lg font-bold mb-2">Air pollution signals</Text>
+        <Text className='text-green-900 text-base'>(µg/m³)</Text>
+      </View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {chemicalElements.map((element, index) => (
           <ChemicalElement

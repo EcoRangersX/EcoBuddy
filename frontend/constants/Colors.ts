@@ -16,6 +16,15 @@ const Colors = {
   },
 };
 
+const AqiLevelColors = {
+  good: '#4bce67',
+  moderate: '#2abb49',
+  sensitiveGroups: '#22a03d',
+  unhealthy: '#1f8435',
+  veryUnhealthy: '#216e32',
+  hazardous: '#164b21',
+};
+
 const tempColors: { [status: string]: string } = {
   cold: '#03c13d', // Dark Green
   moderate: '#56cade', // Blue
@@ -68,4 +77,5 @@ export {
   uvIndexColors,
   humidityColors,
   pressureColors,
+  AqiLevelColors
 };

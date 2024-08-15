@@ -14,3 +14,5 @@ def encrypt(text: str):
             encrypted_text += f'{ index_length_pointer }{ index_of_symbol }'
 
     return encrypted_text
+
+

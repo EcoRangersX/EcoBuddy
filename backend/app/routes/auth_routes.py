@@ -6,9 +6,10 @@ from app.utils import *
 auth_bp = Blueprint('auth',__name__,url_prefix='/api/auth')
 
 
-account = Account()
+
 @auth_bp.route("/login",methods=['POST'])
 def login():
+    account = Account()
     
     data = request.json
     setup = account.setup_user_data(email=data['Email'],password = data['Password'])
@@ -26,6 +27,7 @@ def login():
 
 @auth_bp.route("/register",methods=['POST'])
 def register():
+    account = Account()
     data = request.json
     setup = account.setup_user_data(name=data['Name'],email=data['Email'],password = data['Password'])
 

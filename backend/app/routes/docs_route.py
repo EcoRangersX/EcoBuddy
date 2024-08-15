@@ -19,50 +19,105 @@ def endpoints():
         "Endpoints": 
 {
 
+"/api/quizes/quiz":
+    {
+        "GET request parameters":
+        {
+            'Titles': "<True if you want to get titles of quizes, False if you want to get just quizes>",
+            'Amount': "<amount of quizes you want to get>"
+        },
+        "GET request response":
+        {
+            "Quizes":
+            {
+                "<quiz title>":
+                {
+                    "Answer_key": 
+                    {
+                        "q1": "Answer1",
+                        "q2": "Answer1"
+                    },
+                    "Questions": 
+                    {
+                        "dsfsdfs": 
+                        {
+                            "Answer1": "babla",
+                            "Answer2": "idfidfhid"
+                        },
+                        "sdsdsd": 
+                        {
+                            "Answer1": "blabla",
+                            "Answer2": "blbla"
+                        }
+                    },
+                    "Title": "Quiz1"
+                }
+            }
+        }
+    },
+"/api/quizes/quiz_titles":
+    {
+        "GET request parameters":
+        {
+            'Amount': "<amount of titles you want to get>"
+        },
+
+        "GET request response":
+        {
+            "Quiz_titles": 
+            [
+                "<quiz title>",
+                "<quiz title>"
+            ]
+        }
+    },
 "/api/air/air_quality": 
     {
-        "POST request":
+        "GET request parameters":
         {
                 'Latitude': "<latitude of place you want to get data about>",
                 'Longitude': "<longitude of place you want to get data about>"
         },
 
-        "Response":
+        "GET request response":
         {
-            "Air_quality_data": {
-                "AQI": "Fair",
-                "Concentration_of_elements": {
-                "co": 186.92,
-                "nh3": 4.81,
-                "no": 0,
-                "no2": 6.17,
-                "o3": 66.52,
-                "pm10": 4.91,
-                "pm2_5": 3.16,
-                "so2": 3.28
+            "Air_quality_data": 
+            {
+                "AQI": "<aqi value in word for example: fair,good,...>",
+                "City": "<city name by longitude and latitude>",
+                "Concentration_of_elements": 
+                {
+                    "co": 186.92,
+                    "nh3": 4.81,
+                    "no": 0,
+                    "no2": 6.17,
+                    "o3": 66.52,
+                    "pm10": 4.91,
+                    "pm2_5": 3.16,
+                    "so2": 3.28,
+                    "! Values are in ug/m3 !": 'space taker'
                 }
             }
         }
     },
-
 "/api/air/weather":
     {
-        "POST request":
+        "GET request parameters":
         {
             'Latitude': "<latitude of place you want to get data about>",
             'Longitude': "<longitude of place you want to get data about>"
         },
-        "Response":
+        "GET request response":
         {
-            "Weather_data": {
-                "Humidity": "93%",
-                "Temp": "12.0 C",
-                "Wind_speed": "1.54m/s"
+            "Weather_data": 
+            {
+                "Pressure": "<value in hPa>",
+                "Humidity": "<value in precentage>",
+                "Temp": "<value in celsius>",
+                "Wind_speed": "<value in km/h>"
             }
         }
-    },
-    
-    
+    },  
 "/api/auth/login": 
     {
         "POST request":
@@ -71,14 +126,13 @@ def endpoints():
             'Password': "<password of account>"
         },
 
-        "Response":
+        "Post request response":
         {
-            'Response': 'Logged succesfully!',
-            'Error_msg': None
+            'Response': 'for example: Logged succesfully!',
+            'Error_msg': 'None or error msg'
         }
     
     },
-
 "/api/auth/register": 
     {
         "Post request": 
@@ -88,26 +142,24 @@ def endpoints():
             'Password': "<password of account>"
         },
 
-        "Response":
+        "Post request response":
         {
-            'Response': 'Registered succesfully',
-            'Error_msg': None
+            'Response': 'for example: Registered succesfully',
+            'Error_msg': 'None or error msg'
         }
     },
-
 "/api/ai/ai_assistant": 
     {
-        "Post request": 
+        "GET request parameters": 
         {
             'UserInput': "<your prompt>"
         },
 
-        "Response":
+        "GET request response":
         {
             "Response": "<generated text>"
         }
     },   
-
 "/api/news/articles": 
     {
         "Get request response":
@@ -132,14 +184,27 @@ def endpoints():
             
         }
     },
+"/api/news/article_component":
+    {
+        "GET request parameters":
+        {
+            "Component": '<component name: title,img,link>',
+            "Amount": '<amount of results int>'
+        },
+        "GET request response":
+        {
+            "Article_<component name>_1": '<component>',
+            "Article_<component name>_2": '<component>'
+        }
+    },
 "/api/ai/quiz_generator": 
     {
-        "Post request":
+        "GET request parameters":
         {
             'Theme': "<theme of quiz>",
             'Amount_of_questions': "<amount of questions in quiz>",
             'Yes_or_no_answers': "<True if answers are yes or no, False if multiple choice>",
-            'Possible_answers': "<amount of possible answers !if yes or no then pass the value 2!>"
+            'Possible_answers': "<amount of possible answers !if yes or no then leave it empty!>"
         },
 
         "Response":
@@ -177,6 +242,37 @@ def endpoints():
 "/api/docs/endpoints": 
     {
         "Get request response": 'Json with key "Endpoints" and values of routes to endpoints'
+    },
+"/api/ai/example_question":
+    {
+        "GET request parameters":
+        {
+            'Amount': '<amount of questions you want to receive>'
+        },
+        "GET request response":
+        [
+            "question1",
+            "question2",
+            "question3"
+        ]
+        
+    },
+"/api/eco_tips/get_eco_tips":
+    {
+        "GET request parameters":
+        {
+            'Amount': '<amount of eco tips you want to receive>'
+        },
+        "GET request response":
+        {
+            'Eco_tips':
+            {
+                'title1': 'eco_tip1',
+                'title2': 'eco_tip2',
+                'title3': 'eco_tip3',
+                'title4': 'eco_tip4'
+            }
+        }
     }
             
 }
