@@ -1,10 +1,10 @@
-from app.database import cursor,conn
 from app.database.models import Eco_tip
 from app.globals import globals
 
 
 class Migrate_eco_tips():
-    def __init__(self):
+    def __init__(self,conn):
+        cursor = conn.cursor()
         cursor.execute('CREATE TABLE IF NOT EXISTS eco_tips(title TEXT, description TEXT)')
         conn.commit()
 

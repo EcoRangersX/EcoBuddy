@@ -13,8 +13,8 @@ class Article_tester():
         articles_components = requests.get(
             url='http://127.0.0.1:5000/api/news/article_component',
             params={
-                'Component': 'title',
-                'Amount': 5
+                'component': 'title',
+                'amount': 5
                 }
             )
         print(f"\n ARTICLES_COMPONENTS \n {json.dumps(articles_components.json(),indent=2)}")

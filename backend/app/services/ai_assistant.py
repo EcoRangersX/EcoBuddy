@@ -41,5 +41,5 @@ class Assistant(Groq_parent):
     def request_post(self, user_prompt: str) -> dict:
         response = self.get_ai_response(prompt=user_prompt)
 
-        return {"Response": response}  # zwrot jsona jako odpowiedź na post request
+        return {"response": response}  # zwrot jsona jako odpowiedź na post request
     
