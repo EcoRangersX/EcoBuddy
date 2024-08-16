@@ -2,17 +2,23 @@ import axios from 'axios';
 import { useState } from 'react';
 import { BASE_API_URL } from '@/constants/Urls';
 
-
-interface AirQualityResponse {
-  response: {
-    AQI: string;
-    City: string;
-    Concentration_of_elements: {
-      chemical_name: string;
-      value: number;
-    };
-  };
+interface ConcentrationOfElements {
+  co: number;
+  nh3: number;
+  no: number;
+  no2: number;
+  o3: number;
+  pm10: number;
+  pm2_5: number;
+  so2: number;
 }
+
+interface AirQualityData {
+  AQI: string;
+  City: string;
+  Concentration_of_elements: ConcentrationOfElements;
+}
+
 
 interface AirQualityProps {
   lon: number;
@@ -23,7 +29,7 @@ export function useAirQuality() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [airQualityData, setAirQualityData] =
-    useState<AirQualityResponse | null>(null);
+    useState<AirQualityData | null>(null);
 
   async function getAirQuality({ lon, lat }: AirQualityProps) {
     setLoading(true);
@@ -35,8 +41,7 @@ export function useAirQuality() {
         params: { Longitude: lon, Latitude: lat },
       });
       if (response.status === 200) {
-        console.log(`The response of aiq quality is: ${JSON.stringify(response.data.airQualityData, null, 2)}`)
-        setAirQualityData(response.data);
+        setAirQualityData(response.data.Air_quality_data);
       } else {
         throw new Error('Error fetching air quality data');
       }
