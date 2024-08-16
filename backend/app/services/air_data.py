@@ -26,9 +26,9 @@ class Air_data:
 
         colors = {
             'co': '#74c6d4',
-            'no': '',
+            'no': '#19b6f8',
             'no2': '#96d6e1',
-            'nh3': '',
+            'nh3': '#0affc0',
             'o3': '#8be89f',
             'so2': '#37e9ca',
             'pm2_5': '#c0facc',
