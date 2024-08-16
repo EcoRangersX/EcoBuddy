@@ -5,6 +5,8 @@ const chemicalElements = [
     { chemElement: 'PM2.5', value: 20.1, bgColor: '#c0facc' },
     { chemElement: 'PM10', value: 3.9, bgColor: '#bff1f9' },
     { chemElement: 'O3', value: 85.6, bgColor: '#8be89f' },
+    {chemElement: 'NH3', value: 13.93, bgColor: '#0affc0'},
+    {chemElement: 'NO', value: 0, bgColor: '#19b6f8'},
     { chemElement: 'CO', value: 1.41, bgColor: '#74c6d4' },
     { chemElement: 'NO2', value: 12.8, bgColor: '#96d6e1' },
     { chemElement: 'SO2', value: 0.9, bgColor: '#37e9ca' },
