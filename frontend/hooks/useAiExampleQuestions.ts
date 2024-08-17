@@ -24,8 +24,9 @@ export function useAiExampleQuestions() {
       } else {
         throw new Error('Error fetching AI example questions');
       }
-    } catch (error: any) {
-      setErrorAiExampleQuestionsMsg(error);
+    } catch (err: any) {
+      console.error(`Error fetching AI example questions: ${err}`);
+      setErrorAiExampleQuestionsMsg(err);
     } finally {
       setLoadingAiExampleQuestions(false);
     }

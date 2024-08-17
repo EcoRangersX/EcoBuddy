@@ -14,7 +14,7 @@ export function useEcoTips() {
     setEcoTips(null);
 
     try {
-      const response = await axios.get(`${BASE_API_URL}/api/eco_tips`, {
+      const response = await axios.get(`${BASE_API_URL}/api/eco_tips/get_eco_tips`, {
         params: { amount: number_of_tips },
       });
       if (response.status === 200) {

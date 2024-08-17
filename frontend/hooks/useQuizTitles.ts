@@ -25,8 +25,9 @@ export function useQuizTitles() {
       } else {
         throw new Error('Error fetching quiz title');
       }
-    } catch (error: any) {
-      setErrorQuizTitleMsg(error);
+    } catch (err: any) {
+      console.error(`Error fetching quiz titles: ${err}`);
+      setErrorQuizTitleMsg(err);
     } finally {
       setLoadingQuizTitles(false);
     }
