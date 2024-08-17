@@ -4,15 +4,13 @@ import Header from '@/components/Header';
 import WeatherDataSlider from '@/components/home/WeatherDataSlider';
 import ChemicalElementsSlider from '@/components/home/ChemicalElementsSlider';
 import EducationSection from '@/components/home/EducationSection';
-import {
-  articleTitles,
-  ecoTipsStatic,
-} from '@/constants/EducationArrays';
+import { articleTitlesStatic, weatherDataStatic, ecoTipsStatic } from '@/constants/StaticData';
 import EcoTipList from '@/components/home/EcoTipList';
 import { useAqiData } from '@/hooks/home/useAqiData';
 import { useAiExampleQuestions } from '@/hooks/home/useAiExampleQuestions';
 import { useQuizTitles } from '@/hooks/home/useQuizTitles';
 import { useEcoTips } from '@/hooks/home/useEcoTips';
+import { useWeatherData } from '@/hooks/home/useWeatherData';
 import { useState, useEffect } from 'react';
 import * as Device from 'expo-device';
 import * as Location from 'expo-location';
@@ -29,8 +27,15 @@ export default function HomeScreen() {
     loadingAiExampleQuestions,
     errorAiExampleQuestionsMsg,
   } = useAiExampleQuestions();
-  const { getQuizTitles, quizTitles, loadingQuizTitles, errorQuizTitleMsg  } = useQuizTitles();
+  const { getQuizTitles, quizTitles, loadingQuizTitles, errorQuizTitleMsg } =
+    useQuizTitles();
   const { getEcoTips, ecoTips, loadingEcoTips, errorEcoTipsMsg } = useEcoTips();
+  const {
+    getWeatherData,
+    weatherData,
+    loadingWeatherData,
+    errorWeatherDataMsg,
+  } = useWeatherData();
 
   useEffect(() => {
     (async () => {
@@ -61,13 +66,19 @@ export default function HomeScreen() {
   }, []);
 
   useEffect(() => {
-    const fetchAqiData = async () => {
+    const fetchWeatherData = async () => {
       if (location) {
         try {
-          await getAqiData({
-            lon: location.coords.longitude,
-            lat: location.coords.latitude,
-          });
+          await Promise.all([
+            getAqiData({
+              lon: location.coords.longitude,
+              lat: location.coords.latitude,
+            }),
+            getWeatherData({
+              lon: location.coords.longitude,
+              lat: location.coords.latitude,
+            })
+          ]);
         } catch (error) {
           if (error instanceof Error) {
             setErrorMsg(error.message);
@@ -78,7 +89,7 @@ export default function HomeScreen() {
       }
     };
 
-    fetchAqiData();
+    fetchWeatherData();
   }, [location]);
 
   useEffect(() => {
@@ -107,7 +118,9 @@ export default function HomeScreen() {
         if (error instanceof Error) {
           setErrorMsg(error.message);
         } else {
-          setErrorMsg('An unexpected error occurred while fetching quiz titles');
+          setErrorMsg(
+            'An unexpected error occurred while fetching quiz titles',
+          );
         }
       }
     };
@@ -141,12 +154,12 @@ export default function HomeScreen() {
           status={airQualityData?.aqi || 'good'}
           city={airQualityData?.city || 'Warsaw'}
           loading={loadingAqi}
-          error={errorAqiMsg}
+          error={errorAqiMsg || ''}
         />
       </View>
       {/* Weather Data Section */}
       <View className="mt-5 p-5">
-        <WeatherDataSlider />
+        <WeatherDataSlider weatherData={weatherDataStatic}  />
       </View>
       {/* Air pollution signals Section */}
       <ChemicalElementsSlider
@@ -176,10 +189,10 @@ export default function HomeScreen() {
           />
           <EducationSection
             title="Articles"
-            items={articleTitles}
+            items={articleTitlesStatic}
             titleSectionColor="#57d272"
             loading={false}
-            error=""
+            error={""}
           />
         </View>
       </View>
