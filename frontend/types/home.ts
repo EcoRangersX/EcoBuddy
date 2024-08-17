@@ -7,7 +7,7 @@ export interface ChemicalElementProps {
 export interface AqiData {
   aqi: string;
   city: string;
-  "concentration-of-elements": ChemicalElementProps[];
+  'concentration-of-elements': ChemicalElementProps[];
 }
 
 export interface AiQuestions {
@@ -15,9 +15,18 @@ export interface AiQuestions {
 }
 
 export interface QuizTitles {
-  "quiz-titles": string[];
+  'quiz-titles': string[];
+}
+
+export interface EcoTipProps {
+  title: string;
+  description: string;
+}
+
+export interface EcoTips {
+  'eco-tips': EcoTipProps[];
 }
 
 export interface ChemicalElementSlider {
-    chemicalElementList: ChemicalElementProps[] | undefined;
+  chemicalElementList: ChemicalElementProps[] | undefined;
 }
