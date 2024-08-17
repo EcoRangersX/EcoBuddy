@@ -15,14 +15,14 @@ class Air_data:
         response_json = response.json()
 
         aqi = response_json["list"][0]['main']['aqi']
-        aqi_levels = ['Good','Fair','Modedrate','Poor','Very Poor']
+        aqi_levels = ['Good','Fair','Moderate','Poor','Very Poor']
         aqi = aqi_levels[aqi-1]
 
         concentrations = response_json["list"][0]["components"]
 
         city = self.get_readable_location(latitude=latitude,longitude=longitude)
 
-        formated_concentrations = []
+        formatted_concentrations = []
 
         colors = {
             'co': '#74c6d4',
@@ -45,13 +45,13 @@ class Air_data:
                 "chem-element": str(name),
                 "value": int(value),
                 'bg-color': colors[name]
-                },
+                }
             
-            formated_concentrations.append(cool_dict)
+            formatted_concentrations.append(cool_dict)
 
             
         return {
-            "concentration-of-elements": formated_concentrations,
+            "concentration-of-elements": formatted_concentrations,
             'city': city['city'],
             "aqi": aqi
         }
