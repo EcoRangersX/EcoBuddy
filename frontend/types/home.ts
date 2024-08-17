@@ -4,7 +4,7 @@ export interface ChemicalElementProps {
   bgColor: string;
 }
 
-export interface AirQualityData {
+export interface AqiData {
   aqi: string;
   city: string;
   "concentration-of-elements": ChemicalElementProps[];
