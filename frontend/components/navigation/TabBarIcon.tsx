@@ -5,6 +5,16 @@ interface TabBarIconProps extends IconProps<string> {
   provider: IconProvider;
 }
 
+/**
+ * Renders a tab bar icon.
+ *
+ * @param provider - The icon provider.
+ * @param name - The name of the icon.
+ * @param style - The style of the icon.
+ * @param rest - Additional props for the icon component.
+ * @throws Error if the icon provider is unknown.
+ * @returns The rendered tab bar icon.
+ */
 export function TabBarIcon({ provider, name, style, ...rest }: TabBarIconProps) {
   const IconComponent = iconProviders[provider];
 
