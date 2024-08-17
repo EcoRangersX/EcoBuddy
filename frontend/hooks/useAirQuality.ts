@@ -14,9 +14,9 @@ interface ConcentrationOfElements {
 }
 
 interface AirQualityData {
-  AQI: string;
-  City: string;
-  Concentration_of_elements: ConcentrationOfElements;
+  aqi: string;
+  city: string;
+  concentration_of_elements: ConcentrationOfElements;
 }
 
 
@@ -38,10 +38,10 @@ export function useAirQuality() {
 
     try {
       const response = await axios.get(`${BASE_API_URL}/api/air/air_quality`, {
-        params: { Longitude: lon, Latitude: lat },
+        params: { longitude: lon, latitude: lat },
       });
       if (response.status === 200) {
-        setAirQualityData(response.data.Air_quality_data);
+        setAirQualityData(response.data["air-quality-data"]);
       } else {
         throw new Error('Error fetching air quality data');
       }
