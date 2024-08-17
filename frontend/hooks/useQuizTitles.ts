@@ -1,18 +1,19 @@
 import axios from 'axios';
 import { BASE_API_URL } from '@/constants/Urls';
 import { useState } from 'react';
+import { QuizTitles } from '@/types/home';
 
 export function useQuizTitles() {
   const [loadingQuizTitles, setLoadingQuizTitles] = useState<boolean>(false);
   const [errorQuizTitleMsg, setErrorQuizTitleMsg] = useState<string | null>(
     null,
   );
-  const [quizTitle, setQuizTitle] = useState<string | null>();
+  const [quizTitles, setQuizTitles] = useState<QuizTitles | null>();
 
   const getQuizTitles = async (number_of_titles: number) => {
     setLoadingQuizTitles(true);
     setErrorQuizTitleMsg(null);
-    setQuizTitle(null);
+    setQuizTitles(null);
 
     try {
       const response = await axios.get(
@@ -20,7 +21,7 @@ export function useQuizTitles() {
         { params: { amount: number_of_titles } },
       );
       if (response.status === 200) {
-        setQuizTitle(response.data);
+        setQuizTitles(response.data);
       } else {
         throw new Error('Error fetching quiz title');
       }
@@ -31,5 +32,5 @@ export function useQuizTitles() {
     }
   };
 
-  return { getQuizTitles, quizTitle, loadingQuizTitles, errorQuizTitleMsg };
+  return { getQuizTitles, quizTitles, loadingQuizTitles, errorQuizTitleMsg };
 }

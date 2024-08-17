@@ -5,13 +5,13 @@ import WeatherDataSlider from '@/components/Home/WeatherDataSlider';
 import ChemicalElementsSlider from '@/components/Home/ChemicalElementsSlider';
 import EducationSection from '@/components/Home/EducationSection';
 import {
-  quizTitles,
   articleTitles,
   ecoTips,
 } from '@/constants/EducationArrays';
 import EcoTipList from '@/components/Home/EcoTipList';
 import { useAqiData } from '@/hooks/useAqiData';
 import { useAiExampleQuestions } from '@/hooks/useAiExampleQuestions';
+import { useQuizTitles } from '@/hooks/useQuizTitles';
 import { useState, useEffect } from 'react';
 import * as Device from 'expo-device';
 import * as Location from 'expo-location';
@@ -28,6 +28,7 @@ export default function HomeScreen() {
     loadingAiExampleQuestions,
     errorAiExampleQuestionsMsg,
   } = useAiExampleQuestions();
+  const { getQuizTitles, quizTitles, loadingQuizTitles, errorQuizTitleMsg  } = useQuizTitles();
 
   useEffect(() => {
     (async () => {
@@ -96,6 +97,22 @@ export default function HomeScreen() {
     fetchAiExampleQuestions();
   }, []);
 
+  useEffect(() => {
+    const fetchQuizTitles = async () => {
+      try {
+        await getQuizTitles(5);
+      } catch (error: any) {
+        if (error instanceof Error) {
+          setErrorMsg(error.message);
+        } else {
+          setErrorMsg('An unexpected error occurred while fetching quiz titles');
+        }
+      }
+    };
+
+    fetchQuizTitles();
+  }, []);
+
   return (
     <ScrollView>
       <Header />
@@ -125,8 +142,10 @@ export default function HomeScreen() {
         <View className="flex flex-col gap-5">
           <EducationSection
             title="Quiz"
-            items={quizTitles}
+            items={quizTitles?.['quiz-titles'] || []}
             titleSectionColor="#57d272"
+            loading={loadingQuizTitles}
+            error={errorQuizTitleMsg || ''}
           />
           <EducationSection
             title="Ai Questions"
@@ -134,11 +153,15 @@ export default function HomeScreen() {
             elementBgColor="#d2f5fb"
             titleSectionColor="#49b6c8"
             bgColor="#c1f1fa"
+            loading={loadingAiExampleQuestions}
+            error={errorAiExampleQuestionsMsg || ''}
           />
           <EducationSection
             title="Articles"
             items={articleTitles}
             titleSectionColor="#57d272"
+            loading={false}
+            error=""
           />
         </View>
       </View>
