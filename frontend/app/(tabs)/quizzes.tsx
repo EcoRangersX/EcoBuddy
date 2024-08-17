@@ -1,8 +1,8 @@
 import { ScrollView, View } from 'react-native';
 import Header from '@/components/Header';
-import TestKnowledgeSection from '@/components/Quizzes/TestKnowledgeSection';
-import QuizOfTheDaySection from '@/components/Quizzes/QuizOfTheDaySection';
-import YourScoresSection from '@/components/Quizzes/YourScoresSection';
+import TestKnowledgeSection from '@/components/quizzes/TestKnowledgeSection';
+import QuizOfTheDaySection from '@/components/quizzes/QuizOfTheDaySection';
+import YourScoresSection from '@/components/quizzes/YourScoresSection';
 import {
   quizzes,
   quizOfTheDay,

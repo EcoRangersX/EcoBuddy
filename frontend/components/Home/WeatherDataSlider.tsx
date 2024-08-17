@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ScrollView, View, ViewStyle, NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import WeatherDataElement from '@/components/Home/WeatherDataElement';
+import WeatherDataElement from '@/components/home/WeatherDataElement';
 
 export default function WeatherDataSlider() {
   const [scrollPosition, setScrollPosition] = useState(0);

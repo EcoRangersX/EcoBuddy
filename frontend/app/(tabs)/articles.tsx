@@ -1,6 +1,6 @@
 import { ScrollView } from 'react-native';
 import Header from '@/components/Header';
-import EcoFriendlyArticlesSection from '@/components/Articles/EcoFriendlyArticlesSection';
+import EcoFriendlyArticlesSection from '@/components/articles/EcoFriendlyArticlesSection';
 import { ecoFriendlyArticles } from '@/constants/StaticData';
 
 export default function ArticlesScreen() {

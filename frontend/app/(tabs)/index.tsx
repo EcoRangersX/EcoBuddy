@@ -1,18 +1,18 @@
 import { ScrollView, View, Text, Platform } from 'react-native';
-import AQIComponent from '@/components/Home/AQIComponent';
+import AQIComponent from '@/components/home/AQIComponent';
 import Header from '@/components/Header';
-import WeatherDataSlider from '@/components/Home/WeatherDataSlider';
-import ChemicalElementsSlider from '@/components/Home/ChemicalElementsSlider';
-import EducationSection from '@/components/Home/EducationSection';
+import WeatherDataSlider from '@/components/home/WeatherDataSlider';
+import ChemicalElementsSlider from '@/components/home/ChemicalElementsSlider';
+import EducationSection from '@/components/home/EducationSection';
 import {
   articleTitles,
   ecoTipsStatic,
 } from '@/constants/EducationArrays';
-import EcoTipList from '@/components/Home/EcoTipList';
-import { useAqiData } from '@/hooks/Home/useAqiData';
-import { useAiExampleQuestions } from '@/hooks/Home/useAiExampleQuestions';
-import { useQuizTitles } from '@/hooks/Home/useQuizTitles';
-import { useEcoTips } from '@/hooks/Home/useEcoTips';
+import EcoTipList from '@/components/home/EcoTipList';
+import { useAqiData } from '@/hooks/home/useAqiData';
+import { useAiExampleQuestions } from '@/hooks/home/useAiExampleQuestions';
+import { useQuizTitles } from '@/hooks/home/useQuizTitles';
+import { useEcoTips } from '@/hooks/home/useEcoTips';
 import { useState, useEffect } from 'react';
 import * as Device from 'expo-device';
 import * as Location from 'expo-location';
