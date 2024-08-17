@@ -9,15 +9,15 @@ interface AqiDataProps {
 }
 
 export function useAqiData() {
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const [loadingAqi, setLoadingAqi] = useState<boolean>(false);
+  const [errorAqiMsg, setErrorAqiMsg] = useState<string | null>(null);
   const [airQualityData, setAirQualityData] = useState<AqiData | null>(
     null,
   );
 
   async function getAqiData({ lon, lat }: AqiDataProps) {
-    setLoading(true);
-    setError(null);
+    setLoadingAqi(true);
+    setErrorAqiMsg(null);
     setAirQualityData(null);
 
     try {
@@ -25,17 +25,16 @@ export function useAqiData() {
         params: { longitude: lon, latitude: lat },
       });
       if (response.status === 200) {
-        console.log(`The AQI Data: ${JSON.stringify(response.data['air-quality-data'])}`)
         setAirQualityData(response.data['air-quality-data']);
       } else {
         throw new Error('Error fetching air quality data');
       }
     } catch (err: any) {
-      setError(err.message);
+      setErrorAqiMsg(err.message);
     } finally {
-      setLoading(false);
+      setLoadingAqi(false);
     }
   }
 
-  return { getAqiData, airQualityData, loading, error };
+  return { getAqiData, airQualityData, loadingAqi, errorAqiMsg };
 }

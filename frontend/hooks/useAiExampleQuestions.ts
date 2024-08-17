@@ -4,14 +4,14 @@ import { useState } from 'react';
 import { AiQuestions } from '@/types/home';
 
 export function useAiExampleQuestions() {
-  const [loading, setLoading] = useState<boolean>(false);
-  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [loadingAiExampleQuestions, setLoadingAiExampleQuestions] = useState<boolean>(false);
+  const [errorAiExampleQuestionsMsg, setErrorAiExampleQuestionsMsg] = useState<string | null>(null);
   const [AiExampleQuestions, setAiExampleQuestions] =
     useState<AiQuestions | null>();
 
   const getAiExampleQuestions = async (number_of_questions: number) => {
-    setLoading(true);
-    setErrorMsg(null);
+    setLoadingAiExampleQuestions(true);
+    setErrorAiExampleQuestionsMsg(null);
     setAiExampleQuestions(null);
 
     try {
@@ -20,16 +20,16 @@ export function useAiExampleQuestions() {
         { params: { amount: number_of_questions } },
       );
       if (response.status === 200) {
-        setAiExampleQuestions(response.data['questions']);
+        setAiExampleQuestions(response.data);
       } else {
         throw new Error('Error fetching AI example questions');
       }
     } catch (error: any) {
-      setErrorMsg(error);
+      setErrorAiExampleQuestionsMsg(error);
     } finally {
-      setLoading(false);
+      setLoadingAiExampleQuestions(false);
     }
   };
 
-  return { getAiExampleQuestions, AiExampleQuestions, loading, errorMsg };
+  return { getAiExampleQuestions, AiExampleQuestions, loadingAiExampleQuestions, errorAiExampleQuestionsMsg };
 }

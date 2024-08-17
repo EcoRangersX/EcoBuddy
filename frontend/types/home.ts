@@ -10,6 +10,10 @@ export interface AqiData {
   "concentration-of-elements": ChemicalElementProps[];
 }
 
+export interface AiQuestions {
+  questions: string[];
+}
+
 export interface ChemicalElementSlider {
     chemicalElementList: ChemicalElementProps[] | undefined;
 }
