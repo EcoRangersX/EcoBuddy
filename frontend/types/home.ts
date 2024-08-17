@@ -31,3 +31,6 @@ export interface EcoTips {
   'eco-tips': EcoTipProps[];
 }
 
+export interface ArticleTitles {
+  article_titles: string[];
+} 
