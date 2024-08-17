@@ -5,6 +5,14 @@ type AirQualityTipListProps = {
   tips: string[];
 };
 
+/**
+ * Renders a list of air quality tips.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Array<string>} props.tips - The array of air quality tips.
+ * @returns {JSX.Element} The rendered component.
+ */
 const AirQualityTipList = ({ tips }: AirQualityTipListProps) => {
   return (
     <View>

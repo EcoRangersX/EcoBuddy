@@ -5,6 +5,15 @@ interface AqiChemicalItemProps {
     description: string;
 }
 
+/**
+ * Renders an item for displaying AQI chemical details.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.name - The name of the chemical.
+ * @param {string} props.description - The description of the chemical.
+ * @returns {JSX.Element} - The rendered component.
+ */
 const AqiChemicalItem = ({ name, description }: AqiChemicalItemProps) => {
     return (
         <View className="flex flex-row items-center mb-5 p-2 bg-[#bff1f9] rounded-[30px] shadow-md shadow-black">

@@ -8,6 +8,15 @@ interface AqiDisplayProps {
   lastUpdate: number;
 }
 
+/**
+ * A component that displays the Air Quality Index (AQI) and its status.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {number} props.aqi - The Air Quality Index value.
+ * @param {string} props.lastUpdate - The timestamp of the last update.
+ * @returns {JSX.Element} The rendered component.
+ */
 const AqiDisplay = ({ aqi, lastUpdate }: AqiDisplayProps) => {
   const getStatus = (aqi: number) => {
     if (aqi <= 50) return 'good';
