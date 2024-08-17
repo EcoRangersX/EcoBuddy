@@ -11,7 +11,7 @@ import {
   ecoTips,
 } from '@/constants/EducationArrays';
 import EcoTipList from '@/components/Home/EcoTipList';
-import { useAirQuality } from '@/hooks/useAirQuality';
+import { useAqiData } from '@/hooks/useAqiData';
 import { useState, useEffect } from 'react';
 import * as Device from 'expo-device';
 import * as Location from 'expo-location';
@@ -21,7 +21,7 @@ export default function HomeScreen() {
     null,
   );
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
-  const { getAirQuality, airQualityData, loading, error } = useAirQuality();
+  const { getAqiData, airQualityData, loading, error } = useAqiData();
 
   useEffect(() => {
     (async () => {
@@ -55,7 +55,7 @@ export default function HomeScreen() {
     const fetchAirQualityData = async () => {
       if (location) {
         try {
-          await getAirQuality({
+          await getAqiData({
             lon: location.coords.longitude,
             lat: location.coords.latitude,
           });
@@ -79,10 +79,10 @@ export default function HomeScreen() {
       <View className="mt-5 items-center">
         <AQIComponent
           value={36}
-          status={airQualityData?.AQI || "good"}
-          city={airQualityData?.City || "Warsaw"}
+          status={airQualityData?.aqi || "good"}
+          city={airQualityData?.city || "Warsaw"}
           loading={loading}
-          error={error}
+          error={errorMsg}
         />
       </View>
       {/* Weather Data Section */}
@@ -90,7 +90,7 @@ export default function HomeScreen() {
         <WeatherDataSlider />
       </View>
       {/* Air pollution signals Section */}
-      <ChemicalElementsSlider />
+      <ChemicalElementsSlider chemicalElementList={airQualityData?.['concentration-of-elements'] || undefined} />
       {/* Education Section */}
       <View>
         <Text className="text-left text-xl ml-5 font-bold">Education</Text>
