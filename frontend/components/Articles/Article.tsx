@@ -2,6 +2,17 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { ArticleProps } from '@/types/articles';
 import { SaveToFavoriteIcon } from '../Icons/Articles';
 
+/**
+ * Renders an article component.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.title - The title of the article.
+ * @param {number} props.article_id - The ID of the article.
+ * @param {string} props.description - The description of the article.
+ * @param {string} props.image_url - The URL of the article image.
+ * @returns {JSX.Element} The rendered article component.
+ */
 const Article = ({
   title,
   article_id,
