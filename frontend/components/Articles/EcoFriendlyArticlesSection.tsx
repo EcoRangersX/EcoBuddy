@@ -10,7 +10,7 @@ const EcoFriendlyArticlesSection = ({ articles }: EcoFriendlyArticlesSectionProp
   return (
     <View>
       <Text className="text-lg font-semibold ml-5 mt-2">Explore Eco-Friendly Insights</Text>
-      {articles.map((article, index) => (
+      {articles?.map((article, index) => (
         <Article
           key={index}
           article_id={article.article_id}
