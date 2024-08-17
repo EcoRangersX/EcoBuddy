@@ -6,7 +6,7 @@ import ChemicalElementsSlider from '@/components/Home/ChemicalElementsSlider';
 import EducationSection from '@/components/Home/EducationSection';
 import {
   articleTitles,
-  ecoTips,
+  ecoTipsStatic,
 } from '@/constants/EducationArrays';
 import EcoTipList from '@/components/Home/EcoTipList';
 import { useAqiData } from '@/hooks/useAqiData';
@@ -131,8 +131,6 @@ export default function HomeScreen() {
     fetchEcoTips();
   }, []);
 
-  console.log(`Fetched Eco Tips: ${ecoTips}`)
-
   return (
     <ScrollView>
       <Header />
@@ -190,7 +188,7 @@ export default function HomeScreen() {
         <Text className="text-left text-xl ml-5 font-bold">
           Eco tips of the day
         </Text>
-        <EcoTipList ecoTips={ecoTips} />
+        <EcoTipList ecoTips={ecoTipsStatic} />
       </View>
     </ScrollView>
   );
