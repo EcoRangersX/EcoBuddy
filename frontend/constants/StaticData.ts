@@ -1,6 +1,6 @@
 import { StartQuizProps } from '@/types/quizzes';
 
-const airQualityTips = [
+const airQualityTipsStatic = [
   'Change Filters Regularly',
   'Invest In An Air Purifier',
   'Get Plants',
@@ -8,7 +8,7 @@ const airQualityTips = [
   'Use Natural Cleaning Products',
 ];
 
-const quizzes: StartQuizProps[] = [
+const quizzesStatic: StartQuizProps[] = [
   {
     quiz_id: 1,
     level: 'Beginner',
@@ -42,7 +42,7 @@ const quizzes: StartQuizProps[] = [
   },
 ];
 
-const quizOfTheDay: StartQuizProps = {
+const quizOfTheDayStatic: StartQuizProps = {
   quiz_id: 1,
   level: 'Beginner',
   questionsCount: 5,
@@ -54,7 +54,7 @@ const quizOfTheDay: StartQuizProps = {
   ],
 };
 
-const takenQuizzes = [
+const takenQuizzesStatic = [
   {
     title: 'Ecology basics',
     correctAnswers: 8,
@@ -77,7 +77,7 @@ const takenQuizzes = [
   },
 ];
 
-const leaderboardUsers = [
+const leaderboardUsersStatic = [
   {
     user_id: 1,
     username: 'alice_wonder',
@@ -116,7 +116,7 @@ const leaderboardUsers = [
   },
 ];
 
-const ecoFriendlyArticles = [
+const ecoFriendlyArticlesStatic = [
   {
     title: 'The Basics of Sustainable Living',
     article_id: 1,
@@ -161,11 +161,72 @@ const ecoFriendlyArticles = [
   },
 ];
 
+const weatherDataStatic = [
+  { weatherElement: 'temp.', value: 32, unit: '°C' },
+  { weatherElement: 'wind', value: 8, unit: 'km/h' },
+  { weatherElement: 'humidity', value: 17, unit: '%RH' },
+  { weatherElement: 'pressure', value: 1011, unit: 'hPa' },
+];
+
+const quizTitlesStatic = [
+  'Biodiversity Basics',
+  'Sustainable Living',
+  'Climate Change Awareness',
+  'Water Conservation',
+];
+
+const aiQuestionsStatic = [
+  'What is the main cause of biodiversity loss?',
+  'Why are decomposers important?',
+  'How does deforestation impact carbon levels?',
+  'What factors determine biome distribution?',
+];
+
+const articleTitlesStatic = [
+  'The Role of Urban Green Spaces in Promoting Biodiversity',
+  'The Impact of Plastic Pollution on Marine Life',
+  ' Sustainable Agriculture: Practices and Benefits',
+  'Water Conservation',
+];
+
+const ecoTipsStatic = [
+  {
+    title: 'Bring Your Own Reusable Bags When Shopping',
+    description:
+      'Reduce plastic waste by carrying reusable shopping bags. They are sturdier, hold more, and are better for the environment.',
+  },
+  {
+    title: 'Use a Reusable Water Bottle',
+    description:
+      'Avoid single-use plastic bottles by using a reusable water bottle. It saves money and reduces plastic waste.',
+  },
+  {
+    title: 'Turn Off Lights When Not in Use',
+    description:
+      'Save energy by turning off lights when you leave a room. It reduces electricity consumption and your carbon footprint.',
+  },
+  {
+    title: 'Unplug Electronics When Not in Use',
+    description:
+      'Even when turned off, electronics use energy. Unplugging them saves energy and reduces your electricity bill.',
+  },
+  {
+    title: 'Use Public Transportation or Carpool',
+    description:
+      'Reduce carbon emissions by using public transportation or carpooling. It decreases the number of vehicles on the road.',
+  },
+];
+
 export {
-  airQualityTips,
-  quizzes,
-  takenQuizzes,
-  quizOfTheDay,
-  leaderboardUsers,
-  ecoFriendlyArticles
+  airQualityTipsStatic,
+  quizzesStatic,
+  takenQuizzesStatic,
+  quizOfTheDayStatic,
+  leaderboardUsersStatic,
+  ecoFriendlyArticlesStatic,
+  weatherDataStatic,
+  quizTitlesStatic,
+  aiQuestionsStatic,
+  articleTitlesStatic,
+  ecoTipsStatic,
 };
