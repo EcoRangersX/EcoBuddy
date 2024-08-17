@@ -3,6 +3,15 @@ import { BASE_API_URL } from '@/constants/Urls';
 import { useState } from 'react';
 import { QuizTitles } from '@/types/home';
 
+/**
+ * Custom hook for fetching quiz titles.
+ *
+ * @returns An object containing the following properties:
+ *   - `getQuizTitles`: A function that fetches quiz titles from the API.
+ *   - `quizTitles`: An array of quiz titles.
+ *   - `loadingQuizTitles`: A boolean indicating whether quiz titles are being loaded.
+ *   - `errorQuizTitleMsg`: A string containing an error message if there was an error fetching quiz titles.
+ */
 export function useQuizTitles() {
   const [loadingQuizTitles, setLoadingQuizTitles] = useState<boolean>(false);
   const [errorQuizTitleMsg, setErrorQuizTitleMsg] = useState<string | null>(

@@ -3,6 +3,15 @@ import { BASE_API_URL } from "@/constants/Urls";
 import { useState } from "react";
 import { ArticleTitles } from "@/types/home";
 
+/**
+ * Custom hook for fetching article titles.
+ *
+ * @returns An object containing the following properties:
+ *   - `getArticleTitles`: A function that fetches article titles from the API.
+ *   - `articleTitles`: The fetched article titles.
+ *   - `loadingArticleTitles`: A boolean indicating if article titles are currently being loaded.
+ *   - `errorArticleTitleMsg`: An error message if there was an error fetching article titles.
+ */
 export function useArticleTitles() {
   const [loadingArticleTitles, setLoadingArticleTitles] = useState<boolean>(
     false

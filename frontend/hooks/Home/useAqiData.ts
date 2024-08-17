@@ -8,6 +8,15 @@ interface AqiDataProps {
   lat: number;
 }
 
+/**
+ * Custom hook for fetching AQI (Air Quality Index) data.
+ *
+ * @returns An object containing the following properties:
+ *   - `getAqiData`: A function that fetches AQI data based on the provided longitude and latitude.
+ *   - `airQualityData`: The fetched AQI data.
+ *   - `loadingAqi`: A boolean indicating whether the AQI data is currently being fetched.
+ *   - `errorAqiMsg`: An optional string containing an error message if the fetching process fails.
+ */
 export function useAqiData() {
   const [loadingAqi, setLoadingAqi] = useState<boolean>(false);
   const [errorAqiMsg, setErrorAqiMsg] = useState<string | null>(null);

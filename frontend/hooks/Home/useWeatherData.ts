@@ -11,6 +11,15 @@ interface WeatherData {
   lon: number;
 }
 
+/**
+ * Custom hook for fetching weather data.
+ *
+ * @returns An object containing the following properties:
+ *   - `getWeatherData`: A function that fetches weather data based on latitude and longitude.
+ *   - `weatherData`: The fetched weather data.
+ *   - `loadingWeatherData`: A boolean indicating whether the weather data is currently being loaded.
+ *   - `errorWeatherData`: An error message if there was an error fetching the weather data.
+ */
 export function useWeatherData() {
   const [loadingWeatherData, setLoadingWeatherData] = useState<boolean>(false);
   const [errorWeatherData, setErrorWeatherData] = useState<string | null>(null);
