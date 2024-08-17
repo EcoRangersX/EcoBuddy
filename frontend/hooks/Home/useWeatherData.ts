@@ -8,7 +8,7 @@ interface WeatherDataResponse {
 
 interface WeatherData {
   lat: number;
-  long: number;
+  lon: number;
 }
 
 export function useWeatherData() {
@@ -18,14 +18,14 @@ export function useWeatherData() {
     null,
   );
 
-  async function getWeatherData({ lat, long }: WeatherData) {
+  async function getWeatherData({ lat, lon }: WeatherData) {
     setLoadingWeatherData(true);
     setErrorWeatherData(null);
     setWeatherData(null);
 
     try {
       const response = await axios.get(`${BASE_API_URL}/api/air/weather`, {
-        params: { latitude: lat, longitude: long },
+        params: { latitude: lat, longitude: lon },
       });
       if (response.status === 200) {
         setWeatherData(response.data);
@@ -33,6 +33,7 @@ export function useWeatherData() {
         setErrorWeatherData('Failed to fetch weather data');
       }
     } catch (err: any) {
+      console.log(`Error fetching weather data: ${err.message}`)
       setErrorWeatherData(err.message);
     } finally {
       setLoadingWeatherData(false);
