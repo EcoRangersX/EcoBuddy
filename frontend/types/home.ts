@@ -4,6 +4,10 @@ export interface ChemicalElementProps {
   bgColor: string;
 }
 
+export interface ChemicalElementSliderProps {
+  chemicalElementList: ChemicalElementProps[] | undefined;
+}
+
 export interface AqiData {
   aqi: string;
   city: string;
@@ -27,6 +31,3 @@ export interface EcoTips {
   'eco-tips': EcoTipProps[];
 }
 
-export interface ChemicalElementSlider {
-  chemicalElementList: ChemicalElementProps[] | undefined;
-}

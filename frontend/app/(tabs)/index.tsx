@@ -4,7 +4,12 @@ import Header from '@/components/Header';
 import WeatherDataSlider from '@/components/home/WeatherDataSlider';
 import ChemicalElementsSlider from '@/components/home/ChemicalElementsSlider';
 import EducationSection from '@/components/home/EducationSection';
-import { articleTitlesStatic, weatherDataStatic, ecoTipsStatic } from '@/constants/StaticData';
+import {
+  articleTitlesStatic,
+  weatherDataStatic,
+  ecoTipsStatic,
+  ChemicalElementsStatic,
+} from '@/constants/StaticData';
 import EcoTipList from '@/components/home/EcoTipList';
 import { useAqiData } from '@/hooks/home/useAqiData';
 import { useAiExampleQuestions } from '@/hooks/home/useAiExampleQuestions';
@@ -77,7 +82,7 @@ export default function HomeScreen() {
             getWeatherData({
               lon: location.coords.longitude,
               lat: location.coords.latitude,
-            })
+            }),
           ]);
         } catch (error) {
           if (error instanceof Error) {
@@ -159,14 +164,14 @@ export default function HomeScreen() {
       </View>
       {/* Weather Data Section */}
       <View className="mt-5 p-5">
-        <WeatherDataSlider weatherData={weatherDataStatic}  />
+        <WeatherDataSlider
+          weatherData={weatherDataStatic}
+          loading={loadingWeatherData}
+          error={errorWeatherDataMsg}
+        />
       </View>
       {/* Air pollution signals Section */}
-      <ChemicalElementsSlider
-        chemicalElementList={
-          airQualityData?.['concentration-of-elements'] || undefined
-        }
-      />
+      <ChemicalElementsSlider chemicalElementList={ChemicalElementsStatic} />
       {/* Education Section */}
       <View>
         <Text className="text-left text-xl ml-5 font-bold">Education</Text>
@@ -192,7 +197,7 @@ export default function HomeScreen() {
             items={articleTitlesStatic}
             titleSectionColor="#57d272"
             loading={false}
-            error={""}
+            error={''}
           />
         </View>
       </View>

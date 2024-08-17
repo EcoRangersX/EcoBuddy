@@ -139,7 +139,7 @@ const ecoFriendlyArticlesStatic = [
     image_url: 'https://i.postimg.cc/yxBTXQsG/image.png',
   },
   {
-    title: 'The Impact of Plastic Pollution on Oceans',
+    title: 'Introduction to Renewable Energy Sources',
     article_id: 4,
     description:
       'An introduction to renewable energy sources like solar, wind, and hydroelectric power, and their role in combating climate change.',
@@ -217,6 +217,17 @@ const ecoTipsStatic = [
   },
 ];
 
+const ChemicalElementsStatic = [
+    { chemElement: 'PM2.5', value: 20.1, bgColor: '#c0facc' },
+    { chemElement: 'PM10', value: 3.9, bgColor: '#bff1f9' },
+    { chemElement: 'O3', value: 85.6, bgColor: '#8be89f' },
+    { chemElement: 'CO', value: 1.41, bgColor: '#74c6d4' },
+    { chemElement: 'NO2', value: 12.8, bgColor: '#96d6e1' },
+    { chemElement: 'SO2', value: 0.9, bgColor: '#37e9ca' },
+    { chemElement: 'NO', value: 12, bgColor: '#19b6f8' },
+    { chemElement: 'NH3', value: 51.3, bgColor: '#0affc0' },
+];
+
 export {
   airQualityTipsStatic,
   quizzesStatic,
@@ -229,4 +240,5 @@ export {
   aiQuestionsStatic,
   articleTitlesStatic,
   ecoTipsStatic,
+  ChemicalElementsStatic,
 };
