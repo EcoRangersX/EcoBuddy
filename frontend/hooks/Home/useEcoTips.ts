@@ -3,6 +3,15 @@ import { BASE_API_URL } from '@/constants/Urls';
 import { useState } from 'react';
 import { EcoTips } from '@/types/home';
 
+/**
+ * Custom hook for fetching eco tips.
+ *
+ * @returns An object containing the following properties:
+ *   - `getEcoTips`: A function that fetches eco tips from the API.
+ *   - `ecoTips`: The fetched eco tips.
+ *   - `loadingEcoTips`: A boolean indicating whether the eco tips are currently being loaded.
+ *   - `errorEcoTipsMsg`: An error message if there was an error fetching the eco tips.
+ */
 export function useEcoTips() {
   const [loadingEcoTips, setLoadingEcoTips] = useState<boolean>(false);
   const [errorEcoTipsMsg, setErrorEcoTipsMsg] = useState<string | null>(null);

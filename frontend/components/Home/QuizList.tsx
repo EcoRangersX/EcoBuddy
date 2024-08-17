@@ -10,6 +10,19 @@ interface QuizListProps {
   bgColor?: string;
 }
 
+/**
+ * Renders a list of quiz items.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.title - The title of the quiz list.
+ * @param {string[]} props.items - The array of quiz items.
+ * @param {string} props.elementTextColor - The text color of each quiz item.
+ * @param {string} props.elementBgColor - The background color of each quiz item.
+ * @param {string} props.titleSectionColor - The background color of the title section.
+ * @param {string} props.bgColor - The background color of the quiz list.
+ * @returns {JSX.Element} The rendered QuizList component.
+ */
 const QuizList = ({
   title,
   items,

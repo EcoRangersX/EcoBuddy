@@ -31,6 +31,16 @@ export interface WeatherDataElementProps {
   unit: string;
 }
 
+/**
+ * Renders a weather data element.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {string} props.weatherElement - The name of the weather element.
+ * @param {number} props.value - The value of the weather element.
+ * @param {string} props.unit - The unit of measurement for the weather element.
+ * @returns {JSX.Element} The rendered WeatherDataElement component.
+ */
 export default function WeatherDataElement({
   weatherElement,
   value,

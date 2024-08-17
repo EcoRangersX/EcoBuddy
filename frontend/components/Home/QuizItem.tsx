@@ -6,6 +6,16 @@ interface QuizItemProps {
   elementBgColor: string;
 }
 
+/**
+ * Renders a quiz item component.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.title - The title of the quiz item.
+ * @param {string} props.textColor - The color of the text.
+ * @param {string} props.elementBgColor - The background color of the element.
+ * @returns {JSX.Element} The rendered quiz item component.
+ */
 const QuizItem = ({ title, textColor, elementBgColor }: QuizItemProps) => {
   return (
     <View>

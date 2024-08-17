@@ -1,10 +1,18 @@
 import { ScrollView, View, Text } from 'react-native';
 import ChemicalElement from './ChemicalElement';
-import { ChemicalElementSlider } from '@/types/home';
+import { ChemicalElementSliderProps } from '@/types/home';
 
+/**
+ * Renders a slider component for displaying chemical elements and their concentrations.
+ *
+ * @component
+ * @param {ChemicalElementSliderProps} props - The props for the ChemicalElementsSlider component.
+ * @param {Array<ChemicalElement>} props.chemicalElementList - The list of chemical elements with their concentrations.
+ * @returns {JSX.Element} The rendered ChemicalElementsSlider component.
+ */
 function ChemicalElementsSlider({
   chemicalElementList,
-}: ChemicalElementSlider) {
+}: ChemicalElementSliderProps) {
     // console.log(`Concentration of Elements in Chemical Element Slider component: ${JSON.stringify(chemicalElementList)}`);
   return (
     <View className="p-4">
