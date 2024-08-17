@@ -5,13 +5,13 @@ import WeatherDataSlider from '@/components/Home/WeatherDataSlider';
 import ChemicalElementsSlider from '@/components/Home/ChemicalElementsSlider';
 import EducationSection from '@/components/Home/EducationSection';
 import {
-  aiQuestions,
   quizTitles,
   articleTitles,
   ecoTips,
 } from '@/constants/EducationArrays';
 import EcoTipList from '@/components/Home/EcoTipList';
 import { useAqiData } from '@/hooks/useAqiData';
+import { useAiExampleQuestions } from '@/hooks/useAiExampleQuestions';
 import { useState, useEffect } from 'react';
 import * as Device from 'expo-device';
 import * as Location from 'expo-location';
@@ -21,7 +21,13 @@ export default function HomeScreen() {
     null,
   );
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
-  const { getAqiData, airQualityData, loading, error } = useAqiData();
+  const { getAqiData, airQualityData, loadingAqi, errorAqiMsg } = useAqiData();
+  const {
+    getAiExampleQuestions,
+    AiExampleQuestions,
+    loadingAiExampleQuestions,
+    errorAiExampleQuestionsMsg,
+  } = useAiExampleQuestions();
 
   useEffect(() => {
     (async () => {
@@ -52,7 +58,7 @@ export default function HomeScreen() {
   }, []);
 
   useEffect(() => {
-    const fetchAirQualityData = async () => {
+    const fetchAqiData = async () => {
       if (location) {
         try {
           await getAqiData({
@@ -63,14 +69,32 @@ export default function HomeScreen() {
           if (error instanceof Error) {
             setErrorMsg(error.message);
           } else {
-            setErrorMsg('An unexpected error occurred while fetching air quality data');
+            setErrorMsg('An unexpected error occurred while fetching Aqi data');
           }
         }
       }
     };
 
-    fetchAirQualityData();
+    fetchAqiData();
   }, [location]);
+
+  useEffect(() => {
+    const fetchAiExampleQuestions = async () => {
+      try {
+        await getAiExampleQuestions(5);
+      } catch (error: any) {
+        if (error instanceof Error) {
+          setErrorMsg(error.message);
+        } else {
+          setErrorMsg(
+            'An unexpected error occurred while fetching AI example questions',
+          );
+        }
+      }
+    };
+
+    fetchAiExampleQuestions();
+  }, []);
 
   return (
     <ScrollView>
@@ -79,10 +103,10 @@ export default function HomeScreen() {
       <View className="mt-5 items-center">
         <AQIComponent
           value={36}
-          status={airQualityData?.aqi || "good"}
-          city={airQualityData?.city || "Warsaw"}
-          loading={loading}
-          error={errorMsg}
+          status={airQualityData?.aqi || 'good'}
+          city={airQualityData?.city || 'Warsaw'}
+          loading={loadingAqi}
+          error={errorAqiMsg}
         />
       </View>
       {/* Weather Data Section */}
@@ -90,7 +114,11 @@ export default function HomeScreen() {
         <WeatherDataSlider />
       </View>
       {/* Air pollution signals Section */}
-      <ChemicalElementsSlider chemicalElementList={airQualityData?.['concentration-of-elements'] || undefined} />
+      <ChemicalElementsSlider
+        chemicalElementList={
+          airQualityData?.['concentration-of-elements'] || undefined
+        }
+      />
       {/* Education Section */}
       <View>
         <Text className="text-left text-xl ml-5 font-bold">Education</Text>
@@ -102,7 +130,7 @@ export default function HomeScreen() {
           />
           <EducationSection
             title="Ai Questions"
-            items={aiQuestions}
+            items={AiExampleQuestions?.questions || []}
             elementBgColor="#d2f5fb"
             titleSectionColor="#49b6c8"
             bgColor="#c1f1fa"

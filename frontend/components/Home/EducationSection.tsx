@@ -8,6 +8,8 @@ interface EducationSectionProps {
   elementBgColor?: string;
   titleSectionColor?: string;
   bgColor?: string;
+  loading: boolean;
+  error: string;
 }
 
 const EducationSection = ({
@@ -17,6 +19,8 @@ const EducationSection = ({
   elementBgColor = '#d4fbdc',
   titleSectionColor = 'green',
   bgColor = '#c1facd',
+  loading,
+  error,
 }: EducationSectionProps) => {
   return (
     <View className="p-6">
