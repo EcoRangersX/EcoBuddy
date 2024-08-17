@@ -12,6 +12,7 @@ import EcoTipList from '@/components/Home/EcoTipList';
 import { useAqiData } from '@/hooks/useAqiData';
 import { useAiExampleQuestions } from '@/hooks/useAiExampleQuestions';
 import { useQuizTitles } from '@/hooks/useQuizTitles';
+import { useEcoTips } from '@/hooks/useEcoTips';
 import { useState, useEffect } from 'react';
 import * as Device from 'expo-device';
 import * as Location from 'expo-location';
@@ -29,6 +30,7 @@ export default function HomeScreen() {
     errorAiExampleQuestionsMsg,
   } = useAiExampleQuestions();
   const { getQuizTitles, quizTitles, loadingQuizTitles, errorQuizTitleMsg  } = useQuizTitles();
+  const { getEcoTips, ecoTips, loadingEcoTips, errorEcoTipsMsg } = useEcoTips();
 
   useEffect(() => {
     (async () => {
@@ -112,6 +114,24 @@ export default function HomeScreen() {
 
     fetchQuizTitles();
   }, []);
+
+  useEffect(() => {
+    const fetchEcoTips = async () => {
+      try {
+        await getEcoTips(5);
+      } catch (error: any) {
+        if (error instanceof Error) {
+          setErrorMsg(error.message);
+        } else {
+          setErrorMsg('An unexpected error occurred while fetching eco tips');
+        }
+      }
+    };
+
+    fetchEcoTips();
+  }, []);
+
+  console.log(`Fetched Eco Tips: ${ecoTips}`)
 
   return (
     <ScrollView>
