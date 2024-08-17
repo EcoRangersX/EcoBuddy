@@ -2,6 +2,15 @@ import { useState } from 'react';
 import { View, Text } from 'react-native';
 import { EcoTipProps } from '@/types/home';
 
+/**
+ * Renders an EcoTip component.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.title - The title of the EcoTip.
+ * @param {string} props.description - The description of the EcoTip.
+ * @returns {JSX.Element} - The rendered EcoTip component.
+ */
 const EcoTip = ({ title, description }: EcoTipProps) => {
   const [titleHeight, setTitleHeight] = useState(0);
 

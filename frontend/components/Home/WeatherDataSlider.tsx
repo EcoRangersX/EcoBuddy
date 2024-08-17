@@ -16,6 +16,20 @@ interface WeatherDataSliderProps {
   error: string | null;
 }
 
+/**
+ * Renders a slider component for displaying weather data.
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <WeatherDataSlider weatherData={data} />
+ * ```
+ *
+ * @param {object} props - The component props.
+ * @param {Array<object>} props.weatherData - The array of weather data objects to be displayed in the slider.
+ *
+ * @returns {JSX.Element} The rendered WeatherDataSlider component.
+ */
 export default function WeatherDataSlider({
   weatherData,
 }: WeatherDataSliderProps) {

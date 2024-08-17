@@ -14,6 +14,13 @@ interface AQIComponentProps {
   errorMsg: string;
 }
 
+/**
+ * Renders the AQI (Air Quality Index) component.
+ *
+ * @component
+ * @param {AQIComponentProps} props - The component props.
+ * @returns {JSX.Element} The rendered AQI component.
+ */
 const AQIComponent = ({
   value,
   status,
