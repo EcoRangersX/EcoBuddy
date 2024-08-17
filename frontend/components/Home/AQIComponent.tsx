@@ -11,7 +11,7 @@ interface AQIComponentProps {
   status: string;
   city: string;
   loading: boolean;
-  error: string | null;
+  errorMsg: string;
 }
 
 const AQIComponent = ({
@@ -19,7 +19,7 @@ const AQIComponent = ({
   status,
   city,
   loading,
-  error,
+  errorMsg,
 }: AQIComponentProps) => {
   const router = useRouter();
 
@@ -37,9 +37,9 @@ const AQIComponent = ({
         <View>
           <Text>Loading...</Text>
         </View>
-      ) : error ? (
+      ) : errorMsg ? (
         <View>
-          {error && <Text>Error during fetching the Location: {error}</Text>}
+          {errorMsg && <Text>Error during fetching the Location: {errorMsg}</Text>}
         </View>
       ) : (
         <View className="p-5 items-center justify-center">

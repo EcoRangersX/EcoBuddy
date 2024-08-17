@@ -8,9 +8,11 @@ interface EcoTipProps {
 
 interface EcoTipListProps {
   ecoTips: EcoTipProps[];
+  loading: boolean;
+  errorMsg: string;
 }
 
-const EcoTipList = ({ ecoTips }: EcoTipListProps) => {
+const EcoTipList = ({ ecoTips, loading, errorMsg }: EcoTipListProps) => {
   return (
     <View className="flex flex-col">
       {ecoTips?.map((tip, index) => (
