@@ -19,7 +19,7 @@ const articleTitles = [
   'Water Conservation',
 ];
 
-export const ecoTips = [
+const ecoTipsStatic = [
   {
     title: "Bring Your Own Reusable Bags When Shopping",
     description: "Reduce plastic waste by carrying reusable shopping bags. They are sturdier, hold more, and are better for the environment.",
@@ -42,4 +42,4 @@ export const ecoTips = [
   },
 ];
 
-export { quizTitles, aiQuestions, articleTitles };
+export { quizTitles, aiQuestions, articleTitles, ecoTipsStatic };

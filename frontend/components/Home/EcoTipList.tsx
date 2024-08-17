@@ -13,7 +13,7 @@ interface EcoTipListProps {
 const EcoTipList = ({ ecoTips }: EcoTipListProps) => {
   return (
     <View className="flex flex-col">
-      {ecoTips.map((tip, index) => (
+      {ecoTips?.map((tip, index) => (
         <EcoTip key={index} title={tip.title} description={tip.description} />
       ))}
     </View>

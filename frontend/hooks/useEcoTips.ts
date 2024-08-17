@@ -1,7 +1,7 @@
-import axios from "axios";
-import { BASE_API_URL } from "@/constants/Urls";
-import { useState } from "react";
-import { EcoTips } from "@/types/home";
+import axios from 'axios';
+import { BASE_API_URL } from '@/constants/Urls';
+import { useState } from 'react';
+import { EcoTips } from '@/types/home';
 
 export function useEcoTips() {
   const [loadingEcoTips, setLoadingEcoTips] = useState<boolean>(false);
@@ -14,17 +14,17 @@ export function useEcoTips() {
     setEcoTips(null);
 
     try {
-      const response = await axios.get(
-        `${BASE_API_URL}/api/eco_tips`,
-        { params: { amount: number_of_tips } },
-      );
+      const response = await axios.get(`${BASE_API_URL}/api/eco_tips`, {
+        params: { amount: number_of_tips },
+      });
       if (response.status === 200) {
         setEcoTips(response.data);
       } else {
         throw new Error('Error fetching eco tips');
       }
-    } catch (error: any) {
-      setErrorEcoTipsMsg(error);
+    } catch (err: any) {
+      console.error(`Error fetching eco tips: ${err.message}`);
+      setErrorEcoTipsMsg(err);
     } finally {
       setLoadingEcoTips(false);
     }
