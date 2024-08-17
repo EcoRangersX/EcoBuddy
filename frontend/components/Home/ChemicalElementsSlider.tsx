@@ -5,7 +5,7 @@ import { ChemicalElementSlider } from '@/types/home';
 function ChemicalElementsSlider({
   chemicalElementList,
 }: ChemicalElementSlider) {
-    console.log(`Concentration of Elements in Chemical Element Slider component: ${JSON.stringify(chemicalElementList)}`);
+    // console.log(`Concentration of Elements in Chemical Element Slider component: ${JSON.stringify(chemicalElementList)}`);
   return (
     <View className="p-4">
       <View className="flex flex-row items-baseline gap-1">

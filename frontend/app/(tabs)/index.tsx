@@ -9,10 +9,10 @@ import {
   ecoTipsStatic,
 } from '@/constants/EducationArrays';
 import EcoTipList from '@/components/Home/EcoTipList';
-import { useAqiData } from '@/hooks/useAqiData';
-import { useAiExampleQuestions } from '@/hooks/useAiExampleQuestions';
-import { useQuizTitles } from '@/hooks/useQuizTitles';
-import { useEcoTips } from '@/hooks/useEcoTips';
+import { useAqiData } from '@/hooks/Home/useAqiData';
+import { useAiExampleQuestions } from '@/hooks/Home/useAiExampleQuestions';
+import { useQuizTitles } from '@/hooks/Home/useQuizTitles';
+import { useEcoTips } from '@/hooks/Home/useEcoTips';
 import { useState, useEffect } from 'react';
 import * as Device from 'expo-device';
 import * as Location from 'expo-location';
