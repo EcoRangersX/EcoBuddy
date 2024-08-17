@@ -6,6 +6,13 @@ interface TakenQuizListProps {
   takenQuizzes: QuizResultProps[];
 }
 
+/**
+ * Renders a list of taken quizzes.
+ *
+ * @component
+ * @param {Object[]} takenQuizzes - An array of taken quizzes.
+ * @returns {JSX.Element} - The rendered component.
+ */
 const TakenQuizzesList = ({ takenQuizzes }: TakenQuizListProps) => {
   return (
     <View className="bg-white p-4 rounded-[30px] border-2 border-[#4ac965]">

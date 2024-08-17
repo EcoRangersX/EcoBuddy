@@ -6,6 +6,15 @@ export interface QuizStreakProps {
   bestStreak: number;
 }
 
+/**
+ * Renders a component that displays the user's quiz streak and best personal streak.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {number} props.streak - The current quiz streak.
+ * @param {number} props.bestStreak - The best personal streak.
+ * @returns {JSX.Element} The rendered component.
+ */
 const QuizStreak = ({ streak, bestStreak  }: QuizStreakProps) => {
   return (
     <View className="bg-white flex-row items-center justify-around rounded-xl p-2 border-2 border-[#4ac965]">

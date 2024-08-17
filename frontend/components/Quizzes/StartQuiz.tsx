@@ -2,6 +2,21 @@ import { View, Text } from 'react-native';
 import { StartQuizIcon } from '../Icons/QuizzesIcons';
 import { StartQuizProps } from '@/types/quizzes';
 
+/**
+ * Renders a quiz card to start a quiz.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.quiz_id - The ID of the quiz.
+ * @param {string} props.level - The level of the quiz.
+ * @param {number} props.questionsCount - The number of questions in the quiz.
+ * @param {string} [props.bgColor='white'] - The background color of the card.
+ * @param {string} [props.titleBgColor='#74c6d4'] - The background color of the title section.
+ * @param {string} props.title - The title of the quiz.
+ * @param {(string[]|string)} props.description - The description of the quiz. Can be a string or an array of strings.
+ * @param {boolean} [props.quizOfTheDay=false] - Indicates if the quiz is the quiz of the day.
+ * @returns {JSX.Element} The rendered quiz card.
+ */
 const StartQuiz = ({
   quiz_id,
   level,
