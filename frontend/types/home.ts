@@ -14,6 +14,10 @@ export interface AiQuestions {
   questions: string[];
 }
 
+export interface QuizTitles {
+  "quiz-titles": string[];
+}
+
 export interface ChemicalElementSlider {
     chemicalElementList: ChemicalElementProps[] | undefined;
 }
