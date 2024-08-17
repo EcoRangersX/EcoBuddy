@@ -1,10 +1,5 @@
 import { View, Text } from 'react-native';
-
-interface ChemicalElementProps {
-  chemElement: string;
-  value: number;
-  bgColor: string;
-}
+import { ChemicalElementProps } from '@/types/home';
 
 function ChemicalElement({
   chemElement,

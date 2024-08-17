@@ -1,6 +1,5 @@
 from flask import Blueprint,request
 from app.services import Articles
-from app.services import Articles
 
 
 news_bp = Blueprint('news',__name__,url_prefix='/api/news')
@@ -9,8 +8,7 @@ news_bp = Blueprint('news',__name__,url_prefix='/api/news')
 def article_endpoint():
     if request.method == "GET":
         articles = Articles().get_articles_summary()
-        articles = Articles().get_articles_summary()
-        return {"Aricles": articles}
+        return {"articles": articles}
     
 @news_bp.route("/article_component",methods=['GET'])
 def article_component_endpoint():
@@ -18,8 +16,8 @@ def article_component_endpoint():
     
         data = request.args
 
-        component_name = data.get('Component_name',default='title',type=str)
-        amount = data.get('Amount',default=5,type=int)
+        component_name = data.get('component-name',default='title',type=str)
+        amount = data.get('amount',default=5,type=int)
 
         article_component = Articles().get_articles_component(
             component=component_name,

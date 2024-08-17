@@ -1,10 +1,6 @@
 import { useState } from 'react';
 import { View, Text } from 'react-native';
-
-interface EcoTipProps {
-  title: string;
-  description: string;
-}
+import { EcoTipProps } from '@/types/home';
 
 const EcoTip = ({ title, description }: EcoTipProps) => {
   const [titleHeight, setTitleHeight] = useState(0);

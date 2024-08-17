@@ -14,8 +14,8 @@ class Air_tester():
     def air_quality(self):
         air_quality_response = requests.get(
             url="http://127.0.0.1:5000/api/air/air_quality",
-            params={"Latitude": self.example_lat, 
-                  "Longitude": self.example_long
+            params={"latitude": self.example_lat, 
+                  "longitude": self.example_long
                   }
 
             )
@@ -25,8 +25,8 @@ class Air_tester():
         weather_response = requests.get(
             url="http://127.0.0.1:5000/api/air/weather",
             params={
-                "Latitude": self.example_lat,
-                "Longitude": self.example_long
+                "latitude": self.example_lat,
+                "longitude": self.example_long
                 }
             )
         

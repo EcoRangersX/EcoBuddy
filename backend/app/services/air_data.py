@@ -22,10 +22,38 @@ class Air_data:
 
         city = self.get_readable_location(latitude=latitude,longitude=longitude)
 
+        formated_concentrations = []
+
+        colors = {
+            'co': '#74c6d4',
+            'no': '#19b6f8',
+            'no2': '#96d6e1',
+            'nh3': '#0affc0',
+            'o3': '#8be89f',
+            'so2': '#37e9ca',
+            'pm2_5': '#c0facc',
+            'pm10': '#bff1f9' 
+
+            }
+
+
+        for key in concentrations.keys():
+            name = key
+            value = concentrations[key]
+
+            cool_dict = { 
+                "chem-element": str(name),
+                "value": int(value),
+                'bg-color': colors[name]
+                },
+            
+            formated_concentrations.append(cool_dict)
+
+            
         return {
-            "Concentration_of_elements": concentrations,
-            'City': city['City'],
-            "AQI": aqi
+            "concentration-of-elements": formated_concentrations,
+            'city': city['city'],
+            "aqi": aqi
         }
     
     def get_readable_location(self,latitude: float,longitude: float) -> dict:
@@ -35,7 +63,7 @@ class Air_data:
         
         response_json = response.json()
 
-        return {'City': response_json[0]['name']}
+        return {'city': response_json[0]['name']}
 
     
     def get_weather_data(self,latitude: float,longitude: float):
@@ -49,10 +77,10 @@ class Air_data:
         wind_speed = round( response_json['wind']['speed']*3.6 , 2)
         
         response = {
-            'Pressure': f"{response_json['main']['pressure']}",
-            'Temp': f"{temp}",
-            'Wind_speed':f"{wind_speed}",
-            'Humidity':f"{response_json['main']['humidity']}"
+            'pressure': f"{response_json['main']['pressure']}",
+            'temp': f"{temp}",
+            'wind-speed':f"{wind_speed}",
+            'humidity':f"{response_json['main']['humidity']}"
             }
 
         return response

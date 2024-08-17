@@ -1,15 +1,19 @@
-
-from .database import conn, cursor
+from .connect import conn
 from .migrations import *
 
-__all__ = ['conn','cursor']
 
-def setup_database(debug: bool):
+
+
+def setup_database(debug: bool):    
+    cursor = conn.cursor()
     if debug:
         cursor.execute("DROP TABLE IF EXISTS articles")
         cursor.execute("DROP TABLE IF EXISTS users")
-    Migrate_articles()
-    Migrate_users()
-    Migrate_quizes()
-    Migrate_ai_questions()
-    Migrate_eco_tips()
+    Migrate_articles(conn=conn)
+    Migrate_users(conn=conn)
+    Migrate_quizes(conn=conn)
+    Migrate_ai_questions(conn=conn)
+    Migrate_eco_tips(conn=conn)
+
+
+

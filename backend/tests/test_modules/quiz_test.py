@@ -12,7 +12,7 @@ class Quiz_tester():
         titles = requests.get(
             url='http://127.0.0.1:5000/api/quizes/quiz_titles',
             params={
-                'Amount': 5
+                'amount': 5
                 }
             )
         print(f"\nTITLES: \n{json.dumps(titles.json(),indent=2)}")
@@ -21,8 +21,8 @@ class Quiz_tester():
         quizes = requests.get(
             url='http://127.0.0.1:5000/api/quizes/quiz',
             params={
-                'Titles': True,
-                'Amount': 5
+                'titles': True,
+                'amount': 5
                 }
             )
         

@@ -23,7 +23,7 @@ class Articles:
 
         to_return = {}
         for itr in range(amount):
-            to_return[f'article_{component}_{itr+1}'] = list_of_components[itr][0]
+            to_return[f'article-{component}-{itr+1}'] = list_of_components[itr][0]
 
         return to_return
         
