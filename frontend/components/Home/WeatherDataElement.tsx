@@ -25,7 +25,7 @@ import {
   pollenColors,
 } from '@/constants/Colors';
 
-interface WeatherDataElementProps {
+export interface WeatherDataElementProps {
   weatherElement: string;
   value: number;
   unit: string;
