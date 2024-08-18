@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-import { StreakIcon } from '../iconss/QuizzesIcons';
+import { StreakIcon } from '../icons/QuizzesIcons';
 
 export interface QuizStreakProps {
   streak: number;

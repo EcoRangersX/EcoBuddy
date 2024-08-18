@@ -7,8 +7,8 @@ import {
   NativeScrollEvent,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import WeatherDataElement from '@/components/homee/WeatherDataElement';
-import { WeatherDataElementProps } from '@/components/homee/WeatherDataElement';
+import WeatherDataElement from '@/components/home/WeatherDataElement';
+import { WeatherDataElementProps } from '@/components/home/WeatherDataElement';
 
 interface WeatherDataSliderProps {
   weatherData: WeatherDataElementProps[];
