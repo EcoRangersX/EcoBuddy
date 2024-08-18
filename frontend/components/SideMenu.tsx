@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { View, Animated, Easing, TouchableOpacity, Text } from 'react-native';
 import { Portal } from 'react-native-paper';
-import { CloseSideBarIcon } from '@/components/Icons/HomeIcons';
+import { CloseSideBarIcon } from '@/components/iconss/HomeIcons';
 import TabsDropdown from './TabsDropdown';
 
 interface SideMenuProps {

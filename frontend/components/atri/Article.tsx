@@ -1,6 +1,6 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { ArticleProps } from '@/types/articles';
-import { SaveToFavoriteIcon } from '../Icons/Articles';
+import { SaveToFavoriteIcon } from '../iconss/Articles';
 
 /**
  * Renders an article component.

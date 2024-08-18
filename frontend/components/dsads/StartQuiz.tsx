@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-import { StartQuizIcon } from '../Icons/QuizzesIcons';
+import { StartQuizIcon } from '../iconss/QuizzesIcons';
 import { StartQuizProps } from '@/types/quizzes';
 
 /**

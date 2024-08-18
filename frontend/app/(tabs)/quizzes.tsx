@@ -1,8 +1,8 @@
 import { ScrollView, View } from 'react-native';
 import Header from '@/components/Header';
-import TestKnowledgeSection from '@/components/quizzes/TestKnowledgeSection';
-import QuizOfTheDaySection from '@/components/quizzes/QuizOfTheDaySection';
-import YourScoresSection from '@/components/quizzes/YourScoresSection';
+import TestKnowledgeSection from '@/components/dsads/TestKnowledgeSection';
+import QuizOfTheDaySection from '@/components/dsads/QuizOfTheDaySection';
+import YourScoresSection from '@/components/dsads/YourScoresSection';
 import { quizzesStatic, quizOfTheDayStatic, takenQuizzesStatic, leaderboardUsersStatic } from '@/constants/StaticData';
 import LeaderbordSection from '@/components/LeaderboardSection';
 

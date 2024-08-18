@@ -1,21 +1,21 @@
 import { ScrollView, View, Text, Platform } from 'react-native';
-import AQIComponent from '@/components/home/AQIComponent';
+import AQIComponent from '@/components/homee/AQIComponent';
 import Header from '@/components/Header';
-import WeatherDataSlider from '@/components/home/WeatherDataSlider';
-import ChemicalElementsSlider from '@/components/home/ChemicalElementsSlider';
-import EducationSection from '@/components/home/EducationSection';
+import WeatherDataSlider from '@/components/homee/WeatherDataSlider';
+import ChemicalElementsSlider from '@/components/homee/ChemicalElementsSlider';
+import EducationSection from '@/components/homee/EducationSection';
 import {
   articleTitlesStatic,
   weatherDataStatic,
   ecoTipsStatic,
   ChemicalElementsStatic,
 } from '@/constants/StaticData';
-import EcoTipList from '@/components/home/EcoTipList';
-import { useAqiData } from '@/hooks/home/useAqiData';
-import { useAiExampleQuestions } from '@/hooks/home/useAiExampleQuestions';
-import { useQuizTitles } from '@/hooks/home/useQuizTitles';
-import { useEcoTips } from '@/hooks/home/useEcoTips';
-import { useWeatherData } from '@/hooks/home/useWeatherData';
+import EcoTipList from '@/components/homee/EcoTipList';
+import { useAqiData } from '@/hooks/fds/useAqiData';
+import { useAiExampleQuestions } from '@/hooks/fds/useAiExampleQuestions';
+import { useQuizTitles } from '@/hooks/fds/useQuizTitles';
+import { useEcoTips } from '@/hooks/fds/useEcoTips';
+import { useWeatherData } from '@/hooks/fds/useWeatherData';
 import { useState, useEffect } from 'react';
 import * as Device from 'expo-device';
 import * as Location from 'expo-location';
