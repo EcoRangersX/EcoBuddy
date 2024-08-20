@@ -20,10 +20,11 @@ class Articles:
         command = f'SELECT {component} FROM articles LIMIT {amount}'
         self.cursor.execute(command)
         list_of_components = self.cursor.fetchall()
+     
 
-        to_return = {}
-        for itr in range(amount):
-            to_return[f'article-{component}-{itr+1}'] = list_of_components[itr][0]
+        to_return = []
+        for itr in range(len(list_of_components)):
+            to_return.append(list_of_components[itr][0])
 
         return to_return
         

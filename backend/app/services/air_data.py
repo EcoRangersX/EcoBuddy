@@ -11,18 +11,12 @@ class Air_data:
         response = requests.get(
             url=f"http://api.openweathermap.org/data/2.5/air_pollution?lat={latitude}&lon={longitude}&appid={self.api_key}"
         )
-
         response_json = response.json()
-
-        aqi = response_json["list"][0]['main']['aqi']
-        aqi_levels = ['Good','Fair','Moderate','Poor','Very Poor']
-        aqi = aqi_levels[aqi-1]
-
-        concentrations = response_json["list"][0]["components"]
 
         city = self.get_readable_location(latitude=latitude,longitude=longitude)
 
-        formatted_concentrations = []
+
+        
 
         colors = {
             'co': '#74c6d4',
@@ -35,8 +29,8 @@ class Air_data:
             'pm10': '#bff1f9' 
 
             }
-
-
+        concentrations = response_json["list"][0]["components"]
+        formatted_concentrations = []
         for key in concentrations.keys():
             name = key
             value = concentrations[key]
@@ -53,19 +47,13 @@ class Air_data:
         return {
             "concentration-of-elements": formatted_concentrations,
             'city': city['city'],
-            "aqi": aqi
+            "aqi": 
+            {
+                "status": None,
+                "value": None
+            }
         }
-    
-    def get_readable_location(self,latitude: float,longitude: float) -> dict:
-        response = requests.get(
-            url=f'http://api.openweathermap.org/geo/1.0/reverse?lat={latitude}&lon={longitude}&limit={1}&appid={self.api_key}'
-            )
-        
-        response_json = response.json()
 
-        return {'city': response_json[0]['name']}
-
-    
     def get_weather_data(self,latitude: float,longitude: float):
         response = requests.get(
             url=f"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={self.api_key}"
@@ -75,12 +63,34 @@ class Air_data:
 
         temp = round(response_json['main']['temp'] - 273.15,1)
         wind_speed = round( response_json['wind']['speed']*3.6 , 2)
+        pressure = response_json['main']['pressure']
+        humidity = response_json['main']['humidity']
         
-        response = {
-            'pressure': f"{response_json['main']['pressure']}",
-            'temp': f"{temp}",
-            'wind-speed':f"{wind_speed}",
-            'humidity':f"{response_json['main']['humidity']}"
-            }
+        response = [
+            {"weather-element": "pressure","value": pressure},
+            {"weather-element": "humidity","value": humidity},
+            {"weather-element": "temperature","value": temp},
+            {"weather-element": "wind-speed","value": wind_speed}
+            ]
 
         return response
+
+    #functions not related to routes
+
+    def get_aqi_value(self,concentration: dict): pass
+
+
+    def get_readable_location(self,latitude: float,longitude: float) -> dict:
+        response = requests.get(
+            url=f'http://api.openweathermap.org/geo/1.0/reverse?lat={latitude}&lon={longitude}&limit={1}&appid={self.api_key}'
+            )
+        
+        response_json = response.json()
+
+        return {'city': response_json[0]['name']}
+
+    def get_aqi_status(self,aqi):
+        aqi_levels = ['Good','Moderate','Unhealthy','Very Unhealthy','Hazardous']
+        aqi_status = aqi_levels[aqi-1]
+
+        return aqi_status

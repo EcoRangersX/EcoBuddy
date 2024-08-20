@@ -9,6 +9,7 @@ class Migrate_articles:
                     title text,
                     link text,
                     img text
+                    
                     )""")
     
         conn.commit()

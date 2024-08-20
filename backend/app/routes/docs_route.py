@@ -86,17 +86,18 @@ def endpoints():
                 "aqi": "<aqi value in word for example: fair,good,...>",
                 "city": "<city name by longitude and latitude>",
                 "concentration-of-elements": 
-                {
-                    "co": 186.92,
-                    "nh3": 4.81,
-                    "no": 0,
-                    "no2": 6.17,
-                    "o3": 66.52,
-                    "pm10": 4.91,
-                    "pm2_5": 3.16,
-                    "so2": 3.28,
-                    "! Values are in ug/m3 !": 'space taker'
-                }
+                [
+                    {
+                        "chem-element": "str",
+                        "value": "int",
+                        "bg-color": "str"
+                    },
+                    {
+                        "chem-element": "str",
+                        "value": "int",
+                        "bg-color": "str"
+                    }
+                ]
             }
         }
     },
@@ -164,7 +165,7 @@ def endpoints():
     {
         "Get request response":
         { 
-            "aricles": 
+            "articles": 
             {
                 "<article title>": 
                 {
@@ -192,10 +193,14 @@ def endpoints():
             "amount": '<amount of results int>'
         },
         "GET request response":
-        {
-            "article-<component name>-1": '<component>',
-            "article-<component name>-2": '<component>'
-        }
+        [
+            {
+                "article-<component name>": '<component>'
+            },
+            {
+                "article-<component name>": '<component>',
+            }
+        ]
     },
 "/api/ai/quiz_generator": 
     {
@@ -266,14 +271,17 @@ def endpoints():
         "GET request response":
         {
             'eco-tips':
-            {
-                'title1': 'eco_tip1',
-                'title2': 'eco_tip2',
-                'title3': 'eco_tip3',
-                'title4': 'eco_tip4'
-            }
+            [
+                {
+                    "title": "<title>",
+                    'description': "<description>"
+                }
+            ]
         }
     }
             
 }
 }
+
+
+

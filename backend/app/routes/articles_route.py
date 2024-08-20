@@ -2,15 +2,15 @@ from flask import Blueprint,request
 from app.services import Articles
 
 
-news_bp = Blueprint('news',__name__,url_prefix='/api/news')
+articles_bp = Blueprint('articles',__name__,url_prefix='/api/articles')
 
-@news_bp.route("/articles", methods=["GET"])
+@articles_bp.route("/articles_summary", methods=["GET"])
 def article_endpoint():
     if request.method == "GET":
         articles = Articles().get_articles_summary()
         return {"articles": articles}
     
-@news_bp.route("/article_component",methods=['GET'])
+@articles_bp.route("/article_component",methods=['GET'])
 def article_component_endpoint():
     if request.method == 'GET':
     

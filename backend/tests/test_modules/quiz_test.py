@@ -10,7 +10,7 @@ class Quiz_tester():
         self.threads = [self.titles_thread,self.quiz_thread]
     def titles(self):
         titles = requests.get(
-            url='http://127.0.0.1:5000/api/quizes/quiz_titles',
+            url='http://127.0.0.1:5000/api/quizzes/titles',
             params={
                 'amount': 5
                 }
@@ -19,7 +19,7 @@ class Quiz_tester():
 
     def quiz(self):
         quizes = requests.get(
-            url='http://127.0.0.1:5000/api/quizes/quiz',
+            url='http://127.0.0.1:5000/api/quizzes/quiz',
             params={
                 'titles': True,
                 'amount': 5

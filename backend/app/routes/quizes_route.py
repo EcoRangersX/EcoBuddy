@@ -2,10 +2,10 @@ from flask import Blueprint,request
 from app.services import Quizes
 import yaml
 
-quizes_bp = Blueprint('quizes',__name__,url_prefix='/api/quizes')
+quizes_bp = Blueprint('quizzes',__name__,url_prefix='/api/quizzes')
 
 
-@quizes_bp.route('/quiz_titles',methods=['GET'])
+@quizes_bp.route('/titles',methods=['GET'])
 def quizes_titles_endpoint():
     if request.method == 'GET':
 

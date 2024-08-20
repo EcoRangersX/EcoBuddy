@@ -10,7 +10,9 @@ class Migrate_eco_tips():
 
         eco_tips = globals['Eco_tips']
 
-        for title,description in eco_tips:
-            eco_tip = Eco_tip(title=title,description=description)
-            if not eco_tip.check_if_exists():
-                eco_tip.insert_into_database()
+        for eco_tip in eco_tips:
+            title = eco_tip['title']
+            description = eco_tip['description']
+            eco_tip_g = Eco_tip(title=title,description=description)
+            if not eco_tip_g.check_if_exists():
+                eco_tip_g.insert_into_database()
