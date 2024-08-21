@@ -13,15 +13,15 @@ class Account:
 
         if name:
             if not re.fullmatch(name_regex,name):
-                return {'response': None,
+                return {'response': False,
                         'error-msg': 'Invalid name only letters and numbers are acceptable'}
 
         if not re.fullmatch(email_regex,email):
-            return {'response': None,
+            return {'response': False,
                     'error-msg': 'Invalid email'}
         
         if not re.fullmatch(password_regex,password):
-            return {'response': None,
+            return {'response': False,
                     'error-msg': 'Invalid password'}
         
         self.user.name = name
@@ -39,13 +39,13 @@ class Account:
 
     def reqister(self):
         if self.user.check_if_user_exists():
-            return {'response': None,
+            return {'response': False,
                     'error-msg': 'User already exists'}
         if self.user.insert_to_database():
-            return {'response': 'Registered succesfully',
-                    'error-msg': None}
+            return {'response': True,
+                    'error-msg': ''}
         else:
-            return {'response': None,
+            return {'response': False,
                     'error-msg': 'Something went wrong'}
 
     

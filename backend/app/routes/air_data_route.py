@@ -1,11 +1,11 @@
 from flask import Blueprint,request
 from app.services import Air_data
 
-air_bp = Blueprint('air',__name__, url_prefix='/api/air')
+air_bp = Blueprint('air',__name__, url_prefix='/api/air_data')
 
 
 
-@air_bp.route("/air_quality", methods=["GET"])
+@air_bp.route("/pollution", methods=["GET"])
 def air_quality_endpoint():
     air_data = Air_data()
     if request.method == "GET":
@@ -22,9 +22,7 @@ def air_quality_endpoint():
             latitude=latitude, longitude=longitude
         )
 
-        
-
-        return {f"air-quality-data": air_quality_data}
+        return {f"air-pollution-data": air_quality_data}
     
 
 

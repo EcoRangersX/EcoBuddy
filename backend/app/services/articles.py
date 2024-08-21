@@ -5,8 +5,8 @@ class Articles:
         
         self.cursor = conn.cursor()
  
-    def get_articles_summary(self) -> dict:
-        self.cursor.execute("SELECT * FROM articles")
+    def get_articles_summary(self,amount) -> dict:
+        self.cursor.execute("SELECT * FROM articles LIMIT :amount",{'amount':amount})
         list_of_articles = self.cursor.fetchall()
 
         to_return = {}

@@ -1,6 +1,7 @@
 import requests
 import os
 from dotenv import load_dotenv
+from app.globals import globals
 
 class Air_data:
     def __init__(self):
@@ -14,9 +15,6 @@ class Air_data:
         response_json = response.json()
 
         city = self.get_readable_location(latitude=latitude,longitude=longitude)
-
-
-        
 
         colors = {
             'co': '#74c6d4',
@@ -43,15 +41,24 @@ class Air_data:
             
             formatted_concentrations.append(cool_dict)
 
+        no2_aqi = self.get_aqi_value(concentration=concentrations['no2'],element='no2')
+        pm2_5_aqi = self.get_aqi_value(concentration=concentrations['pm2_5'],element='pm2_5')
+        pm10_aqi = self.get_aqi_value(concentration=concentrations['pm10'],element='pm10')
+        co_aqi = self.get_aqi_value(concentration=concentrations['co'],element='co')
+
+        aqi_value = max(no2_aqi,pm2_5_aqi,pm10_aqi,co_aqi)
+        aqi_result = {
+            "value": aqi_value,
+            "status": self.get_aqi_status(aqi_value)
+        }
+
+        
+
             
         return {
             "concentration-of-elements": formatted_concentrations,
             'city': city['city'],
-            "aqi": 
-            {
-                "status": None,
-                "value": None
-            }
+            "aqi": aqi_result  
         }
 
     def get_weather_data(self,latitude: float,longitude: float):
@@ -77,8 +84,19 @@ class Air_data:
 
     #functions not related to routes
 
-    def get_aqi_value(self,concentration: dict): pass
+    def get_aqi_value(self,concentration: int,element: str) -> dict:
+        aqi_breakpoints: dict = globals['Aqi_breakpoints'][element]
 
+        for high_aqi in aqi_breakpoints.keys():
+            if concentration > high_aqi:
+                continue
+            low_aqi = aqi_breakpoints[high_aqi]['low_aqi']
+            low_breakpoint = aqi_breakpoints[high_aqi]['low_breakpoint']
+            high_breakpoint = aqi_breakpoints[high_aqi]['high_breakpoint']
+
+            aqi = ((high_aqi-low_aqi)/(high_breakpoint-low_breakpoint))*(concentration-low_breakpoint)+low_aqi
+            return aqi
+     
 
     def get_readable_location(self,latitude: float,longitude: float) -> dict:
         response = requests.get(
@@ -90,7 +108,24 @@ class Air_data:
         return {'city': response_json[0]['name']}
 
     def get_aqi_status(self,aqi):
-        aqi_levels = ['Good','Moderate','Unhealthy','Very Unhealthy','Hazardous']
-        aqi_status = aqi_levels[aqi-1]
+        aqi_levels = {
+            50: 'Good',
+            100: 'Moderate',
+            150: 'Unhealthy for sensitive groups',
+            200: 'Unhealthy',
+            300: 'Very unhealthy',
+            500: 'Hazardous'
+        }
+
+        for level in aqi_levels.keys():
+            if aqi > level:
+                if level == 500:
+                    aqi_status = aqi_levels[level]
+                    break
+
+                continue
+            aqi_status = aqi_levels[level]
+            break
+        
 
         return aqi_status

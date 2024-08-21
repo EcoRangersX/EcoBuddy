@@ -5,8 +5,8 @@ docs_bp = Blueprint('docs',__name__,url_prefix='/api/docs')
 def blueprints():
     return {
         "Blueprints": {
-            "/api/air": "Blueprint with air data endpoints",
-            "/api/news": "Blueprint with ecology learning endpoints",
+            "/api/air_data": "Blueprint with air data endpoints",
+            "/api/article": "Blueprint with ecology learning endpoints",
             "/api/auth": "Blueprint with user actions endpoints",
             "/api/ai": "Blueprint with neural networks",
             "/api/docs": "Blueprint with documentation endpoints"
@@ -19,72 +19,59 @@ def endpoints():
         "Endpoints": 
 {
 
-"/api/quizes/quiz":
+"/api/quiz":
     {
+        "Endpoint": "This is the main endpoint for quizes.\n You can use it to get quizes from database. \nYou get to choose whether you want to receive just quizzes or quizzes with its titles. \nYou also can specify amount of quizzes to receive",
+        
         "GET request parameters":
         {
-            'titles': "<True if you want to get titles of quizes, False if you want to get just quizes>",
-            'amount': "<amount of quizes you want to get>"
+            'titles': "bool",
+            'amount': "int"
         },
+
         "GET request response":
         {
-            "quizes":
-            {
-                "<quiz title>":
-                {
-                    "Answer_key": 
-                    {
-                        "q1": "Answer1",
-                        "q2": "Answer1"
-                    },
-                    "Questions": 
-                    {
-                        "dsfsdfs": 
-                        {
-                            "Answer1": "babla",
-                            "Answer2": "idfidfhid"
-                        },
-                        "sdsdsd": 
-                        {
-                            "Answer1": "blabla",
-                            "Answer2": "blbla"
-                        }
-                    },
-                    "Title": "Quiz1"
-                }
-            }
+            "working on it": 'space taker'
         }
     },
-"/api/quizes/quiz_titles":
+"/api/quiz/title":
     {
+        "Endpoint": "This endpoint is used to get ONLY quiz titles. \nYou can specify number of titles you want to get",
+        
         "GET request parameters":
         {
-            'amount': "<amount of titles you want to get>"
+            'amount': "int"
         },
 
         "GET request response":
         {
             "quiz-titles": 
             [
-                "<quiz title>",
-                "<quiz title>"
+                "str | quiz title",
+                "str | quiz title"
             ]
         }
     },
-"/api/air/air_quality": 
+"/api/air_data/pollution": 
     {
+        "Endpoint": "This endpoint is used to get air pollution data in some place.\n You NEED to specify latitude and longitude of a place where you want to get data about",
+        
         "GET request parameters":
         {
-                'latitude': "<latitude of place you want to get data about>",
-                'longitude': "<longitude of place you want to get data about>"
+                'latitude': "float",
+                'longitude': "float"
         },
 
         "GET request response":
         {
-            "air-quality-data": 
+            "air-pollution-data": 
             {
-                "aqi": "<aqi value in word for example: fair,good,...>",
-                "city": "<city name by longitude and latitude>",
+                "aqi": 
+                {
+                    "value": "float",
+                    "status": "str"
+                },
+                "city": "str",
                 "concentration-of-elements": 
                 [
                     {
@@ -101,41 +88,59 @@ def endpoints():
             }
         }
     },
-"/api/air/weather":
+"/api/air_data/weather":
     {
+        "Endpoint": "This endpoint is used to get weather data for some place. \n You NEED to specify latitude and longitude of a place where you want to get weather data",
+
         "GET request parameters":
         {
-            'latitude': "<latitude of place you want to get data about>",
-            'longitude': "<longitude of place you want to get data about>"
+            'latitude': "float",
+            'longitude': "float"
         },
         "GET request response":
         {
             "weather-data": 
-            {
-                "pressure": "<value in hPa>",
-                "humidity": "<value in precentage>",
-                "temp": "<value in celsius>",
-                "wind-speed": "<value in km/h>"
-            }
+            [
+                {
+                    "weather-element": "pressure",
+                    "value": "int | value in hPa"
+                },
+                {
+                    "weather-element": "humidity",
+                    "value": "int | value in %"
+                },
+                {
+                    "weather-element": "temperature",
+                    "value": "float | value in celcius"
+                },
+                {
+                    "weather-element": "wind-speed",
+                    "value": "float | value in km/h"
+                }
+            ]
         }
     },  
 "/api/auth/login": 
     {
+        "Endpoint": "This endpoint is used to login to account basicly just authentication.\n You NEED to specify email and password of an account",
+
         "POST request":
         {
-            'email': "<email of account to login>",
-            'password': "<password of account>"
+            'email': "str",
+            'password': "str"
         },
 
         "Post request response":
         {
-            'response': 'for example: Logged succesfully!',
-            'error-msg': 'None or error msg'
+            'response': 'bool',
+            'error-msg': "str | empty str if no error occured"
         }
     
     },
 "/api/auth/register": 
     {
+        "Endpoint": "This endpoint is used to register a account.\n You NEED to specify name,email and password",
+
         "Post request": 
         {
             'name': "<name of account>",
@@ -145,104 +150,44 @@ def endpoints():
 
         "Post request response":
         {
-            'response': 'for example: Registered succesfully',
-            'error-msg': 'None or error msg'
+            'response': 'bool',
+            'error-msg': 'str | empty str if no error occured'
         }
     },
 "/api/ai/ai_assistant": 
     {
+        "Endpoint": "This endpoint is used to ask eco assistant questions about ecology. \n You need to specify user-prompt which is just prompt that user asked",
+
         "GET request parameters": 
         {
-            'user-input': "<your prompt>"
+            'user-input': "str"
         },
 
         "GET request response":
         {
-            "response": "<generated text>"
+            "response": "str"
         }
     },   
-"/api/news/articles": 
-    {
-        "Get request response":
-        { 
-            "articles": 
-            {
-                "<article title>": 
-                {
-                    "img": "<img link>",
-                    "link": "<article link>"
-                 
-                },
-                "<article2 title>": 
-                {
-                    "img": "<img link>",
-                    "link": "<article link>"
-                    
-                }
-                
-
-            }
-            
-        }
-    },
-"/api/news/article_component":
-    {
-        "GET request parameters":
-        {
-            "component": '<component name: title,img,link>',
-            "amount": '<amount of results int>'
-        },
-        "GET request response":
-        [
-            {
-                "article-<component name>": '<component>'
-            },
-            {
-                "article-<component name>": '<component>',
-            }
-        ]
-    },
 "/api/ai/quiz_generator": 
     {
+        "Endpoint": "This endpoint is used to generate a quiz.\n You need to specify theme of an quiz for example: coral reef, amount of questions you want to have in quiz\n whether or not you want yes or no answers and how much possible answers are inside each question",
+
         "GET request parameters":
         {
-            'theme': "<theme of quiz>",
-            'amount-of-questions': "<amount of questions in quiz>",
-            'yes-or-no-answers': "<True if answers are yes or no, False if multiple choice>",
-            'possible-answers': "<amount of possible answers !if yes or no then leave it empty!>"
+            'theme': "str",
+            'amount-of-questions': "int",
+            'yes-or-no-answers': "bool",
+            'possible-answers': "int | if yes-or-no then leave it empty"
         },
 
         "response":
         {
-            "quiz": 
-            {
-                "Questions": 
-                {
-                    "question1": 
-                    {
-                        "Answer1": "<answer1>",
-                        "Answer2": "<answer2>"
-                    },
-                    "question2": 
-                    {
-                        "Answer1": "<answer1>",
-                        "Answer2": "<answer2>"
-                    }
-                },
-                "Answer_key": 
-                {
-                    "q1": "<correct answer name for question1>",
-                    "q2": "<correct answer name for question2>"
-                }
-                
-            }
+            "working on it": "space taker"
         }
     },
 "/api/docs/blueprints": 
     {
         "Get request response": 'Json with key "Blueprints" and values of routes to blueprints'
-        
-
     },
 "/api/docs/endpoints": 
     {
@@ -250,31 +195,38 @@ def endpoints():
     },
 "/api/ai/example_question":
     {
+        "Endpoint": "This endpoint is used to get example questions to ask ai assistant.\n You NEED to specify amount of questions",
+
         "GET request parameters":
         {
-            'amount': '<amount of questions you want to receive>'
+            'amount': 'int'
         },
         "GET request response":
-        [
-            "question1",
-            "question2",
-            "question3"
-        ]
+        {
+            "questions":
+            [
+                "str | question",
+                "str | question",
+                "str | question"
+            ]
+        }
         
     },
-"/api/eco_tips/get_eco_tips":
+"/api/eco_tips":
     {
+        "Endpoints": "This endpoint is used to get eco tips.\n You need to specify amount you want to receive",
+
         "GET request parameters":
         {
-            'amount': '<amount of eco tips you want to receive>'
+            'amount': 'int'
         },
         "GET request response":
         {
             'eco-tips':
             [
                 {
-                    "title": "<title>",
-                    'description': "<description>"
+                    "title": "str",
+                    'description': "str"
                 }
             ]
         }
@@ -282,6 +234,7 @@ def endpoints():
             
 }
 }
+
 
 
 
