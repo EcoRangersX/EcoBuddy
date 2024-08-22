@@ -5,7 +5,7 @@ import AqiInfoBox from '@/components/aqi-details/AqiInfoBox';
 import AqiExplanationSection from '@/components/aqi-details/AqiExplanationSection';
 import AqiMeasureExplanationSection from '@/components/aqi-details/AqiMeasureExplanationSection';
 import AirQualityTipList from '@/components/aqi-details/AirQualityTipList';
-import { airQualityTips } from '@/constants/StaticData';
+import { airQualityTipsStatic } from '@/constants/StaticData';
 
 export default function AQIDetails() {
   return (
@@ -33,7 +33,7 @@ export default function AQIDetails() {
         {/* AQI Measure Explanation section */}
         <AqiMeasureExplanationSection />
 
-        <AirQualityTipList tips={airQualityTips} />
+        <AirQualityTipList tips={airQualityTipsStatic} />
       </View>
     </ScrollView>
   );
