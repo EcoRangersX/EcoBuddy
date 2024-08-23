@@ -3,7 +3,7 @@ import { SearchIcon, ClearQueryIcon } from '../icons/Articles';
 
 interface SearchBarProps {
   query: string;
-  setQuery: React.Dispatch<React.SetStateAction<string>>;
+  setQuery: (query: string) => void;
   clearQuery: () => void;
   onFocus: () => void;
 }
