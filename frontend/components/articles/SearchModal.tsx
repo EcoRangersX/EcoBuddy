@@ -1,9 +1,9 @@
 import { View, Text, Modal, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
 import SearchBar from './SearchBar';
-import { CloseSideBarIcon } from '../Icons/HomeIcons';
+import { CloseSideBarIcon } from '../icons/HomeIcons';
 import FilteredArticlesList from './FilteredArticleList';
-import { filteredArticles } from '@/constants/StaticData';
+import { filteredArticlesStatic } from '@/constants/StaticData';
 
 const SearchModal = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -40,8 +40,8 @@ const SearchModal = () => {
               <CloseSideBarIcon />
             </TouchableOpacity>
             <Text className="text-lg font-bold mb-4">Search results</Text>
-            {/* Add your search results here */}
-            <FilteredArticlesList articles={filteredArticles} />
+            {/* Add search results here */}
+            <FilteredArticlesList articles={filteredArticlesStatic} />
           </View>
         </Modal>
       )}
