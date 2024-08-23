@@ -1,5 +1,5 @@
 import { View, TextInput } from 'react-native';
-import { SearchIcon, ClearQueryIcon } from '../Icons/Articles';
+import { SearchIcon, ClearQueryIcon } from '../icons/Articles';
 
 interface SearchBarProps {
   query: string;
@@ -16,7 +16,7 @@ const SearchBar = ({ query, setQuery, clearQuery, onFocus }: SearchBarProps) => 
         placeholder="Search articles"
         value={query}
         onChangeText={setQuery}
-        onFocus={() => onFocus()}
+        onFocus={onFocus}
       />
       {query?.length > 0 ? (
         <View className="flex-row items-center">
