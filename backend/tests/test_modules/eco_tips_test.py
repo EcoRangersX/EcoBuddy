@@ -10,7 +10,7 @@ class Eco_tips_tester():
     def eco_tips(self):
 
         eco_tips = requests.get(
-            url = 'http://127.0.0.1:5000/api/eco_tips/get_eco_tips',
+            url = 'http://127.0.0.1:5000/api/eco_tips',
             params= {'amount': 5}
         )
 

@@ -2,10 +2,10 @@ from flask import Blueprint,request
 from app.services import Quizes
 import yaml
 
-quizes_bp = Blueprint('quizes',__name__,url_prefix='/api/quizes')
+quizes_bp = Blueprint('quizzes',__name__,url_prefix='/api/quiz')
 
 
-@quizes_bp.route('/quiz_titles',methods=['GET'])
+@quizes_bp.route('/title',methods=['GET'])
 def quizes_titles_endpoint():
     if request.method == 'GET':
 
@@ -20,7 +20,7 @@ def quizes_titles_endpoint():
 
 
         return {'quiz-titles': titles_to_return}
-@quizes_bp.route('/quiz',methods=['GET'])
+@quizes_bp.route('/',methods=['GET'])
 def quizes_endpoint():
     if request.method == 'GET':
         data = request.args
@@ -35,6 +35,6 @@ def quizes_endpoint():
             quizes_to_return[title] = yaml.load(quiz,Loader=yaml.FullLoader)
 
 
-        return {'quizes': quizes_to_return}
+        return {'quizzes': quizes_to_return}
 
 

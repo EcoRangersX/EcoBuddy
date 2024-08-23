@@ -1,7 +1,10 @@
 import axios from 'axios';
 import { BASE_API_URL } from '@/constants/Urls';
 import { useState } from 'react';
-import { QuizTitles } from '@/types/home';
+
+interface QuizTitlesResponse {
+  "quiz-titles": string[];
+}
 
 /**
  * Custom hook for fetching quiz titles.
@@ -17,17 +20,17 @@ export function useQuizTitles() {
   const [errorQuizTitleMsg, setErrorQuizTitleMsg] = useState<string | null>(
     null,
   );
-  const [quizTitles, setQuizTitles] = useState<QuizTitles | null>();
+  const [quizTitles, setQuizTitles] = useState<QuizTitlesResponse | null>();
 
-  const getQuizTitles = async (number_of_titles: number) => {
+  const getQuizTitles = async (amount: number) => {
     setLoadingQuizTitles(true);
     setErrorQuizTitleMsg(null);
     setQuizTitles(null);
 
     try {
       const response = await axios.get(
-        `${BASE_API_URL}/api/quizes/quiz_titles`,
-        { params: { amount: number_of_titles } },
+        `${BASE_API_URL}/api/quiz/title`,
+        { params: { amount: amount } },
       );
       if (response.status === 200) {
         setQuizTitles(response.data);
