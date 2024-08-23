@@ -6,9 +6,7 @@ import ChemicalElementsSlider from '@/components/home/ChemicalElementsSlider';
 import EducationSection from '@/components/home/EducationSection';
 import {
   articleTitlesStatic,
-  weatherDataStatic,
   ecoTipsStatic,
-  ChemicalElementsStatic,
 } from '@/constants/StaticData';
 import EcoTipList from '@/components/home/EcoTipList';
 import { useAqiData } from '@/hooks/home/useAqiData';
@@ -173,7 +171,11 @@ export default function HomeScreen() {
         )}
       </View>
       {/* Air pollution signals Section */}
-      <ChemicalElementsSlider chemicalElementList={airQualityData?.['concentration-of-elements']} />
+      {weatherData && (
+        <ChemicalElementsSlider
+          chemicalElementList={airQualityData?.['concentration-of-elements']}
+        />
+      )}
       {/* Education Section */}
       <View>
         <Text className="text-left text-xl ml-5 font-bold">Education</Text>
