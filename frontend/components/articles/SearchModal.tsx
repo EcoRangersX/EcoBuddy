@@ -13,11 +13,13 @@ const SearchModal = () => {
 
   return (
     <View className="relative">
-      <SearchBar
-        query={searchQuery}
-        setQuery={setSearchQuery}
-        clearQuery={clearQuery}
-      />
+      <View className="py-0 px-3 mt-3">
+        <SearchBar
+          query={searchQuery}
+          setQuery={setSearchQuery}
+          clearQuery={clearQuery}
+        />
+      </View>
       {searchQuery.length > 0 && (
         <View className="absolute top-full left-5 bg-white shadow-xl shadow-black rounded-lg w-[90%] mx-auto z-10">
           {/* Potential issue: Nested FlatList inside ScrollView */}
