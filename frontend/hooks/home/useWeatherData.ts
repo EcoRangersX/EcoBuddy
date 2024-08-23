@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { BASE_API_URL } from '@/constants/Urls';
 
 interface WeatherDataResponse {
-  response: string;
+  'weather-data': { value: number; 'weather-element': string }[];
 }
 
 interface WeatherData {
@@ -33,7 +33,7 @@ export function useWeatherData() {
     setWeatherData(null);
 
     try {
-      const response = await axios.get(`${BASE_API_URL}/api/air/weather`, {
+      const response = await axios.get(`${BASE_API_URL}/api/air_data/weather`, {
         params: { latitude: lat, longitude: lon },
       });
       if (response.status === 200) {
@@ -42,7 +42,7 @@ export function useWeatherData() {
         setErrorWeatherData('Failed to fetch weather data');
       }
     } catch (err: any) {
-      console.log(`Error fetching weather data: ${err.message}`)
+      console.log(`Error fetching weather data: ${err.message}`);
       setErrorWeatherData(err.message);
     } finally {
       setLoadingWeatherData(false);

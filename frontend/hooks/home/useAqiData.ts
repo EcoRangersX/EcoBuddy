@@ -1,7 +1,18 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { BASE_API_URL } from '@/constants/Urls';
-import { AqiData } from '@/types/home';
+
+interface AqiDataResponse {
+  'air-quality-data': {
+    aqi: { status: string; value: number };
+    city: string;
+    'concentration-of-elements': {
+      'bg-color': string;
+      'chem-element': string;
+      value: string;
+    }[];
+  };
+}
 
 interface AqiDataProps {
   lon: number;
@@ -20,7 +31,7 @@ interface AqiDataProps {
 export function useAqiData() {
   const [loadingAqi, setLoadingAqi] = useState<boolean>(false);
   const [errorAqiMsg, setErrorAqiMsg] = useState<string | null>(null);
-  const [airQualityData, setAirQualityData] = useState<AqiData | null>(
+  const [airQualityData, setAirQualityData] = useState<AqiDataResponse | null>(
     null,
   );
 
@@ -39,7 +50,7 @@ export function useAqiData() {
         throw new Error('Error fetching air quality data');
       }
     } catch (err: any) {
-      console.log(`Error fetching Aqi Data: ${err}`)
+      console.log(`Error fetching Aqi Data: ${err}`);
       setErrorAqiMsg(err.message);
     } finally {
       setLoadingAqi(false);

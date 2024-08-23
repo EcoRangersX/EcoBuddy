@@ -1,7 +1,10 @@
 import axios from 'axios';
 import { BASE_API_URL } from '@/constants/Urls';
 import { useState } from 'react';
-import { EcoTips } from '@/types/home';
+
+interface EcoTipsResponse {
+  'eco-tips': { description: string; title: string }[];
+}
 
 /**
  * Custom hook for fetching eco tips.
@@ -15,16 +18,16 @@ import { EcoTips } from '@/types/home';
 export function useEcoTips() {
   const [loadingEcoTips, setLoadingEcoTips] = useState<boolean>(false);
   const [errorEcoTipsMsg, setErrorEcoTipsMsg] = useState<string | null>(null);
-  const [ecoTips, setEcoTips] = useState<EcoTips | null>();
+  const [ecoTips, setEcoTips] = useState<EcoTipsResponse | null>();
 
-  const getEcoTips = async (number_of_tips: number) => {
+  const getEcoTips = async (amount: number) => {
     setLoadingEcoTips(true);
     setErrorEcoTipsMsg(null);
     setEcoTips(null);
 
     try {
-      const response = await axios.get(`${BASE_API_URL}/api/eco_tips/get_eco_tips`, {
-        params: { amount: number_of_tips },
+      const response = await axios.get(`${BASE_API_URL}/api/eco_tips`, {
+        params: { amount: amount },
       });
       if (response.status === 200) {
         setEcoTips(response.data);
