@@ -1,7 +1,7 @@
 export interface ChemicalElementProps {
-  'chem-element': string;
+  chemElement: string;
   value: number;
-  'bg-color': string;
+  bgColor: string;
 }
 
 export interface ChemicalElementSliderProps {
