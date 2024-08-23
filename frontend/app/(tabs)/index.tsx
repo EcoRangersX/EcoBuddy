@@ -155,23 +155,25 @@ export default function HomeScreen() {
       {/* AQI Component */}
       <View className="mt-5 items-center">
         <AQIComponent
-          value={36}
-          status={airQualityData?.aqi || 'good'}
+          value={airQualityData?.aqi.value || 36}
+          status={airQualityData?.aqi.status || 'good'}
           city={airQualityData?.city || 'Warsaw'}
           loading={loadingAqi}
-          error={errorAqiMsg || ''}
+          errorMsg={errorAqiMsg || ''}
         />
       </View>
       {/* Weather Data Section */}
       <View className="mt-5 p-5">
-        <WeatherDataSlider
-          weatherData={weatherDataStatic}
-          loading={loadingWeatherData}
-          error={errorWeatherDataMsg}
-        />
+        {weatherData && (
+          <WeatherDataSlider
+            weatherData={weatherData['weather-data']}
+            loading={loadingWeatherData}
+            error={errorWeatherDataMsg}
+          />
+        )}
       </View>
       {/* Air pollution signals Section */}
-      <ChemicalElementsSlider chemicalElementList={ChemicalElementsStatic} />
+      <ChemicalElementsSlider chemicalElementList={airQualityData?.['concentration-of-elements']} />
       {/* Education Section */}
       <View>
         <Text className="text-left text-xl ml-5 font-bold">Education</Text>
