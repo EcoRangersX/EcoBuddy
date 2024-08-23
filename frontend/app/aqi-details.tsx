@@ -1,11 +1,11 @@
 import { ScrollView, Text, View } from 'react-native';
 import Header from '@/components/Header';
-import AqiDisplay from '@/components/Aqi-Details/AqiDisplay';
-import AqiInfoBox from '@/components/Aqi-Details/AqiInfoBox';
-import AqiExplanationSection from '@/components/Aqi-Details/AqiExplanationSection';
-import AqiMeasureExplanationSection from '@/components/Aqi-Details/AqiMeasureExplanationSection';
-import AirQualityTipList from '@/components/Aqi-Details/AirQualityTipList';
-import { airQualityTips } from '@/constants/StaticData';
+import AqiDisplay from '@/components/aqi-details/AqiDisplay';
+import AqiInfoBox from '@/components/aqi-details/AqiInfoBox';
+import AqiExplanationSection from '@/components/aqi-details/AqiExplanationSection';
+import AqiMeasureExplanationSection from '@/components/aqi-details/AqiMeasureExplanationSection';
+import AirQualityTipList from '@/components/aqi-details/AirQualityTipList';
+import { airQualityTipsStatic } from '@/constants/StaticData';
 
 export default function AQIDetails() {
   return (
@@ -33,7 +33,7 @@ export default function AQIDetails() {
         {/* AQI Measure Explanation section */}
         <AqiMeasureExplanationSection />
 
-        <AirQualityTipList tips={airQualityTips} />
+        <AirQualityTipList tips={airQualityTipsStatic} />
       </View>
     </ScrollView>
   );

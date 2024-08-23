@@ -1,35 +1,13 @@
-from bs4 import BeautifulSoup
-import requests
-from app.database import *
-from app.database import Article
+from app.database import conn
 
-
-class Get_articles:
-    domain_prefix = "https://www.the-scientist.com"
-    response = requests.get(
-        url=f"{domain_prefix}/tag/ecology"
-        )
-    document = BeautifulSoup(response.text, "html.parser")
-
-    def find_article(self):
-        self.articles = self.document.main.main.find_all(class_="ArticleSummary")
-
-    def insert_articles_to_database(self):
-        self.find_article()
-        for articlesummary in self.articles:
-            header = articlesummary.find("header")
-
-            link = self.domain_prefix + header.find("a")["href"]
-            title = header.find("div").text
-            img = articlesummary.find("img")["src"]
-            article = Article(link=link, title=title, img=img)
-            if not article.check_if_article_exists():
-                article.insert_to_database()
-
-    
-    def get_articles_summary(self):
-        cursor.execute("SELECT * FROM articles")
-        list_of_articles = cursor.fetchall()
+class Articles:
+    def __init__(self):
+        
+        self.cursor = conn.cursor()
+ 
+    def get_articles_summary(self) -> dict:
+        self.cursor.execute("SELECT * FROM articles")
+        list_of_articles = self.cursor.fetchall()
 
         to_return = {}
 
@@ -38,6 +16,18 @@ class Get_articles:
 
         return to_return
             
+    def get_articles_component(self,component: str,amount: int) -> list:
+        command = f'SELECT {component} FROM articles LIMIT {amount}'
+        self.cursor.execute(command)
+        list_of_components = self.cursor.fetchall()
+
+        to_return = {}
+        for itr in range(amount):
+            to_return[f'article-{component}-{itr+1}'] = list_of_components[itr][0]
+
+        return to_return
+        
+
 
 
    

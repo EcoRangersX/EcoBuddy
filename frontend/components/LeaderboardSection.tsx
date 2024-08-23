@@ -6,6 +6,14 @@ interface LeaderboardProps {
   users: LeaderboardUserItemProps[];
 }
 
+/**
+ * Renders the leaderboard section component.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Array} props.users - The array of users for the leaderboard.
+ * @returns {JSX.Element} The rendered leaderboard section.
+ */
 const LeaderbordSection = ({ users }: LeaderboardProps) => {
   return (
     <View className="p-3">

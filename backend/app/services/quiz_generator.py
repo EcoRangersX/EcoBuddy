@@ -1,20 +1,22 @@
-from groq import Groq
+
 from dotenv import load_dotenv
-import os
 import json
 from app.utils import Groq_parent
 
 load_dotenv()
 
 class Quiz_generator(Groq_parent):
-    SYS_PROMPT = '''You are quiz generator that generates quizes in json format:
-    {"Questions":{
-    "put question here": {"Answer1": "xyz","Answer2": "xyz"},
-    "put question here": {"Answer1": "xyz","Answer2": "xyz"}
-    },
-    "Answer_key": {"q1": "Answer1","q2": "Answer2"}}
-    in answer key you names of correct answers for each question. 
-    and only returns this json quiz nothing else.'''
+    def __init__(self):
+        self.SYS_PROMPT = '''You are quiz generator that generates quizes in json format:
+        {"Questions":{
+        "put question here": {"Answer1": "xyz","Answer2": "xyz"},
+        "put question here": {"Answer1": "xyz","Answer2": "xyz"}
+        },
+        "Answer_key": {"q1": "Answer1","q2": "Answer2"}}
+        in answer key you names of correct answers for each question. 
+        and only returns this json quiz nothing else.'''
+
+        super().__init__()
     
 
     def get_quiz(self, prompt: str):

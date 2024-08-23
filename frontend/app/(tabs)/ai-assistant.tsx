@@ -6,10 +6,10 @@ import {
   Text,
 } from 'react-native';
 import Header from '@/components/Header';
-import SendIcon from '@/components/Icons/SendIcon';
+import SendIcon from '@/components/icons/SendIcon';
 import { TextInput } from 'react-native-paper';
 import { useState, useEffect } from 'react';
-import { useAskAI } from '@/hooks/useAskAI';
+import { useAskAI } from '@/hooks/ai-assistant/useAskAI';
 
 interface Message {
   id: string;

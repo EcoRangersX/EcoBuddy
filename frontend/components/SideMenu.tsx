@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { View, Animated, Easing, TouchableOpacity, Text } from 'react-native';
 import { Portal } from 'react-native-paper';
-import { CloseSideBarIcon } from '@/components/Icons/HomeIcons';
+import { CloseSideBarIcon } from '@/components/icons/HomeIcons';
 import TabsDropdown from './TabsDropdown';
 
 interface SideMenuProps {
@@ -9,6 +9,15 @@ interface SideMenuProps {
   closeMenu: () => void;
 }
 
+/**
+ * Renders a side menu component.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {boolean} props.visible - Determines if the side menu is visible.
+ * @param {function} props.closeMenu - Callback function to close the side menu.
+ * @returns {JSX.Element} The rendered side menu component.
+ */
 export default function SideMenu({ visible, closeMenu }: SideMenuProps) {
   const slideAnim = useRef(new Animated.Value(-300)).current;
 

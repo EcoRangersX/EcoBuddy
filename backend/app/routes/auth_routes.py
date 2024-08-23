@@ -6,28 +6,30 @@ from app.utils import *
 auth_bp = Blueprint('auth',__name__,url_prefix='/api/auth')
 
 
-account = Account()
+
 @auth_bp.route("/login",methods=['POST'])
 def login():
+    account = Account()
     
     data = request.json
-    setup = account.setup_user_data(email=data['Email'],password = data['Password'])
+    setup = account.setup_user_data(email=data['email'],password = data['password'])
 
     if setup:
         return setup
     
     if account.login():
-        return {'Response': 'Logged succesfully!',
-                'Error_msg': None}
+        return {'response': 'Logged succesfully!',
+                'error-msg': None}
     else:
-        return {'Response': 'Invalid email or password!',
-                'Error_msg': None}
+        return {'response': 'Invalid email or password!',
+                'error-msg': None}
 
 
 @auth_bp.route("/register",methods=['POST'])
 def register():
+    account = Account()
     data = request.json
-    setup = account.setup_user_data(name=data['Name'],email=data['Email'],password = data['Password'])
+    setup = account.setup_user_data(name=data['name'],email=data['email'],password = data['password'])
 
     if setup:
         return setup

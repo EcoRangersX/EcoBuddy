@@ -1,3 +1,3 @@
-from .apicheck import test_api
+from .apicheck import api_check
 
-__all__ = ['test_api']
+__all__ = ['api_check']
