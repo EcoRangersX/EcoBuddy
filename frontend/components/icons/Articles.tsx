@@ -1,5 +1,9 @@
 import { TouchableOpacity } from 'react-native';
-import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import {
+  FontAwesome6,
+  MaterialIcons,
+  MaterialCommunityIcons,
+} from '@expo/vector-icons';
 
 interface BasicIconProps {
   color?: string;
@@ -8,6 +12,10 @@ interface BasicIconProps {
 
 interface SaveToFavoriteIcon extends BasicIconProps {
   article_id: number;
+}
+
+interface ClearQueryIcon extends BasicIconProps {
+  onPress: () => void;
 }
 
 const SaveToFavoriteIcon = ({
@@ -29,4 +37,27 @@ const SaveToFavoriteIcon = ({
   );
 };
 
-export { SaveToFavoriteIcon };
+const SearchIcon = ({ size = 24, color = 'white' }: BasicIconProps) => {
+  return (
+    <TouchableOpacity className="bg-[#71d285] rounded-full items-center justify-center shadow-md shadow-black w-12 h-12">
+      <MaterialIcons name="search" size={size} color={color} />
+    </TouchableOpacity>
+  );
+};
+
+const ClearQueryIcon = ({
+  size = 24,
+  color = 'black',
+  onPress,
+}: ClearQueryIcon) => {
+  return (
+    <MaterialCommunityIcons
+      name="close-circle-outline"
+      size={size}
+      color={color}
+      onPress={onPress}
+    />
+  );
+};
+
+export { SaveToFavoriteIcon, SearchIcon, ClearQueryIcon };
