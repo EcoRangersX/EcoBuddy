@@ -12,17 +12,17 @@ const filteredArticlesStatic = [
   {
     id: 1,
     title: 'Article One',
-    previewImageUrl: 'https://example.com/image1.jpg',
+    previewImageUrl: 'https://i.postimg.cc/ry0TvfG4/article-image.png',
   },
   {
     id: 2,
     title: 'Article Two',
-    previewImageUrl: 'https://example.com/image2.jpg',
+    previewImageUrl: 'https://i.postimg.cc/8PNyh5CC/image-1.png',
   },
   {
     id: 3,
     title: 'Article Three',
-    previewImageUrl: 'https://example.com/image3.jpg',
+    previewImageUrl: 'https://i.postimg.cc/yxBTXQsG/image.png',
   },
 ];
 

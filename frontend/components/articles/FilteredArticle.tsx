@@ -3,7 +3,7 @@ import { FilteredArticleProps } from '@/types/articles';
 
 const FilteredArticle = ({ article }: FilteredArticleProps) => {
   return (
-    <View className="flex-row items-center border-b border-gray-300">
+    <View className="flex-row items-center p-3 border-b border-gray-300">
       <Image
         source={{ uri: article.previewImageUrl }}
         className="w-16 h-16 rounded-lg"
