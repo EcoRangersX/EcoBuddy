@@ -1,11 +1,11 @@
 export interface ChemicalElementProps {
-  chemElement: string;
+  'chem-element': string;
   value: number;
-  bgColor: string;
+  'bg-color': string;
 }
 
 export interface ChemicalElementSliderProps {
-  chemicalElementList: ChemicalElementProps[] | undefined;
+  chemicalElementList: ChemicalElementProps[] | null;
 }
 
 export interface AqiData {
