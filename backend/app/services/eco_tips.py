@@ -11,10 +11,16 @@ class Eco_tips():
 
         eco_tips_list = self.cursor.fetchall()
      
-        eco_tips = {}
+        eco_tips = []
 
         for title,description in eco_tips_list:
-            eco_tips[title] = description
+            eco_tips.append(
+                {
+                    "title": title,
+                    'description': description
+                }
+            )
+            
   
         return eco_tips
 

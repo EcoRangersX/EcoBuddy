@@ -5,8 +5,8 @@ class Articles:
         
         self.cursor = conn.cursor()
  
-    def get_articles_summary(self) -> dict:
-        self.cursor.execute("SELECT * FROM articles")
+    def get_articles_summary(self,amount) -> dict:
+        self.cursor.execute("SELECT * FROM articles LIMIT :amount",{'amount':amount})
         list_of_articles = self.cursor.fetchall()
 
         to_return = {}
@@ -20,10 +20,11 @@ class Articles:
         command = f'SELECT {component} FROM articles LIMIT {amount}'
         self.cursor.execute(command)
         list_of_components = self.cursor.fetchall()
+     
 
-        to_return = {}
-        for itr in range(amount):
-            to_return[f'article-{component}-{itr+1}'] = list_of_components[itr][0]
+        to_return = []
+        for itr in range(len(list_of_components)):
+            to_return.append(list_of_components[itr][0])
 
         return to_return
         

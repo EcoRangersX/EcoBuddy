@@ -18,11 +18,11 @@ def login():
         return setup
     
     if account.login():
-        return {'response': 'Logged succesfully!',
-                'error-msg': None}
+        return {'response': True,
+                'error-msg': ''}
     else:
-        return {'response': 'Invalid email or password!',
-                'error-msg': None}
+        return {'response': False,
+                'error-msg': "Invalid email or password"}
 
 
 @auth_bp.route("/register",methods=['POST'])
