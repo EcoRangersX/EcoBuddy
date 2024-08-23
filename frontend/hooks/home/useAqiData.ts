@@ -3,15 +3,13 @@ import { useState } from 'react';
 import { BASE_API_URL } from '@/constants/Urls';
 
 interface AqiDataResponse {
-  'air-quality-data': {
-    aqi: { status: string; value: number };
-    city: string;
-    'concentration-of-elements': {
-      'bg-color': string;
-      'chem-element': string;
-      value: string;
-    }[];
-  };
+  aqi: { status: string; value: number };
+  city: string;
+  'concentration-of-elements': {
+    'bg-color': string;
+    'chem-element': string;
+    value: string;
+  }[];
 }
 
 interface AqiDataProps {
@@ -41,11 +39,11 @@ export function useAqiData() {
     setAirQualityData(null);
 
     try {
-      const response = await axios.get(`${BASE_API_URL}/api/air/air_quality`, {
+      const response = await axios.get(`${BASE_API_URL}/api/air_data/pollution`, {
         params: { longitude: lon, latitude: lat },
       });
       if (response.status === 200) {
-        setAirQualityData(response.data['air-quality-data']);
+        setAirQualityData(response.data['air-pollution-data']);
       } else {
         throw new Error('Error fetching air quality data');
       }
