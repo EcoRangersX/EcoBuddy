@@ -66,7 +66,7 @@ const AQIComponent = ({
                 {() => (
                   <View className="flex flex-col">
                     <Text className="text-white text-4xl self-center">
-                      {value}
+                      {value.toFixed(0)}
                     </Text>
                     <Text className="text-white text-lg self-center">
                       {capitalize(status)}

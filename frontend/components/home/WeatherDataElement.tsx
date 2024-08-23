@@ -119,16 +119,18 @@ export default function WeatherDataElement({
   };
 
   return (
-     <View className="flex bg-[#199ee7] p-3 rounded-2xl relative">
+    <View className="flex bg-[#199ee7] p-3 rounded-2xl relative">
       <View className="flex flex-row items-center gap-7 relative">
-        <Text style={borderColorStyle} className="flex text-white text-base mb-2 rounded-b">
+        <Text
+          style={borderColorStyle}
+          className="flex text-white text-base mb-2 rounded-b">
           {capitalize(weatherElement)}
         </Text>
         <TouchableOpacity>{elementIcon(weatherElement)}</TouchableOpacity>
       </View>
       <View className="flex flex-col items-start">
         <View className="flex flex-row items-baseline">
-          <Text className="text-white text-3xl">{value}</Text>
+          <Text className="text-white text-3xl">{value.toFixed(0)}</Text>
           <Text className="text-white text-xs">{unit}</Text>
         </View>
         <Text className="text-white text-xs">

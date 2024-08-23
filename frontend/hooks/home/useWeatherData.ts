@@ -37,7 +37,7 @@ export function useWeatherData() {
         params: { latitude: lat, longitude: lon },
       });
       if (response.status === 200) {
-        setWeatherData(response.data["weather-data"]);
+        setWeatherData(response.data);
       } else {
         setErrorWeatherData('Failed to fetch weather data');
       }
