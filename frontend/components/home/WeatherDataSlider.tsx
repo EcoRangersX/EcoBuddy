@@ -8,10 +8,9 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import WeatherDataElement from '@/components/home/WeatherDataElement';
-import { WeatherDataElementProps } from '@/components/home/WeatherDataElement';
 
 interface WeatherDataSliderProps {
-  weatherData: WeatherDataElementProps[];
+  weatherData: { value: number; 'weather-element': string }[] | null;
   loading: boolean;
   error: string | null;
 }
@@ -87,9 +86,10 @@ export default function WeatherDataSlider({
         {weatherData?.map((element, index) => (
           <WeatherDataElement
             key={index}
-            weatherElement={element.weatherElement}
+            weatherElement={element['weather-element']}
             value={element.value}
-            unit={element.unit}
+            // unit={element.unit}
+            unit={""}
           />
         ))}
       </ScrollView>

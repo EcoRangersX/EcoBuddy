@@ -22,14 +22,14 @@ interface WeatherData {
  */
 export function useWeatherData() {
   const [loadingWeatherData, setLoadingWeatherData] = useState<boolean>(false);
-  const [errorWeatherData, setErrorWeatherData] = useState<string | null>(null);
+  const [errorWeatherDataMsg, setErrorWeatherDataMsg] = useState<string | null>(null);
   const [weatherData, setWeatherData] = useState<WeatherDataResponse | null>(
     null,
   );
 
   async function getWeatherData({ lat, lon }: WeatherData) {
     setLoadingWeatherData(true);
-    setErrorWeatherData(null);
+    setErrorWeatherDataMsg(null);
     setWeatherData(null);
 
     try {
@@ -39,15 +39,15 @@ export function useWeatherData() {
       if (response.status === 200) {
         setWeatherData(response.data);
       } else {
-        setErrorWeatherData('Failed to fetch weather data');
+        setErrorWeatherDataMsg('Failed to fetch weather data');
       }
     } catch (err: any) {
       console.log(`Error fetching weather data: ${err.message}`);
-      setErrorWeatherData(err.message);
+      setErrorWeatherDataMsg(err.message);
     } finally {
       setLoadingWeatherData(false);
     }
   }
 
-  return { getWeatherData, weatherData, loadingWeatherData, errorWeatherData };
+  return { getWeatherData, weatherData, loadingWeatherData, errorWeatherDataMsg };
 }

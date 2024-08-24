@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import EcoTip from './EcoTip';
 
 interface EcoTipProps {
@@ -7,9 +7,9 @@ interface EcoTipProps {
 }
 
 interface EcoTipListProps {
-  ecoTips: EcoTipProps[];
+  ecoTips: EcoTipProps[] | null;
   loading: boolean;
-  errorMsg: string;
+  errorMsg: string | null;
 }
 
 /**
@@ -24,9 +24,21 @@ interface EcoTipListProps {
 const EcoTipList = ({ ecoTips, loading, errorMsg }: EcoTipListProps) => {
   return (
     <View className="flex flex-col">
-      {ecoTips?.map((tip, index) => (
-        <EcoTip key={index} title={tip.title} description={tip.description} />
-      ))}
+      {loading ? (
+        <Text>Loading eco tips...</Text>
+      ) : errorMsg ? (
+        <Text>{errorMsg}</Text>
+      ) : (
+        <View>
+          {ecoTips?.map((tip, index) => (
+            <EcoTip
+              key={index}
+              title={tip.title}
+              description={tip.description}
+            />
+          ))}
+        </View>
+      )}
     </View>
   );
 };

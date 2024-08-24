@@ -24,9 +24,9 @@ function ChemicalElementsSlider({
         {chemicalElementList?.map((element, index) => (
           <ChemicalElement
             key={index}
-            chemElement={element.chemElement}
+            chemElement={element['chem-element']}
             value={element.value}
-            bgColor={element.bgColor}
+            bgColor={element['bg-color']}
           />
         ))}
       </ScrollView>

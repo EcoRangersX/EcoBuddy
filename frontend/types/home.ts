@@ -5,7 +5,7 @@ export interface ChemicalElementProps {
 }
 
 export interface ChemicalElementSliderProps {
-  chemicalElementList: ChemicalElementProps[] | undefined;
+  chemicalElementList: ChemicalElementProps[] | null;
 }
 
 export interface AqiData {

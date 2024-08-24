@@ -21,7 +21,7 @@ function ChemicalElement({
       style={{ backgroundColor: bgColor }}
       className={`w-24 h-24 rounded-xl m-2 flex justify-center`}>
       <View className='flex px-2'>
-        <Text className="text-black text-lg">{chemElement}</Text>
+        <Text className="text-black text-lg">{chemElement.toUpperCase()}</Text>
         <Text className="text-black">{value}</Text>
       </View>
     </View>
