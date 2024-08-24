@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import AiResponseBox from './AiResponseBox';
 import AssistantChatIcon from './AssistantChatIcon';
 
@@ -11,8 +11,11 @@ interface AiResponseProps {
 const AiResponse = ({ response, loading, error }: AiResponseProps) => {
   return (
     <View className="flex flex-col p-3">
-      <AssistantChatIcon />
-      <View className='mt-3'>
+      <View className="flex flex-row items-center space-x-4">
+        <AssistantChatIcon />
+        <Text className='text-lg font-semibold'>EcoBuddy AI</Text>
+      </View>
+      <View className="mt-3">
         <AiResponseBox response={response} loading={loading} error={error} />
       </View>
     </View>

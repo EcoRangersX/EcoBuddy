@@ -1,18 +1,17 @@
-import { TouchableOpacity, Image } from 'react-native';
+import { Image } from 'react-native';
 
 interface AssistantChatIconProps {
   width?: number;
   height?: number;
 }
 
-const AssistantChatIcon = ({ width= 42, height = 42 }: AssistantChatIconProps) => {
+const AssistantChatIcon = ({ width= 48, height = 48 }: AssistantChatIconProps) => {
   return (
-    <TouchableOpacity style={{width: width, height: height}} className="flex rounded-full items-center justify-center bg-white shadow-lg shadow-black">
       <Image
         source={require('@/assets/images/ai-assistant-image.png')}
-        className="rounded-full w-14 h-14"
+        style={{width: width, height: height}}
+        className="rounded-full"
       />
-    </TouchableOpacity>
   );
 };
 
