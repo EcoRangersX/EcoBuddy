@@ -8,7 +8,8 @@ class Migrate_articles:
         cursor.execute("""CREATE TABLE IF NOT EXISTS articles(
                     title text,
                     link text,
-                    img text
+                    img text,
+                    id INTEGER PRIMARY KEY AUTOINCREMENT
                     )""")
     
         conn.commit()

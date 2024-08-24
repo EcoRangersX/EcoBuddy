@@ -7,14 +7,20 @@ class Quiz():
         self.title = title
         self.quiz = quiz
 
+
         self.cursor = conn.cursor()
 
     def check_if_already_in_database(self):
-        if self.get_from_database():
+        self.cursor.execute(
+            """SELECT quiz FROM quizes 
+            WHERE 
+            title=:title
+            """,
+            {'title': self.title})
+        if self.cursor.fetchone():
             return True
         else:
             return False
-
 
     def insert_into_database(self):
         self.cursor.execute(
@@ -27,12 +33,12 @@ class Quiz():
              'quiz': self.quiz})
         conn.execute()
 
-    def get_from_database(self):
+    def get_from_database(self,id):
         self.cursor.execute(
             """SELECT quiz FROM quizes 
             WHERE 
-            title=:title
+            id=:id
             """,
-            {'title': self.title})
+            {'id': id})
         
         return self.cursor.fetchone()

@@ -4,6 +4,7 @@ from app.database import conn
 class Ai_question():
     def __init__(self,ai_question: str):
         self.question: str = ai_question
+     
         self.cursor = conn.cursor()
 
     def insert_into_database(self):
@@ -16,17 +17,24 @@ class Ai_question():
         conn.commit()
 
     def check_if_already_in_database(self):
-        if self.get_from_database():
+        self.cursor.execute(
+            """SELECT question FROM ai_questions 
+            WHERE 
+            question = :question
+            """,
+            {'question': self.question})
+        
+        if self.cursor.fetchone():
             return True
         else:
             return False
         
-    def get_from_database(self):
+    def get_from_database(self,id):
         self.cursor.execute(
             """SELECT question FROM ai_questions 
             WHERE 
-            question=:question
+            id =:id
             """,
-            {'question': self.question})
+            {'id': id})
         
         return self.cursor.fetchone()

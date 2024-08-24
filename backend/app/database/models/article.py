@@ -8,14 +8,15 @@ class Article:
         self.title: str = title
         self.link: str = link
         self.img: str = img
-
         self.cursor = conn.cursor()
    
 
-    def check_if_article_exists(self) -> list:
-        self.cursor.execute("SELECT * FROM articles WHERE title LIKE :title AND link LIKE :link",{'title': self.title,'link': self.link})
+    def check_if_article_exists(self) -> bool:
+        self.cursor.execute("SELECT title FROM articles WHERE title LIKE :title AND link LIKE :link",{'title': self.title,'link': self.link})
 
-        return self.cursor.fetchall()
+        if self.cursor.fetchone():
+            return True
+        return False
 
     def insert_to_database(self) -> bool:
         try:

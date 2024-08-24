@@ -16,9 +16,9 @@ class Quizes():
     def get_quizes(self,amount: int = None,titles: bool = True) -> list:
         if titles:
             if not amount:
-                self.cursor.execute("SELECT * FROM quizes")
+                self.cursor.execute("SELECT title,quiz FROM quizes")
             else:
-                self.cursor.execute(f"SELECT * FROM quizes LIMIT {amount}")
+                self.cursor.execute(f"SELECT title,quiz FROM quizes LIMIT {amount}")
         else:
             if not amount:
                 self.cursor.execute("SELECT quiz FROM quizes")

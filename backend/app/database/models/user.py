@@ -7,15 +7,17 @@ class User:
         self.name: str = None
         self.email: str = None
         self.password: str = None
+        
 
         self.cursor = conn.cursor()
 
-    def check_if_user_exists(self) -> list:
+    def check_if_user_exists(self) -> bool:
        
 
-        self.cursor.execute("SELECT * FROM users WHERE email= :email AND name=:name",{'email': self.email,'name': self.name})
-
-        return self.cursor.fetchall()
+        self.cursor.execute("SELECT name FROM users WHERE email= :email AND name=:name",{'email': self.email,'name': self.name})
+        if self.cursor.fetchone():
+            return True
+        return False
 
     def insert_to_database(self) -> bool:
         try:
@@ -56,7 +58,7 @@ class User:
             return True
 
     def login(self):
-        self.cursor.execute("SELECT * FROM users WHERE email= :email AND password= :password",{'email': self.email,'password': self.password})
+        self.cursor.execute("SELECT name FROM users WHERE email= :email AND password= :password",{'email': self.email,'password': self.password})
         result = self.cursor.fetchall()
 
         if result: 
