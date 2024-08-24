@@ -10,6 +10,7 @@ import SendIcon from '@/components/icons/AiAssistant';
 import { TextInput } from 'react-native-paper';
 import { useState, useEffect } from 'react';
 import { useAskAI } from '@/hooks/ai-assistant/useAskAI';
+import AssistantChatIcon from '@/components/ai-assistant/AssistantChatIcon';
 
 interface Message {
   id: string;
@@ -71,6 +72,7 @@ export default function AiAssistantScreen() {
   return (
     <View className="flex-1">
       <Header />
+      <AssistantChatIcon />
       <FlatList
         data={combinedList}
         renderItem={({ item }) =>
