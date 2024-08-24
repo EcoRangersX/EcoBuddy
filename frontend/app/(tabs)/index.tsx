@@ -1,4 +1,4 @@
-import { ScrollView, View, Text, Platform } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 import AQIComponent from '@/components/home/AQIComponent';
 import Header from '@/components/Header';
 import WeatherDataSlider from '@/components/home/WeatherDataSlider';
@@ -11,15 +11,15 @@ import { useQuizTitles } from '@/hooks/home/useQuizTitles';
 import { useEcoTips } from '@/hooks/home/useEcoTips';
 import { useArticleTitles } from '@/hooks/home/useArticleTitles';
 import { useWeatherData } from '@/hooks/home/useWeatherData';
-import { useState, useEffect } from 'react';
-import * as Device from 'expo-device';
-import * as Location from 'expo-location';
+import { useEffect, useState } from 'react';
+import Location from 'expo-location';
+import EnableCurrentLocation from '@/components/EnableCurrentLocation';
 
 export default function HomeScreen() {
   const [location, setLocation] = useState<Location.LocationObject | null>(
     null,
   );
-  const [locationErrorMsg, locationSetErrorMsg] = useState<string | null>(null);
+  const [locationErrorMsg, setLocationErrorMsg] = useState<string | null>(null);
   const { getAqiData, airQualityData, loadingAqi, errorAqiMsg } = useAqiData();
   const {
     getAiExampleQuestions,
@@ -44,34 +44,6 @@ export default function HomeScreen() {
   } = useArticleTitles();
 
   useEffect(() => {
-    (async () => {
-      try {
-        if (Platform.OS === 'android' && !Device.isDevice) {
-          locationSetErrorMsg(
-            'Oops, this will not work on an Android Emulator. Try it on your device!',
-          );
-          return;
-        }
-
-        let { status } = await Location.requestForegroundPermissionsAsync();
-        if (status !== Location.PermissionStatus.GRANTED) {
-          locationSetErrorMsg('Permission to access location was denied');
-          return;
-        }
-
-        let currentLocation = await Location.getCurrentPositionAsync({});
-        setLocation(currentLocation);
-      } catch (error) {
-        if (error instanceof Error) {
-          locationSetErrorMsg(error.message);
-        } else {
-          locationSetErrorMsg('An unexpected error occurred');
-        }
-      }
-    })();
-  }, []);
-
-  useEffect(() => {
     const fetchWeatherData = async () => {
       if (location) {
         try {
@@ -87,9 +59,9 @@ export default function HomeScreen() {
           ]);
         } catch (error) {
           if (error instanceof Error) {
-            locationSetErrorMsg(error.message);
+            setLocationErrorMsg(error.message);
           } else {
-            locationSetErrorMsg(
+            setLocationErrorMsg(
               'An unexpected error occurred while fetching Aqi data',
             );
           }
@@ -102,7 +74,7 @@ export default function HomeScreen() {
 
   useEffect(() => {
     const fetchAiExampleQuestions = async () => {
-        await getAiExampleQuestions(5);
+      await getAiExampleQuestions(5);
     };
 
     fetchAiExampleQuestions();
@@ -110,7 +82,7 @@ export default function HomeScreen() {
 
   useEffect(() => {
     const fetchQuizTitles = async () => {
-        await getQuizTitles(5);
+      await getQuizTitles(5);
     };
 
     fetchQuizTitles();
@@ -118,7 +90,7 @@ export default function HomeScreen() {
 
   useEffect(() => {
     const fetchEcoTips = async () => {
-        await getEcoTips(5);
+      await getEcoTips(5);
     };
 
     fetchEcoTips();
@@ -127,6 +99,12 @@ export default function HomeScreen() {
   return (
     <ScrollView>
       <Header />
+      <View className="p-3">
+        <EnableCurrentLocation
+          setLocation={setLocation}
+          setLocationErrorMsg={setLocationErrorMsg}
+        />
+      </View>
       {/* AQI Component */}
       <View className="mt-5 items-center">
         <AQIComponent
@@ -140,14 +118,16 @@ export default function HomeScreen() {
       {/* Weather Data Section */}
       <View className="mt-5 p-5">
         <WeatherDataSlider
-          weatherData={weatherData?.["weather-data"] || null}
+          weatherData={weatherData?.['weather-data'] || null}
           loading={loadingWeatherData}
           error={errorWeatherDataMsg}
         />
       </View>
       {/* Air pollution signals Section */}
       <ChemicalElementsSlider
-        chemicalElementList={airQualityData?.['concentration-of-elements'] || null}
+        chemicalElementList={
+          airQualityData?.['concentration-of-elements'] || null
+        }
       />
       {/* Education Section */}
       <View>
