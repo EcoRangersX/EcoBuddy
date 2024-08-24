@@ -11,6 +11,7 @@ import { TextInput } from 'react-native-paper';
 import { useState, useEffect } from 'react';
 import { useAskAI } from '@/hooks/ai-assistant/useAskAI';
 import AssistantChatIcon from '@/components/ai-assistant/AssistantChatIcon';
+import AiResponseBox from '@/components/ai-assistant/AiResponseBox';
 
 interface Message {
   id: string;
@@ -69,10 +70,21 @@ export default function AiAssistantScreen() {
     );
   }
 
+  const response = `
+    Welcome to EcoBuddy AI! 🌍
+    Hello there! I'm your friendly AI assistant, here to help you explore the world of ecology. Whether you have questions about air quality, climate change, sustainable living, or anything else related to our environment, I'm here to provide answers and insights.
+    Feel free to ask me anything, like:
+    "What can I do to reduce my carbon footprint?"
+    "How does pollution affect marine life?"
+    "What are the benefits of using renewable energy?"
+    I’m also here to offer personalized eco tips, recommend articles, and even quiz you on your environmental knowledge. Let’s work together to make our planet a greener, healthier place!
+  `;
+
   return (
     <View className="flex-1">
       <Header />
       <AssistantChatIcon />
+      <AiResponseBox response={response} />
       <FlatList
         data={combinedList}
         renderItem={({ item }) =>
