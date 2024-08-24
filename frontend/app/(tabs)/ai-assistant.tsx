@@ -84,7 +84,7 @@ export default function AiAssistantScreen() {
     <View className="flex-1">
       <Header />
       <AssistantChatIcon />
-      <AiResponseBox response={response} />
+      <AiResponseBox response={response} loading={false} error={""} />
       <FlatList
         data={combinedList}
         renderItem={({ item }) =>
