@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { BASE_API_URL } from '@/constants/Urls';
 
 interface WeatherDataResponse {
-  'weather-data': { value: number; 'weather-element': string }[];
+  'weather-data': { value: number; 'weather-element': string, unit: string }[];
 }
 
 interface WeatherData {

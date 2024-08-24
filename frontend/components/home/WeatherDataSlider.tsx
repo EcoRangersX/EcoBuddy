@@ -10,7 +10,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import WeatherDataElement from '@/components/home/WeatherDataElement';
 
 interface WeatherDataSliderProps {
-  weatherData: { value: number; 'weather-element': string }[] | null;
+  weatherData: { value: number; 'weather-element': string, unit: string }[] | null;
   loading: boolean;
   error: string | null;
 }
@@ -88,8 +88,7 @@ export default function WeatherDataSlider({
             key={index}
             weatherElement={element['weather-element']}
             value={element.value}
-            // unit={element.unit}
-            unit={""}
+            unit={element.unit}
           />
         ))}
       </ScrollView>
