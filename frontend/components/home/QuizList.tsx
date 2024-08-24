@@ -43,7 +43,7 @@ const QuizList = ({
         </Text>
       </View>
       <View className="mt-12">
-        {items.map((item, index) => (
+        {items?.map((item, index) => (
           <View key={index} className="w-full py-2">
             <QuizItem title={item} textColor={elementTextColor} elementBgColor={elementBgColor} />
           </View>

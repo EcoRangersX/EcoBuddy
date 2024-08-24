@@ -3,7 +3,7 @@ import QuizList from './QuizList';
 
 interface EducationSectionProps {
   title: string;
-  items: string[];
+  items: string[] | null;
   elementTextColor?: string;
   elementBgColor?: string;
   titleSectionColor?: string;

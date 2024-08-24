@@ -10,7 +10,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import WeatherDataElement from '@/components/home/WeatherDataElement';
 
 interface WeatherDataSliderProps {
-  weatherData: { value: number; 'weather-element': string }[];
+  weatherData: { value: number; 'weather-element': string }[] | null;
   loading: boolean;
   error: string | null;
 }
