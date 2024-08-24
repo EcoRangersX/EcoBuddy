@@ -11,8 +11,6 @@ import capitalize from '@/utility/capitalizeWord';
 import {
   tempLevel,
   windLevel,
-  pollenLevel,
-  uvIndexLevel,
   pressureLevel,
   humidityLevel,
 } from '@/utility/weatherDataLevels';
@@ -21,8 +19,6 @@ import {
   windColors,
   pressureColors,
   humidityColors,
-  uvIndexColors,
-  pollenColors,
 } from '@/constants/Colors';
 
 export interface WeatherDataElementProps {
@@ -48,18 +44,19 @@ export default function WeatherDataElement({
 }: WeatherDataElementProps) {
   const elementIcon = (elementName: string) => {
     switch (elementName.toLowerCase()) {
-      case 'temp.':
+      case 'Temperature':
         return <TemperatureIcon />;
       case 'humidity':
         return <HumidityIcon />;
-      case 'pollen':
-        return <PollenIcon />;
       case 'wind':
         return <WindIcon />;
       case 'pressure':
         return <PressureIcon />;
-      case 'uv index':
-        return <UvIndexIcon />;
+      // We don't display display below data at the moment
+      // case 'pollen':
+      //   return <PollenIcon />;
+      // case 'uv index':
+      //   return <UvIndexIcon />;
       default:
         return <TemperatureIcon />;
     }
@@ -67,18 +64,19 @@ export default function WeatherDataElement({
 
   const weatherStatus = (value: number) => {
     switch (weatherElement.toLowerCase()) {
-      case 'temp.':
+      case 'temperature':
         return tempLevel(value);
-      case 'wind':
+      case 'wind-speed':
         return windLevel(value);
-      case 'pollen':
-        return pollenLevel(value);
-      case 'uv index':
-        return uvIndexLevel(value);
       case 'humidity':
         return humidityLevel(value);
       case 'pressure':
         return pressureLevel(value);
+      // We don't display display below data at the moment
+      // case 'pollen':
+      //   return pollenLevel(value);
+      // case 'uv index':
+      //   return uvIndexLevel(value);
       default:
         return 'moderate';
     }
@@ -88,17 +86,11 @@ export default function WeatherDataElement({
     const status = weatherStatus(value);
     let color = '';
     switch (weatherElement.toLowerCase()) {
-      case 'temp.':
+      case 'temperature':
         color = tempColors[status];
         break;
-      case 'wind':
+      case 'wind-speed':
         color = windColors[status];
-        break;
-      case 'pollen':
-        color = pollenColors[status];
-        break;
-      case 'uv index':
-        color = uvIndexColors[status];
         break;
       case 'humidity':
         color = humidityColors[status];
@@ -106,6 +98,12 @@ export default function WeatherDataElement({
       case 'pressure':
         color = pressureColors[status];
         break;
+      // case 'pollen':
+      //   color = pollenColors[status];
+      //   break;
+      // case 'uv index':
+      //   color = uvIndexColors[status];
+      //   break;
       default:
         color = '#2abb49';
         break;
