@@ -16,13 +16,13 @@ interface AIResponse {
  *   - `errorAiOutput`: An optional string containing the error message, if any, encountered while fetching the AI output.
  */
 export function useAskAI() {
-  const [loadingAiOutput, setLoadingAiOutput] = useState<boolean>(false);
-  const [errorAiOutput, setErrorAiOutput] = useState<string | null>(null);
+  const [loadingAiResponse, setLoadingAiResponse] = useState<boolean>(false);
+  const [errorAiResponseMsg, setErrorAiResponseMsg] = useState<string | null>(null);
   const [aiResponse, setAIResponse] = useState<AIResponse | null>(null);
 
   async function askAI(question: string) {
-    setLoadingAiOutput(true);
-    setErrorAiOutput(null);
+    setLoadingAiResponse(true);
+    setErrorAiResponseMsg(null);
     setAIResponse(null);
 
     try {
@@ -32,11 +32,11 @@ export function useAskAI() {
       setAIResponse(response.data);
     } catch (err: any) {
       console.log(`Error fetching the AI output: ${err.message}`)
-      setErrorAiOutput(err.message);
+      setErrorAiResponseMsg(err.message);
     } finally {
-      setLoadingAiOutput(false);
+      setLoadingAiResponse(false);
     }
   }
 
-  return { askAI, aiResponse, loadingAiOutput, errorAiOutput };
+  return { askAI, aiResponse, loadingAiResponse, errorAiResponseMsg };
 }

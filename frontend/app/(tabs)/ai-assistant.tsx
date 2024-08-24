@@ -6,10 +6,11 @@ import {
   Text,
 } from 'react-native';
 import Header from '@/components/Header';
-import SendIcon from '@/components/icons/SendIcon';
+import SendIcon from '@/components/icons/AiAssistant';
 import { TextInput } from 'react-native-paper';
 import { useState, useEffect } from 'react';
 import { useAskAI } from '@/hooks/ai-assistant/useAskAI';
+import AssistantChatIcon from '@/components/ai-assistant/AssistantChatIcon';
 
 interface Message {
   id: string;
@@ -22,12 +23,12 @@ interface aiResponse {
 }
 
 export default function AiAssistantScreen() {
-  const [prompt, setPrompt] = useState<string>('');
+  const [question, setQuestion] = useState<string>('');
   const [messages, setMessages] = useState<Message[]>([]);
   const [aiResponses, setAiResponses] = useState<aiResponse[]>([]);
   const [combinedList, setCombinedList] = useState<(Message | Response)[]>([]);
 
-  const { askAI, aiResponse, error, loading } = useAskAI();
+  const { askAI, aiResponse, loadingAiResponse, errorAiResponseMsg } = useAskAI();
 
   useEffect(() => {
     const newCombinedList: (Message | Response)[] = [];
@@ -51,19 +52,19 @@ export default function AiAssistantScreen() {
   }, [aiResponse]);
 
   const handleSubmit = async () => {
-    if (prompt) {
-      const newMessage = { id: Date.now().toString(), prompt: prompt };
+    if (question) {
+      const newMessage = { id: Date.now().toString(), prompt: question };
       setMessages([...messages, newMessage]);
-      setPrompt('');
+      setQuestion('');
       Keyboard.dismiss();
-      await askAI(prompt);
+      await askAI(question);
     }
   };
 
-  if (error) {
+  if (errorAiResponseMsg) {
     return (
       <View className="flex-1 justify-center items-center">
-        <Text className="text-red-500">{error}</Text>
+        <Text className="text-red-500">{errorAiResponseMsg}</Text>
       </View>
     );
   }
@@ -71,6 +72,7 @@ export default function AiAssistantScreen() {
   return (
     <View className="flex-1">
       <Header />
+      <AssistantChatIcon />
       <FlatList
         data={combinedList}
         renderItem={({ item }) =>
@@ -81,7 +83,7 @@ export default function AiAssistantScreen() {
           ) : (
             <View className="mb-2 p-3 bg-green-200 rounded">
               <Text className="text-lg">
-                {loading ? 'Loading ...' : item.response}
+                {loadingAiResponse ? 'Loading ...' : item.response}
               </Text>
             </View>
           )
@@ -94,8 +96,8 @@ export default function AiAssistantScreen() {
             placeholder="Ask me anything about ecology..."
             mode="outlined"
             multiline={true}
-            value={prompt}
-            onChangeText={setPrompt}
+            value={question}
+            onChangeText={setQuestion}
             theme={{ colors: { primary: 'green' } }}
             className="w-full max-h-48 p-1"
           />
