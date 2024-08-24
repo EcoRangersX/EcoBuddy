@@ -1,4 +1,5 @@
 import { View, TouchableOpacity, Text, Platform } from 'react-native';
+import { LocationIcon } from './icons/HomeIcons';
 import * as Device from 'expo-device';
 import * as Location from 'expo-location';
 
@@ -40,9 +41,10 @@ const EnableCurrentLocation = ({
   }
 
   return (
-    <View className="bg-white p-5 shadow-md shadow-black">
-      <TouchableOpacity onPress={requestLocationPermissions}>
-        <Text className="">Enable Location</Text>
+    <View className="bg-white p-5 rounded-lg shadow-md shadow-black">
+      <TouchableOpacity onPress={requestLocationPermissions} className='flex flex-row items-center space-x-4'>
+        <LocationIcon size={30} />
+        <Text className="text-base">Enable Location</Text>
       </TouchableOpacity>
     </View>
   );
