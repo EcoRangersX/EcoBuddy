@@ -26,8 +26,8 @@ export function useAskAI() {
     setAIResponse(null);
 
     try {
-      const response = await axios.post(`${BASE_API_URL}/api/ai_assistant`, {
-        "user-input": question,
+      const response = await axios.get(`${BASE_API_URL}/api/ai/ai_assistant`, {
+        params: {"user-input": question},
       });
       setAIResponse(response.data);
     } catch (err: any) {
