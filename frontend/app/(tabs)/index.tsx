@@ -14,6 +14,7 @@ import { useWeatherData } from '@/hooks/home/useWeatherData';
 import { useEffect, useState } from 'react';
 import Location from 'expo-location';
 import EnableCurrentLocation from '@/components/EnableCurrentLocation';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function HomeScreen() {
   const [location, setLocation] = useState<Location.LocationObject | null>(
@@ -42,6 +43,41 @@ export default function HomeScreen() {
     loadingArticleTitles,
     errorArticleTitleMsg,
   } = useArticleTitles();
+
+  // TODO: Implement AsyncStorage for storing and loading data 
+  // useEffect(() => {
+  //   const loadData = async () => {
+  //     try {
+  //       await AsyncStorage.getItem('appData');
+  //     } catch (error) {
+  //       console.error('Failed to load location from AsyncStorage', error);
+  //     }
+  //   };
+
+  //   loadData();
+  //   console.log(`The loaded data is: ${loadData}`);
+  // }, []);
+
+  // useEffect(() => {
+  //   const saveData = async () => {
+  //     try {
+  //       const dataToStore = {
+  //         location,
+  //         AiExampleQuestions,
+  //         quizTitles,
+  //         ecoTips,
+  //         articleTitles,
+  //         weatherData,
+  //         airQualityData,
+  //       };
+  //       await AsyncStorage.setItem('appData', JSON.stringify(dataToStore));
+  //     } catch (error) {
+  //       console.error('Failed to save location to AsyncStorage', error);
+  //     }
+  //   };
+
+  //   saveData();
+  // }, [location]);
 
   useEffect(() => {
     const fetchWeatherData = async () => {
