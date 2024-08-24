@@ -4,15 +4,12 @@ import Header from '@/components/Header';
 import WeatherDataSlider from '@/components/home/WeatherDataSlider';
 import ChemicalElementsSlider from '@/components/home/ChemicalElementsSlider';
 import EducationSection from '@/components/home/EducationSection';
-import {
-  articleTitlesStatic,
-  ecoTipsStatic,
-} from '@/constants/StaticData';
 import EcoTipList from '@/components/home/EcoTipList';
 import { useAqiData } from '@/hooks/home/useAqiData';
 import { useAiExampleQuestions } from '@/hooks/home/useAiExampleQuestions';
 import { useQuizTitles } from '@/hooks/home/useQuizTitles';
 import { useEcoTips } from '@/hooks/home/useEcoTips';
+import { useArticleTitles } from '@/hooks/home/useArticleTitles';
 import { useWeatherData } from '@/hooks/home/useWeatherData';
 import { useState, useEffect } from 'react';
 import * as Device from 'expo-device';
@@ -22,7 +19,7 @@ export default function HomeScreen() {
   const [location, setLocation] = useState<Location.LocationObject | null>(
     null,
   );
-  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [locationErrorMsg, locationSetErrorMsg] = useState<string | null>(null);
   const { getAqiData, airQualityData, loadingAqi, errorAqiMsg } = useAqiData();
   const {
     getAiExampleQuestions,
@@ -39,12 +36,18 @@ export default function HomeScreen() {
     loadingWeatherData,
     errorWeatherDataMsg,
   } = useWeatherData();
+  const {
+    getArticleTitles,
+    articleTitles,
+    loadingArticleTitles,
+    errorArticleTitleMsg,
+  } = useArticleTitles();
 
   useEffect(() => {
     (async () => {
       try {
         if (Platform.OS === 'android' && !Device.isDevice) {
-          setErrorMsg(
+          locationSetErrorMsg(
             'Oops, this will not work on an Android Emulator. Try it on your device!',
           );
           return;
@@ -52,7 +55,7 @@ export default function HomeScreen() {
 
         let { status } = await Location.requestForegroundPermissionsAsync();
         if (status !== Location.PermissionStatus.GRANTED) {
-          setErrorMsg('Permission to access location was denied');
+          locationSetErrorMsg('Permission to access location was denied');
           return;
         }
 
@@ -60,9 +63,9 @@ export default function HomeScreen() {
         setLocation(currentLocation);
       } catch (error) {
         if (error instanceof Error) {
-          setErrorMsg(error.message);
+          locationSetErrorMsg(error.message);
         } else {
-          setErrorMsg('An unexpected error occurred');
+          locationSetErrorMsg('An unexpected error occurred');
         }
       }
     })();
@@ -84,9 +87,11 @@ export default function HomeScreen() {
           ]);
         } catch (error) {
           if (error instanceof Error) {
-            setErrorMsg(error.message);
+            locationSetErrorMsg(error.message);
           } else {
-            setErrorMsg('An unexpected error occurred while fetching Aqi data');
+            locationSetErrorMsg(
+              'An unexpected error occurred while fetching Aqi data',
+            );
           }
         }
       }
@@ -97,17 +102,7 @@ export default function HomeScreen() {
 
   useEffect(() => {
     const fetchAiExampleQuestions = async () => {
-      try {
         await getAiExampleQuestions(5);
-      } catch (error: any) {
-        if (error instanceof Error) {
-          setErrorMsg(error.message);
-        } else {
-          setErrorMsg(
-            'An unexpected error occurred while fetching AI example questions',
-          );
-        }
-      }
     };
 
     fetchAiExampleQuestions();
@@ -115,17 +110,7 @@ export default function HomeScreen() {
 
   useEffect(() => {
     const fetchQuizTitles = async () => {
-      try {
         await getQuizTitles(5);
-      } catch (error: any) {
-        if (error instanceof Error) {
-          setErrorMsg(error.message);
-        } else {
-          setErrorMsg(
-            'An unexpected error occurred while fetching quiz titles',
-          );
-        }
-      }
     };
 
     fetchQuizTitles();
@@ -133,15 +118,7 @@ export default function HomeScreen() {
 
   useEffect(() => {
     const fetchEcoTips = async () => {
-      try {
         await getEcoTips(5);
-      } catch (error: any) {
-        if (error instanceof Error) {
-          setErrorMsg(error.message);
-        } else {
-          setErrorMsg('An unexpected error occurred while fetching eco tips');
-        }
-      }
     };
 
     fetchEcoTips();
@@ -162,46 +139,43 @@ export default function HomeScreen() {
       </View>
       {/* Weather Data Section */}
       <View className="mt-5 p-5">
-        {weatherData && (
-          <WeatherDataSlider
-            weatherData={weatherData['weather-data']}
-            loading={loadingWeatherData}
-            error={errorWeatherDataMsg}
-          />
-        )}
+        <WeatherDataSlider
+          weatherData={weatherData?.["weather-data"] || null}
+          loading={loadingWeatherData}
+          error={errorWeatherDataMsg}
+        />
       </View>
       {/* Air pollution signals Section */}
-      {weatherData && (
-        <ChemicalElementsSlider
-          chemicalElementList={airQualityData?.['concentration-of-elements']}
-        />
-      )}
+      <ChemicalElementsSlider
+        chemicalElementList={airQualityData?.['concentration-of-elements'] || null}
+      />
       {/* Education Section */}
       <View>
         <Text className="text-left text-xl ml-5 font-bold">Education</Text>
         <View className="flex flex-col gap-5">
           <EducationSection
             title="Quiz"
-            items={quizTitles?.['quiz-titles'] || []}
+            items={quizTitles?.['quiz-titles'] || null}
             titleSectionColor="#57d272"
             loading={loadingQuizTitles}
-            error={errorQuizTitleMsg || ''}
+            errorMsg={errorQuizTitleMsg || ''}
           />
           <EducationSection
             title="Ai Questions"
-            items={AiExampleQuestions?.questions || []}
+            items={AiExampleQuestions?.questions || null}
             elementBgColor="#d2f5fb"
             titleSectionColor="#49b6c8"
             bgColor="#c1f1fa"
             loading={loadingAiExampleQuestions}
-            error={errorAiExampleQuestionsMsg || ''}
+            errorMsg={errorAiExampleQuestionsMsg || ''}
           />
+          {/* Display Article Titles only if articleTitles data is available */}
           <EducationSection
             title="Articles"
-            items={articleTitlesStatic}
+            items={articleTitles?.article_titles || null}
             titleSectionColor="#57d272"
-            loading={false}
-            error={''}
+            loading={loadingArticleTitles}
+            errorMsg={errorArticleTitleMsg || ''}
           />
         </View>
       </View>
@@ -210,7 +184,11 @@ export default function HomeScreen() {
         <Text className="text-left text-xl ml-5 font-bold">
           Eco tips of the day
         </Text>
-        <EcoTipList ecoTips={ecoTipsStatic} />
+        <EcoTipList
+          ecoTips={ecoTips?.['eco-tips'] || null}
+          loading={loadingEcoTips}
+          errorMsg={errorEcoTipsMsg}
+        />
       </View>
     </ScrollView>
   );
