@@ -18,7 +18,7 @@ class Quiz():
 
     def insert_into_database(self):
         self.cursor.execute(
-            """INSERT INTO quizes VALUES(
+            """INSERT INTO quizes (title,quiz) VALUES(
             :title,
             :quiz
             )

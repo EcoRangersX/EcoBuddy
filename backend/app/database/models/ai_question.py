@@ -8,7 +8,7 @@ class Ai_question():
 
     def insert_into_database(self):
         self.cursor.execute(
-            """INSERT INTO ai_questions VALUES(
+            """INSERT INTO ai_questions (question) VALUES(
             :question
             )
             """,

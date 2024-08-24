@@ -12,7 +12,7 @@ class Eco_tip():
 
 
     def insert_into_database(self):
-        self.cursor.execute("INSERT INTO eco_tips VALUES(:title, :description)",
+        self.cursor.execute("INSERT INTO eco_tips (title,description) VALUES(:title, :description)",
                        {
                            "title": self.title,
                            "description": self.description

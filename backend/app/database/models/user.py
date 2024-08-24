@@ -19,7 +19,7 @@ class User:
 
     def insert_to_database(self) -> bool:
         try:
-            self.cursor.execute("INSERT INTO users VALUES(:name, :email, :password)",{
+            self.cursor.execute("INSERT INTO users (name,email,password) VALUES( :name, :email, :password)",{
                                                                                 'name': self.name,
                                                                                 'email': self.email,
                                                                                 'password': self.password

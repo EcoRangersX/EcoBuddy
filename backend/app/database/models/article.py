@@ -19,7 +19,7 @@ class Article:
 
     def insert_to_database(self) -> bool:
         try:
-            self.cursor.execute("INSERT INTO articles VALUES(:title, :link, :img)",{
+            self.cursor.execute("INSERT INTO articles (title,link,img) VALUES(:title, :link, :img)",{
                                                                                 'title': self.title,
                                                                                 'link': self.link,
                                                                                 'img': self.img
