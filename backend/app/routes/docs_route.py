@@ -68,7 +68,7 @@ def endpoints():
             {
                 "aqi": 
                 {
-                    "value": "float",
+                    "value": "int",
                     "status": "str"
                 },
                 "city": "str",
@@ -115,7 +115,7 @@ def endpoints():
                 },
                 {
                     "weather-element": "wind-speed",
-                    "value": "float | value in km/h"
+                    "value": "int | value in km/h"
                 }
             ]
         }

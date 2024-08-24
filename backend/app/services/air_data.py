@@ -37,6 +37,7 @@ class Air_data:
                 "chem-element": str(name),
                 "value": int(value),
                 'bg-color': colors[name]
+                
                 }
             
             formatted_concentrations.append(cool_dict)
@@ -48,7 +49,7 @@ class Air_data:
 
         aqi_value = max(no2_aqi,pm2_5_aqi,pm10_aqi,co_aqi)
         aqi_result = {
-            "value": aqi_value,
+            "value": int(aqi_value),
             "status": self.get_aqi_status(aqi_value)
         }
 
@@ -74,10 +75,10 @@ class Air_data:
         humidity = response_json['main']['humidity']
         
         response = [
-            {"weather-element": "pressure","value": pressure},
-            {"weather-element": "humidity","value": humidity},
-            {"weather-element": "temperature","value": temp},
-            {"weather-element": "wind-speed","value": wind_speed}
+            {"weather-element": "pressure","value": pressure,"unit": "hPa"},
+            {"weather-element": "humidity","value": humidity,"unit": "%"},
+            {"weather-element": "temperature","value": temp, "unit": "C"},
+            {"weather-element": "wind-speed","value": int(wind_speed),"unit": "km/h"}
             ]
 
         return response
