@@ -103,19 +103,23 @@ def endpoints():
             [
                 {
                     "weather-element": "pressure",
-                    "value": "int | value in hPa"
+                    "value": "int | value in hPa",
+                    "unit": "str"
                 },
                 {
                     "weather-element": "humidity",
-                    "value": "int | value in %"
+                    "value": "int | value in %",
+                    "unit": "str"
                 },
                 {
                     "weather-element": "temperature",
-                    "value": "float | value in celcius"
+                    "value": "float | value in celcius",
+                    "unit": "str"
                 },
                 {
                     "weather-element": "wind-speed",
-                    "value": "int | value in km/h"
+                    "value": "int | value in km/h",
+                    "unit": "str"
                 }
             ]
         }
