@@ -2,6 +2,8 @@ import requests
 import os
 from dotenv import load_dotenv
 from app.globals import globals
+from app.cashe.models import Pollution
+from app.cashe.models import Weather
 
 class Air_data:
     def __init__(self):
@@ -9,12 +11,14 @@ class Air_data:
         self.api_key = os.environ.get("OPEN_WEATHER_API_KEY")
  
     def get_air_quality_data(self, latitude: float, longitude: float):
+        pollution_cashe = Pollution(latitude,longitude)
+        
+        city = self.get_readable_location(latitude=latitude,longitude=longitude)
+
         response = requests.get(
             url=f"http://api.openweathermap.org/data/2.5/air_pollution?lat={latitude}&lon={longitude}&appid={self.api_key}"
         )
         response_json = response.json()
-
-        city = self.get_readable_location(latitude=latitude,longitude=longitude)
 
         colors = {
             'co': '#74c6d4',
@@ -53,9 +57,6 @@ class Air_data:
             "status": self.get_aqi_status(aqi_value)
         }
 
-        
-
-            
         return {
             "concentration-of-elements": formatted_concentrations,
             'city': city['city'],
@@ -85,6 +86,8 @@ class Air_data:
 
     #functions not related to routes
 
+    def check_for_cashe(self,type: str,latitude: float,longitude: float): pass
+
     def get_aqi_value(self,concentration: int,element: str) -> dict:
         aqi_breakpoints: dict = globals['Aqi_breakpoints'][element]
 
@@ -98,7 +101,6 @@ class Air_data:
             aqi = ((high_aqi-low_aqi)/(high_breakpoint-low_breakpoint))*(concentration-low_breakpoint)+low_aqi
             return aqi
      
-
     def get_readable_location(self,latitude: float,longitude: float) -> dict:
         response = requests.get(
             url=f'http://api.openweathermap.org/geo/1.0/reverse?lat={latitude}&lon={longitude}&limit={1}&appid={self.api_key}'
