@@ -44,6 +44,7 @@ frontend
     ├──app/
     ├──tests/
     ├──adding_assets/
+    ├──images/
     ├──.gitignore
     ├──README.md
     ├──requirements.txt
