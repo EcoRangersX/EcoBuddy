@@ -5,7 +5,8 @@ import Header from '@/components/Header';
 import AiResponse from '@/components/ai-assistant/AiResponse';
 import UserQuestionBox from '@/components/ai-assistant/UserQuestionBox';
 import QuestionInput from '@/components/ai-assistant/QuestionInput';
-import WelcomeMessage from '@/components/ai-assistant/WelcomeMessage';
+import HeaderWelcomeMessage from '@/components/ai-assistant/HeaderWelcomeMessage';
+import AiUsageWarning from '@/components/ai-assistant/AiUsageWarning';
 
 interface QaItem {
   id: string;
@@ -41,7 +42,7 @@ export default function AiAssistantScreen() {
   };
 
   const renderQaItem = useCallback(
-    ({ item, index }: {item: QaItem, index: number}) => (
+    ({ item, index }: { item: QaItem; index: number }) => (
       <View>
         <UserQuestionBox question={item.question} />
         {/* Showing loading state only for the last aiResponse in qaList */}
@@ -59,16 +60,15 @@ export default function AiAssistantScreen() {
     [qaList, loadingAiResponse, errorAiResponseMsg],
   );
 
-const getItemLayout = (_: any, index: number) => ({
-  length: 100,
-  offset: 100 * index,
-  index,
-}); // Each item has a fixed height of 100 units
+  const getItemLayout = (_: any, index: number) => ({
+    length: 100,
+    offset: 100 * index,
+    index,
+  }); // Each item has a fixed height of 100 units
 
   return (
     <View className="flex-1">
       <Header />
-      <WelcomeMessage />
       {/* Optimized FlatList for displaying QaList */}
       <FlatList
         data={qaList}
@@ -78,12 +78,14 @@ const getItemLayout = (_: any, index: number) => ({
         maxToRenderPerBatch={10} // Renders 10 items per batch
         windowSize={5} // Keep 5 screens worth of content in memory
         getItemLayout={getItemLayout}
+        ListHeaderComponent={<HeaderWelcomeMessage />}
       />
       <QuestionInput
         question={question}
         setQuestion={setQuestion}
         handleSubmit={submitQuestion}
       />
+      <AiUsageWarning />
     </View>
   );
 }
