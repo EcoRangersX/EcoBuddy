@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import QuizResult from './QuizResult';
+import QuizResult from './quizzes/QuizResult';
 import { QuizResultProps } from '@/types/quizzes';
 
 interface TakenQuizListProps {
@@ -15,7 +15,7 @@ interface TakenQuizListProps {
  */
 const TakenQuizzesList = ({ takenQuizzes }: TakenQuizListProps) => {
   return (
-    <View className="bg-white p-4 rounded-[30px] border-2 border-[#4ac965]">
+    <View className="bg-white p-4 rounded-[30px] border-2 border-[#4ac965] shadow-sm shadow-black">
       {takenQuizzes.map((takenQuiz, index) => (
         <View key={index}>
           <QuizResult

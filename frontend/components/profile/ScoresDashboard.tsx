@@ -6,8 +6,8 @@ interface ScoresDashboardProps {
   articleScores: number;
   maxScore: number;
   score: number;
-  size?: number;
-  width?: number;
+  size: number;
+  width: number;
 }
 
 const ScoresDashboard = ({
@@ -15,11 +15,11 @@ const ScoresDashboard = ({
   articleScores,
   maxScore,
   score,
-  size = 150,
-  width = 15,
+  size,
+  width,
 }: ScoresDashboardProps) => {
   return (
-    <View className="flex flex-row py-3 justify-around bg-white rounded-md shadow-md shadow-black">
+    <View className="flex flex-row justify-between p-2 bg-white border-2 border-[#4ac965] rounded-md shadow-sm shadow-black">
       <ScoreCircle
         maxScore={maxScore}
         score={score}
