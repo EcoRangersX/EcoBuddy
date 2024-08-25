@@ -4,7 +4,7 @@ import yaml
 class Weather():
     def __init__(self,latitude: float,longitude: float):
         self.cursor = conn.cursor()
-        self.latitude = round(latitude,2)
+        self.latitude = round(latitude+0.04) 
         self.longitude = round(longitude,2)
         self.data: dict = None
 

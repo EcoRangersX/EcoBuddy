@@ -11,9 +11,11 @@ class Air_data:
         self.api_key = os.environ.get("OPEN_WEATHER_API_KEY")
  
     def get_air_quality_data(self, latitude: float, longitude: float):
-        pollution_cashe = Pollution(latitude,longitude)
-        
         city = self.get_readable_location(latitude=latitude,longitude=longitude)
+
+        # pollution_cashe = Pollution(latitude,longitude)
+        # if pollution_cashe.check_cashe():
+        #     return pollution_cashe.get_cashe()
 
         response = requests.get(
             url=f"http://api.openweathermap.org/data/2.5/air_pollution?lat={latitude}&lon={longitude}&appid={self.api_key}"
@@ -50,8 +52,10 @@ class Air_data:
         pm2_5_aqi = self.get_aqi_value(concentration=concentrations['pm2_5'],element='pm2_5')
         pm10_aqi = self.get_aqi_value(concentration=concentrations['pm10'],element='pm10')
         co_aqi = self.get_aqi_value(concentration=concentrations['co'],element='co')
+        o3_aqi = self.get_aqi_value(concentration=concentrations['o3'],element='o3')
+        so2_aqi = self.get_aqi_value(concentration=concentrations['so2'],element='so2')
 
-        aqi_value = max(no2_aqi,pm2_5_aqi,pm10_aqi,co_aqi)
+        aqi_value = max(no2_aqi,pm2_5_aqi,pm10_aqi,co_aqi,o3_aqi,so2_aqi)
         aqi_result = {
             "value": int(aqi_value),
             "status": self.get_aqi_status(aqi_value)
@@ -92,7 +96,7 @@ class Air_data:
         aqi_breakpoints: dict = globals['Aqi_breakpoints'][element]
 
         for high_aqi in aqi_breakpoints.keys():
-            if concentration > high_aqi:
+            if concentration > aqi_breakpoints[high_aqi]['high_breakpoint']:
                 continue
             low_aqi = aqi_breakpoints[high_aqi]['low_aqi']
             low_breakpoint = aqi_breakpoints[high_aqi]['low_breakpoint']

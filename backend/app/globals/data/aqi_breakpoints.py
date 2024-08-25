@@ -127,6 +127,70 @@ aqi_breakpoints = {
             "low_breakpoint": 225.5,
             "high_breakpoint": 325.4
         }
+    },
+    "o3": {
+        50: {
+            "low_aqi": 0,
+            "low_breakpoint": 0.0,
+            "high_breakpoint": 54.0
+        },
+        100: {
+            "low_aqi": 51,
+            "low_breakpoint": 55.0,
+            "high_breakpoint": 70.0
+        },
+        150: {
+            "low_aqi": 101,
+            "low_breakpoint": 71.0,
+            "high_breakpoint": 85.0
+        },
+        200: {
+            "low_aqi": 151,
+            "low_breakpoint": 86.0,
+            "high_breakpoint": 105.0
+        },
+        300: {
+            "low_aqi": 201,
+            "low_breakpoint": 106.0,
+            "high_breakpoint": 200.0
+        },
+        500: {
+            "low_aqi": 301,
+            "low_breakpoint": 201.0,
+            "high_breakpoint": 400.0
+        }
+    },
+    "so2": {
+        50: {
+            "low_aqi": 0,
+            "low_breakpoint": 0.0,
+            "high_breakpoint": 35.0
+        },
+        100: {
+            "low_aqi": 51,
+            "low_breakpoint": 36.0,
+            "high_breakpoint": 75.0
+        },
+        150: {
+            "low_aqi": 101,
+            "low_breakpoint": 76.0,
+            "high_breakpoint": 185.0
+        },
+        200: {
+            "low_aqi": 151,
+            "low_breakpoint": 186.0,
+            "high_breakpoint": 304.0
+        },
+        300: {
+            "low_aqi": 201,
+            "low_breakpoint": 305.0,
+            "high_breakpoint": 604.0
+        },
+        500: {
+            "low_aqi": 301,
+            "low_breakpoint": 605.0,
+            "high_breakpoint": 1004.0
+        }
     }
 }
 

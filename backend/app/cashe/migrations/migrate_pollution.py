@@ -4,7 +4,7 @@ class Migrate_pollution():
         self.cursor = conn.cursor()
 
         self.cursor.execute('''CREATE TABLE IF NOT EXISTS pollution_cashe(
-                            latitude REAL, 
-                            longitude REAL, 
+                            latitude TEXT, 
+                            longitude TEXT, 
                             data TEXT)''')
         conn.commit()
