@@ -62,7 +62,9 @@ const AQIComponent = ({
                 fill={value}
                 tintColor="#3dbcab"
                 backgroundColor="#fff"
-                lineCap="round">
+                lineCap="round"
+                rotation={0}
+                >
                 {() => (
                   <View className="flex flex-col">
                     <Text className="text-white text-4xl self-center">
