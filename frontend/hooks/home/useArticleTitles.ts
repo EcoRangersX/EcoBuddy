@@ -38,7 +38,7 @@ export function useArticleTitles() {
       }
     } catch (err: any) {
       console.error(`Error fetching article titles: ${err}`);
-      setErrorArticleTitleMsg(err);
+      setErrorArticleTitleMsg("An error occurred while fetching article titles.");
     } finally {
       setLoadingArticleTitles(false);
     }

@@ -48,8 +48,8 @@ export function useAqiData() {
         throw new Error('Error fetching air quality data');
       }
     } catch (err: any) {
-      console.log(`Error fetching Aqi Data: ${err}`);
-      setErrorAqiMsg(err.message);
+      console.error(`Error fetching Aqi Data: ${err}`);
+      setErrorAqiMsg("An error occurred while fetching AQI data.");
     } finally {
       setLoadingAqi(false);
     }
