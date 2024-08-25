@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-import { StreakIcon } from '../icons/QuizzesIcons';
+import { StreakIcon } from './icons/QuizzesIcons';
 
 export interface QuizStreakProps {
   streak: number;
@@ -15,7 +15,7 @@ export interface QuizStreakProps {
  * @param {number} props.bestStreak - The best personal streak.
  * @returns {JSX.Element} The rendered component.
  */
-const QuizStreak = ({ streak, bestStreak  }: QuizStreakProps) => {
+const StreakDashboard = ({ streak, bestStreak  }: QuizStreakProps) => {
   return (
     <View className="bg-white flex-row items-center justify-around rounded-xl p-2 border-2 border-[#4ac965]">
       <View className='items-center'>
@@ -37,4 +37,4 @@ const QuizStreak = ({ streak, bestStreak  }: QuizStreakProps) => {
   );
 };
 
-export default QuizStreak;
+export default StreakDashboard;

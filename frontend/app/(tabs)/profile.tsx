@@ -1,6 +1,8 @@
 import { ScrollView, View } from 'react-native';
 import Header from '@/components/Header';
 import ProfileHeader from '@/components/profile/ProfileHeader';
+import StreakDashboard from '@/components/StreakDashboard';
+import ScoreCircle from '@/components/profile/ScoreCircle';
 
 export default function ProfileScreen() {
   const profile_image_url =
@@ -17,6 +19,10 @@ export default function ProfileScreen() {
           profile_image_url={profile_image_url}
         />
       </View>
+      <View className="p-3">
+        <StreakDashboard streak={1} bestStreak={11} />
+      </View>
+      <ScoreCircle size={150} width={15} score={1454} maxScore={10000} />
     </ScrollView>
   );
 }

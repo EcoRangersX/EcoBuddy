@@ -2,9 +2,7 @@ import { ScrollView, View } from 'react-native';
 import Header from '@/components/Header';
 import TestKnowledgeSection from '@/components/quizzes/TestKnowledgeSection';
 import QuizOfTheDaySection from '@/components/quizzes/QuizOfTheDaySection';
-import YourScoresSection from '@/components/quizzes/YourScoresSection';
-import { quizzesStatic, quizOfTheDayStatic, takenQuizzesStatic, leaderboardUsersStatic } from '@/constants/StaticData';
-import LeaderbordSection from '@/components/LeaderboardSection';
+import { quizzesStatic, quizOfTheDayStatic } from '@/constants/StaticData';
 
 export default function QuizzesScreen() {
   return (
@@ -20,12 +18,6 @@ export default function QuizzesScreen() {
           questionsCount={quizOfTheDayStatic.questionsCount}
         />
       </View>
-      <YourScoresSection
-        streak={1}
-        bestStreak={11}
-        takenQuizzes={takenQuizzesStatic}
-      />
-      <LeaderbordSection users={leaderboardUsersStatic} />
     </ScrollView>
   );
 }
