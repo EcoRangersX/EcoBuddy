@@ -17,7 +17,7 @@ const ScoreCircle = ({
   const filledPercentage = (score / maxScore) * 100
 
   return (
-    <View>
+    <View className='bg-white rounded-full shadow-lg shadow-black'>
       <AnimatedCircularProgress
         size={size}
         width={width}
@@ -25,10 +25,12 @@ const ScoreCircle = ({
         tintColor="#4bce67"
         backgroundColor="#ffffff"
         rotation={0}
-        lineCap='round'>
+        lineCap='round'
+        // style={styles.shadowContainer}
+        >
         {() => (
           <View className="flex items-center">
-            <Text className="text-2xl font-semibold">{score}</Text>
+            <Text className="text-xl font-semibold">{score}</Text>
             <Text className='text-xs'>Score</Text>
           </View>
         )}
