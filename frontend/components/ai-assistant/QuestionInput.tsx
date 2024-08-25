@@ -11,7 +11,7 @@ interface QuestionInputProps {
 const QuestionInput = ({ question, setQuestion, handleSubmit }: QuestionInputProps) => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View className="justify-center px-10 py-3  flex-row items-center">
+      <View className="justify-center px-10 flex-row items-center">
         <TextInput
           placeholder="Ask me anything about ecology..."
           mode="outlined"
