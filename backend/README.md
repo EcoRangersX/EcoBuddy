@@ -18,7 +18,7 @@ Navigate to backend directory: `cd backend`
 
 Use `python3 -m venv venv` to  create a virtual environment named venv.
 
-Check if folder `env/bin` looks like this:
+Check if folder `venv/bin` looks like this:
 
 ![Alt text](images/venv_structure.png)
 
