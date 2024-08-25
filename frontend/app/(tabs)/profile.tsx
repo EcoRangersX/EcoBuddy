@@ -1,8 +1,8 @@
 import { ScrollView, View } from 'react-native';
 import Header from '@/components/Header';
 import ProfileHeader from '@/components/profile/ProfileHeader';
-import StreakDashboard from '@/components/StreakDashboard';
-import ScoresDashboard from '@/components/profile/ScoresDashboard';
+import YourAchievementsSection from '@/components/YourAchievementsSection';
+import { takenQuizzesStatic } from '@/constants/StaticData';
 
 export default function ProfileScreen() {
   const profile_image_url =
@@ -12,6 +12,7 @@ export default function ProfileScreen() {
     <ScrollView>
       <Header />
       <View className="p-3">
+        {/* TODO: Replace static data with dynamic data once hook is ready */}
         <ProfileHeader
           username="jonsd32"
           fullName="John Doe"
@@ -19,12 +20,16 @@ export default function ProfileScreen() {
           profile_image_url={profile_image_url}
         />
       </View>
-      <View className="p-3">
-        <StreakDashboard streak={1} bestStreak={11} />
-      </View>
-      <View className='p-3'>
-        <ScoresDashboard maxScore={10000} size={130} width={10} score={3125} quizScores={2144} articleScores={981} />
-      </View>
+      {/* TODO: Replace static data with dynamic data once hook is ready */}
+      <YourAchievementsSection
+        score={3455}
+        maxScore={10000}
+        articleScore={1522}
+        quizScore={1933}
+        bestStreak={11}
+        streak={2}
+        takenQuizzes={takenQuizzesStatic}
+      />
     </ScrollView>
   );
 }
