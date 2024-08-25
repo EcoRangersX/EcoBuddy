@@ -1,5 +1,5 @@
 import { ScrollView, View } from "react-native";
-import LeaderboardUserList from "@/components/LeaderboardUserList";
+import LeaderboardUserList from "@/components/leaderboard/LeaderboardUserList";
 import YourScoresSection from '@/components/quizzes/YourScoresSection';
 import { takenQuizzesStatic, leaderboardUsersStatic } from "@/constants/StaticData";
 
