@@ -2,6 +2,8 @@ import requests
 import os
 from dotenv import load_dotenv
 from app.globals import globals
+from app.cashe.models import Pollution
+from app.cashe.models import Weather
 
 class Air_data:
     def __init__(self):
@@ -9,12 +11,24 @@ class Air_data:
         self.api_key = os.environ.get("OPEN_WEATHER_API_KEY")
  
     def get_air_quality_data(self, latitude: float, longitude: float):
+        city = self.get_readable_location(latitude=latitude,longitude=longitude)
+
+        pollution_cashe = Pollution(latitude=latitude,longitude=longitude)
+        if pollution_cashe.check_cashe():
+            cashe_data = pollution_cashe.get_cashe()
+            return {
+                "concentration-of-elements": cashe_data['concentration-of-elements'],
+                'city': city['city'],
+                "aqi": cashe_data['aqi'],
+                "From_cashe": 'yeah'
+            }
+        
+
+
         response = requests.get(
             url=f"http://api.openweathermap.org/data/2.5/air_pollution?lat={latitude}&lon={longitude}&appid={self.api_key}"
         )
         response_json = response.json()
-
-        city = self.get_readable_location(latitude=latitude,longitude=longitude)
 
         colors = {
             'co': '#74c6d4',
@@ -46,16 +60,22 @@ class Air_data:
         pm2_5_aqi = self.get_aqi_value(concentration=concentrations['pm2_5'],element='pm2_5')
         pm10_aqi = self.get_aqi_value(concentration=concentrations['pm10'],element='pm10')
         co_aqi = self.get_aqi_value(concentration=concentrations['co'],element='co')
+        o3_aqi = self.get_aqi_value(concentration=concentrations['o3'],element='o3')
+        so2_aqi = self.get_aqi_value(concentration=concentrations['so2'],element='so2')
 
-        aqi_value = max(no2_aqi,pm2_5_aqi,pm10_aqi,co_aqi)
+        aqi_value = max(no2_aqi,pm2_5_aqi,pm10_aqi,co_aqi,o3_aqi,so2_aqi)
         aqi_result = {
             "value": int(aqi_value),
             "status": self.get_aqi_status(aqi_value)
         }
 
-        
+        pollution_cashe.data = {
+            "concentration-of-elements": formatted_concentrations,
+            "aqi": aqi_result
+        }
 
-            
+        pollution_cashe.cashe()
+
         return {
             "concentration-of-elements": formatted_concentrations,
             'city': city['city'],
@@ -85,11 +105,13 @@ class Air_data:
 
     #functions not related to routes
 
+    def check_for_cashe(self,type: str,latitude: float,longitude: float): pass
+
     def get_aqi_value(self,concentration: int,element: str) -> dict:
         aqi_breakpoints: dict = globals['Aqi_breakpoints'][element]
 
         for high_aqi in aqi_breakpoints.keys():
-            if concentration > high_aqi:
+            if concentration > aqi_breakpoints[high_aqi]['high_breakpoint']:
                 continue
             low_aqi = aqi_breakpoints[high_aqi]['low_aqi']
             low_breakpoint = aqi_breakpoints[high_aqi]['low_breakpoint']
@@ -98,7 +120,6 @@ class Air_data:
             aqi = ((high_aqi-low_aqi)/(high_breakpoint-low_breakpoint))*(concentration-low_breakpoint)+low_aqi
             return aqi
      
-
     def get_readable_location(self,latitude: float,longitude: float) -> dict:
         response = requests.get(
             url=f'http://api.openweathermap.org/geo/1.0/reverse?lat={latitude}&lon={longitude}&limit={1}&appid={self.api_key}'

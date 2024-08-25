@@ -7,7 +7,8 @@ class Migrate_users:
                     
                     name text,
                     email text,
-                    password text
+                    password text,
+                    id INTEGER PRIMARY KEY AUTOINCREMENT
                     
                     )""")
         

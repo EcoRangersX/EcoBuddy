@@ -15,6 +15,7 @@ def air_quality_endpoint():
     
         longitude = data.get('longitude',default=None, type=float)
 
+
         if not latitude or not longitude:
             return {"error-msg": "Please provide Latitude and Longitude"}
 

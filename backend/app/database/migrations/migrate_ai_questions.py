@@ -12,8 +12,7 @@ class Migrate_ai_questions():
             """CREATE TABLE IF NOT EXISTS ai_questions(
             question TEXT
             )
-            """
-        )
+            """)
         conn.commit()
 
         questions = globals['Ai_questions']

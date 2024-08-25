@@ -4,7 +4,7 @@ from threading import Thread
 
 class Air_tester():
     def __init__(self):
-        self.example_lat, self.example_long = (50.063843899589884, 19.942991724503248)
+        self.example_lat, self.example_long = (50.12195259429432, 20.049317598057517)
 
         self.air_quaility_thread = Thread(target=self.air_quality) 
         self.weather_thread = Thread(target=self.weather)
