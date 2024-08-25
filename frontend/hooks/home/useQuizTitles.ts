@@ -39,7 +39,7 @@ export function useQuizTitles() {
       }
     } catch (err: any) {
       console.error(`Error fetching quiz titles: ${err}`);
-      setErrorQuizTitleMsg(err);
+      setErrorQuizTitleMsg(`An error occurred while fetching quiz titles.`);
     } finally {
       setLoadingQuizTitles(false);
     }

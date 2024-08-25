@@ -1,5 +1,6 @@
 import { View, Text } from 'react-native';
 import QuizList from './QuizList';
+import ErrorMessageBox from '../ErrorMessageBox';
 
 interface EducationSectionProps {
   title: string;
@@ -38,22 +39,28 @@ const EducationSection = ({
   errorMsg,
 }: EducationSectionProps) => {
   return (
-    <View className="p-6">
+    <>
       {loading ? (
-        <Text>Loading...</Text>
+        <View className='items-center mt-8'>
+          <Text>Loading...</Text>
+        </View>
       ) : errorMsg ? (
-        <Text>{errorMsg}</Text>
+        <View className='p-6 items-center'>
+          <ErrorMessageBox errorMessage={errorMsg} />
+        </View>
       ) : (
-        <QuizList
-          title={title}
-          items={items}
-          elementTextColor={elementTextColor}
-          elementBgColor={elementBgColor}
-          titleSectionColor={titleSectionColor}
-          bgColor={bgColor}
-        />
+        <View className="p-6">
+          <QuizList
+            title={title}
+            items={items}
+            elementTextColor={elementTextColor}
+            elementBgColor={elementBgColor}
+            titleSectionColor={titleSectionColor}
+            bgColor={bgColor}
+          />
+        </View>
       )}
-    </View>
+    </>
   );
 };
 

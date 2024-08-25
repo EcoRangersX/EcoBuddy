@@ -42,8 +42,8 @@ export function useWeatherData() {
         setErrorWeatherDataMsg('Failed to fetch weather data');
       }
     } catch (err: any) {
-      console.log(`Error fetching weather data: ${err.message}`);
-      setErrorWeatherDataMsg(err.message);
+      console.error(`Error fetching weather data: ${err.message}`);
+      setErrorWeatherDataMsg("An error occurred while fetching weather data.");
     } finally {
       setLoadingWeatherData(false);
     }

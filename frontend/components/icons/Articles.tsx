@@ -5,7 +5,7 @@ import {
   MaterialCommunityIcons,
 } from '@expo/vector-icons';
 
-interface BasicIconProps {
+export interface BasicIconProps {
   color?: string;
   size?: number;
 }

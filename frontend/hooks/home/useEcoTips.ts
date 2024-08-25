@@ -36,7 +36,7 @@ export function useEcoTips() {
       }
     } catch (err: any) {
       console.error(`Error fetching eco tips: ${err.message}`);
-      setErrorEcoTipsMsg(err);
+      setErrorEcoTipsMsg("An error occurred while fetching eco tips.");
     } finally {
       setLoadingEcoTips(false);
     }
