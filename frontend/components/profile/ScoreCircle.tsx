@@ -17,7 +17,7 @@ const ScoreCircle = ({
   const filledPercentage = (score / maxScore) * 100
 
   return (
-    <View>
+    <View className='shadow-lg shadow-black'>
       <AnimatedCircularProgress
         size={size}
         width={width}
