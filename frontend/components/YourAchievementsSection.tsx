@@ -40,10 +40,10 @@ const YourAchievementsSection = ({
   return (
     <View className="p-3">
       <Text className="text-xl mb-2">Your Achievements</Text>
-      <View className="mb-3">
+      <View className="mb-8">
         <StreakDashboard streak={streak} bestStreak={bestStreak} />
       </View>
-      <View className="p-3">
+      <View className="mb-8">
         <ScoresDashboard
           maxScore={maxScore}
           size={size}
