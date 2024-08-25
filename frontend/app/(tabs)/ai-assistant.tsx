@@ -1,25 +1,22 @@
-import {
-  View,
-  Keyboard,
-  TouchableWithoutFeedback,
-  FlatList,
-  Text,
-} from 'react-native';
-import Header from '@/components/Header';
-import SendIcon from '@/components/icons/AiAssistant';
-import { TextInput } from 'react-native-paper';
-import { useState, useEffect } from 'react';
+import { View, Keyboard, FlatList } from 'react-native';
+import { useState, useEffect, useCallback } from 'react';
 import { useAskAI } from '@/hooks/ai-assistant/useAskAI';
+import Header from '@/components/Header';
 import AiResponse from '@/components/ai-assistant/AiResponse';
+import UserQuestionBox from '@/components/ai-assistant/UserQuestionBox';
+import QuestionInput from '@/components/ai-assistant/QuestionInput';
+import HeaderWelcomeMessage from '@/components/ai-assistant/HeaderWelcomeMessage';
+import AiUsageWarning from '@/components/ai-assistant/AiUsageWarning';
 
-interface QAItem {
+interface QaItem {
   id: string;
   question: string;
-  response?: string;
+  response?: string | null;
 }
+
 export default function AiAssistantScreen() {
   const [question, setQuestion] = useState<string>('');
-  const [qaList, setQaList] = useState<QAItem[]>([]);
+  const [qaList, setQaList] = useState<QaItem[]>([]);
 
   const { askAI, aiResponse, loadingAiResponse, errorAiResponseMsg } =
     useAskAI();
@@ -34,7 +31,7 @@ export default function AiAssistantScreen() {
     }
   }, [aiResponse]);
 
-  const handleSubmit = async () => {
+  const submitQuestion = async () => {
     if (question) {
       const newQuestion = { id: Date.now().toString(), question: question };
       setQaList([...qaList, newQuestion]);
@@ -44,49 +41,51 @@ export default function AiAssistantScreen() {
     }
   };
 
-  if (errorAiResponseMsg) {
-    return (
-      <View className="flex-1 justify-center items-center">
-        <Text className="text-red-500">{errorAiResponseMsg}</Text>
+  const renderQaItem = useCallback(
+    ({ item, index }: { item: QaItem; index: number }) => (
+      <View>
+        <UserQuestionBox question={item.question} />
+        {/* Showing loading state only for the last aiResponse in qaList */}
+        {index === qaList.length - 1 && loadingAiResponse ? (
+          <AiResponse response={null} loading={true} error={null} />
+        ) : (
+          <AiResponse
+            response={item.response}
+            loading={false}
+            error={errorAiResponseMsg}
+          />
+        )}
       </View>
-    );
-  }
+    ),
+    [qaList, loadingAiResponse, errorAiResponseMsg],
+  );
+
+  const getItemLayout = (_: any, index: number) => ({
+    length: 100,
+    offset: 100 * index,
+    index,
+  }); // Each item has a fixed height of 100 units
 
   return (
     <View className="flex-1">
       <Header />
-      {/* <AiResponseBox response={response} loading={false} error={""} /> */}
+      {/* Optimized FlatList for displaying QaList */}
       <FlatList
         data={qaList}
         keyExtractor={item => item.id}
-        renderItem={({ item }) => (
-          <View className="">
-            <Text className="text-lg">{item.question}</Text>
-            {item.response && (
-              <AiResponse
-                response={item.response}
-                loading={loadingAiResponse}
-                error={errorAiResponseMsg}
-              />
-            )}
-          </View>
-        )}
+        renderItem={renderQaItem}
+        initialNumToRender={10} // Renders only 10 items initially
+        maxToRenderPerBatch={10} // Renders 10 items per batch
+        windowSize={5} // Keep 5 screens worth of content in memory
+        getItemLayout={getItemLayout}
+        ListHeaderComponent={<HeaderWelcomeMessage />}
       />
-      {/* TouchableWithoutFeedback component allows users to exit the input field */}
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View className="justify-center p-8 flex-row items-center">
-          <TextInput
-            placeholder="Ask me anything about ecology..."
-            mode="outlined"
-            multiline={true}
-            value={question}
-            onChangeText={setQuestion}
-            theme={{ colors: { primary: 'green' } }}
-            className="w-full max-h-48 p-1"
-          />
-          <SendIcon onPress={handleSubmit} size={28} />
-        </View>
-      </TouchableWithoutFeedback>
+      <QuestionInput
+        question={question}
+        setQuestion={setQuestion}
+        handleSubmit={submitQuestion}
+      />
+      <AiUsageWarning />
     </View>
   );
 }
