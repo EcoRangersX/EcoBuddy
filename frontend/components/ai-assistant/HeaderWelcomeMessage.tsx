@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native';
 import AssistantChatIcon from './AssistantChatIcon';
 
-const WelcomeMessage = () => {
+const HeaderWelcomeMessage = () => {
   return (
     <View className="flex flex-col items-center mt-2">
       <AssistantChatIcon width={64} height={64} />
@@ -23,4 +23,4 @@ const WelcomeMessage = () => {
   );
 };
 
-export default WelcomeMessage;
+export default HeaderWelcomeMessage;
