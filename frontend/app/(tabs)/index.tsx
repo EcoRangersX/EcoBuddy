@@ -44,7 +44,7 @@ export default function HomeScreen() {
     errorArticleTitleMsg,
   } = useArticleTitles();
 
-  // TODO: Implement AsyncStorage for storing and loading data 
+  // TODO: Implement AsyncStorage for storing and loading data
   // useEffect(() => {
   //   const loadData = async () => {
   //     try {
@@ -113,22 +113,21 @@ export default function HomeScreen() {
       await getAiExampleQuestions(5);
     };
 
-    fetchAiExampleQuestions();
-  }, []);
-
-  useEffect(() => {
     const fetchQuizTitles = async () => {
       await getQuizTitles(5);
     };
 
-    fetchQuizTitles();
-  }, []);
+    const fetchArticleTitles = async () => {
+      await getArticleTitles(5);
+    }
 
-  useEffect(() => {
     const fetchEcoTips = async () => {
       await getEcoTips(5);
-    };
+    }
 
+    fetchAiExampleQuestions();
+    fetchQuizTitles();
+    fetchArticleTitles();
     fetchEcoTips();
   }, []);
 
