@@ -3,7 +3,7 @@ import AiResponseBox from './AiResponseBox';
 import AssistantChatIcon from './AssistantChatIcon';
 
 interface AiResponseProps {
-  response: string | null;
+  response: string | undefined | null;
   loading: boolean;
   error: string | null;
 }

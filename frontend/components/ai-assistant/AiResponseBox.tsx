@@ -2,7 +2,7 @@ import { View, Text } from 'react-native';
 import { DotIndicator } from 'react-native-indicators';
 
 interface AiResponseBoxProps {
-  response: string | null;
+  response: string | null | undefined;
   loading: boolean;
   error: string | null;
 }

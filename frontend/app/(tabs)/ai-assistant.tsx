@@ -5,16 +5,17 @@ import Header from '@/components/Header';
 import AiResponse from '@/components/ai-assistant/AiResponse';
 import UserQuestionBox from '@/components/ai-assistant/UserQuestionBox';
 import QuestionInput from '@/components/ai-assistant/QuestionInput';
+import WelcomeMessage from '@/components/ai-assistant/WelcomeMessage';
 
-interface QAItem {
+interface QaItem {
   id: string;
   question: string;
-  response?: string;
+  response?: string | null;
 }
 
 export default function AiAssistantScreen() {
   const [question, setQuestion] = useState<string>('');
-  const [qaList, setQaList] = useState<QAItem[]>([]);
+  const [qaList, setQaList] = useState<QaItem[]>([]);
 
   const { askAI, aiResponse, loadingAiResponse, errorAiResponseMsg } =
     useAskAI();
@@ -40,7 +41,7 @@ export default function AiAssistantScreen() {
   };
 
   const renderQaItem = useCallback(
-    ({ item, index }) => (
+    ({ item, index }: {item: QaItem, index: number}) => (
       <View>
         <UserQuestionBox question={item.question} />
         {/* Showing loading state only for the last aiResponse in qaList */}
@@ -58,20 +59,25 @@ export default function AiAssistantScreen() {
     [qaList, loadingAiResponse, errorAiResponseMsg],
   );
 
-  const keyExtractor = useCallback(item => item.id, []);
+const getItemLayout = (_: any, index: number) => ({
+  length: 100,
+  offset: 100 * index,
+  index,
+}); // Each item has a fixed height of 100 units
 
   return (
     <View className="flex-1">
       <Header />
-      {/* <AiResponseBox response={response} loading={false} error={""} /> */}
+      <WelcomeMessage />
+      {/* Optimized FlatList for displaying QaList */}
       <FlatList
         data={qaList}
-        keyExtractor={keyExtractor}
+        keyExtractor={item => item.id}
         renderItem={renderQaItem}
-        initialNumToRender={10}
-        getItemLayout={(data, index) => (
-          {length: 100, offset: 100 * index, index}
-        )}
+        initialNumToRender={10} // Renders only 10 items initially
+        maxToRenderPerBatch={10} // Renders 10 items per batch
+        windowSize={5} // Keep 5 screens worth of content in memory
+        getItemLayout={getItemLayout}
       />
       <QuestionInput
         question={question}
