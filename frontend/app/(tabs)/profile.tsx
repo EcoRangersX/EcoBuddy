@@ -3,6 +3,8 @@ import Header from '@/components/Header';
 import ProfileHeader from '@/components/profile/ProfileHeader';
 import YourAchievementsSection from '@/components/YourAchievementsSection';
 import { takenQuizzesStatic } from '@/constants/StaticData';
+import SavedArticles from '@/components/profile/SavedArticles';
+import { savedArticlesStatic } from '@/constants/StaticData';
 
 export default function ProfileScreen() {
   const profile_image_url =
@@ -30,6 +32,8 @@ export default function ProfileScreen() {
         streak={2}
         takenQuizzes={takenQuizzesStatic}
       />
+      {/* TODO: Replace static data with dynamic data once hook is ready */}
+      <SavedArticles savedArticles={savedArticlesStatic} />
     </ScrollView>
   );
 }
