@@ -1,13 +1,22 @@
-import { Text, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import Header from '@/components/Header';
+import ProfileHeader from '@/components/profile/ProfileHeader';
 
 export default function ProfileScreen() {
+  const profile_image_url =
+    'https://th.bing.com/th/id/R.745bf47c98f396f04e99316860fd2611?rik=vrZ0BYANY5MqmA&pid=ImgRaw&r=0';
+
   return (
-    <View>
+    <ScrollView>
       <Header />
-      <Text className="p-20 font-bold text-lg padding-80px">
-        Profile Page
-      </Text>
-    </View>
+      <View className="p-3">
+        <ProfileHeader
+          username="jonsd32"
+          fullName="John Doe"
+          email="john.doe@gmail.com"
+          profile_image_url={profile_image_url}
+        />
+      </View>
+    </ScrollView>
   );
 }
