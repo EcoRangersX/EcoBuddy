@@ -1,5 +1,6 @@
 import { View, Text } from 'react-native';
 import { DotIndicator } from 'react-native-indicators';
+import ErrorMessageBox from '../ErrorMessageBox';
 
 interface AiResponseBoxProps {
   response: string | null | undefined;
@@ -15,7 +16,7 @@ const AiResponseBox = ({ response, loading, error }: AiResponseBoxProps) => {
           <DotIndicator count={3} color="#000000" />
         </View>
       ) : error ? (
-        <Text>{error}</Text>
+        <ErrorMessageBox errorMessage={error} />
       ) : (
         <View className='bg-white p-3 rounded-2xl border-2 border-[#4ac965] shadow-md shadow-black'>
           <Text className="text-base">{response}</Text>

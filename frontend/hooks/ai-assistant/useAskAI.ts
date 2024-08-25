@@ -31,7 +31,7 @@ export function useAskAI() {
       });
       setAIResponse(response.data);
     } catch (err: any) {
-      console.log(`Error fetching the AI output: ${err.message}`)
+      console.error(`Error fetching the AI output: ${err.message}`)
       setErrorAiResponseMsg(err.message);
     } finally {
       setLoadingAiResponse(false);
