@@ -19,10 +19,10 @@ export default function ProfileScreen() {
           profile_image_url={profile_image_url}
         />
       </View>
-      <View className='p-3'>
+      <View className="p-3">
         <StreakDashboard streak={1} bestStreak={11} />
       </View>
-      <ScoreCircle />
+      <ScoreCircle size={150} width={15} score={1454} maxScore={10000} />
     </ScrollView>
   );
 }
