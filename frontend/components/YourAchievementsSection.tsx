@@ -1,5 +1,5 @@
 import { Text, View } from 'react-native';
-import QuizStreak from '../StreakDashboard';
+import StreakDashboard from './StreakDashboard';
 import TakenQuizzesList from './TakenQuizzesList';
 import { QuizResultProps } from '@/types/quizzes';
 
@@ -19,20 +19,20 @@ interface YourScoresSectionProps {
  * @param {Array} props.takenQuizzes - The list of quizzes taken by the user.
  * @returns {JSX.Element} The rendered component.
  */
-const YourScoresSection = ({
+const YourAchievementsSection = ({
   streak,
   bestStreak,
   takenQuizzes,
 }: YourScoresSectionProps) => {
   return (
     <View className="p-3">
-      <Text className="text-xl mb-2">Your Scores</Text>
+      <Text className="text-xl mb-2">Your Achievements</Text>
       <View className="mb-3">
-        <QuizStreak streak={streak} bestStreak={bestStreak} />
+        <StreakDashboard streak={streak} bestStreak={bestStreak} />
       </View>
       <TakenQuizzesList takenQuizzes={takenQuizzes} />
     </View>
   );
 };
 
-export default YourScoresSection;
+export default YourAchievementsSection;
