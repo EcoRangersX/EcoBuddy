@@ -1,5 +1,5 @@
 import { Text, View } from 'react-native';
-import QuizStreak from './QuizStreak';
+import QuizStreak from '../StreakDashboard';
 import TakenQuizzesList from './TakenQuizzesList';
 import { QuizResultProps } from '@/types/quizzes';
 
