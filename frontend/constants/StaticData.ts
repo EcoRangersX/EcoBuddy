@@ -246,6 +246,33 @@ const ChemicalElementsStatic = [
   { chemElement: 'NH3', value: 51.3, bgColor: '#0affc0' },
 ];
 
+const savedArticlesStatic = [
+  {
+    title: 'Introduction to Renewable Energy Sources',
+    article_id: 4,
+    saved: true,
+    description:
+      'An introduction to renewable energy sources like solar, wind, and hydroelectric power, and their role in combating climate change.',
+    image_url: 'https://i.postimg.cc/P5NQ48nd/image.png',
+  },
+  {
+    title: 'How Climate Change is Affecting Global Biodiversity',
+    article_id: 5,
+    saved: true,
+    description:
+      'Understand the connection between climate change and the loss of species around the world, and what actions are being taken to protect biodiversity.',
+    image_url: 'https://i.postimg.cc/8kHdgb11/image.png',
+  },
+  {
+    title: 'What You Need to Know About Pollen and Air Quality',
+    article_id: 6,
+    saved: true,
+    description:
+      'An overview of how pollen levels affect air quality and health, especially for those with allergies, and tips for managing exposure.',
+    image_url: 'https://i.postimg.cc/2894V8bM/image.png',
+  },
+];
+
 export {
   airQualityTipsStatic,
   quizzesStatic,
@@ -260,4 +287,5 @@ export {
   ecoTipsStatic,
   ChemicalElementsStatic,
   filteredArticlesStatic,
+  savedArticlesStatic,
 };

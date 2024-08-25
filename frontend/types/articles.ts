@@ -1,8 +1,9 @@
 export interface ArticleProps {
-  title: string;
   article_id: number;
+  title: string;
   description: string;
   image_url: string;
+  saved?: boolean;
 }
 
 export interface FilteredArticleProps {

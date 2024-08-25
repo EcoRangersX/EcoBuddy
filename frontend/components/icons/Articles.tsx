@@ -1,6 +1,6 @@
 import { TouchableOpacity } from 'react-native';
 import {
-  FontAwesome6,
+  FontAwesome,
   MaterialIcons,
   MaterialCommunityIcons,
 } from '@expo/vector-icons';
@@ -12,6 +12,7 @@ interface BasicIconProps {
 
 interface SaveToFavoriteIcon extends BasicIconProps {
   article_id: number;
+  saved: boolean;
 }
 
 interface ClearQueryIcon extends BasicIconProps {
@@ -22,6 +23,7 @@ const SaveToFavoriteIcon = ({
   size,
   color,
   article_id,
+  saved,
 }: SaveToFavoriteIcon) => {
   const handleSaveToFavorite = (article_id: number) => {
     //TODO: Implement the logic to save the article to the favorite list
@@ -32,7 +34,11 @@ const SaveToFavoriteIcon = ({
     <TouchableOpacity
       className="bg-white h-12 w-12 items-center justify-center rounded-full shadow-md shadow-black"
       onPress={() => handleSaveToFavorite(article_id)}>
-      <FontAwesome6 name="bookmark" size={size} color={color} />
+      {saved ? (
+        <FontAwesome name="bookmark" size={size} color={color} />
+      ) : (
+        <FontAwesome name="bookmark-o" size={size} color={color} />
+      )}
     </TouchableOpacity>
   );
 };
