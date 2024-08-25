@@ -1,23 +1,26 @@
 ## RUN the project:
-**Open Terminal**: Open your terminal in Visual Studio Code.
 
-Navigate to Project Directory: Use the cd command to navigate to your project **backend** directory.
+**Open Terminal** 
 
-**Create Virtual Environment:**
+Open terminal in the cloned repository directory. 
+Navigate to backend directory: `cd backend`
+
+**Create Virtual Environment**
 
 Use `python3 -m venv venv` to  create a virtual environment named venv.
 
-Check if in folder env/bin are files named activate,
-if not delete venv folder and use: `virtualenv -p python3 venv`
+Check if folder `env/bin` contains files named active with different extensions.
 
-**Activate Virtual Environment:**
+*IF* not delete venv folder and use: `virtualenv -p python3 venv`
 
-! In Visual Studio Code evironment should be activated by itself but if you don't see 
-(venv) on the left side of terminal you need to use this command !
-                                       
+**Activate Virtual Environment**
+                
 On Windows, use `.\venv\Scripts\activate` to activate the virtual environment.
 
 On macOS/Linux, use `source venv/bin/activate`
+
+*IF* virtual environment was succesfully activated you should see something like this:
+![Alt text](images/venv_img.png)
 
 **Install Dependencies:**
 Ensure you have a requirements.txt file with all the necessary dependencies listed.
