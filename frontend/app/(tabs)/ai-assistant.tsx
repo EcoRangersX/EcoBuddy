@@ -11,12 +11,14 @@ import { TextInput } from 'react-native-paper';
 import { useState, useEffect } from 'react';
 import { useAskAI } from '@/hooks/ai-assistant/useAskAI';
 import AiResponse from '@/components/ai-assistant/AiResponse';
+import UserQuestionBox from '@/components/ai-assistant/UserQuestionBox';
 
 interface QAItem {
   id: string;
   question: string;
   response?: string;
 }
+
 export default function AiAssistantScreen() {
   const [question, setQuestion] = useState<string>('');
   const [qaList, setQaList] = useState<QAItem[]>([]);
@@ -44,14 +46,6 @@ export default function AiAssistantScreen() {
     }
   };
 
-  if (errorAiResponseMsg) {
-    return (
-      <View className="flex-1 justify-center items-center">
-        <Text className="text-red-500">{errorAiResponseMsg}</Text>
-      </View>
-    );
-  }
-
   return (
     <View className="flex-1">
       <Header />
@@ -61,7 +55,7 @@ export default function AiAssistantScreen() {
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
           <View className="">
-            <Text className="text-lg">{item.question}</Text>
+            <UserQuestionBox question={item.question} />
             {item.response && (
               <AiResponse
                 response={item.response}

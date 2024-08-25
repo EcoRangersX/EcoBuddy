@@ -17,8 +17,8 @@ const AiResponseBox = ({ response, loading, error }: AiResponseBoxProps) => {
       ) : error ? (
         <Text>{error}</Text>
       ) : (
-        <View className='bg-white rounded-2xl border-2 border-[#4ac965] shadow-md shadow-black'>
-          <Text className="font-base">{response}</Text>
+        <View className='bg-white p-3 rounded-2xl border-2 border-[#4ac965] shadow-md shadow-black'>
+          <Text className="text-base">{response}</Text>
         </View>
       )}
     </View>
