@@ -4,10 +4,10 @@ from threading import Thread
 class Ai_tester():
     def __init__(self):
         self.eco_buddy_thread = Thread(target=self.eco_buddy)
-        self.quiz_generator_thread = Thread(target=self.quiz_generator)
+        #self.quiz_generator_thread = Thread(target=self.quiz_generator)
         self.example_questions_thread = Thread(target=self.example_questions)
 
-        self.threads = [self.eco_buddy_thread,self.quiz_generator_thread,self.example_questions_thread]
+        self.threads = [self.eco_buddy_thread,self.example_questions_thread]
 
     def eco_buddy(self):
         eco_buddy_response = requests.get(

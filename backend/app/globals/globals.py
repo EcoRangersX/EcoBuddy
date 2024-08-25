@@ -2,7 +2,7 @@ from .data import *
 
 
 globals = {
-    'debug': True,
+    'debug': False,
     'Ai_questions': ai_questions,
     'Eco_tips': eco_tips,
     'Aqi_breakpoints': aqi_breakpoints,

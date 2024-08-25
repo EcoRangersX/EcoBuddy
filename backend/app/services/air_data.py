@@ -13,9 +13,17 @@ class Air_data:
     def get_air_quality_data(self, latitude: float, longitude: float):
         city = self.get_readable_location(latitude=latitude,longitude=longitude)
 
-        # pollution_cashe = Pollution(latitude,longitude)
-        # if pollution_cashe.check_cashe():
-        #     return pollution_cashe.get_cashe()
+        pollution_cashe = Pollution(latitude=latitude,longitude=longitude)
+        if pollution_cashe.check_cashe():
+            cashe_data = pollution_cashe.get_cashe()
+            return {
+                "concentration-of-elements": cashe_data['concentration-of-elements'],
+                'city': city['city'],
+                "aqi": cashe_data['aqi'],
+                "From_cashe": 'yeah'
+            }
+        
+
 
         response = requests.get(
             url=f"http://api.openweathermap.org/data/2.5/air_pollution?lat={latitude}&lon={longitude}&appid={self.api_key}"
@@ -60,6 +68,13 @@ class Air_data:
             "value": int(aqi_value),
             "status": self.get_aqi_status(aqi_value)
         }
+
+        pollution_cashe.data = {
+            "concentration-of-elements": formatted_concentrations,
+            "aqi": aqi_result
+        }
+
+        pollution_cashe.cashe()
 
         return {
             "concentration-of-elements": formatted_concentrations,

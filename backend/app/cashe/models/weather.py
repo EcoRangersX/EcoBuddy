@@ -1,55 +1,18 @@
-from app.database import conn
+from app.cashe import Air_data_parent
 import yaml
 
 class Weather():
     def __init__(self,latitude: float,longitude: float):
-        self.cursor = conn.cursor()
-        self.latitude = round(latitude+0.04) 
-        self.longitude = round(longitude,2)
+        #model
+        self.latitude = round(latitude,1)
+        self.longitude = round(longitude,1)
         self.data: dict = None
 
-    def check_cashe(self):
-        self.cursor.execute("""SELECT 1 FROM weather_cashe WHERE 
-                            latitude=:latitude 
-                            AND 
-                            longitude=:longitude
-                            """,
-                            {
-                                'latitude': self.latitude,
-                                'longitude': self.longitude
-                            })
-        
-        if self.cursor.fetchone():
-            return True
-        return False
+        #methods from Air_data_parent
+        Air_data_parent.__init__(self,'weather')
 
-    def cashe(self):
-        self.cursor.execute("""INSERT INTO weather_cashe(latitude,longitude,data) VALUES(
-                            :latitude,
-                            :longitude,
-                            :data)""",
-                            {'latitude': self.latitude,
-                             'longitude': self.longitude,
-                             'data': self.data})
-        conn.commit()
-
-    def get_cashe(self) -> dict:
-        self.cursor.execute("""SELECT data FROM weather_cashe WHERE 
-                            latitude=:latitude 
-                            AND 
-                            longitude=:longitude""",
-                            {
-                                'latitude': self.latitude,
-                                'longitude': self.longitude
-                            })
+    
         
-        data = self.cursor.fetchone()
-        if data:
-            return yaml.load(
-                data,
-                Loader=yaml.FullLoader)
-        else:
-            return None
 
         
 

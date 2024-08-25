@@ -3,6 +3,6 @@ class Migrate_weather():
         self.cursor = conn.cursor()
         self.cursor.execute('''CREATE TABLE IF NOT EXISTS weather_cashe(
                             latitude REAL, 
-                            longitude REAL, 
+                            longitude REAL,
                             data TEXT)''')  
         conn.commit()
