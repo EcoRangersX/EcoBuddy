@@ -6,7 +6,7 @@ import {
 } from '@expo/vector-icons';
 import Svg, { Path } from 'react-native-svg';
 
-interface BasicIconProps {
+export interface BasicIconProps {
   color?: string;
   size?: number;
 }
