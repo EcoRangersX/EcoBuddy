@@ -1,35 +1,38 @@
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
-interface ChooseLocationDropdownProps {
-  locations: { label: string; value: string }[];
-  onValueChange: (value: string) => void;
+interface Location {
+  label: string;
+  value: string;
+  color?: string;
 }
 
-/**
- * Renders the choose location dropdown component.
- *
- * @component
- * @param {Object} props - The component props.
- * @param {Array} props.locations - The array of locations for the dropdown.
- * @param {Function} props.onValueChange - The function to call when the value changes.
- * @returns {JSX.Element} The rendered choose location dropdown.
- */
+interface ChooseLocationDropdownProps {
+  locations: Location[];
+  location: string;
+  onLocationChange: (value: string) => void;
+}
+
 const ChooseLocationDropdown = ({
+  location,
+  onLocationChange,
   locations,
-  onValueChange,
 }: ChooseLocationDropdownProps) => {
   return (
-    <View className="bg-white rounded-full">
-      <RNPickerSelect
-        onValueChange={onValueChange}
-        placeholder={{ label: 'Choose Location' }}
-        items={locations.map(location => ({
-          label: location.label,
-          value: location.value,
-        }))}
-      />
-    </View>
+    <>
+      <Text className="text-lg ml-2 mb-1">Location</Text>
+      <View className="bg-white rounded-full">
+        <RNPickerSelect
+          value={location}
+          onValueChange={onLocationChange}
+          placeholder={{}}
+          items={locations.map(location => ({
+            label: location.label,
+            value: location.value,
+          }))}
+        />
+      </View>
+    </>
   );
 };
 
