@@ -1,26 +1,38 @@
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
+interface Language {
+  label: string;
+  value: string;
+  color?: string;
+}
+
 interface ChooseLanguageDropdownProps {
-  languages: { label: string; value: string }[];
-  onValueChange: (value: string) => void;
+  languages: Language[];
+  currentLanguage: string;
+  onLanguageChange: (value: string) => void;
 }
 
 const ChooseLanguageDropdown = ({
   languages,
-  onValueChange,
+  currentLanguage,
+  onLanguageChange,
 }: ChooseLanguageDropdownProps) => {
   return (
-    <View className="bg-white rounded-full">
+    <>
+      <Text className='text-lg ml-2 mb-1'>Language</Text>
+      <View className="bg-white rounded-full">
       <RNPickerSelect
-        onValueChange={onValueChange}
-        placeholder={{ label: 'Choose Language' }}
+        value={currentLanguage}
+        onValueChange={onLanguageChange}
+        placeholder={{}}
         items={languages.map(language => ({
           label: language.label,
           value: language.value,
         }))}
       />
-    </View>
+      </View>
+    </>
   );
 };
 
