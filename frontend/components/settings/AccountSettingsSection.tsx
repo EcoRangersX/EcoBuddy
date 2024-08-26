@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { useState } from 'react';
 import ChooseLanguageDropdown from './ChooseLanguageDropdown';
 import ChooseLocationDropdown from './ChooseLocationDropdown';
@@ -16,7 +16,10 @@ const AccountSettingsSection = () => {
   ];
 
   return (
-    <>
+    <View className='p-4'>
+      <Text className="text-lg rounded-full mb-2 text-center p-2 bg-white border-2 border-[#000000]">
+        Account Settings
+      </Text>
       <View className="mb-4">
         <ChooseLanguageDropdown
           currentLanguage={language}
@@ -37,7 +40,7 @@ const AccountSettingsSection = () => {
       <View className='mt-4'>
         <Button mode="outlined">Delete Account</Button>
       </View>
-    </>
+    </View>
   );
 };
 

@@ -7,9 +7,7 @@ export default function Settings() {
   return (
     <ScrollView>
       <Header />
-      <View className='p-5'>
-        <AccountSettingsSection />
-      </View>
+      <AccountSettingsSection />
       <NotificationPreferencesSection />
     </ScrollView>
   );

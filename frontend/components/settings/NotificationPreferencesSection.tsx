@@ -23,7 +23,7 @@ const NotificationPreferencesSection = ({
     useState(newArticleAlerts);
 
   return (
-    <View className="p-3">
+    <View className="p-4">
       <Text className="text-lg rounded-full mb-4 text-center p-2 bg-white border-2 border-[#000000]">
         Notification Preferences
       </Text>
