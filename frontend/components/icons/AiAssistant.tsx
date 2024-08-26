@@ -6,8 +6,19 @@ interface SendIconProps {
   onPress: () => void;
 }
 
-const SendIcon: React.FC<SendIconProps> = ({ iconColor = 'green', size = 24, onPress }) => {
-  return <IconButton icon="send" iconColor={iconColor} size={size} onPress={onPress} />;
+const SendIcon: React.FC<SendIconProps> = ({
+  iconColor = 'green',
+  size = 24,
+  onPress,
+}) => {
+  return (
+    <IconButton
+      icon="send"
+      iconColor={iconColor}
+      size={size}
+      onPress={onPress}
+    />
+  );
 };
 
 export default SendIcon;

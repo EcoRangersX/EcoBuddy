@@ -1,11 +1,7 @@
 import { TouchableOpacity } from 'react-native';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import Svg, { Path, Defs, LinearGradient, Stop } from 'react-native-svg';
-
-interface BasicIconProps {
-  color?: string;
-  size?: number;
-}
+import { BasicIconProps } from './HomeIcons';
 
 interface StartQuizIconProps extends BasicIconProps {
   quiz_id: number;

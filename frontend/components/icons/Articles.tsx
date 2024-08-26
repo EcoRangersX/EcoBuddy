@@ -4,11 +4,8 @@ import {
   MaterialIcons,
   MaterialCommunityIcons,
 } from '@expo/vector-icons';
+import { BasicIconProps } from './HomeIcons';
 
-export interface BasicIconProps {
-  color?: string;
-  size?: number;
-}
 
 interface SaveToFavoriteIcon extends BasicIconProps {
   article_id: number;
