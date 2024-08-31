@@ -24,17 +24,16 @@ const StartQuizList = ({ quizzes }: StartQuizList) => {
   return (
     <View className="flex-col">
       {quizzes.map((quiz, index) => (
-        <View key={index} className="">
-          <StartQuiz
-            quiz_id={quiz.quiz_id}
-            level={quiz.level}
-            questionsCount={quiz.questionsCount}
-            bgColor={quiz.bgColor}
-            titleBgColor={quiz.titleBgColor}
-            title={quiz.title}
-            description={quiz.description}
-          />
-        </View>
+        <StartQuiz
+          key={index}
+          quiz_id={quiz.quiz_id}
+          level={quiz.level}
+          questionsCount={quiz.questionsCount}
+          bgColor={quiz.bgColor}
+          titleBgColor={quiz.titleBgColor}
+          title={quiz.title}
+          description={quiz.description}
+        />
       ))}
     </View>
   );
