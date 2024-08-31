@@ -9,9 +9,9 @@ const BottomNavigationBar = () => {
         headerShown: false,
       })}>
       <Tabs.Screen
-        name="quizzes"
+        name="quizzes/index"
         options={{
-          title: 'Quiz',
+          title: 'Quizzes',
           tabBarIcon: ({ color }) => (
             <TabBarIcon
               provider="MaterialIcons"

@@ -45,7 +45,7 @@ const StartQuiz = ({
         }}
         className="flex-row items-center justify-between px-4 py-2 rounded-[30px]">
         <Text className="text-white font-bold mr-2">{title}</Text>
-        <StartQuizIcon quiz_id={quiz_id} />
+        <StartQuizIcon id={quiz_id} />
       </View>
       {/* Description as a Bullet List */}
       {quizOfTheDay ? (
