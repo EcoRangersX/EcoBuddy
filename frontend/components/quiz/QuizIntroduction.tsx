@@ -6,7 +6,7 @@ import Carousel, {
   Pagination,
 } from 'react-native-reanimated-carousel';
 
-const { width: screenWidth } = Dimensions.get('window');
+const { width: screenWidth, height: ScreenHeight } = Dimensions.get('window');
 
 interface Step {
   title: string;
@@ -29,30 +29,32 @@ const QuizIntroduction = ({ steps }: QuizIntroductionProps) => {
   };
 
   const quizStep = ({ item }: { item: Step }) => (
-    <View className="justify-center items-center px-5">
+    <View className="justify-center items-center ">
       <Text className="text-xl font-bold text-center mb-4">{item.title}</Text>
       <Text className="text-base text-center mb-5">{item.description}</Text>
     </View>
   );
 
   return (
-    <View className="flex-1 justify-center items-center p-5 bg-white shadow-md shadow-black">
+    <View className="">
       <Carousel
+        style={{ backgroundColor: "white", borderColor: "blue", borderRadius: 20 }}
         ref={carouselRef}
         width={screenWidth}
-        height={screenWidth / 2}
+        height={ScreenHeight * 0.5}
         data={steps}
-        onProgressChange={progress}
+        
+        // onProgressChange={progress}
         renderItem={quizStep}
       />
-
-      <Pagination.Basic
+      
+       {/* <Pagination
         progress={progress}
         data={steps}
-        dotStyle={{ backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: 50 }}
+        dotStyle={{ backgroundColor: "rgba(0,0,0,0.2)", borderRadius: 50 }}
         containerStyle={{ gap: 5, marginTop: 10 }}
         onPress={onPressPagination}
-      />
+      /> */}
     </View>
   );
 };
