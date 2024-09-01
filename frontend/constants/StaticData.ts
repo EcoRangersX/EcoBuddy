@@ -60,25 +60,6 @@ const quizzesStatic: StartQuizProps[] = [
   },
 ];
 
-
-const quizStepsStatic = [
-  {
-    title: 'Welcome To The Eco Quiz Challenge!',
-    description:
-      'Ready To Test Your Knowledge And Become An Eco Expert? Our Quizzes Are Designed To Make Learning About Ecology Fun And Rewarding. Here’s How You Can Earn Stars, Collect Badges, And Track Your Progress As You Explore Different Ecological Topics.',
-  },
-  {
-    title: 'How To Play',
-    description:
-      'Each Quiz Consists Of Multiple Choice Questions. You Can Earn Stars By Answering Questions Correctly. The More Stars You Earn, The More Badges You Collect. You Can Track Your Progress And See How You Compare To Other Players On The Leaderboard.',
-  },
-  {
-    title: 'Ready To Get Started?',
-    description:
-      'Click On The Button Below To Start The Quiz. Good Luck!',
-  }
-];
-
 const quizOfTheDayStatic: StartQuizProps = {
   quiz_id: 1,
   level: 'Beginner',
@@ -362,5 +343,4 @@ export {
   filteredArticlesStatic,
   savedArticlesStatic,
   countriesStatic,
-  quizStepsStatic,
 };
