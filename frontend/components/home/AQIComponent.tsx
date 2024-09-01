@@ -4,7 +4,7 @@ import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { LocationIcon, ViewDetailsIcon } from '@/components/icons/HomeIcons';
 import capitalize from '@/utility/capitalizeWord';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useRouter } from 'expo-router';
+import { Link } from 'expo-router';
 
 interface AQIComponentProps {
   value: number;
@@ -28,12 +28,6 @@ const AQIComponent = ({
   loading,
   errorMsg,
 }: AQIComponentProps) => {
-  const router = useRouter();
-
-  const handleViewDetails = () => {
-    router.push('/aqi-details');
-  };
-
   return (
     <LinearGradient
       colors={['rgba(30,158,105,1)', 'rgba(89,192,230,1)']}
@@ -80,9 +74,8 @@ const AQIComponent = ({
           </View>
           <Text className="text-white text-sm mb-4">EU AQI</Text>
           <TouchableOpacity
-            onPress={handleViewDetails}
             className="flex flex-row items-center bg-white px-7 py-2 rounded-full">
-            <Text className="text-black text-base mr-2">View Details</Text>
+            <Link href={"/aqi-details"} className="text-black text-base mr-2">View Details</Link>
             <ViewDetailsIcon size={30} />
           </TouchableOpacity>
         </View>
