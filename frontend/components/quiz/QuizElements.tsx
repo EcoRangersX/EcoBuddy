@@ -1,4 +1,5 @@
 import { View, Text } from 'react-native';
+import BulletList from '../BulletList';
 
 interface QuizStepProps {
   screenWidth: number;
@@ -29,22 +30,17 @@ const HowToEarnStarsStatic = ({ screenWidth }: QuizStepProps) => {
   return (
     <View
       style={{ width: screenWidth * 0.9 }}
-      className="flex items-center justify-center px-10 py-5">
+      className="flex items-center justify-center px-5">
       <Text className="text-xl font-bold text-center mb-2">
         How to earn stars
       </Text>
-      <Text className="text-sm text-center">
-        <Text className="text-base">Answer questions correctly</Text>
-        {'\n'}
-        Each correct answer earns you a star. The more stars you earn, the
-        higher your score.
-        {'\n'}
-        {'\n'}
-        <Text className="text-base">Complete quizzes</Text>
-        {'\n'}
-        Earn stars by completing quizzes. The more quizzes you complete, the
-        more stars you earn.
-      </Text>
+      <BulletList
+        items={[
+          'Complete Quizzes: Every time you complete a quiz, you’ll earn stars based on the difficulty level.',
+          'Perfect score bonus: Get all the answers right? You’ll earn extra stars for perfection.',
+          'Milestone rewards: Keep learning and earn more stars! Complete 5 quizzes at the same difficulty level to get even more stars.',
+        ]}
+      />
     </View>
   );
 };
@@ -52,8 +48,8 @@ const HowToEarnStarsStatic = ({ screenWidth }: QuizStepProps) => {
 const TrackYourProgressStatic = ({ screenWidth }: QuizStepProps) => {
   return (
     <View
-      style={{ width: screenWidth * 0.9 }}
-      className="flex items-center justify-center px-10 py-5">
+      style={{ width: screenWidth }}
+      className="flex items-center justify-center px-8 ml-6">
       <Text className="text-xl font-bold text-center mb-2">
         Track your progress
       </Text>
