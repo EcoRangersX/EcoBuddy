@@ -1,13 +1,8 @@
 import { useState, useRef } from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  Dimensions,
-  Modal,
-} from 'react-native';
+import { View, Text, ScrollView, Dimensions, Modal } from 'react-native';
 import DotsIndicator from './DotsIndicator';
 import { NextIcon, PreviousIcon, CloseIcon } from '../icons/Quiz';
+import { BlurView } from 'expo-blur';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -56,39 +51,48 @@ const QuizIntroduction = ({
   };
 
   return (
-    <Modal visible={isVisible}>
-      <View className="flex-1  z-50">
-        <ScrollView
-          ref={scrollViewRef}
-          horizontal
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          // onScroll={handleScroll}
-          scrollEventThrottle={16}>
-          {steps.map((step, index) => (
-            <View
-              key={index}
-              style={{ width: screenWidth }}
-              className="flex items-center justify-center p-4">
-              <Text className="text-2xl font-bold text-center mb-2">
-                {step.title}
-              </Text>
-              <Text className="text-lg text-center">{step.description}</Text>
+    <Modal visible={isVisible} transparent>
+      <BlurView
+        experimentalBlurMethod=''
+        intensity={60}
+        className="flex-1 justify-center items-center">
+        <View className='w-[90%] rounded-[20px] bg-white shadow-md shadow-black'>
+          <ScrollView
+            ref={scrollViewRef}
+            horizontal
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}
+            scrollEventThrottle={16}>
+            {steps.map((step, index) => (
+              <View
+                key={index}
+                style={{ width: screenWidth * 0.9 }}
+                className="flex items-center justify-center p-8">
+                <Text className="text-xl font-bold text-center mb-2">
+                  {step.title}
+                </Text>
+                <Text className="text-base text-center">
+                  {step.description}
+                </Text>
+              </View>
+            ))}
+          </ScrollView>
+          <View className='justify-around flex-row items-center mb-3'>
+          <DotsIndicator steps={steps} currentIndex={currentIndex} />
+          {currentIndex === steps.length - 1 ? (
+            <View className="flex-row">
+              <PreviousIcon size={36} onPress={prevStep} styles="mr-3" />
+              <CloseIcon size={36} onPress={onClose} />
             </View>
-          ))}
-        </ScrollView>
-        {currentIndex === steps.length - 1 ? (
-          <View className='flex-row justify-end mr-8'>
-            <CloseIcon size={36} onPress={onClose} />
+          ) : (
+            <View className="flex-row ">
+              <PreviousIcon size={36} onPress={prevStep} styles="mr-3" />
+              <NextIcon size={36} onPress={nextStep} />
+            </View>
+          )}
           </View>
-        ) : (
-          <View className="flex-row justify-end mr-8 mb-8">
-            <PreviousIcon size={36} onPress={prevStep} styles="mr-3" />
-            <NextIcon size={36} onPress={nextStep} />
-          </View>
-        )}
-        <DotsIndicator steps={steps} currentIndex={currentIndex} />
-      </View>
+        </View>
+      </BlurView>
     </Modal>
   );
 };
