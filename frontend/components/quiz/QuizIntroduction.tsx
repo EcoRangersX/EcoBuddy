@@ -58,9 +58,11 @@ const QuizIntroduction = ({ steps, isVisible }: QuizIntroductionProps) => {
             </View>
           ))}
         </ScrollView>
+        <View className='flex-row justify-end mr-8 mb-8'>
+          <PreviousIcon size={36} onPress={prevStep} styles='mr-3' />
+          <NextIcon size={36} onPress={nextStep} />
+        </View>
         <DotsIndicator steps={steps} currentIndex={currentIndex} />
-        <NextIcon size={36} onPress={nextStep} />
-        <PreviousIcon size={36} onPress={prevStep} />
         {currentIndex === 2 && (
           <Text className='text-xl font-semibold'>Close Button will be here</Text>
         )}
