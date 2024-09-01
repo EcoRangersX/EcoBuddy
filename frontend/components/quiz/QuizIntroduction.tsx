@@ -1,12 +1,7 @@
-import { useRef } from 'react';
-import { View, Text, Dimensions, TouchableOpacity } from 'react-native';
-import { useSharedValue } from 'react-native-reanimated';
-import Carousel, {
-  ICarouselInstance,
-  Pagination,
-} from 'react-native-reanimated-carousel';
+import { useState, useRef } from 'react';
+import { View, Text, ScrollView, Dimensions, TouchableOpacity, Modal } from 'react-native';
 
-const { width: screenWidth, height: ScreenHeight } = Dimensions.get('window');
+const { width: screenWidth } = Dimensions.get('window');
 
 interface Step {
   title: string;
@@ -15,47 +10,61 @@ interface Step {
 
 interface QuizIntroductionProps {
   steps: Step[];
+  isVisible: boolean;
+  onClose: () => void;
 }
 
-const QuizIntroduction = ({ steps }: QuizIntroductionProps) => {
-  const carouselRef = useRef<ICarouselInstance>(null);
-  const progress = useSharedValue<number>(0);
+const QuizIntroduction = ({ steps, isVisible, onClose }: QuizIntroductionProps) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const scrollViewRef = useRef<ScrollView>(null);
 
-  const onPressPagination = (index: number) => {
-    carouselRef.current?.scrollTo({
-      count: index - progress.value,
-      animated: true,
-    });
+  const handleScroll = (event: any) => {
+    const index = Math.floor(event.nativeEvent.contentOffset.x / screenWidth);
+    setCurrentIndex(index);
   };
 
-  const quizStep = ({ item }: { item: Step }) => (
-    <View className="justify-center items-center ">
-      <Text className="text-xl font-bold text-center mb-4">{item.title}</Text>
-      <Text className="text-base text-center mb-5">{item.description}</Text>
-    </View>
-  );
+  const nextStep = () => {
+    if (currentIndex < steps.length - 1) {
+      scrollViewRef.current?.scrollTo({ x: screenWidth * (currentIndex + 1), animated: true });
+    }
+  };
 
   return (
-    <View className="">
-      <Carousel
-        style={{ backgroundColor: "white", borderColor: "blue", borderRadius: 20 }}
-        ref={carouselRef}
-        width={screenWidth}
-        height={ScreenHeight * 0.5}
-        data={steps}
-        
-        // onProgressChange={progress}
-        renderItem={quizStep}
-      />
-      
-       {/* <Pagination
-        progress={progress}
-        data={steps}
-        dotStyle={{ backgroundColor: "rgba(0,0,0,0.2)", borderRadius: 50 }}
-        containerStyle={{ gap: 5, marginTop: 10 }}
-        onPress={onPressPagination}
-      /> */}
-    </View>
+    <Modal visible={isVisible} animationType="slide">
+      <View className="flex-1 justify-center items-center bg-white">
+        <ScrollView
+          ref={scrollViewRef}
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+          onScroll={handleScroll}
+          scrollEventThrottle={16}
+        >
+          {steps.map((step, index) => (
+            <View key={index} className="w-full p-4 justify-center items-center" style={{ width: screenWidth }}>
+              <Text className="text-xl font-bold text-center mb-4">{step.title}</Text>
+              <Text className="text-base text-center">{step.description}</Text>
+            </View>
+          ))}
+        </ScrollView>
+        <View className="flex-row justify-center mt-5">
+          {steps.map((_, index) => (
+            <View
+              key={index}
+              className={`w-2.5 h-2.5 rounded-full mx-1 ${index === currentIndex ? 'bg-blue-500' : 'bg-gray-300'}`}
+            />
+          ))}
+        </View>
+        <TouchableOpacity className="mt-5 bg-blue-500 w-12 h-12 rounded-full justify-center items-center" onPress={nextStep}>
+          <Text className="text-white text-lg">{currentIndex < steps.length - 1 ? '→' : 'X'}</Text>
+        </TouchableOpacity>
+        {currentIndex === steps.length - 1 && (
+          <TouchableOpacity className="mt-5" onPress={onClose}>
+            <Text className="text-blue-500">Close</Text>
+          </TouchableOpacity>
+        )}
+      </View>
+    </Modal>
   );
 };
 
