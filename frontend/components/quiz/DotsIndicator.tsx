@@ -7,13 +7,14 @@ interface DotsIndicatorProps {
 }
 
 const DotsIndicator = ({ steps, currentIndex }: DotsIndicatorProps) => {
+  console.log(`Current index: ${currentIndex}`);
   return (
-    <View className="flex-row justify-center mt-4">
+    <View className="flex-row space-x-1 justify-center">
       {steps.map((_, index) => (
         <View
           key={index}
-          className={`indicator ${
-            index === currentIndex ? 'active-indicator' : 'inactive-indicator'
+          className={`border-[#61c9ba] border-2 rounded-full w-5 h-5 ${
+            index === currentIndex ? 'bg-[#61c9ba]' : ''
           }`}
         />
       ))}
