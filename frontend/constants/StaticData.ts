@@ -76,10 +76,6 @@ const quizStepsStatic = [
     title: 'Ready To Get Started?',
     description:
       'Click On The Button Below To Start The Quiz. Good Luck!',
-  },
-  {
-    title: "Let's Go!",
-    description: '',
   }
 ];
 

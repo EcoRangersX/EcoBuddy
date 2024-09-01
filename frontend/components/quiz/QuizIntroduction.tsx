@@ -1,9 +1,11 @@
 import { useState, useRef } from 'react';
 import { View, Text, ScrollView, Dimensions, TouchableOpacity, Modal } from 'react-native';
+import DotsIndicator from './DotsIndicator';
+import { NextIcon, PreviousIcon } from '../icons/Quiz';
 
 const { width: screenWidth } = Dimensions.get('window');
 
-interface Step {
+export interface Step {
   title: string;
   description: string;
 }
@@ -11,14 +13,13 @@ interface Step {
 interface QuizIntroductionProps {
   steps: Step[];
   isVisible: boolean;
-  onClose: () => void;
 }
 
-const QuizIntroduction = ({ steps, isVisible, onClose }: QuizIntroductionProps) => {
+const QuizIntroduction = ({ steps, isVisible }: QuizIntroductionProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollViewRef = useRef<ScrollView>(null);
 
-  const handleScroll = (event: any) => {
+  const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const index = Math.floor(event.nativeEvent.contentOffset.x / screenWidth);
     setCurrentIndex(index);
   };
@@ -26,42 +27,42 @@ const QuizIntroduction = ({ steps, isVisible, onClose }: QuizIntroductionProps) 
   const nextStep = () => {
     if (currentIndex < steps.length - 1) {
       scrollViewRef.current?.scrollTo({ x: screenWidth * (currentIndex + 1), animated: true });
+      setCurrentIndex(currentIndex + 1);
     }
   };
 
+  const prevStep = () => {
+    if (currentIndex > 0) {
+      scrollViewRef.current?.scrollTo({ x: screenWidth * (currentIndex - 1), animated: true });
+      setCurrentIndex(currentIndex - 1);
+    }
+  }
+
+  console.log(`Index of current step in QuizIntroduction: ${currentIndex}`)
+
   return (
-    <Modal visible={isVisible} animationType="slide">
-      <View className="flex-1 justify-center items-center bg-white">
+    <Modal visible={isVisible} >
+      <View className="flex-1 bg-white z-50">
         <ScrollView
           ref={scrollViewRef}
           horizontal
           pagingEnabled
           showsHorizontalScrollIndicator={false}
-          onScroll={handleScroll}
+          // onScroll={handleScroll}
           scrollEventThrottle={16}
         >
           {steps.map((step, index) => (
-            <View key={index} className="w-full p-4 justify-center items-center" style={{ width: screenWidth }}>
-              <Text className="text-xl font-bold text-center mb-4">{step.title}</Text>
-              <Text className="text-base text-center">{step.description}</Text>
+            <View key={index} style={{ width: screenWidth }} className="flex items-center justify-center p-4">
+              <Text className="text-2xl font-bold text-center mb-2">{step.title}</Text>
+              <Text className="text-lg text-center">{step.description}</Text>
             </View>
           ))}
         </ScrollView>
-        <View className="flex-row justify-center mt-5">
-          {steps.map((_, index) => (
-            <View
-              key={index}
-              className={`w-2.5 h-2.5 rounded-full mx-1 ${index === currentIndex ? 'bg-blue-500' : 'bg-gray-300'}`}
-            />
-          ))}
-        </View>
-        <TouchableOpacity className="mt-5 bg-blue-500 w-12 h-12 rounded-full justify-center items-center" onPress={nextStep}>
-          <Text className="text-white text-lg">{currentIndex < steps.length - 1 ? '→' : 'X'}</Text>
-        </TouchableOpacity>
-        {currentIndex === steps.length - 1 && (
-          <TouchableOpacity className="mt-5" onPress={onClose}>
-            <Text className="text-blue-500">Close</Text>
-          </TouchableOpacity>
+        <DotsIndicator steps={steps} currentIndex={currentIndex} />
+        <NextIcon size={36} onPress={nextStep} />
+        <PreviousIcon size={36} onPress={prevStep} />
+        {currentIndex === 2 && (
+          <Text className='text-xl font-semibold'>Close Button will be here</Text>
         )}
       </View>
     </Modal>
