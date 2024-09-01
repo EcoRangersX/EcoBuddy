@@ -7,6 +7,7 @@ People have become more aware of the **importance of ecology** and the environme
 
 **AI-Assistant** is aiming to help users get the immediate feedback and personalized learning experience they need to improve their knowledge of ecology and the environment.
 
+Note: The frontend structure is outdated and needs to be updated
 ## Project structure
 
 ### Frontend
