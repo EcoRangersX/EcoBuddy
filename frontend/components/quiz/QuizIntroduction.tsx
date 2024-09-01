@@ -54,9 +54,9 @@ const QuizIntroduction = ({
     <Modal visible={isVisible} transparent>
       <BlurView
         experimentalBlurMethod=''
-        intensity={60}
-        className="flex-1 justify-center items-center">
-        <View className='w-[90%] rounded-[20px] bg-white shadow-md shadow-black'>
+        intensity={5}
+        className="flex-1 h-full justify-center items-center">
+        <View className='w-[95%] rounded-[20px] bg-white shadow-md shadow-black'>
           <ScrollView
             ref={scrollViewRef}
             horizontal
@@ -66,8 +66,8 @@ const QuizIntroduction = ({
             {steps.map((step, index) => (
               <View
                 key={index}
-                style={{ width: screenWidth * 0.9 }}
-                className="flex items-center justify-center p-8">
+                style={{ width: screenWidth }}
+                className="flex items-center justify-center px-10 py-5">
                 <Text className="text-xl font-bold text-center mb-2">
                   {step.title}
                 </Text>

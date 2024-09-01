@@ -16,12 +16,43 @@ export default function QuizScreen() {
 
   return (
     <View className="">
-      <Text>Fetched Data with id: {id}</Text>
       <QuizIntroduction
         steps={quizStepsStatic}
         isVisible={isVisible}
         onClose={handleOnClose}
       />
+      <Text className="">
+        Some textrtybyjfdv4ter
+        ...dfgfhjkffugyf5t4deyeveubrni8ntufbjydhtgrcet45y6ubydthgfcertv5y6buydthgfbvhdgfb{' '}
+        Some text
+        ...dfgfhjkffugyf5t4deyeveubrni8ntufbjydhtgrcet45y6ubydthgfcertv5y6buydthgfbvhdgfb{' '}
+        Some text
+        ...dfgfhjkffugyf5t4deyeveubrni8ntufbjydhtgrcet45y6ubydthgfcertv5y6buydthgfbvhdgfb{' '}
+        Some text
+        ...dfgfhjkffugyf5t4deyeveubrni8ntufbjydhtgrcet45y6ubydthgfcertv5y6buydthgfbvhdgfb{' '}
+        Some text
+        ...dfgfhjkjkffugyf5t4deyeveubrni8ntufbjydhtgrcet45y6ubydthgfcertv5y6buydthgfbvhdgfb{' '}
+        Some text
+        ...dfgfhjkffugyf5t4deyeveubrni8ntufbjydhtgrcet45y6ubydthgfcertv5y6buydthgfbvhdgfb{' '}
+        Some text
+        ...dfgfhjkffugvffugyf5t4deyeveubrni8ntufbjydhtgrcet45y6ubydthgfcertv5y6buydthgfbvhdgfb{' '}
+        Some text
+        ...dfgfhjkffugyf5t4deyeveubrni8ntufbjydhtgrcet45y6ubydthgfcertv5y6buydthgfbvhdgfb{' '}
+        Some text
+        ...dfgfhjkjkffugyf5t4deyeveubrni8ntufbjydhtgrcet45y6ubydthgfcertv5y6buydthgfbvhdgfb{' '}
+        Some text
+        ...dfgfhjkffugyf5t4deyeveubrni8ntufbjydhtgrcet45y6ubydthgfcertv5y6buydthgfbvhdgfb{' '}
+        Some text
+        ...dfgfhjkffuffugyf5t4deyeveubrni8ntufbjydhtgrcet45y6ubydthgfcertv5y6buydthgfbvhdgfb{' '}
+        Some text
+        ...dfgfhjkffugyf5t4deyeveubrni8ntufbjydhtgrcet45y6ubydthgfcertv5y6buydthgfbvhdgfb{' '}
+        Some text
+        ...dfgfhjkjkffugyf5t4deyeveubrni8ntufbjydhtgrcet45y6ubydthgfcertv5y6buydthgfbvhdgfb{' '}
+        Some text
+        ...dfgfhjkffugyf5t4deyeveubrni8ntufbjydhtgrcet45y6ubydthgfcertv5y6buydthgfbvhdgfb{' '}
+        Some text
+        ...dfgfhjkffuyf5t4deyeveubrni8ntufbjydhtgrcet45y6ubydthgfcertv5y6buydthgfbvhdgfb{' '}
+      </Text>
     </View>
   );
 }
