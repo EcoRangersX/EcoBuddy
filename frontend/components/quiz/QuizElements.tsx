@@ -1,8 +1,14 @@
 import { View, Text } from 'react-native';
 
-const QuizIntroductionStatic = () => {
+interface QuizStepProps {
+  screenWidth: number;
+}
+
+const QuizIntroductionStatic = ({ screenWidth }: QuizStepProps) => {
   return (
-    <View className="flex items-center justify-center px-10 py-5">
+    <View
+      style={{ width: screenWidth * 0.9 }}
+      className="flex items-center justify-center px-10 py-5">
       <Text className="text-xl font-bold text-center mb-2">
         Welcome to the eco quiz challenge!
       </Text>
@@ -19,9 +25,11 @@ const QuizIntroductionStatic = () => {
   );
 };
 
-const HowToEarnStarsStatic = () => {
+const HowToEarnStarsStatic = ({ screenWidth }: QuizStepProps) => {
   return (
-    <View className="flex items-center justify-center px-10 py-5">
+    <View
+      style={{ width: screenWidth * 0.9 }}
+      className="flex items-center justify-center px-10 py-5">
       <Text className="text-xl font-bold text-center mb-2">
         How to earn stars
       </Text>
@@ -41,9 +49,11 @@ const HowToEarnStarsStatic = () => {
   );
 };
 
-const TrackYourProgressStatic = () => {
+const TrackYourProgressStatic = ({ screenWidth }: QuizStepProps) => {
   return (
-    <View className="flex items-center justify-center px-10 py-5">
+    <View
+      style={{ width: screenWidth * 0.9 }}
+      className="flex items-center justify-center px-10 py-5">
       <Text className="text-xl font-bold text-center mb-2">
         Track your progress
       </Text>
@@ -62,9 +72,11 @@ const TrackYourProgressStatic = () => {
   );
 };
 
-const StayMotivatedStatic = () => {
+const StayMotivatedStatic = ({ screenWidth }: QuizStepProps) => {
   return (
-    <View className="flex items-center justify-center px-10 py-5">
+    <View
+      style={{ width: screenWidth * 0.9 }}
+      className="flex items-center justify-center px-10 py-5">
       <Text className="text-xl font-bold text-center mb-2">Stay motivated</Text>
       <Text className="text-sm text-center">
         <Text className="text-base">Set goals</Text>
