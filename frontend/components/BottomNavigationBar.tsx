@@ -65,6 +65,11 @@ const BottomNavigationBar = () => {
           ),
         }}
       />
+      <Tabs.Screen name="quizzes/[id]" options={{ href: null }} />
+      {/* <Tabs.Screen name="articles/[id]" options={{ href: null }} /> Add once the Article Page is developing */}
+      <Tabs.Screen name="settings" options={{ href: null }} />
+      <Tabs.Screen name="aqi-details" options={{ href: null }} />
+      <Tabs.Screen name="leaderboard" options={{ href: null }} />
     </Tabs>
   );
 };

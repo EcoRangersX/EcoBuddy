@@ -15,7 +15,7 @@ const StartQuizIcon = ({
 }: StartQuizIconProps) => {
   return (
     <TouchableOpacity
-      className="bg-[#9ad5e0] w-9 h-9 rounded-full justify-center items-center">
+      className="bg-[#9ad5e0] w-10 h-10 rounded-full justify-center items-center">
       <Link href={{ pathname: '/quizzes/[id]', params: { "id": id } }}>
         <FontAwesome6 name="play" size={size} color={color} />
       </Link>
