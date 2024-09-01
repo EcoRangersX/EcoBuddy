@@ -16,6 +16,7 @@ export default function QuizScreen() {
 
   return (
     <View className="">
+      <Text>Fetched Data with id: {id}</Text>
       <QuizIntroduction
         steps={quizStepsStatic}
         isVisible={isVisible}
