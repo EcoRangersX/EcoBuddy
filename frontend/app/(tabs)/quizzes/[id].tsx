@@ -2,7 +2,6 @@ import { View, Text } from 'react-native';
 import { useState } from 'react';
 import { useLocalSearchParams } from 'expo-router';
 import QuizIntroduction from '@/components/quiz/QuizIntroduction';
-import { quizStepsStatic } from '@/constants/StaticData';
 
 export default function QuizScreen() {
   const [isVisible, setIsVisible] = useState(true);
@@ -17,7 +16,6 @@ export default function QuizScreen() {
   return (
     <View className="">
       <QuizIntroduction
-        steps={quizStepsStatic}
         isVisible={isVisible}
         onClose={handleOnClose}
       />
