@@ -1,23 +1,34 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import { View, Text, Dimensions, TouchableOpacity } from 'react-native';
-import Carousel from 'react-native-snap-carousel';
+import { useSharedValue } from 'react-native-reanimated';
+import Carousel, {
+  ICarouselInstance,
+  Pagination,
+} from 'react-native-reanimated-carousel';
 
 const { width: screenWidth } = Dimensions.get('window');
 
-const steps = [
-  {
-    title: 'Welcome To The Eco Quiz Challenge!',
-    description:
-      'Ready To Test Your Knowledge And Become An Eco Expert? Our Quizzes Are Designed To Make Learning About Ecology Fun And Rewarding. Here’s How You Can Earn Stars, Collect Badges, And Track Your Progress As You Explore Different Ecological Topics.',
-  },
-  // Add more steps as needed
-];
+interface Step {
+  title: string;
+  description: string;
+}
 
-const QuizIntroduction = () => {
-  const carouselRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+interface QuizIntroductionProps {
+  steps: Step[];
+}
 
-  const renderItem = ({ item }) => (
+const QuizIntroduction = ({ steps }: QuizIntroductionProps) => {
+  const carouselRef = useRef<ICarouselInstance>(null);
+  const progress = useSharedValue<number>(0);
+
+  const onPressPagination = (index: number) => {
+    carouselRef.current?.scrollTo({
+      count: index - progress.value,
+      animated: true,
+    });
+  };
+
+  const quizStep = ({ item }: { item: Step }) => (
     <View className="justify-center items-center px-5">
       <Text className="text-xl font-bold text-center mb-4">{item.title}</Text>
       <Text className="text-base text-center mb-5">{item.description}</Text>
@@ -25,31 +36,23 @@ const QuizIntroduction = () => {
   );
 
   return (
-    <View className="flex justify-center items-center rounded-xl bg-white shadow-lg shadow-black">
-      <Text className='text-base text-black'>Screen width: {screenWidth}</Text>
+    <View className="flex-1 justify-center items-center p-5 bg-white shadow-md shadow-black">
       <Carousel
         ref={carouselRef}
+        width={screenWidth}
+        height={screenWidth / 2}
         data={steps}
-        renderItem={renderItem}
-        sliderWidth={screenWidth}
-        itemWidth={screenWidth * 0.8}
-        onSnapToItem={index => setActiveIndex(index)}
+        onProgressChange={progress}
+        renderItem={quizStep}
       />
-      <View className="flex-row justify-center mt-5">
-        {steps.map((_, index) => (
-          <View
-            key={index}
-            className={`w-2.5 h-2.5 rounded-full mx-1 ${
-              index === activeIndex ? 'bg-[#005374]' : 'bg-gray-300'
-            }`}
-          />
-        ))}
-      </View>
-      <TouchableOpacity
-        className="mt-5 bg-[#e0f7fa] w-12 h-12 rounded-full justify-center items-center"
-        onPress={() => carouselRef.current.snapToNext()}>
-        <FontAwesome name="arrow-right" size={24} color="#00bfff" />
-      </TouchableOpacity>
+
+      <Pagination.Basic
+        progress={progress}
+        data={steps}
+        dotStyle={{ backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: 50 }}
+        containerStyle={{ gap: 5, marginTop: 10 }}
+        onPress={onPressPagination}
+      />
     </View>
   );
 };
