@@ -1,24 +1,42 @@
 import { useState, useRef } from 'react';
-import { View, Text, ScrollView, Dimensions, Modal } from 'react-native';
+import { View, ScrollView, Dimensions, Modal, FlatList } from 'react-native';
 import DotsIndicator from './DotsIndicator';
 import { NextIcon, PreviousIcon, CloseButton } from '../icons/Quiz';
 import { BlurView } from 'expo-blur';
+import {
+  QuizIntroductionStatic,
+  HowToEarnStarsStatic,
+  TrackYourProgressStatic,
+  StayMotivatedStatic,
+} from '@/components/quiz/QuizElements';
 
 const { width: screenWidth } = Dimensions.get('window');
 
 export interface Step {
-  title: string;
-  description: string;
+  jsx_element: JSX.Element;
 }
 
 interface QuizIntroductionProps {
-  steps: Step[];
   isVisible: boolean;
   onClose: () => void;
 }
 
+const quizStepsStatic = [
+  {
+    jsx_element: <QuizIntroductionStatic screenWidth={screenWidth} />,
+  },
+  {
+    jsx_element: <HowToEarnStarsStatic screenWidth={screenWidth} />,
+  },
+  {
+    jsx_element: <TrackYourProgressStatic screenWidth={screenWidth} />,
+  },
+  {
+    jsx_element: <StayMotivatedStatic screenWidth={screenWidth} />,
+  },
+];
+
 const QuizIntroduction = ({
-  steps,
   isVisible,
   onClose,
 }: QuizIntroductionProps) => {
@@ -31,7 +49,7 @@ const QuizIntroduction = ({
   // };
 
   const nextStep = () => {
-    if (currentIndex < steps.length - 1) {
+    if (currentIndex < quizStepsStatic.length - 1) {
       scrollViewRef.current?.scrollTo({
         x: screenWidth * (currentIndex + 1),
         animated: true,
@@ -53,43 +71,31 @@ const QuizIntroduction = ({
   return (
     <Modal visible={isVisible} transparent>
       <BlurView
-        experimentalBlurMethod=''
+        experimentalBlurMethod=""
         intensity={5}
         className="flex-1 h-full justify-center items-center">
-        <View className='w-[95%] rounded-[20px] bg-white shadow-md shadow-black'>
-          <ScrollView
-            ref={scrollViewRef}
+        <View className="w-[95%] rounded-[20px] bg-white shadow-md shadow-black">
+          <FlatList
             horizontal
             pagingEnabled
             showsHorizontalScrollIndicator={false}
-            scrollEventThrottle={16}>
-            {steps.map((step, index) => (
-              <View
-                key={index}
-                style={{ width: screenWidth }}
-                className="flex items-center justify-center px-10 py-5">
-                <Text className="text-xl font-bold text-center mb-2">
-                  {step.title}
-                </Text>
-                <Text className="text-base text-center">
-                  {step.description}
-                </Text>
+            scrollEventThrottle={16}
+            keyExtractor={(_, index) => index.toString()}
+            data={quizStepsStatic}
+            renderItem={({ item }) => item.jsx_element}></FlatList>
+          <View className="justify-around flex-row items-center mb-3">
+            <DotsIndicator steps={quizStepsStatic} currentIndex={currentIndex} />
+            {currentIndex === quizStepsStatic.length - 1 ? (
+              <View className="flex-row">
+                <PreviousIcon size={36} onPress={prevStep} styles="mr-3" />
+                <CloseButton size={36} onPress={onClose} />
               </View>
-            ))}
-          </ScrollView>
-          <View className='justify-around flex-row items-center mb-3'>
-          <DotsIndicator steps={steps} currentIndex={currentIndex} />
-          {currentIndex === steps.length - 1 ? (
-            <View className="flex-row">
-              <PreviousIcon size={36} onPress={prevStep} styles="mr-3" />
-              <CloseButton size={36} onPress={onClose} />
-            </View>
-          ) : (
-            <View className="flex-row ">
-              <PreviousIcon size={36} onPress={prevStep} styles="mr-3" />
-              <NextIcon size={36} onPress={nextStep} />
-            </View>
-          )}
+            ) : (
+              <View className="flex-row ">
+                <PreviousIcon size={36} onPress={prevStep} styles="mr-3" />
+                <NextIcon size={36} onPress={nextStep} />
+              </View>
+            )}
           </View>
         </View>
       </BlurView>
