@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { View, Text, ScrollView, Dimensions, Modal } from 'react-native';
 import DotsIndicator from './DotsIndicator';
-import { NextIcon, PreviousIcon, CloseIcon } from '../icons/Quiz';
+import { NextIcon, PreviousIcon, CloseButton } from '../icons/Quiz';
 import { BlurView } from 'expo-blur';
 
 const { width: screenWidth } = Dimensions.get('window');
@@ -82,7 +82,7 @@ const QuizIntroduction = ({
           {currentIndex === steps.length - 1 ? (
             <View className="flex-row">
               <PreviousIcon size={36} onPress={prevStep} styles="mr-3" />
-              <CloseIcon size={36} onPress={onClose} />
+              <CloseButton size={36} onPress={onClose} />
             </View>
           ) : (
             <View className="flex-row ">

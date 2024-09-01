@@ -27,7 +27,7 @@ const PreviousIcon = ({ size, color, onPress, styles }: NavigationIconProps) => 
   );
 };
 
-const CloseIcon = ({ onPress, styles }: NavigationIconProps) => {
+const CloseButton = ({ onPress, styles }: NavigationIconProps) => {
   return (
     <TouchableOpacity
       className={`bg-white rounded-[30px] justify-center items-center w-24 h-12 border-[#08b1cf] border-2 ${styles}`}
@@ -37,4 +37,4 @@ const CloseIcon = ({ onPress, styles }: NavigationIconProps) => {
   );
 }
 
-export { NextIcon, PreviousIcon, CloseIcon };
+export { NextIcon, PreviousIcon, CloseButton };
