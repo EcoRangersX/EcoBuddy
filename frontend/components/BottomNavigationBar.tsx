@@ -65,6 +65,7 @@ const BottomNavigationBar = () => {
           ),
         }}
       />
+      <Tabs.Screen name="quizzes/[id]" options={{ href: null }} />
     </Tabs>
   );
 };
