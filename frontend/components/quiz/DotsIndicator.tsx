@@ -7,7 +7,6 @@ interface DotsIndicatorProps {
 }
 
 const DotsIndicator = ({ steps, currentIndex }: DotsIndicatorProps) => {
-  console.log(`Current index: ${currentIndex}`);
   return (
     <View className="flex-row space-x-1 justify-center">
       {steps.map((_, index) => (
