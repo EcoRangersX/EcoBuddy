@@ -2,7 +2,7 @@ import { TouchableOpacity } from 'react-native';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import Svg, { Path, Defs, LinearGradient, Stop } from 'react-native-svg';
 import { BasicIconProps } from './HomeIcons';
-import { Link } from 'expo-router';
+import { useRouter } from 'expo-router';
 
 interface StartQuizIconProps extends BasicIconProps {
   id: number;
@@ -13,12 +13,15 @@ const StartQuizIcon = ({
   color = 'white',
   id,
 }: StartQuizIconProps) => {
+  const router = useRouter();
+
   return (
     <TouchableOpacity
-      className="bg-[#9ad5e0] w-10 h-10 rounded-full justify-center items-center">
-      <Link href={{ pathname: '/quizzes/[id]', params: { "id": id } }}>
-        <FontAwesome6 name="play" size={size} color={color} />
-      </Link>
+      className="bg-[#9ad5e0] w-10 h-10 rounded-full justify-center items-center"
+      onPress={() =>
+        router.push({ pathname: '/quizzes/[id]', params: { id: id } })
+      }>
+      <FontAwesome6 name="play" size={size} color={color} />
     </TouchableOpacity>
   );
 };
