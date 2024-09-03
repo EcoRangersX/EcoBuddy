@@ -163,3 +163,4 @@ cython_debug/
 
 # Ignore the database file
 database.db
+cashe.db
