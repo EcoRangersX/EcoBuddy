@@ -1,13 +1,15 @@
 import { ScrollView } from 'react-native';
 import Header from '@/components/Header';
-import EcoFriendlyArticlesSection from '@/components/Articles/EcoFriendlyArticlesSection';
-import { ecoFriendlyArticles } from '@/constants/StaticData';
+import EcoFriendlyArticlesSection from '@/components/articles/EcoFriendlyArticlesSection';
+import { ecoFriendlyArticlesStatic } from '@/constants/StaticData';
+import SearchModal from '@/components/articles/SearchModal';
 
 export default function ArticlesScreen() {
   return (
     <ScrollView>
       <Header />
-      <EcoFriendlyArticlesSection articles={ecoFriendlyArticles} />
+      <SearchModal />
+      <EcoFriendlyArticlesSection articles={ecoFriendlyArticlesStatic} />
     </ScrollView>
   );
 }

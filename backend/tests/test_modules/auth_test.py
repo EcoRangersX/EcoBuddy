@@ -14,9 +14,9 @@ class Auth_tester():
         register = requests.post(
             url='http://127.0.0.1:5000/api/auth/register',
             json={
-                'Email': 'siemano1@gmail.com',
-                'Password': 'siemano1k',
-                'Name': 'siemano1'
+                'email': 'siemano1@gmail.com',
+                'password': 'siemano1k',
+                'name': 'siemano1'
                 }
             )
         
@@ -28,8 +28,8 @@ class Auth_tester():
         login = requests.post(
             url='http://127.0.0.1:5000/api/auth/login',
             json={
-                'Email': 'siemano1@gmail.com',
-                'Password':'siemano1k'
+                'email': 'siemano1@gmail.com',
+                'password':'siemano1k'
                 }
             )
         

@@ -11,17 +11,17 @@ class Article_tester():
 
     def articles_components(self):
         articles_components = requests.get(
-            url='http://127.0.0.1:5000/api/news/article_component',
+            url='http://127.0.0.1:5000/api/article/component',
             params={
-                'Component': 'title',
-                'Amount': 5
+                'component': 'title',
+                'amount': 5
                 }
             )
         print(f"\n ARTICLES_COMPONENTS \n {json.dumps(articles_components.json(),indent=2)}")
 
     def articles(self):
         articles = requests.get(
-            url="http://127.0.0.1:5000/api/news/articles"
+            url="http://127.0.0.1:5000/api/article/summary"
             )
         
         print(f"\n ARTICLES \n {json.dumps(articles.json(),indent=2)}")

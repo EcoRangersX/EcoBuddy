@@ -6,6 +6,14 @@ interface TestKnowledgeSectionProps {
   quizzes: StartQuizProps[];
 }
 
+/**
+ * Renders a section for testing knowledge.
+ *
+ * @component
+ * @param {TestKnowledgeSectionProps} props - The component props.
+ * @param {Quiz[]} props.quizzes - The array of quizzes to be displayed.
+ * @returns {JSX.Element} The rendered component.
+ */
 const TestKnowledgeSection = ({ quizzes }: TestKnowledgeSectionProps) => {
   return (
     <View className="p-3">

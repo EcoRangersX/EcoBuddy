@@ -12,24 +12,24 @@ def login():
     account = Account()
     
     data = request.json
-    setup = account.setup_user_data(email=data['Email'],password = data['Password'])
+    setup = account.setup_user_data(email=data['email'],password = data['password'])
 
     if setup:
         return setup
     
     if account.login():
-        return {'Response': 'Logged succesfully!',
-                'Error_msg': None}
+        return {'response': True,
+                'error-msg': ''}
     else:
-        return {'Response': 'Invalid email or password!',
-                'Error_msg': None}
+        return {'response': False,
+                'error-msg': "Invalid email or password"}
 
 
 @auth_bp.route("/register",methods=['POST'])
 def register():
     account = Account()
     data = request.json
-    setup = account.setup_user_data(name=data['Name'],email=data['Email'],password = data['Password'])
+    setup = account.setup_user_data(name=data['name'],email=data['email'],password = data['password'])
 
     if setup:
         return setup

@@ -1,107 +1,91 @@
-import {
-  View,
-  Keyboard,
-  TouchableWithoutFeedback,
-  FlatList,
-  Text,
-} from 'react-native';
+import { View, Keyboard, FlatList } from 'react-native';
+import { useState, useEffect, useCallback } from 'react';
+import { useAskAI } from '@/hooks/ai-assistant/useAskAI';
 import Header from '@/components/Header';
-import SendIcon from '@/components/Icons/SendIcon';
-import { TextInput } from 'react-native-paper';
-import { useState, useEffect } from 'react';
-import { useAskAI } from '@/hooks/useAskAI';
+import AiResponse from '@/components/ai-assistant/AiResponse';
+import UserQuestionBox from '@/components/ai-assistant/UserQuestionBox';
+import QuestionInput from '@/components/ai-assistant/QuestionInput';
+import HeaderWelcomeMessage from '@/components/ai-assistant/HeaderWelcomeMessage';
+import AiUsageWarning from '@/components/ai-assistant/AiUsageWarning';
 
-interface Message {
+interface QaItem {
   id: string;
-  prompt: string;
-}
-
-interface aiResponse {
-  id: string;
-  response: string;
+  question: string;
+  response?: string | null;
 }
 
 export default function AiAssistantScreen() {
-  const [prompt, setPrompt] = useState<string>('');
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [aiResponses, setAiResponses] = useState<aiResponse[]>([]);
-  const [combinedList, setCombinedList] = useState<(Message | Response)[]>([]);
+  const [question, setQuestion] = useState<string>('');
+  const [qaList, setQaList] = useState<QaItem[]>([]);
 
-  const { askAI, aiResponse, error, loading } = useAskAI();
-
-  useEffect(() => {
-    const newCombinedList: (Message | Response)[] = [];
-    for (let i = 0; i < messages.length; i++) {
-      newCombinedList.push(messages[i]);
-      if (aiResponses[i]) {
-        newCombinedList.push(aiResponses[i]);
-      }
-    }
-    setCombinedList(newCombinedList);
-  }, [messages, aiResponses]);
+  const { askAI, aiResponse, loadingAiResponse, errorAiResponseMsg } =
+    useAskAI();
 
   useEffect(() => {
     if (aiResponse) {
-      const newResponse = {
-        id: Date.now().toString(),
-        response: aiResponse.response,
-      };
-      setAiResponses([...aiResponses, newResponse]);
+      setQaList(prevQaList =>
+        prevQaList.map(item =>
+          item.response ? item : { ...item, response: aiResponse.response },
+        ),
+      );
     }
   }, [aiResponse]);
 
-  const handleSubmit = async () => {
-    if (prompt) {
-      const newMessage = { id: Date.now().toString(), prompt: prompt };
-      setMessages([...messages, newMessage]);
-      setPrompt('');
+  const submitQuestion = async () => {
+    if (question) {
+      const newQuestion = { id: Date.now().toString(), question: question };
+      setQaList([...qaList, newQuestion]);
+      setQuestion('');
       Keyboard.dismiss();
-      await askAI(prompt);
+      await askAI(question);
     }
   };
 
-  if (error) {
-    return (
-      <View className="flex-1 justify-center items-center">
-        <Text className="text-red-500">{error}</Text>
+  const renderQaItem = useCallback(
+    ({ item, index }: { item: QaItem; index: number }) => (
+      <View>
+        <UserQuestionBox question={item.question} />
+        {/* Showing loading state only for the last aiResponse in qaList */}
+        {index === qaList.length - 1 && loadingAiResponse ? (
+          <AiResponse response={null} loading={true} error={null} />
+        ) : (
+          <AiResponse
+            response={item.response}
+            loading={false}
+            error={errorAiResponseMsg}
+          />
+        )}
       </View>
-    );
-  }
+    ),
+    [qaList, loadingAiResponse, errorAiResponseMsg],
+  );
+
+  const getItemLayout = (_: any, index: number) => ({
+    length: 100,
+    offset: 100 * index,
+    index,
+  }); // Each item has a fixed height of 100 units
 
   return (
     <View className="flex-1">
       <Header />
+      {/* Optimized FlatList for displaying QaList */}
       <FlatList
-        data={combinedList}
-        renderItem={({ item }) =>
-          'prompt' in item ? (
-            <View className="mb-2 p-3 bg-gray-200 rounded">
-              <Text className="text-lg">{item.prompt}</Text>
-            </View>
-          ) : (
-            <View className="mb-2 p-3 bg-green-200 rounded">
-              <Text className="text-lg">
-                {loading ? 'Loading ...' : item.response}
-              </Text>
-            </View>
-          )
-        }
+        data={qaList}
+        keyExtractor={item => item.id}
+        renderItem={renderQaItem}
+        initialNumToRender={10} // Renders only 10 items initially
+        maxToRenderPerBatch={10} // Renders 10 items per batch
+        windowSize={5} // Keep 5 screens worth of content in memory
+        getItemLayout={getItemLayout}
+        ListHeaderComponent={<HeaderWelcomeMessage />}
       />
-      {/* TouchableWithoutFeedback component allows users to exit the input field */}
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View className="justify-center p-8 flex-row items-center">
-            <TextInput
-            placeholder="Ask me anything about ecology..."
-            mode="outlined"
-            multiline={true}
-            value={prompt}
-            onChangeText={setPrompt}
-            theme={{ colors: { primary: 'green' } }}
-            className="w-full max-h-48 p-1"
-          />
-          <SendIcon onPress={handleSubmit} size={28} />
-        </View>
-      </TouchableWithoutFeedback>
+      <QuestionInput
+        question={question}
+        setQuestion={setQuestion}
+        handleSubmit={submitQuestion}
+      />
+      <AiUsageWarning />
     </View>
   );
 }

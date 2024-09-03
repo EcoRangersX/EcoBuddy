@@ -1,7 +1,22 @@
 import { View, Text } from 'react-native';
-import { StartQuizIcon } from '../Icons/QuizzesIcons';
+import { StartQuizIcon } from '../icons/QuizzesIcons';
 import { StartQuizProps } from '@/types/quizzes';
 
+/**
+ * Renders a quiz card to start a quiz.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.quiz_id - The ID of the quiz.
+ * @param {string} props.level - The level of the quiz.
+ * @param {number} props.questionsCount - The number of questions in the quiz.
+ * @param {string} [props.bgColor='white'] - The background color of the card.
+ * @param {string} [props.titleBgColor='#74c6d4'] - The background color of the title section.
+ * @param {string} props.title - The title of the quiz.
+ * @param {(string[]|string)} props.description - The description of the quiz. Can be a string or an array of strings.
+ * @param {boolean} [props.quizOfTheDay=false] - Indicates if the quiz is the quiz of the day.
+ * @returns {JSX.Element} The rendered quiz card.
+ */
 const StartQuiz = ({
   quiz_id,
   level,
@@ -30,7 +45,7 @@ const StartQuiz = ({
         }}
         className="flex-row items-center justify-between px-4 py-2 rounded-[30px]">
         <Text className="text-white font-bold mr-2">{title}</Text>
-        <StartQuizIcon quiz_id={quiz_id} />
+        <StartQuizIcon id={quiz_id} size={22} />
       </View>
       {/* Description as a Bullet List */}
       {quizOfTheDay ? (

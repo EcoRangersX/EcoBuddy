@@ -1,19 +1,26 @@
 import { TouchableOpacity } from 'react-native';
-import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import {
+  FontAwesome,
+  MaterialIcons,
+  MaterialCommunityIcons,
+} from '@expo/vector-icons';
+import { BasicIconProps } from './HomeIcons';
 
-interface BasicIconProps {
-  color?: string;
-  size?: number;
-}
 
 interface SaveToFavoriteIcon extends BasicIconProps {
   article_id: number;
+  saved: boolean;
+}
+
+interface ClearQueryIcon extends BasicIconProps {
+  onPress: () => void;
 }
 
 const SaveToFavoriteIcon = ({
   size,
   color,
   article_id,
+  saved,
 }: SaveToFavoriteIcon) => {
   const handleSaveToFavorite = (article_id: number) => {
     //TODO: Implement the logic to save the article to the favorite list
@@ -24,9 +31,36 @@ const SaveToFavoriteIcon = ({
     <TouchableOpacity
       className="bg-white h-12 w-12 items-center justify-center rounded-full shadow-md shadow-black"
       onPress={() => handleSaveToFavorite(article_id)}>
-      <FontAwesome6 name="bookmark" size={size} color={color} />
+      {saved ? (
+        <FontAwesome name="bookmark" size={size} color={color} />
+      ) : (
+        <FontAwesome name="bookmark-o" size={size} color={color} />
+      )}
     </TouchableOpacity>
   );
 };
 
-export { SaveToFavoriteIcon };
+const SearchIcon = ({ size = 24, color = 'white' }: BasicIconProps) => {
+  return (
+    <TouchableOpacity className="bg-[#71d285] rounded-full items-center justify-center shadow-md shadow-black w-12 h-12">
+      <MaterialIcons name="search" size={size} color={color} />
+    </TouchableOpacity>
+  );
+};
+
+const ClearQueryIcon = ({
+  size = 24,
+  color = 'black',
+  onPress,
+}: ClearQueryIcon) => {
+  return (
+    <MaterialCommunityIcons
+      name="close-circle-outline"
+      size={size}
+      color={color}
+      onPress={onPress}
+    />
+  );
+};
+
+export { SaveToFavoriteIcon, SearchIcon, ClearQueryIcon };

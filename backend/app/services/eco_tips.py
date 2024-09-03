@@ -7,14 +7,20 @@ class Eco_tips():
         
         self.cursor = conn.cursor()
     def get_eco_tips(self,amount: int=1):
-        self.cursor.execute("SELECT * FROM eco_tips LIMIT :amount", {'amount':amount})
+        self.cursor.execute("SELECT title,description FROM eco_tips LIMIT :amount", {'amount':amount})
 
         eco_tips_list = self.cursor.fetchall()
      
-        eco_tips = {}
+        eco_tips = []
 
         for title,description in eco_tips_list:
-            eco_tips[title] = description
+            eco_tips.append(
+                {
+                    "title": title,
+                    'description': description
+                }
+            )
+            
   
         return eco_tips
 

@@ -1,18 +1,18 @@
-from app.database import conn, cursor
 from app.database.models import Ai_question
 from app.globals import globals
 
 
 
 class Migrate_ai_questions():
-    def __init__(self):
+    def __init__(self,conn):
+
+        cursor = conn.cursor()
 
         cursor.execute(
             """CREATE TABLE IF NOT EXISTS ai_questions(
             question TEXT
             )
-            """
-        )
+            """)
         conn.commit()
 
         questions = globals['Ai_questions']

@@ -4,7 +4,7 @@ from threading import Thread
 
 class Air_tester():
     def __init__(self):
-        self.example_lat, self.example_long = (50.063843899589884, 19.942991724503248)
+        self.example_lat, self.example_long = (50.12195259429432, 20.049317598057517)
 
         self.air_quaility_thread = Thread(target=self.air_quality) 
         self.weather_thread = Thread(target=self.weather)
@@ -13,9 +13,9 @@ class Air_tester():
 
     def air_quality(self):
         air_quality_response = requests.get(
-            url="http://127.0.0.1:5000/api/air/air_quality",
-            params={"Latitude": self.example_lat, 
-                  "Longitude": self.example_long
+            url="http://127.0.0.1:5000/api/air_data/pollution",
+            params={"latitude": self.example_lat, 
+                  "longitude": self.example_long
                   }
 
             )
@@ -23,10 +23,10 @@ class Air_tester():
     
     def weather(self):
         weather_response = requests.get(
-            url="http://127.0.0.1:5000/api/air/weather",
+            url="http://127.0.0.1:5000/api/air_data/weather",
             params={
-                "Latitude": self.example_lat,
-                "Longitude": self.example_long
+                "latitude": self.example_lat,
+                "longitude": self.example_long
                 }
             )
         

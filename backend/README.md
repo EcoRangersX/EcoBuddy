@@ -1,39 +1,60 @@
-## RUN the project:
-**Open Terminal**: Open your terminal in Visual Studio Code.
+# RUN the project:
 
-Navigate to Project Directory: Use the cd command to navigate to your project **backend** directory.
 
-**Create Virtual Environment:**
+## Open Terminal
+
+Open terminal in the cloned repository directory. 
+
+![Alt text](images/ecobuddy_img.png)
+
+Right click and click `open in terminal`
+
+![Alt text](images/terminal_directory.png)
+
+Navigate to backend directory: `cd backend`
+
+
+## Create Virtual Environment:
 
 Use `python3 -m venv venv` to  create a virtual environment named venv.
 
-Check if in folder env/bin are files named activate,
-if not delete venv folder and use: `virtualenv -p python3 venv`
+Check if folder `venv/bin` looks like this:
 
-**Activate Virtual Environment:**
+![Alt text](images/venv_structure.png)
 
-! In Visual Studio Code evironment should be activated by itself but if you don't see 
-(venv) on the left side of terminal you need to use this command !
-                                       
+*IF NOT* delete venv folder and use: `virtualenv -p python3 venv`
+
+
+## Activate Virtual Environment:
+                
 On Windows, use `.\venv\Scripts\activate` to activate the virtual environment.
 
 On macOS/Linux, use `source venv/bin/activate`
 
-**Install Dependencies:**
-Ensure you have a requirements.txt file with all the necessary dependencies listed.
+*IF* virtual environment was succesfully activated you should see something like this:
+
+![Alt text](images/venv_img.png)
+
+
+## Install Dependencies:
 
 Run `pip3 install -r requirements.txt` to install the dependencies.
 
-**Setup environmetal variables**
-Create .env file in backend folder like this:
-GROQ_API_KEY = <groq api key>
-OPEN_WEATHER_API_KEY = <open weather api key>
 
-**Run project**
+## Setup environmetal variables
+
+Create `.env` file in backend folder: `touch .env`, and fill it like this:
+
+![Alt text](images/env_file.png)
+
+
+## Run the project
+
 Use `python3 run.py` to run the project.
 
 
-## TEST BACKEND
-To test api you can use `python3 test.py` and see if everything works as intended.
+## Test project
+
+Use `python3 test.py` and see if everything works.
 
 

@@ -6,6 +6,16 @@ interface AqiLevelItemProps {
   bgColor: string;
 }
 
+/**
+ * Renders an AQI level item.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {string} props.range - The range of the AQI level.
+ * @param {string} props.description - The description of the AQI level.
+ * @param {string} props.bgColor - The background color of the AQI level item.
+ * @returns {JSX.Element} The rendered AQI level item.
+ */
 const AqiLevelItem = ({ range, description, bgColor }: AqiLevelItemProps) => {
   return (
     <View className="flex-row items-center mb-4 rounded-full flex-1 shadow-lg shadow-black relative bg-white p-2">

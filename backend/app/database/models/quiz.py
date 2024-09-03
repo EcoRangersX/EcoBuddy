@@ -3,36 +3,16 @@ from app.database import conn
 
 
 class Quiz():
-    def __init__(self,title: str,quiz: str):
-        self.title = title
-        self.quiz = quiz
+    def __init__(self):
 
         self.cursor = conn.cursor()
 
-    def check_if_already_in_database(self):
-        if self.get_from_database():
-            return True
-        else:
-            return False
 
-
-    def insert_into_database(self):
-        self.cursor.execute(
-            """INSERT INTO quizes VALUES(
-            :title,
-            :quiz
-            )
-            """,
-            {'title': self.title,
-             'quiz': self.quiz})
-        conn.execute()
-
-    def get_from_database(self):
         self.cursor.execute(
             """SELECT quiz FROM quizes 
             WHERE 
-            title=:title
+            id=:id
             """,
-            {'title': self.title})
+            {'id': id})
         
         return self.cursor.fetchone()
