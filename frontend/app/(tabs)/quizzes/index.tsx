@@ -1,7 +1,7 @@
 import { ScrollView, View } from 'react-native';
 import Header from '@/components/Header';
-import TestKnowledgeSection from '@/components/quizzes-to/TestKnowledgeSection';
-import QuizOfTheDaySection from '@/components/quizzes-to/QuizOfTheDaySection';
+import TestKnowledgeSection from '@/components/quizzes/TestKnowledgeSection';
+import QuizOfTheDaySection from '@/components/quizzes/QuizOfTheDaySection';
 import { quizzesStatic, quizOfTheDayStatic } from '@/constants/StaticData';
 
 export default function QuizzesScreen() {
