@@ -80,12 +80,10 @@ const AQIComponent = ({
             </Svg>
           </View>
           <Text className="text-white text-sm mb-4">EU AQI</Text>
-          <Link
-            href={'/aqi-details'}
-            className="flex flex-row items-center bg-white px-7 py-2 rounded-full text-black text-base mr-2">
-            View Details
-          </Link>
-          <ViewDetailsIcon size={30} />
+          <TouchableOpacity onPress={handleViewDetails} className="flex flex-row items-center bg-white px-7 py-2 rounded-full">
+            <Text className="text-black text-base mr-2">View Details</Text>
+            <ViewDetailsIcon size={30} />
+          </TouchableOpacity>
         </View>
       )}
     </LinearGradient>

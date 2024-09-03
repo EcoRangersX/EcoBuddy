@@ -1,10 +1,10 @@
 import { ScrollView, View, Text } from 'react-native';
-import AQIComponent from '@/components/homeee/AQIComponent';
+import AQIComponent from '@/components/home/AQIComponent';
 import Header from '@/components/Header';
-import WeatherDataSlider from '@/components/homeee/WeatherDataSlider';
-import ChemicalElementsSlider from '@/components/homeee/ChemicalElementsSlider';
-import EducationSection from '@/components/homeee/EducationSection';
-import EcoTipList from '@/components/homeee/EcoTipList';
+import WeatherDataSlider from '@/components/home/WeatherDataSlider';
+import ChemicalElementsSlider from '@/components/home/ChemicalElementsSlider';
+import EducationSection from '@/components/home/EducationSection';
+import EcoTipList from '@/components/home/EcoTipList';
 import { useAqiData } from '@/hooks/home/useAqiData';
 import { useAiExampleQuestions } from '@/hooks/home/useAiExampleQuestions';
 import { useQuizTitles } from '@/hooks/home/useQuizTitles';
