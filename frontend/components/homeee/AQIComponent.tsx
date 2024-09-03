@@ -4,7 +4,7 @@ import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { LocationIcon, ViewDetailsIcon } from '@/components/icons/HomeIcons';
 import capitalize from '@/utility/capitalizeWord';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Link } from 'expo-router';
+import { useRouter } from 'expo-router';
 
 interface AQIComponentProps {
   value: number;
@@ -28,6 +28,12 @@ const AQIComponent = ({
   loading,
   errorMsg,
 }: AQIComponentProps) => {
+  const router = useRouter();
+
+  const handleViewDetails = () => {
+    router.push('/aqi-details');
+  };
+
   return (
     <LinearGradient
       colors={['rgba(30,158,105,1)', 'rgba(89,192,230,1)']}
@@ -40,7 +46,9 @@ const AQIComponent = ({
         </View>
       ) : errorMsg ? (
         <View>
-          {errorMsg && <Text>Error during fetching the Location: {errorMsg}</Text>}
+          {errorMsg && (
+            <Text>Error during fetching the Location: {errorMsg}</Text>
+          )}
         </View>
       ) : (
         <View className="p-5 items-center justify-center">
@@ -57,8 +65,7 @@ const AQIComponent = ({
                 tintColor="#3dbcab"
                 backgroundColor="#fff"
                 lineCap="round"
-                rotation={0}
-                >
+                rotation={0}>
                 {() => (
                   <View className="flex flex-col">
                     <Text className="text-white text-4xl self-center">
@@ -73,11 +80,12 @@ const AQIComponent = ({
             </Svg>
           </View>
           <Text className="text-white text-sm mb-4">EU AQI</Text>
-          <TouchableOpacity
-            className="flex flex-row items-center bg-white px-7 py-2 rounded-full">
-            <Link href={"/aqi-details"} className="text-black text-base mr-2">View Details</Link>
-            <ViewDetailsIcon size={30} />
-          </TouchableOpacity>
+          <Link
+            href={'/aqi-details'}
+            className="flex flex-row items-center bg-white px-7 py-2 rounded-full text-black text-base mr-2">
+            View Details
+          </Link>
+          <ViewDetailsIcon size={30} />
         </View>
       )}
     </LinearGradient>

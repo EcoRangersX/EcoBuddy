@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import QuizResult from './quizzes/QuizResult';
+import QuizResult from './quizzes-to/QuizResult';
 import { QuizResultProps } from '@/types/quizzes';
 
 interface TakenQuizListProps {

@@ -1,6 +1,6 @@
 import { ArticleProps } from '@/types/articles';
 import { Text } from 'react-native';
-import Article from '../articles/Article';
+import Article from '../articles-to-change/Article';
 
 interface SavedArticlesProps {
   savedArticles: ArticleProps[];

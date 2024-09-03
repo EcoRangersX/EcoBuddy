@@ -1,10 +1,10 @@
 import { ScrollView, Text, View } from 'react-native';
 import Header from '@/components/Header';
-import AqiDisplay from '@/components/aqi-details/AqiDisplay';
-import AqiInfoBox from '@/components/aqi-details/AqiInfoBox';
-import AqiExplanationSection from '@/components/aqi-details/AqiExplanationSection';
-import AqiMeasureExplanationSection from '@/components/aqi-details/AqiMeasureExplanationSection';
-import AirQualityTipList from '@/components/aqi-details/AirQualityTipList';
+import AqiDisplay from '@/components/aqiDetailss/AqiDisplay';
+import AqiInfoBox from '@/components/aqiDetailss/AqiInfoBox';
+import AqiExplanationSection from '@/components/aqiDetailss/AqiExplanationSection';
+import AqiMeasureExplanationSection from '@/components/aqiDetailss/AqiMeasureExplanationSection';
+import AirQualityTipList from '@/components/aqiDetailss/AirQualityTipList';
 import { airQualityTipsStatic } from '@/constants/StaticData';
 
 export default function AQIDetails() {
