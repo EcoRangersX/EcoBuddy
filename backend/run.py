@@ -2,9 +2,6 @@
 from app import create_app,globals_dict
 
 
-from app import create_app,globals_dict
-
-
 
 app = create_app()
 if __name__ == '__main__':
