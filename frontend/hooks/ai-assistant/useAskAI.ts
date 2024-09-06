@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { BASE_API_URL } from '@/constants/Urls';
+import { logger } from '@/utils/logger';
 
 interface AIResponse {
   response: string;
@@ -31,8 +32,8 @@ export function useAskAI() {
       });
       setAIResponse(response.data);
     } catch (err: any) {
-      console.error(`Error fetching the AI output: ${err.message}`)
-      setErrorAiResponseMsg(err.message);
+      logger.error(`Error occurred while fetching the AI output: ${err.message}`)
+      setErrorAiResponseMsg("Failed to fetch AI response");
     } finally {
       setLoadingAiResponse(false);
     }
