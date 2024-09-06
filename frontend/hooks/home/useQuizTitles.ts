@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { BASE_API_URL } from '@/constants/Urls';
 import { useState } from 'react';
+import { logger } from '@/utils/logger';
 
 interface QuizTitlesResponse {
-  "quiz-titles": string[];
+  'quiz-titles': string[];
 }
 
 /**
@@ -28,18 +29,18 @@ export function useQuizTitles() {
     setQuizTitles(null);
 
     try {
-      const response = await axios.get(
-        `${BASE_API_URL}/api/quiz/title`,
-        { params: { amount: amount } },
-      );
+      const response = await axios.get(`${BASE_API_URL}/api/quiz/title`, {
+        params: { amount: amount },
+      });
       if (response.status === 200) {
         setQuizTitles(response.data);
       } else {
-        throw new Error('Error fetching quiz title');
+        setErrorQuizTitleMsg('Failed to fetch quiz titles');
+        logger.warn('Failed to fetch quiz titles');
       }
     } catch (err: any) {
-      console.error(`Error fetching quiz titles: ${err}`);
-      setErrorQuizTitleMsg(`An error occurred while fetching quiz titles.`);
+      logger.error(`Error occurred while fetching quiz titles: ${err}`);
+      setErrorQuizTitleMsg('Failed to fetch quiz titles');
     } finally {
       setLoadingQuizTitles(false);
     }

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { BASE_API_URL } from '@/constants/Urls';
 import { useState } from 'react';
 import { AiQuestions } from '@/types/home';
+import { logger } from '@/utils/logger';
 
 /**
  * Custom hook for fetching AI example questions.
@@ -13,8 +14,11 @@ import { AiQuestions } from '@/types/home';
  *   - `errorAiExampleQuestionsMsg`: An error message if there was an error fetching the AI example questions.
  */
 export function useAiExampleQuestions() {
-  const [loadingAiExampleQuestions, setLoadingAiExampleQuestions] = useState<boolean>(false);
-  const [errorAiExampleQuestionsMsg, setErrorAiExampleQuestionsMsg] = useState<string | null>(null);
+  const [loadingAiExampleQuestions, setLoadingAiExampleQuestions] =
+    useState<boolean>(false);
+  const [errorAiExampleQuestionsMsg, setErrorAiExampleQuestionsMsg] = useState<
+    string | null
+  >(null);
   const [AiExampleQuestions, setAiExampleQuestions] =
     useState<AiQuestions | null>();
 
@@ -31,15 +35,23 @@ export function useAiExampleQuestions() {
       if (response.status === 200) {
         setAiExampleQuestions(response.data);
       } else {
-        throw new Error('Error fetching AI example questions');
+        setErrorAiExampleQuestionsMsg('Error fetching AI example questions');
+        logger.warn("Failed to fetch AI example questions")
       }
     } catch (err: any) {
-      console.error(`Error fetching AI example questions: ${err}`);
-      setErrorAiExampleQuestionsMsg("An error occurred while fetching AI example questions.");
+      logger.error(`Error occurred while fetching AI example questions: ${err.message}`);
+      setErrorAiExampleQuestionsMsg(
+        'Failed to fetch AI example questions',
+      );
     } finally {
       setLoadingAiExampleQuestions(false);
     }
   };
 
-  return { getAiExampleQuestions, AiExampleQuestions, loadingAiExampleQuestions, errorAiExampleQuestionsMsg };
+  return {
+    getAiExampleQuestions,
+    AiExampleQuestions,
+    loadingAiExampleQuestions,
+    errorAiExampleQuestionsMsg,
+  };
 }
