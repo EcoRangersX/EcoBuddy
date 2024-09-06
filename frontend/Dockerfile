@@ -13,5 +13,8 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
+# Expose the ports for the Expo Go
+EXPOSE 19006 19001 19002
+
 # Start the application
-CMD ["npx", "expo", "start"]
+CMD ["npx", "expo", "start", "--clear", "--tunnel"]
