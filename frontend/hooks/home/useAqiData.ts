@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { BASE_API_URL } from '@/constants/Urls';
-import { logger } from '@/utils/logger';
+import { globalLogger } from '@/utils/logger';
 
 interface AqiDataResponse {
   aqi: { status: string; value: number };
@@ -47,10 +47,10 @@ export function useAqiData() {
         setAirQualityData(response.data['air-pollution-data']);
       } else {
         setErrorAqiMsg('Failed to fetch air quality data');
-        logger.warn("Failed to fetch air quality data")
+        globalLogger.warn("Failed to fetch air quality data")
       }
     } catch (err: any) {
-      logger.error(`Error occurred while fetching Aqi Data: ${err}`);
+      globalLogger.error(`Error occurred while fetching Aqi Data: ${err}`);
       setErrorAqiMsg("Failed to fetch air quality data");
     } finally {
       setLoadingAqi(false);

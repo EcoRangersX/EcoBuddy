@@ -2,7 +2,7 @@ import axios from 'axios';
 import { BASE_API_URL } from '@/constants/Urls';
 import { useState } from 'react';
 import { ArticleTitles } from '@/types/home';
-import { logger } from '@/utils/logger';
+import { globalLogger } from '@/utils/logger';
 
 /**
  * Custom hook for fetching article titles.
@@ -34,10 +34,10 @@ export function useArticleTitles() {
         setArticleTitles(response.data);
       } else {
         setErrorArticleTitleMsg('Failed to fetch article titles');
-        logger.warn('Failed to fetch article titles');
+        globalLogger.warn('Failed to fetch article titles');
       }
     } catch (err: any) {
-      logger.error(`Error occurred while fetching article titles: ${err}`);
+      globalLogger.error(`Error occurred while fetching article titles: ${err}`);
       setErrorArticleTitleMsg('Failed to fetch article titles');
     } finally {
       setLoadingArticleTitles(false);

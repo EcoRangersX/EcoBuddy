@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { BASE_API_URL } from '@/constants/Urls';
-import { logger } from '@/utils/logger';
+import { globalLogger } from '@/utils/logger';
 
 interface WeatherDataResponse {
   'weather-data': { value: number; 'weather-element': string; unit: string }[];
@@ -34,7 +34,7 @@ export function useWeatherData() {
     setLoadingWeatherData(true);
     setErrorWeatherDataMsg(null);
     setWeatherData(null);
-    logger.info(`The Base API URL is: ${BASE_API_URL}`);
+    globalLogger.info(`The Base API URL is: ${BASE_API_URL}`);
 
     try {
       const response = await axios.get(`${BASE_API_URL}/api/air_data/weather`, {
@@ -44,10 +44,10 @@ export function useWeatherData() {
         setWeatherData(response.data);
       } else {
         setErrorWeatherDataMsg('Failed to fetch weather data');
-        logger.warn('Failed to fetch weather data');
+        globalLogger.warn('Failed to fetch weather data');
       }
     } catch (err: any) {
-      logger.error(
+      globalLogger.error(
         `Error occurred while fetching weather data: ${err.message}`,
       );
       setErrorWeatherDataMsg('Failed to fetch weather data');

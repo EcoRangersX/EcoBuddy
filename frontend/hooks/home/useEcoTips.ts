@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { BASE_API_URL } from '@/constants/Urls';
 import { useState } from 'react';
-import { logger } from '@/utils/logger';
+import { globalLogger } from '@/utils/logger';
 
 interface EcoTipsResponse {
   'eco-tips': { description: string; title: string }[];
@@ -34,10 +34,10 @@ export function useEcoTips() {
         setEcoTips(response.data);
       } else {
         setErrorEcoTipsMsg('Failed to fetch eco tips');
-        logger.warn("Failed to fetch eco tips")
+        globalLogger.warn("Failed to fetch eco tips")
       }
     } catch (err: any) {
-      logger.error(`Error occurred while fetching eco tips: ${err.message}`);
+      globalLogger.error(`Error occurred while fetching eco tips: ${err.message}`);
       setErrorEcoTipsMsg("Failed to fetch eco tips.");
     } finally {
       setLoadingEcoTips(false);

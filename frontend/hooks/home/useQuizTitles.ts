@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { BASE_API_URL } from '@/constants/Urls';
 import { useState } from 'react';
-import { logger } from '@/utils/logger';
+import { globalLogger } from '@/utils/logger';
 
 interface QuizTitlesResponse {
   'quiz-titles': string[];
@@ -36,10 +36,10 @@ export function useQuizTitles() {
         setQuizTitles(response.data);
       } else {
         setErrorQuizTitleMsg('Failed to fetch quiz titles');
-        logger.warn('Failed to fetch quiz titles');
+        globalLogger.warn('Failed to fetch quiz titles');
       }
     } catch (err: any) {
-      logger.error(`Error occurred while fetching quiz titles: ${err}`);
+      globalLogger.error(`Error occurred while fetching quiz titles: ${err}`);
       setErrorQuizTitleMsg('Failed to fetch quiz titles');
     } finally {
       setLoadingQuizTitles(false);

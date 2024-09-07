@@ -2,7 +2,7 @@ import axios from 'axios';
 import { BASE_API_URL } from '@/constants/Urls';
 import { useState } from 'react';
 import { AiQuestions } from '@/types/home';
-import { logger } from '@/utils/logger';
+import { globalLogger } from '@/utils/logger';
 
 /**
  * Custom hook for fetching AI example questions.
@@ -36,10 +36,10 @@ export function useAiExampleQuestions() {
         setAiExampleQuestions(response.data);
       } else {
         setErrorAiExampleQuestionsMsg('Error fetching AI example questions');
-        logger.warn("Failed to fetch AI example questions")
+        globalLogger.warn("Failed to fetch AI example questions")
       }
     } catch (err: any) {
-      logger.error(`Error occurred while fetching AI example questions: ${err.message}`);
+      globalLogger.error(`Error occurred while fetching AI example questions: ${err.message}`);
       setErrorAiExampleQuestionsMsg(
         'Failed to fetch AI example questions',
       );

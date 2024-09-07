@@ -1,17 +1,5 @@
-import { createLogger, format, transports } from 'winston';
+import { logger } from "react-native-logs";
 
-const logger = createLogger({
-  level: 'info',
-  format: format.combine(
-    format.timestamp(),
-    format.printf(({ timestamp, level, message }) => {
-      return `${timestamp} [${level}]: ${message}`;
-    }),
-  ),
-  transports: [
-    new transports.Console(),
-    new transports.File({ filename: 'app.log' }),
-  ],
-});
+const globalLogger = logger.createLogger();
 
-export { logger };
+export { globalLogger };
