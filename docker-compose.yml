@@ -6,9 +6,6 @@ services:
     container_name: frontend
     ports:
       - "8081:8081"
-      - "19006:19006"
-      - "19001:19001"
-      - "19002:19002"
     environment:
       - "./frontend/.env"
       - CHOKIDAR_USEPOLLING=true
