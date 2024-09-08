@@ -34,7 +34,6 @@ export function useWeatherData() {
     setLoadingWeatherData(true);
     setErrorWeatherDataMsg(null);
     setWeatherData(null);
-    globalLogger.info(`The Base API URL is: ${BASE_API_URL}`);
 
     try {
       const response = await axios.get(`${BASE_API_URL}/api/air_data/weather`, {
