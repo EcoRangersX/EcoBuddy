@@ -1,19 +1,19 @@
 import { Text, View, TouchableOpacity } from 'react-native';
 import {
-  PollenIcon,
+  // PollenIcon,
+  // UvIndexIcon,
   WindIcon,
   HumidityIcon,
   TemperatureIcon,
-  UvIndexIcon,
   PressureIcon,
 } from '@/components/icons/HomeIcons';
-import capitalize from '@/utility/capitalizeWord';
+import capitalize from '@/utils/capitalizeWord';
 import {
   tempLevel,
   windLevel,
   pressureLevel,
   humidityLevel,
-} from '@/utility/weatherDataLevels';
+} from '@/utils/weatherDataLevels';
 import {
   tempColors,
   windColors,
@@ -72,7 +72,7 @@ export default function WeatherDataElement({
         return humidityLevel(value);
       case 'pressure':
         return pressureLevel(value);
-      // We don't display display below data at the moment
+      // We are unable to display below weather data due to resources constraints
       // case 'pollen':
       //   return pollenLevel(value);
       // case 'uv index':
@@ -98,6 +98,7 @@ export default function WeatherDataElement({
       case 'pressure':
         color = pressureColors[status];
         break;
+      // We are unable to display below weather data due to resources constraints
       // case 'pollen':
       //   color = pollenColors[status];
       //   break;

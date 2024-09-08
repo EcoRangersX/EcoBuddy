@@ -1,10 +1,48 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { BASE_API_URL } from '@/constants/Urls';
+import { globalLogger } from '@/utils/logger';
 
 interface AIResponse {
   response: string;
 }
+
+// Request Interceptor to log the request details
+axios.interceptors.request.use(
+  function (config) {
+    console.log('Making request to:', config.url);
+    console.log('Request method:', config.method);
+    console.log('Request headers:', config.headers);
+    console.log('Request data:', config.data);
+    return config;
+  },
+  function (error) {
+    console.log('Error occurred during request:', error);
+    return Promise.reject(error);
+  }
+);
+
+// Response Interceptor to log the response or error details
+axios.interceptors.response.use(
+  function (response) {
+    console.log('Response data:', response.data);
+    console.log('Response status:', response.status);
+    console.log('Response headers:', response.headers);
+    return response;
+  },
+  function (error) {
+    if (error.response) {
+      console.log('Error response data:', error.response.data);
+      console.log('Error response status:', error.response.status);
+      console.log('Error response headers:', error.response.headers);
+    } else if (error.request) {
+      console.log('No response received:', error.request);
+    } else {
+      console.log('Request error:', error.message);
+    }
+    return Promise.reject(error);
+  }
+);
 
 /**
  * Custom hook for interacting with the AI assistant.
@@ -31,8 +69,8 @@ export function useAskAI() {
       });
       setAIResponse(response.data);
     } catch (err: any) {
-      console.error(`Error fetching the AI output: ${err.message}`)
-      setErrorAiResponseMsg(err.message);
+      globalLogger.error(`Error occurred while fetching the AI output: ${err.message}`)
+      setErrorAiResponseMsg("Failed to fetch AI response");
     } finally {
       setLoadingAiResponse(false);
     }

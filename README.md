@@ -1,6 +1,6 @@
 # EcoBuddy
 
-## Mission
+## Our Mission
 Our goal is to create a **mobile app** that not only helps users expand their knowledge of ecology through quizzes integrated into the app but also uses the **latest technology** to maximize their productivity in learning about the environment. Our app alerts users about **air pollution** levels in the vicinity.
 
 People have become more aware of the **importance of ecology** and the environment, and we want to help them learn more about it and take care of it.
