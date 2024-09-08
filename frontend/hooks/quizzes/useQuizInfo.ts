@@ -1,6 +1,7 @@
 import { BASE_API_URL } from '@/constants/Urls';
 import axios from 'axios';
 import { useState } from 'react';
+import globalLogger from "@/utils/logger";
 
 interface QuizInfoData {
   id: number;
@@ -22,9 +23,11 @@ export function useQuizInfo() {
         setQuizInfo(response.data);
       } else {
         setErrorQuizInfoMsg('Failed to get quiz info');
+        globalLogger.warn('Failed to get quiz info');
       }
     } catch (err: any) {
       setErrorQuizInfoMsg('Failed to get quiz info');
+      globalLogger.error(`Error occurred while fetching quiz info: ${err.message}`);
     } finally {
       setLoadingQuizInfo(false);
     }
