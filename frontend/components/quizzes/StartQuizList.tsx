@@ -3,7 +3,7 @@ import { StartQuizProps } from '@/types/quizzes';
 import { View } from 'react-native';
 
 interface StartQuizList {
-  quizzes: StartQuizProps[];
+  quizzes: StartQuizProps[] | null;
 }
 
 /**
@@ -23,7 +23,7 @@ interface StartQuizList {
 const StartQuizList = ({ quizzes }: StartQuizList) => {
   return (
     <View className="flex-col">
-      {quizzes.map((quiz, index) => (
+      {quizzes?.map((quiz, index) => (
         <StartQuiz
           key={index}
           id={quiz.id}
