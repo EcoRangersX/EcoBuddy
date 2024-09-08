@@ -3,7 +3,9 @@ import StartQuizList from './StartQuizList';
 import { StartQuizProps } from '@/types/quizzes';
 
 interface TestKnowledgeSectionProps {
-  quizzes: StartQuizProps[];
+  quizzes: StartQuizProps[] | null;
+  loading: boolean;
+  error: string | null;
 }
 
 /**
