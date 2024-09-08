@@ -28,32 +28,32 @@ const filteredArticlesStatic = [
 
 const quizzesStatic: StartQuizProps[] = [
   {
-    quiz_id: 1,
+    id: 1,
     level: 'Beginner',
-    questionsCount: 10,
+    'amount-of-questions': 10,
     title: 'Ecology basics',
     description:
       'Questions about ecosystems, biodiversity, and basic ecological concepts',
   },
   {
-    quiz_id: 2,
+    id: 2,
     level: 'Intermediate',
-    questionsCount: 15,
+    'amount-of-questions': 15,
     title: 'Climate Change',
     description:
       'Questions about the causes, impacts, and solutions to climate change',
   },
   {
-    quiz_id: 3,
+    id: 3,
     level: 'Intermediate',
-    questionsCount: 20,
+    'amount-of-questions': 20,
     title: 'Sustainable Development',
     description: 'Questions about sustainable development goals and strategies',
   },
   {
-    quiz_id: 4,
+    id: 4,
     level: 'Advanced',
-    questionsCount: 25,
+    'amount-of-questions': 25,
     title: 'Conservation Biology',
     description:
       'Questions about conservation strategies and endangered species',
@@ -61,9 +61,9 @@ const quizzesStatic: StartQuizProps[] = [
 ];
 
 const quizOfTheDayStatic: StartQuizProps = {
-  quiz_id: 1,
+  id: 1,
   level: 'Beginner',
-  questionsCount: 5,
+  'amount-of-questions': 5,
   title: 'Human Impact on the Environment',
   description: [
     'How human activities like deforestation, urbanization, and agriculture affect the environment.',

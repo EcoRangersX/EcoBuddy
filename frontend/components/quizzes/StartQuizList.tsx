@@ -26,9 +26,9 @@ const StartQuizList = ({ quizzes }: StartQuizList) => {
       {quizzes.map((quiz, index) => (
         <StartQuiz
           key={index}
-          quiz_id={quiz.quiz_id}
+          id={quiz.id}
           level={quiz.level}
-          questionsCount={quiz.questionsCount}
+          amount-of-questions={quiz['amount-of-questions']}
           bgColor={quiz.bgColor}
           titleBgColor={quiz.titleBgColor}
           title={quiz.title}

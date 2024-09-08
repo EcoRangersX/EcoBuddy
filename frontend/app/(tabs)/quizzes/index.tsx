@@ -11,11 +11,11 @@ export default function QuizzesScreen() {
       <TestKnowledgeSection quizzes={quizzesStatic} />
       <View className="mt-5">
         <QuizOfTheDaySection
-          quiz_id={quizOfTheDayStatic.quiz_id}
+          id={quizOfTheDayStatic.id}
           level={quizOfTheDayStatic.level}
           title={quizOfTheDayStatic.title}
           description={quizOfTheDayStatic.description}
-          questionsCount={quizOfTheDayStatic.questionsCount}
+          amount-of-questions={quizOfTheDayStatic['amount-of-questions']}
         />
       </View>
     </ScrollView>
