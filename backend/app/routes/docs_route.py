@@ -21,17 +21,40 @@ def endpoints():
 
 "/api/quiz":
     {
-        "Endpoint": "This is the main endpoint for quizes.\n You can use it to get quizes from database. \nYou get to choose whether you want to receive just quizzes or quizzes with its titles. \nYou also can specify amount of quizzes to receive",
+        "Endpoint": "This is the main endpoint for quizzes.\
+        You can use it to get quizzes from database. \
+        You NEED to specify quiz id",
         
         "GET request parameters":
         {
-            'titles': "bool",
-            'amount': "int"
+            'id': "int"
         },
 
         "GET request response":
         {
-            "working on it": 'space taker'
+            "quiz":
+            [
+                {
+                    "question": 'str',
+                    "answers": 
+                    [
+                        'str',
+                        'str',
+                        'str'
+                    ],
+                    "correct-answer": 'int index'
+                },
+                {
+                    "question": 'str',
+                    "answers": 
+                    [
+                        'str',
+                        'str',
+                        'str'
+                    ],
+                    "correct-answer": 'int index'
+                },
+            ]
         }
     },
 "/api/quiz/title":
@@ -49,6 +72,35 @@ def endpoints():
             [
                 "str | quiz title",
                 "str | quiz title"
+            ]
+        }
+    },
+"/api/quiz/preview":
+    {
+        "Endpoint": "This endpoint is used to get quiz previews from database. You NEED to specify amount of previews you want to receive",
+        "GET request parameters":
+        {
+            "amount": "int"
+        },
+
+        "GET request respoonse":
+        {
+            "quiz-preview":
+            [
+                {
+                "id": "int",
+                "title": "title of the quiz",
+                "level": "beginner | intermediate",
+                "amount-of-questions": "int",
+                "description": "description of the quiz"
+                },
+                {
+                "id": "int",
+                "title": "title of the quiz",
+                "level": "beginner | intermediate",
+                "amount-of-questions": "int",
+                "description": "description of the quiz"
+                }
             ]
         }
     },
