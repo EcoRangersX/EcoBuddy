@@ -18,9 +18,9 @@ import { StartQuizProps } from '@/types/quizzes';
  * @returns {JSX.Element} The rendered quiz card.
  */
 const StartQuiz = ({
-  quiz_id,
+  id,
   level,
-  questionsCount,
+  "amount-of-questions": amountOfQuestions,
   bgColor = 'white',
   titleBgColor = '#74c6d4',
   title,
@@ -36,7 +36,7 @@ const StartQuiz = ({
           {level}
         </Text>
         <Text className="bg-white text-black px-2 py-1 shadow-md shadow-black rounded-full text-xs">
-          Questions: {questionsCount}
+          Questions: {amountOfQuestions}
         </Text>
       </View>
       <View
@@ -45,7 +45,7 @@ const StartQuiz = ({
         }}
         className="flex-row items-center justify-between px-4 py-2 rounded-[30px]">
         <Text className="text-white font-bold mr-2">{title}</Text>
-        <StartQuizIcon id={quiz_id} size={22} />
+        <StartQuizIcon id={id} size={22} />
       </View>
       {/* Description as a Bullet List */}
       {quizOfTheDay ? (
