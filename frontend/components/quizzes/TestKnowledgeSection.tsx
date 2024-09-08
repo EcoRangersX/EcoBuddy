@@ -3,7 +3,7 @@ import StartQuizList from './StartQuizList';
 import { StartQuizProps } from '@/types/quizzes';
 
 interface TestKnowledgeSectionProps {
-  quizzes: StartQuizProps[] | null;
+  quizzes: StartQuizProps[] | undefined;
   loading: boolean;
   error: string | null;
 }
@@ -16,11 +16,11 @@ interface TestKnowledgeSectionProps {
  * @param {Quiz[]} props.quizzes - The array of quizzes to be displayed.
  * @returns {JSX.Element} The rendered component.
  */
-const TestKnowledgeSection = ({ quizzes }: TestKnowledgeSectionProps) => {
+const TestKnowledgeSection = ({ quizzes, error, loading }: TestKnowledgeSectionProps) => {
   return (
     <View className="p-3">
       <Text className="text-xl mb-4">Test Your Knowledge</Text>
-      <StartQuizList quizzes={quizzes} />
+      <StartQuizList quizzes={quizzes} error={error} loading={loading} />
     </View>
   );
 };
