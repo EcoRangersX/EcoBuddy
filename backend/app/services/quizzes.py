@@ -6,7 +6,7 @@ class Quizzes():
     def __init__(self):
         self.cursor = conn.cursor()
 
-    def get_quizzes_title(self,amount: int):
+    def get_quiz_title(self,amount: int):
         try: 
             self.cursor.execute(
                 """SELECT id FROM quizzes LIMIT :amount""",
@@ -20,8 +20,8 @@ class Quizzes():
 
             for id in ids:
                 id = id[0]
-                quiz = Quiz(id=id)
-                title = quiz.get_quiz()["title"]
+                quizclass = Quiz(id=id)
+                title = quizclass.get_quiz()["title"]
                 titles.append(title)
 
             return titles
@@ -29,7 +29,7 @@ class Quizzes():
             print(e)
             return False
 
-    def get_quizzes_preview(self,amount: int):
+    def get_quiz_preview(self,amount: int):
         try:
             quizzes_preview = []
             self.cursor.execute(
@@ -42,18 +42,10 @@ class Quizzes():
             ids = self.cursor.fetchall()
             for id in ids:
                 id = id[0]
-                quiz = Quiz(id=id)
 
-                quiz = quiz.get_quiz()
-
-                
-                quiz_preview = {
-                    "id": id,
-                    "title": quiz["title"],
-                    "level": quiz["level"],
-                    "amount-of-questions": len(quiz['quiz']),
-                    "description": quiz['description']
-                    }
+                quizclass = Quiz(id=id)
+                quiz = quizclass.get_quiz()
+                quiz_preview = quizclass.make_quiz_preview(quiz=quiz)
 
                 quizzes_preview.append(quiz_preview)
 
@@ -62,13 +54,38 @@ class Quizzes():
             print(e)
             return False
         
-    def get_quiz(self,id: int):
+    def get_quiz_by_id(self,id: int):
         try:    
-            quiz = Quiz(id=id)
+            quizclass = Quiz(id=id)
+            quizclass.increment_views()
             
-            return quiz.get_quiz()['quiz']
+            quiz = quizclass.get_quiz()['quiz']
+            
+            return quiz
+            
         except Exception as e:
             print(e)
             return False
         
-    
+    def get_most_popular_quiz(self):
+        try:
+            self.cursor.execute("""
+                                SELECT id 
+                                FROM quizzes 
+                                ORDER BY views DESC 
+                                LIMIT 1
+                                """)
+
+            id = self.cursor.fetchone()[0]
+
+            quizclass = Quiz(id=id)
+            quiz = quizclass.get_quiz()
+            preview = quizclass.make_quiz_preview(quiz=quiz)
+
+            return preview
+        except Exception as e:
+            print(e)
+            return False
+            
+
+        

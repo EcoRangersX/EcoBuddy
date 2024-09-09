@@ -9,7 +9,7 @@ def get_quiz_title():
 
     quizzes = Quizzes()
 
-    titles = quizzes.get_quizzes_title(amount=amount)
+    titles = quizzes.get_quiz_title(amount=amount)
     if not titles:
         return {"quiz-titles": []}
     
@@ -20,7 +20,7 @@ def get_quiz_preview():
     amount = request.args.get('amount')
     
     quizzes = Quizzes()
-    previews = quizzes.get_quizzes_preview(amount=amount)
+    previews = quizzes.get_quiz_preview(amount=amount)
 
     if not previews:
         return {"quiz-preview": []}
@@ -33,13 +33,20 @@ def get_quiz():
 
     quizzes = Quizzes()
 
-    quiz = quizzes.get_quiz(id=id)
+    quiz = quizzes.get_quiz_by_id(id=id)
     if not quiz:
         return {'quiz': []}
     
     return {
         'quiz': quiz
         }
+
+
+@quizzes_bp.route("/most-popular",methods=["GET"])
+def most_popular_quiz():
+    quizzes = Quizzes()
+    best = quizzes.get_most_popular_quiz()
+    return {"most-popular-quiz": best}
 
 
 

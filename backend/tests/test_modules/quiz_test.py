@@ -7,8 +7,9 @@ class Quiz_tester():
         self.titles_thread = Thread(target=self.titles)
         self.quiz_thread = Thread(target=self.quiz)
         self.preview_thread = Thread(target=self.previews)
+        self.popular_thread = Thread(target=self.popular_quiz)
 
-        self.threads = [self.titles_thread,self.quiz_thread,self.preview_thread]
+        self.threads = [self.titles_thread,self.quiz_thread,self.preview_thread,self.popular_thread]
     def titles(self):
         titles = requests.get(
             url='http://127.0.0.1:5000/api/quiz/title',
@@ -41,4 +42,13 @@ class Quiz_tester():
         
         
         print(f"\nPREVIEWS: \n{json.dumps(quizes.json(),indent=2)}")
+
+    def popular_quiz(self):
+        quize = requests.get(
+            url='http://127.0.0.1:5000/api/quiz/most-popular',
+            )
+        
+        
+        print(f"\nMOST POPULAR QUIZ: \n{json.dumps(quize.json(),indent=2)}")
+
 

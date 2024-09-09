@@ -4,7 +4,8 @@ class Migrate_quizes():
         cursor = conn.cursor()
         cursor.execute("""CREATE TABLE IF NOT EXISTS quizzes(
                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                       quiz text
+                       quiz text,
+                       views int
                        )""")
         conn.commit()
 

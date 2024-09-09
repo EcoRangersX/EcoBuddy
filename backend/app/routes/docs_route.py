@@ -104,6 +104,22 @@ def endpoints():
             ]
         }
     },
+
+"/api/quiz/most-popular":
+    {
+        "Endpoint": "This endpoint is used to get most popular quiz rated on user views. Returns quiz preview",
+        "GET request response":
+        {
+            "most-popular-quiz":
+            {
+                "id": "int",
+                "title": "title of the quiz",
+                "level": "beginner | intermediate",
+                "amount-of-questions": "int",
+                "description": "description of the quiz"
+            }
+        }
+    },
 "/api/air_data/pollution": 
     {
         "Endpoint": "This endpoint is used to get air pollution data in some place.\n You NEED to specify latitude and longitude of a place where you want to get data about",
