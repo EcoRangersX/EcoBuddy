@@ -17,9 +17,9 @@ import { StartQuizProps } from '@/types/quizzes';
  * @returns {JSX.Element} The rendered QuizOfTheDaySection component.
  */
 const QuizOfTheDaySection = ({
-  quiz_id,
+  id,
   level,
-  questionsCount,
+  "amount-of-questions": amountOfQuestions,
   bgColor = 'white',
   titleBgColor = '#74c6d4',
   title,
@@ -29,9 +29,9 @@ const QuizOfTheDaySection = ({
     <View className="p-3">
       <Text className="text-xl mb-4">Quiz of the day</Text>
       <StartQuiz
-        quiz_id={quiz_id}
+        id={id}
         level={level}
-        questionsCount={questionsCount}
+        amount-of-questions={amountOfQuestions}
         bgColor={bgColor}
         titleBgColor={titleBgColor}
         title={title}
