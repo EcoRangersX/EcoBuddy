@@ -24,12 +24,30 @@ class Quiz():
             print(e)
             return False
     
+    def make_quiz_preview(self,quiz: dict):
+        pre = {
+            "id": self.id,
+            "title": quiz["title"],
+            "level": quiz["level"],
+            "amount-of-questions": len(quiz['quiz']),
+            "description": quiz['description']
+        }
+        return pre
+
+    def increment_views(self):
+        try:
+            self.cursor.execute("""UPDATE quizzes 
+                                SET views = views + 1
+                                WHERE id=:id""",{'id': self.id})
+        except Exception as e:
+            print(e)
+
     def get_quiz(self):
         try:
             self.cursor.execute(
-                """SELECT quiz FROM quizzes WHERE id=:idd""",
+                """SELECT quiz FROM quizzes WHERE id=:id""",
                 {
-                    'idd': self.id
+                    'id': self.id
             }
             )
 
