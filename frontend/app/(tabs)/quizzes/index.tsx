@@ -1,30 +1,55 @@
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import TestKnowledgeSection from '@/components/quizzes/TestKnowledgeSection';
 import QuizOfTheDaySection from '@/components/quizzes/QuizOfTheDaySection';
-import { quizOfTheDayStatic } from '@/constants/StaticData';
 import { useQuizzes } from '@/hooks/quizzes/useQuizzes';
+import { useFeaturedQuiz } from '@/hooks/quizzes/useFeaturedQuiz';
 
 export default function QuizzesScreen() {
   const { getQuizzes, quizzes, loadingQuizzes, quizzesErrorMsg } = useQuizzes();
+  const {
+    getFeaturedQuiz,
+    featuredQuiz,
+    loadingFeaturedQuiz,
+    featuredFeaturedErrorMsg,
+  } = useFeaturedQuiz();
 
   useEffect(() => {
     getQuizzes(5);
-  }, []);  // Fetch quizzes to display as a list
+    getFeaturedQuiz();
+  }, []); // Fetch quizzes and featured quiz data
 
   return (
     <ScrollView>
       <Header />
-      <TestKnowledgeSection quizzes={quizzes?.['quiz-preview']} loading={loadingQuizzes} error={quizzesErrorMsg} />
+      <TestKnowledgeSection
+        quizzes={quizzes?.['quiz-preview']}
+        loading={loadingQuizzes}
+        error={quizzesErrorMsg}
+      />
       <View className="mt-5">
-        <QuizOfTheDaySection
-          id={quizOfTheDayStatic.id}
-          level={quizOfTheDayStatic.level}
-          title={quizOfTheDayStatic.title}
-          description={quizOfTheDayStatic.description}
-          amount-of-questions={quizOfTheDayStatic['amount-of-questions']}
-        />
+        {loadingFeaturedQuiz ? (
+          <View>
+            <Text>Loading...</Text>
+          </View>
+        ) : featuredFeaturedErrorMsg ? (
+          <View>
+            <Text>{featuredFeaturedErrorMsg} Contact Support Team</Text>
+          </View>
+        ) : featuredQuiz ? (
+          <QuizOfTheDaySection
+            id={featuredQuiz.id}
+            level={featuredQuiz.level}
+            title={featuredQuiz.title}
+            description={featuredQuiz.description}
+            amount-of-questions={featuredQuiz['amount-of-questions']}
+          />
+        ) : (
+          <View>
+            <Text>No featured quiz available</Text>
+          </View>
+        )}
       </View>
     </ScrollView>
   );

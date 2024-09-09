@@ -15,7 +15,7 @@ export function useFeaturedQuiz() {
     try {
       const response = await axios.get(`${BASE_API_URL}/api/quiz/most-popular`);
       if (response.status === 200) {
-        setFeaturedQuiz(response.data);
+        setFeaturedQuiz(response.data["most-popular-quiz"]);
       }
     } catch (err: any) {
       setFeaturedErrorMsg('Failed loading featured quiz');
