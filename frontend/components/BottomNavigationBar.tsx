@@ -70,6 +70,7 @@ const BottomNavigationBar = () => {
       <Tabs.Screen name="settings" options={{ href: null }} />
       <Tabs.Screen name="aqi-details" options={{ href: null }} />
       <Tabs.Screen name="leaderboard" options={{ href: null }} />
+      <Tabs.Screen name="badges" options={{ href: null }} />
     </Tabs>
   );
 };

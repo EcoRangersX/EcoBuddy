@@ -2,7 +2,7 @@ import { View } from 'react-native';
 import { useState } from 'react';
 import { useLocalSearchParams } from 'expo-router';
 import QuizIntroduction from '@/components/quiz/QuizIntroduction';
-import TopTabs from '@/components/quizzes/TopTabs';
+import TopTabs from '@/components/quiz/TopTabs';
 import Header from '@/components/Header';
 
 export default function QuizScreen() {
