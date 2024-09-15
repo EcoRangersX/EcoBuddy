@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { View, ScrollView, Dimensions, Modal, FlatList } from 'react-native';
+import { View, Dimensions, Modal, FlatList  } from 'react-native';
 import DotsIndicator from './DotsIndicator';
 import { NextIcon, PreviousIcon, CloseButton } from '../icons/Quiz';
 import { BlurView } from 'expo-blur';
@@ -41,17 +41,20 @@ const QuizIntroduction = ({
   onClose,
 }: QuizIntroductionProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const scrollViewRef = useRef<ScrollView>(null);
+  const flatListRef = useRef<FlatList>(null);
 
-  // const handleNextScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-  //   const index = Math.floor(event.nativeEvent.contentOffset.x / screenWidth);
-  //   setCurrentIndex(index + 1);
+  // const handleSwapping = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+  //   const offsetX = event.nativeEvent.contentOffset.x;
+  //   const tolerance = 10;
+  //   const index = Math.floor((offsetX + tolerance) / screenWidth);
+  //   console.log(`Calculated index: ${index}, OffsetX: ${offsetX}`)
+  //   setCurrentIndex(index);
   // };
 
   const nextStep = () => {
     if (currentIndex < quizStepsStatic.length - 1) {
-      scrollViewRef.current?.scrollTo({
-        x: screenWidth * (currentIndex + 1),
+      flatListRef.current?.scrollToIndex({
+        index: currentIndex + 1,
         animated: true,
       });
       setCurrentIndex(currentIndex + 1);
@@ -60,8 +63,8 @@ const QuizIntroduction = ({
 
   const prevStep = () => {
     if (currentIndex > 0) {
-      scrollViewRef.current?.scrollTo({
-        x: screenWidth * (currentIndex - 1),
+      flatListRef.current?.scrollToIndex({
+        index: currentIndex - 1,
         animated: true,
       });
       setCurrentIndex(currentIndex - 1);
@@ -72,16 +75,19 @@ const QuizIntroduction = ({
     <Modal visible={isVisible} transparent>
       <BlurView
         experimentalBlurMethod=""
-        intensity={5}
+        intensity={50}
         className="flex-1 h-full justify-center items-center">
         <View className="w-[95%] rounded-[20px] bg-white shadow-md shadow-black">
           <FlatList
+            ref={flatListRef}
             horizontal
             pagingEnabled
+            scrollEnabled={false}
             showsHorizontalScrollIndicator={false}
             scrollEventThrottle={16}
             keyExtractor={(_, index) => index.toString()}
             data={quizStepsStatic}
+            // onMomentumScrollEnd={handleSwapping}
             renderItem={({ item }) => item.jsx_element}></FlatList>
           <View className="justify-around flex-row items-center mb-3">
             <DotsIndicator steps={quizStepsStatic} currentIndex={currentIndex} />
