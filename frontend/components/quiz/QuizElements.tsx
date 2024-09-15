@@ -30,7 +30,7 @@ const HowToEarnStarsStatic = ({ screenWidth }: QuizStepProps) => {
   return (
     <View
       style={{ width: screenWidth * 0.9 }}
-      className="flex items-center justify-center px-5">
+      className="flex items-center justify-center p-5">
       <Text className="text-xl font-bold text-center mb-2">
         How to earn stars
       </Text>
@@ -48,8 +48,8 @@ const HowToEarnStarsStatic = ({ screenWidth }: QuizStepProps) => {
 const TrackYourProgressStatic = ({ screenWidth }: QuizStepProps) => {
   return (
     <View
-      style={{ width: screenWidth }}
-      className="flex items-center justify-center px-8 ml-6">
+      style={{ width: screenWidth * 0.9 }}
+      className="flex items-center justify-center p-5">
       <Text className="text-xl font-bold text-center mb-2">
         Track your progress
       </Text>
@@ -72,7 +72,7 @@ const StayMotivatedStatic = ({ screenWidth }: QuizStepProps) => {
   return (
     <View
       style={{ width: screenWidth * 0.9 }}
-      className="flex items-center justify-center px-10 py-5">
+      className="flex items-center justify-center p-5">
       <Text className="text-xl font-bold text-center mb-2">Stay motivated</Text>
       <Text className="text-sm text-center">
         <Text className="text-base">Set goals</Text>
