@@ -1,4 +1,4 @@
-import { ScrollView, View } from 'react-native';
+import { View } from 'react-native';
 import { useState } from 'react';
 import { useLocalSearchParams } from 'expo-router';
 import QuizIntroduction from '@/components/quiz/QuizIntroduction';
