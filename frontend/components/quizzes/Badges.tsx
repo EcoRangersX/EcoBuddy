@@ -1,4 +1,4 @@
-import { ScrollView, View, Text } from "react-native";
+import { ScrollView, Text } from "react-native";
 
 
 export default function BadgesScreen() {
