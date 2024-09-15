@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { View, Dimensions, Modal, FlatList } from 'react-native';
+import { View, Dimensions, Modal, FlatList  } from 'react-native';
 import DotsIndicator from './DotsIndicator';
 import { NextIcon, PreviousIcon, CloseButton } from '../icons/Quiz';
 import { BlurView } from 'expo-blur';
@@ -43,9 +43,12 @@ const QuizIntroduction = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
 
-  // const handleNextScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-  //   const index = Math.floor(event.nativeEvent.contentOffset.x / screenWidth);
-  //   setCurrentIndex(index + 1);
+  // const handleSwapping = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+  //   const offsetX = event.nativeEvent.contentOffset.x;
+  //   const tolerance = 10;
+  //   const index = Math.floor((offsetX + tolerance) / screenWidth);
+  //   console.log(`Calculated index: ${index}, OffsetX: ${offsetX}`)
+  //   setCurrentIndex(index);
   // };
 
   const nextStep = () => {
@@ -68,6 +71,8 @@ const QuizIntroduction = ({
     }
   };
 
+  console.log(`Current Index: ${currentIndex}`);
+
   return (
     <Modal visible={isVisible} transparent>
       <BlurView
@@ -79,10 +84,12 @@ const QuizIntroduction = ({
             ref={flatListRef}
             horizontal
             pagingEnabled
+            scrollEnabled={false}
             showsHorizontalScrollIndicator={false}
             scrollEventThrottle={16}
             keyExtractor={(_, index) => index.toString()}
             data={quizStepsStatic}
+            // onMomentumScrollEnd={handleSwapping}
             renderItem={({ item }) => item.jsx_element}></FlatList>
           <View className="justify-around flex-row items-center mb-3">
             <DotsIndicator steps={quizStepsStatic} currentIndex={currentIndex} />
