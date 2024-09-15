@@ -71,8 +71,6 @@ const QuizIntroduction = ({
     }
   };
 
-  console.log(`Current Index: ${currentIndex}`);
-
   return (
     <Modal visible={isVisible} transparent>
       <BlurView
