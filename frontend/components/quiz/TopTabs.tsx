@@ -1,6 +1,6 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import BadgesScreen from './Badges';
-import LeaderboardScreen from './Leaderboard';
+import LeaderboardScreen from '@/app/(tabs)/leaderboard';
+import BadgesScreen from '@/app/(tabs)/badges';
 
 const TopTab = createMaterialTopTabNavigator();
 
