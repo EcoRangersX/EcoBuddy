@@ -1,8 +1,7 @@
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { useState } from 'react';
 import { useLocalSearchParams } from 'expo-router';
 import QuizIntroduction from '@/components/quiz/QuizIntroduction';
-import TopTabs from '@/components/quiz/TopTabs';
 import Header from '@/components/Header';
 
 export default function QuizScreen() {
@@ -18,8 +17,8 @@ export default function QuizScreen() {
   return (
     <View className="flex-1">
       <Header />
-      <TopTabs />
       <QuizIntroduction isVisible={isVisible} onClose={handleOnClose} />
+      <Text className="text-2xl">Quiz Functionality Coming Soon...</Text>
     </View>
   );
 }

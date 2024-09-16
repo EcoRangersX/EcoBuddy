@@ -6,7 +6,7 @@ import {
   leaderboardUsersStatic,
 } from '@/constants/StaticData';
 
-export default function LeaderboardScreen() {
+export default function LeaderboardTab() {
   return (
     <ScrollView>
       <View className="p-3">
