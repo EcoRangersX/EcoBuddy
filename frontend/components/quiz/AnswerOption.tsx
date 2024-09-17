@@ -1,7 +1,7 @@
 import { View, TouchableOpacity, Text } from 'react-native';
 
 interface AnswerOptionProps {
-  label: string;
+  label: number;
   option: string;
   isSelected: boolean;
   onSelect: () => void;
@@ -14,25 +14,26 @@ const AnswerOption = ({
   onSelect,
 }: AnswerOptionProps) => (
   <TouchableOpacity
-    className={`flex-row items-center bg-white rounded-full p-4 m-2 ${
+    className={`flex-row items-center bg-white shadow-sm shadow-black rounded-2xl p-4 m-2 ${
       isSelected ? 'bg-green-300' : ''
     }`}
     onPress={onSelect}>
     <View
-      className={`w-8 h-8 rounded-full ${
+      className={`w-8 h-8 items-center justify-center rounded-full ${
         isSelected ? 'bg-green-500' : 'bg-gray-200'
-      } mr-4 items-center justify-center`}>
-      <Text
-        className={`text-lg ${isSelected ? 'text-white' : 'text-gray-600'}`}>
+      }`}>
+      <Text className={`text-lg ${isSelected ? 'text-white' : 'text-black'}`}>
         {label}
       </Text>
     </View>
-    <Text className="text-lg flex-1">{option}</Text>
-    {isSelected && (
-      <View className="w-6 h-6 bg-green-500 rounded-full items-center justify-center">
-        <Text className="text-white">✓</Text>
-      </View>
-    )}
+    <Text className="text-lg flex-1 text-center">{option}</Text>
+    <View className="w-8 h-8 rounded-full items-center justify-center border-2 border-gray-300">
+      {isSelected && (
+        <View className="w-8 h-8 bg-green-500 rounded-full items-center justify-center">
+          <Text className="text-white">✓</Text>
+        </View>
+      )}
+    </View>
   </TouchableOpacity>
 );
 

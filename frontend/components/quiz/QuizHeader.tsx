@@ -16,7 +16,7 @@ const QuizHeader = ({
   onBookmark,
 }: QuizHeaderProps) => {
   return (
-    <View className="flex-row justify-between items-center p-4">
+    <View className="flex-row justify-between items-center">
       <TouchableOpacity onPress={onBack}>
         <PreviousIcon size={24} onPress={onBack} styles="shadow-sm shadow-black" />
       </TouchableOpacity>
