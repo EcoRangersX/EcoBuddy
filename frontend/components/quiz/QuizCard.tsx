@@ -80,30 +80,34 @@ const QuizCard = ({
   console.log(`Selected answer: ${selectedAnswer}`);
 
   return (
-    <View className="flex-1 bg-cyan-300">
-      <QuizHeader
-        questionNumber={questionNumber}
-        totalQuestions={totalQuestions}
-        onBack={previousQuestion}
-        onBookmark={handleBookmarkQuiz}
-      />
-      <QuestionCard question={question} />
-      <View className="flex-1 justify-center">
-        {options.map((option, index) => (
-          <AnswerOption
-            key={index}
-            label={String.fromCharCode(65 + index)}
-            option={option.text}
-            isSelected={selectedAnswer === option.id}
-            onSelect={() => setSelectedAnswer(option.id)}
-          />
-        ))}
+    <View className="flex-1 bg-cyan-300 ">
+      <View className='m-4'>
+        <QuizHeader
+          questionNumber={questionNumber}
+          totalQuestions={totalQuestions}
+          onBack={previousQuestion}
+          onBookmark={handleBookmarkQuiz}
+        />
       </View>
-      <NavigationButtons
-        onSkip={handleOnSkip}
-        onNext={nextQuestion}
-        onSubmit={handleOnSubmit}
-      />
+      <View className="bg-[#e1f3f7] flex-1">
+        <QuestionCard question={question} />
+        <View className="flex-1 justify-center">
+          {options.map((option, index) => (
+            <AnswerOption
+              key={index}
+              label={index + 1}
+              option={option.text}
+              isSelected={selectedAnswer === option.id}
+              onSelect={() => setSelectedAnswer(option.id)}
+            />
+          ))}
+        </View>
+        <NavigationButtons
+          onSkip={handleOnSkip}
+          onNext={nextQuestion}
+          onSubmit={handleOnSubmit}
+        />
+      </View>
     </View>
   );
 };
