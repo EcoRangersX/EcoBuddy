@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { PreviousIcon } from '../icons/Quiz';
-import { BookmarkIcon } from '../icons/Articles';
+import AnswerOption from './AnswerOption';
+import QuizHeader from './QuizHeader';
 
 interface QuizScreenProps {
   questionNumber: number;
@@ -15,33 +15,6 @@ interface QuizScreenProps {
   onBookmark: () => void;
 }
 
-interface HeaderProps {
-  questionNumber: number;
-  totalQuestions: number;
-  onBack: () => void;
-  onBookmark: () => void;
-}
-
-const Header = ({
-  questionNumber,
-  totalQuestions,
-  onBack,
-  onBookmark,
-}: HeaderProps) => {
-  return (
-    <View className="flex-row justify-between items-center p-4">
-      <TouchableOpacity onPress={onBack}>
-        <PreviousIcon size={24} color="white" onPress={onBack} />
-      </TouchableOpacity>
-      <Text className="text-white text-lg font-semibold">
-        Question {questionNumber}/{totalQuestions}
-      </Text>
-      <TouchableOpacity onPress={onBookmark}>
-        <BookmarkIcon size={24} color="white" onPress={onBookmark} />
-      </TouchableOpacity>
-    </View>
-  );
-};
 
 const QuestionCard = ({ question }: { question: string }) => (
   <View className="bg-blue-500 rounded-lg p-6 m-4">
@@ -49,39 +22,6 @@ const QuestionCard = ({ question }: { question: string }) => (
   </View>
 );
 
-const AnswerOption = ({
-  label,
-  option,
-  isSelected,
-  onSelect,
-}: {
-  label: string;
-  option: string;
-  isSelected: boolean;
-  onSelect: () => void;
-}) => (
-  <TouchableOpacity
-    className={`flex-row items-center bg-white rounded-full p-4 m-2 ${
-      isSelected ? 'bg-green-300' : ''
-    }`}
-    onPress={onSelect}>
-    <View
-      className={`w-8 h-8 rounded-full ${
-        isSelected ? 'bg-green-500' : 'bg-gray-200'
-      } mr-4 items-center justify-center`}>
-      <Text
-        className={`text-lg ${isSelected ? 'text-white' : 'text-gray-600'}`}>
-        {label}
-      </Text>
-    </View>
-    <Text className="text-lg flex-1">{option}</Text>
-    {isSelected && (
-      <View className="w-6 h-6 bg-green-500 rounded-full items-center justify-center">
-        <Text className="text-white">✓</Text>
-      </View>
-    )}
-  </TouchableOpacity>
-);
 
 const NavigationButtons = ({
   onSkip,
@@ -118,7 +58,7 @@ const QuizCard = ({
 
   return (
     <View className="flex-1 bg-cyan-300">
-      <Header
+      <QuizHeader
         questionNumber={questionNumber}
         totalQuestions={totalQuestions}
         onBack={onBack}
