@@ -7,8 +7,7 @@ import QuizNavigationBottom from './QuizNavigationBottom';
 interface QuestionProps {
   id: number;
   question: string;
-  options: { id: number; text: string };
-  'correct-answer': number;
+  options: { id: number; text: string }[];
 }
 
 interface QuizScreenProps {
@@ -28,6 +27,31 @@ const QuestionCard = ({ question }: { question: string }) => (
   </View>
 );
 
+/**
+ * QuizCard component renders a quiz interface with navigation and answer selection.
+ *
+ * @component
+ * @param {QuizScreenProps} props - The properties for the QuizCard component.
+ * @param {string} props.quiz_id - The unique identifier for the quiz.
+ * @param {number} props.totalQuestions - The total number of questions in the quiz.
+ * @param {Array} props.questions - The list of questions in the quiz.
+ *
+ * @returns {JSX.Element} The rendered QuizCard component.
+ *
+ * @description
+ * This component handles the display and navigation of quiz questions. It allows users to select answers, skip questions, and submit their responses. 
+ * The component maintains the state of selected answers and the current question index.
+ *
+ * @example
+ * <QuizCard quiz_id="123" totalQuestions={10} questions={questionsArray} />
+ *
+ * @function
+ * @name QuizCard
+ *
+ * @remarks
+ * The component uses the `selectedAnswers` state to keep track of the user's selected answers. 
+ * It determines whether an option is selected by checking if the `selectedAnswers` array contains an entry with the same `question_id` and `selected_option` as the current option.
+ */
 const QuizCard = ({ quiz_id, totalQuestions, questions }: QuizScreenProps) => {
   const [selectedAnswers, setSelectedAnswers] = useState<AnswerProps[] | null>(
     null,
@@ -61,8 +85,19 @@ const QuizCard = ({ quiz_id, totalQuestions, questions }: QuizScreenProps) => {
   };
 
   const currentQuestion = questions[currentIndex];
+  
+  const handleOnSelect = (option_id: number) => {
+    const updatedAnswers = selectedAnswers ? [
+      ...selectedAnswers.filter(answer => answer.question_id != currentQuestion.id, {
+        question_id: currentQuestion.id,
+        selected_option: option_id
+      })
+    ] :
+    [{question_id: currentQuestion.id, selected_option: option_id}]
+    setSelectedAnswers(updatedAnswers);
+  };
 
-  console.log(`Current Question: ${currentQuestion.id}`);
+  console.log(`Current Question: ${JSON.stringify(currentQuestion)}`);
   console.log(`The selected answers: ${JSON.stringify(selectedAnswers)}`);
 
   return (
@@ -83,31 +118,13 @@ const QuizCard = ({ quiz_id, totalQuestions, questions }: QuizScreenProps) => {
             label={option.id + 1}
             option={option.text}
             isSelected={
-              selectedAnswers?.some(
+              selectedAnswers?.some(  // Check if the selectedAnswers array contains an entry with the same question_id and selected_option as the current option
                 answer =>
                   answer.question_id === currentQuestion.id &&
                   answer.selected_option === option.id,
               ) ?? false
             }
-            onSelect={() => {
-              const updatedAnswers = selectedAnswers
-                ? [
-                    ...selectedAnswers.filter(
-                      answer => answer.question_id !== currentQuestion.id,
-                    ),
-                    {
-                      question_id: currentQuestion.id,
-                      selected_option: option.id,
-                    },
-                  ]
-                : [
-                    {
-                      question_id: currentQuestion.id,
-                      selected_option: option.id,
-                    },
-                  ];
-              setSelectedAnswers(updatedAnswers);
-            }}
+            onSelect={() => handleOnSelect(option.id)}
           />
         ))}
         <QuizNavigationBottom
