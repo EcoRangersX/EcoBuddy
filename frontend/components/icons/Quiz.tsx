@@ -20,7 +20,7 @@ const NextIcon = ({ size, color, onPress, styles }: NavigationIconProps) => {
 const PreviousIcon = ({ size, color, onPress, styles }: NavigationIconProps) => {
   return (
     <TouchableOpacity
-      className={`bg-white rounded-full justify-center items-center w-12 h-12 border-[#08b1cf] border-2 ${styles}`}
+      className={`bg-white rounded-full justify-center items-center w-12 h-12 ${styles}`}
       onPress={onPress}>
       <AntDesign name="arrowleft" size={size} color={color} />
     </TouchableOpacity>
