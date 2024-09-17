@@ -8,6 +8,10 @@ interface StartQuizIconProps extends BasicIconProps {
   id: number;
 }
 
+interface TabIconProps extends BasicIconProps {
+  focused: boolean;
+}
+
 const StartQuizIcon = ({
   size = 24,
   color = 'white',
@@ -23,6 +27,54 @@ const StartQuizIcon = ({
       }>
       <FontAwesome6 name="play" size={size} color={color} />
     </TouchableOpacity>
+  );
+};
+
+const LeaderboardTabIcon = ({
+  size = 24,
+  color = 'black',
+  focused,
+}: TabIconProps) => {
+  return (
+    <>
+      {focused ? (
+        <FontAwesome6 name="medal" size={size} color={'green'} />
+      ) : (
+        <FontAwesome6 name="medal" size={size} color={color} />
+      )}
+    </>
+  );
+};
+
+const BadgesTabIcon = ({
+  size = 24,
+  color = 'black',
+  focused,
+}: TabIconProps) => {
+  return (
+    <>
+      {focused ? (
+        <FontAwesome6 name="award" size={size} color={'green'} />
+      ) : (
+        <FontAwesome6 name="award" size={size} color={color} />
+      )}
+    </>
+  );
+};
+
+const QuizTabIcon = ({
+  size = 24,
+  color = 'black',
+  focused = false,
+}: TabIconProps) => {
+  return (
+    <>
+      {focused ? (
+        <FontAwesome6 name="graduation-cap" size={size} color={'green'} />
+      ) : (
+        <FontAwesome6 name="graduation-cap" size={size} color={color} />
+      )}
+    </>
   );
 };
 
@@ -66,4 +118,10 @@ const StreakIcon = ({ size = 24 }: BasicIconProps) => {
   );
 };
 
-export { StartQuizIcon, StreakIcon };
+export {
+  StartQuizIcon,
+  StreakIcon,
+  QuizTabIcon,
+  LeaderboardTabIcon,
+  BadgesTabIcon,
+};
