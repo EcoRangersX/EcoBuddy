@@ -7,9 +7,9 @@ import {
 import { BasicIconProps } from './HomeIcons';
 
 
-interface BookmarkIcon extends BasicIconProps {
+interface BookmarkIconProps extends BasicIconProps {
   onPress: () => void;
-  saved: boolean;
+  saved?: boolean;
 }
 
 interface ClearQueryIcon extends BasicIconProps {
@@ -21,7 +21,7 @@ const BookmarkIcon = ({
   color,
   saved,
   onPress
-}: BookmarkIcon) => {
+}: BookmarkIconProps) => {
   return (
     <TouchableOpacity
       className="bg-white h-12 w-12 items-center justify-center rounded-full shadow-md shadow-black"
