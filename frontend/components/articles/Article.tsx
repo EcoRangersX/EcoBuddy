@@ -37,7 +37,7 @@ const Article = ({
         <Text className="text-gray-800 mb-1">{description}</Text>
 
         <View className="flex-row justify-end items-center space-x-4">
-          <BookmarkIcon size={32} saved={saved} onPress={handleAddToFavorite} />
+          <BookmarkIcon size={32} saved={saved} onPress={handleAddToFavorite} styles='shadow-md shadow-black'/>
           <TouchableOpacity className="bg-[#22a054] py-2 px-5 rounded-full">
             <Text className="text-white text-base font-medium">Read</Text>
           </TouchableOpacity>

@@ -98,7 +98,7 @@ const QuizIntroduction = ({
               </View>
             ) : (
               <View className="flex-row ">
-                <PreviousIcon size={36} onPress={prevStep} styles="mr-3" />
+                <PreviousIcon size={36} onPress={prevStep} styles="mr-3 border-[#08b1cf] border-2" />
                 <NextIcon size={36} onPress={nextStep} />
               </View>
             )}
