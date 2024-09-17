@@ -8,8 +8,8 @@ interface QuizScreenProps {
   questionNumber: number;
   totalQuestions: number;
   question: string;
-  options: {id: number, text: string}[];
-  correctAnswer: string;
+  options: { id: number; text: string }[];
+  correctAnswer: number;
 }
 
 const QuestionCard = ({ question }: { question: string }) => (
@@ -21,25 +21,27 @@ const QuestionCard = ({ question }: { question: string }) => (
 const NavigationButtons = ({
   onSkip,
   onNext,
-  onSubmit
+  onSubmit,
 }: {
   onSkip: () => void;
   onNext: () => void;
   onSubmit: () => void;
-}) => (
-  <View className="flex-row justify-between p-4">
-    <TouchableOpacity
-      className="bg-gray-300 rounded-full px-6 py-3"
-      onPress={onSkip}>
-      <Text className="text-gray-700 font-semibold">Skip</Text>
-    </TouchableOpacity>
-    <TouchableOpacity
-      className="bg-blue-500 rounded-full px-6 py-3"
-      onPress={onNext}>
-      <Text className="text-white font-semibold">Next</Text>
-    </TouchableOpacity>
-  </View>
-);
+}) => {
+  return (
+    <View className="flex-row justify-between p-4">
+      <TouchableOpacity
+        className="bg-gray-300 rounded-full px-6 py-3"
+        onPress={onSkip}>
+        <Text className="text-gray-700 font-semibold">Skip</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        className="bg-blue-500 rounded-full px-6 py-3"
+        onPress={onNext}>
+        <Text className="text-white font-semibold">Next</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 const QuizCard = ({
   quiz_id,
@@ -49,31 +51,31 @@ const QuizCard = ({
   options,
 }: QuizScreenProps) => {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-  
+
   const handleBookmarkQuiz = () => {
     // TODO: Implement hook to bookmark quiz by quiz_id
     console.log(`Bookmarking quiz with id: ${quiz_id}`);
-  }
+  };
 
   const previousQuestion = () => {
     // Implement logic to navigate to the previous question
-    console.log("Navigating to the previous question")
-  }
+    console.log('Navigating to the previous question');
+  };
 
   const nextQuestion = () => {
     // Implement logic to navigate to the next question
-    console.log("Navigating to the next question")
-  }
+    console.log('Navigating to the next question');
+  };
 
   const handleOnSkip = () => {
     // Implement logic to skip the current question
-    console.log("Skipping the current question")
-  }
+    console.log('Skipping the current question');
+  };
 
   const handleOnSubmit = () => {
     // Implement logic to submit the current question
-    console.log("Submitting the answers")
-  }
+    console.log('Submitting the answers');
+  };
 
   console.log(`Selected answer: ${selectedAnswer}`);
 
@@ -97,7 +99,11 @@ const QuizCard = ({
           />
         ))}
       </View>
-      <NavigationButtons onSkip={handleOnSkip} onNext={nextQuestion} onSubmit={handleOnSubmit}  />
+      <NavigationButtons
+        onSkip={handleOnSkip}
+        onNext={nextQuestion}
+        onSubmit={handleOnSubmit}
+      />
     </View>
   );
 };
