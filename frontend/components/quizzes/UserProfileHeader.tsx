@@ -1,12 +1,14 @@
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { StarIcon } from '../icons/LeaderboardIcons';
 import capitalizeWord from '@/utils/capitalizeWord';
+import { useRouter } from 'expo-router';
 
 interface UserProfileHeaderProps {
   profile_image_url: string;
   level: string;
   username: string;
   stars: number;
+  id: number;
 }
 
 const UserProfileHeader = ({
@@ -14,14 +16,23 @@ const UserProfileHeader = ({
   level,
   username,
   stars,
+  id,
 }: UserProfileHeaderProps) => {
+  const router = useRouter();
+
+  const handleImagePress = () => {
+    router.push(`/profile/${id}`);
+  };
+
   return (
     <View className="flex flex-row p-3 items-center justify-between">
       <View className="flex-row space-x-5">
-        <Image
-          className="w-20 h-20 rounded-full"
-          source={{ uri: profile_image_url }}
-        />
+        <TouchableOpacity onPress={handleImagePress}>
+          <Image
+            className="w-20 h-20 rounded-full"
+            source={{ uri: profile_image_url }}
+          />
+        </TouchableOpacity>
         <View className="items-start space-y-1">
           <Text
             className="text-base"
