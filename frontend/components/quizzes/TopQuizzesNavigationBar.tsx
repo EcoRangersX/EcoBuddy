@@ -54,7 +54,7 @@ export default function TopQuizzesNavigationBar() {
         component={BadgesScreen}
         options={{
           tabBarIcon: ({ focused }) => (
-            <BadgesTabIcon focused={focused} size={20} />
+            <BadgesTabIcon focused={focused} size={22} />
           ),
         }}
       />

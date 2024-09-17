@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import Svg from 'react-native-svg';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { LocationIcon, ViewDetailsIcon } from '@/components/icons/HomeIcons';
-import capitalize from '@/utils/capitalizeWord';
+import capitalizeWord from '@/utils/capitalizeWord';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 
@@ -72,7 +72,7 @@ const AQIComponent = ({
                       {value.toFixed(0)}
                     </Text>
                     <Text className="text-white text-lg self-center">
-                      {capitalize(status)}
+                      {capitalizeWord(status)}
                     </Text>
                   </View>
                 )}

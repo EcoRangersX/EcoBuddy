@@ -7,7 +7,7 @@ import {
   TemperatureIcon,
   PressureIcon,
 } from '@/components/icons/HomeIcons';
-import capitalize from '@/utils/capitalizeWord';
+import capitalizeWord from '@/utils/capitalizeWord';
 import {
   tempLevel,
   windLevel,
@@ -123,7 +123,7 @@ export default function WeatherDataElement({
         <Text
           style={borderColorStyle}
           className="flex text-white text-base mb-2 rounded-b">
-          {capitalize(weatherElement)}
+          {capitalizeWord(weatherElement)}
         </Text>
         <TouchableOpacity>{elementIcon(weatherElement)}</TouchableOpacity>
       </View>
