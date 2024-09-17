@@ -8,6 +8,32 @@ const airQualityTipsStatic = [
   'Use Natural Cleaning Products',
 ];
 
+const userProfileHeaderStatic = {
+  username: 'Kumala3',
+  profile_image_url:
+    'https://images.hdqwalls.com/download/horizon-forbidden-west-2020-gy-3840x2160.jpg',
+  level: 'advanced',
+  stars: 302,
+  id: 142,
+};
+
+const userProfileStatic = {
+  profile_image_url:
+    'https://images.hdqwalls.com/download/horizon-forbidden-west-2020-gy-3840x2160.jpg',
+  username: 'Kumala3',
+  fullName: 'Kumala Kirfa',
+  email: 'kumala32312@gmail.com',
+};
+
+const yourAchievementsStatic = {
+  streak: 1,
+  bestStreak: 11,
+  quizScore: 1933,
+  articleScore: 1522,
+  score: 3455,
+  maxScore: 10000,
+};
+
 const filteredArticlesStatic = [
   {
     id: 1,
@@ -343,4 +369,7 @@ export {
   filteredArticlesStatic,
   savedArticlesStatic,
   countriesStatic,
+  userProfileHeaderStatic,
+  yourAchievementsStatic,
+  userProfileStatic,
 };
