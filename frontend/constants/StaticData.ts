@@ -19,7 +19,7 @@ const userProfileHeaderStatic = {
 
 const userProfileStatic = {
   profile_image_url:
-    'https://th.bing.com/th/id/R.745bf47c98f396f04e99316860fd2611?rik=vrZ0BYANY5MqmA&pid=ImgRaw&r=0',
+    'https://images.hdqwalls.com/download/horizon-forbidden-west-2020-gy-3840x2160.jpg',
   username: 'Kumala3',
   fullName: 'Kumala Kirfa',
   email: 'kumala32312@gmail.com',
