@@ -18,13 +18,13 @@ const QuizHeader = ({
   return (
     <View className="flex-row justify-between items-center p-4">
       <TouchableOpacity onPress={onBack}>
-        <PreviousIcon size={24} color="white" onPress={onBack} />
+        <PreviousIcon size={24} onPress={onBack} styles="shadow-sm shadow-black" />
       </TouchableOpacity>
       <Text className="text-white text-lg font-semibold">
         Question {questionNumber}/{totalQuestions}
       </Text>
       <TouchableOpacity onPress={onBookmark}>
-        <BookmarkIcon size={24} color="white" onPress={onBookmark} />
+        <BookmarkIcon size={24} onPress={onBookmark} styles="shadow-sm shadow-black" />
       </TouchableOpacity>
     </View>
   );

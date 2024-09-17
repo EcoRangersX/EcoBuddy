@@ -10,6 +10,7 @@ import { BasicIconProps } from './HomeIcons';
 interface BookmarkIconProps extends BasicIconProps {
   onPress: () => void;
   saved?: boolean;
+  styles?: string;
 }
 
 interface ClearQueryIcon extends BasicIconProps {
@@ -20,11 +21,12 @@ const BookmarkIcon = ({
   size,
   color,
   saved,
-  onPress
+  onPress,
+  styles,
 }: BookmarkIconProps) => {
   return (
     <TouchableOpacity
-      className="bg-white h-12 w-12 items-center justify-center rounded-full shadow-md shadow-black"
+      className={`bg-white h-12 w-12 items-center justify-center rounded-full ${styles}`}
       onPress={onPress}>
       {saved ? (
         <FontAwesome name="bookmark" size={size} color={color} />
