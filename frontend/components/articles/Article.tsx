@@ -1,6 +1,6 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { ArticleProps } from '@/types/articles';
-import { SaveToFavoriteIcon } from '../icons/Articles';
+import { BookmarkIcon } from '../icons/Articles';
 
 /**
  * Renders an article component.
@@ -20,6 +20,11 @@ const Article = ({
   image_url,
   saved = false,
 }: ArticleProps) => {
+  const handleAddToFavorite = () => {
+    // TODO: Implement add to favorite functionality by article_id
+    console.log(`Imitation of adding article: ${article_id} to favorite`);
+  }
+
   return (
     <View className="bg-white rounded-[30px] overflow-hidden shadow-lg shadow-black m-4">
       <Image
@@ -32,7 +37,7 @@ const Article = ({
         <Text className="text-gray-800 mb-1">{description}</Text>
 
         <View className="flex-row justify-end items-center space-x-4">
-          <SaveToFavoriteIcon size={32} saved={saved} article_id={article_id} />
+          <BookmarkIcon size={32} saved={saved} onPress={handleAddToFavorite} />
           <TouchableOpacity className="bg-[#22a054] py-2 px-5 rounded-full">
             <Text className="text-white text-base font-medium">Read</Text>
           </TouchableOpacity>
