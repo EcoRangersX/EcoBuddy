@@ -17,6 +17,14 @@ const userProfileHeaderStatic = {
   id: 142,
 };
 
+const userProfileStatic = {
+  profile_image_url:
+    'https://th.bing.com/th/id/R.745bf47c98f396f04e99316860fd2611?rik=vrZ0BYANY5MqmA&pid=ImgRaw&r=0',
+  username: 'Kumala3',
+  fullName: 'Kumala Kirfa',
+  email: 'kumala32312@gmail.com',
+};
+
 const yourAchievementsStatic = {
   streak: 1,
   bestStreak: 11,
@@ -363,4 +371,5 @@ export {
   countriesStatic,
   userProfileHeaderStatic,
   yourAchievementsStatic,
+  userProfileStatic,
 };
