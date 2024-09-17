@@ -1,9 +1,10 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { useState } from 'react';
 import { useLocalSearchParams } from 'expo-router';
 import QuizIntroduction from '@/components/quiz/QuizIntroduction';
 import Header from '@/components/Header';
 import QuizCard from '@/components/quiz/QuizCard';
+import { quizCardDataStatic } from '@/constants/StaticData';
 
 export default function QuizScreen() {
   const [isVisible, setIsVisible] = useState(true);
@@ -20,12 +21,12 @@ export default function QuizScreen() {
       <Header />
       <QuizIntroduction isVisible={isVisible} onClose={handleOnClose} />
       <QuizCard
-        quiz_id={id}
-        questionNumber={3}
-        totalQuestions={10}
-        question="What Is The Primary Source Of Energy For Most Ecosystems?"
-        options={['Water', 'Soil', 'The Sun', 'Wind']}
-        correctAnswer="The Sun"
+      quiz_id={quizCardDataStatic.quiz_id}
+      questionNumber={quizCardDataStatic.questionNumber}
+      totalQuestions={quizCardDataStatic.totalQuestions}
+      question={quizCardDataStatic.question}
+      options={quizCardDataStatic.options}
+      correctAnswer={quizCardDataStatic.correctAnswer}
       />
     </View>
   );

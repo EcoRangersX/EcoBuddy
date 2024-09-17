@@ -8,6 +8,20 @@ const airQualityTipsStatic = [
   'Use Natural Cleaning Products',
 ];
 
+const quizCardDataStatic = {
+  quiz_id: 1,
+  questionNumber: 3,
+  totalQuestions: 10,
+  question: "What Is The Primary Source Of Energy For Most Ecosystems?",
+  options: [
+    { id: 0, text: 'Water' },
+    { id: 1, text: 'Soil' },
+    { id: 2, text: 'The Sun' },
+    { id: 3, text: 'Wind' },
+  ],
+  correctAnswer: 2
+}
+
 const userProfileHeaderStatic = {
   username: 'Kumala3',
   profile_image_url:
@@ -372,4 +386,5 @@ export {
   userProfileHeaderStatic,
   yourAchievementsStatic,
   userProfileStatic,
+  quizCardDataStatic,
 };
