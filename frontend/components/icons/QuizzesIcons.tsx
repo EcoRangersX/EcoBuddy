@@ -26,6 +26,18 @@ const StartQuizIcon = ({
   );
 };
 
+const LeaderboardTabIcon = ({ size = 24, color }: BasicIconProps) => {
+  return <FontAwesome6 name="trophy" size={size} color={color} />;
+};
+
+const BadgesTabIcon = ({ size = 24, color }: BasicIconProps) => {
+  return <FontAwesome6 name="award" size={size} color={color} />;
+};
+
+const QuizTabIcon = ({ size = 24, color }: BasicIconProps) => {
+  return <FontAwesome6 name="graduation-cap" size={size} color={color} />;
+};
+
 const StreakIcon = ({ size = 24 }: BasicIconProps) => {
   return (
     <TouchableOpacity>
@@ -66,4 +78,10 @@ const StreakIcon = ({ size = 24 }: BasicIconProps) => {
   );
 };
 
-export { StartQuizIcon, StreakIcon };
+export {
+  StartQuizIcon,
+  StreakIcon,
+  QuizTabIcon,
+  LeaderboardTabIcon,
+  BadgesTabIcon,
+};
