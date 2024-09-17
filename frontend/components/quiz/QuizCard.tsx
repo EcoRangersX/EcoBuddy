@@ -8,7 +8,7 @@ interface QuizScreenProps {
   questionNumber: number;
   totalQuestions: number;
   question: string;
-  options: string[];
+  options: {id: number, text: string}[];
   correctAnswer: string;
 }
 
@@ -21,9 +21,11 @@ const QuestionCard = ({ question }: { question: string }) => (
 const NavigationButtons = ({
   onSkip,
   onNext,
+  onSubmit
 }: {
   onSkip: () => void;
   onNext: () => void;
+  onSubmit: () => void;
 }) => (
   <View className="flex-row justify-between p-4">
     <TouchableOpacity
@@ -46,7 +48,7 @@ const QuizCard = ({
   question,
   options,
 }: QuizScreenProps) => {
-  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   
   const handleBookmarkQuiz = () => {
     // TODO: Implement hook to bookmark quiz by quiz_id
@@ -68,6 +70,13 @@ const QuizCard = ({
     console.log("Skipping the current question")
   }
 
+  const handleOnSubmit = () => {
+    // Implement logic to submit the current question
+    console.log("Submitting the answers")
+  }
+
+  console.log(`Selected answer: ${selectedAnswer}`);
+
   return (
     <View className="flex-1 bg-cyan-300">
       <QuizHeader
@@ -82,13 +91,13 @@ const QuizCard = ({
           <AnswerOption
             key={index}
             label={String.fromCharCode(65 + index)}
-            option={option}
-            isSelected={selectedAnswer === option}
-            onSelect={() => setSelectedAnswer(option)}
+            option={option.text}
+            isSelected={selectedAnswer === option.id}
+            onSelect={() => setSelectedAnswer(option.id)}
           />
         ))}
       </View>
-      <NavigationButtons onSkip={handleOnSkip} onNext={nextQuestion} />
+      <NavigationButtons onSkip={handleOnSkip} onNext={nextQuestion} onSubmit={handleOnSubmit}  />
     </View>
   );
 };

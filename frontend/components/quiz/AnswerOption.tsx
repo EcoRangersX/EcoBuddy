@@ -1,16 +1,18 @@
 import { View, TouchableOpacity, Text } from 'react-native';
 
+interface AnswerOptionProps {
+  label: string;
+  option: string;
+  isSelected: boolean;
+  onSelect: () => void;
+}
+
 const AnswerOption = ({
   label,
   option,
   isSelected,
   onSelect,
-}: {
-  label: string;
-  option: string;
-  isSelected: boolean;
-  onSelect: () => void;
-}) => (
+}: AnswerOptionProps) => (
   <TouchableOpacity
     className={`flex-row items-center bg-white rounded-full p-4 m-2 ${
       isSelected ? 'bg-green-300' : ''
