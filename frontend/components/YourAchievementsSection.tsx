@@ -38,7 +38,7 @@ const YourAchievementsSection = ({
   width = 10,
 }: YourScoresSectionProps) => {
   return (
-    <View className="p-3">
+    <View className="">
       <Text className="text-xl font-bold mb-2">Your Achievements</Text>
       <View className="mb-8">
         <StreakDashboard streak={streak} bestStreak={bestStreak} />
