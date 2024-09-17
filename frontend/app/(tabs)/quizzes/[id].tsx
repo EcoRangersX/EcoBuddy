@@ -20,15 +20,12 @@ export default function QuizScreen() {
       <Header />
       <QuizIntroduction isVisible={isVisible} onClose={handleOnClose} />
       <QuizCard
+        quiz_id={id}
         questionNumber={3}
         totalQuestions={10}
         question="What Is The Primary Source Of Energy For Most Ecosystems?"
         options={['Water', 'Soil', 'The Sun', 'Wind']}
         correctAnswer="The Sun"
-        onNext={() => {}}
-        onSkip={() => {}}
-        onBack={() => {}}
-        onBookmark={() => {}}
       />
     </View>
   );
