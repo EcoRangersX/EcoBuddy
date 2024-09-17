@@ -21,12 +21,9 @@ export default function QuizScreen() {
       <Header />
       <QuizIntroduction isVisible={isVisible} onClose={handleOnClose} />
       <QuizCard
-      quiz_id={quizCardDataStatic.quiz_id}
-      questionNumber={quizCardDataStatic.questionNumber}
-      totalQuestions={quizCardDataStatic.totalQuestions}
-      question={quizCardDataStatic.question}
-      options={quizCardDataStatic.options}
-      correctAnswer={quizCardDataStatic.correctAnswer}
+        quiz_id={quizCardDataStatic.quiz_id}
+        totalQuestions={quizCardDataStatic.questions.length}
+        questions={quizCardDataStatic.questions}
       />
     </View>
   );
