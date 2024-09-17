@@ -1,5 +1,5 @@
 import { View, Text, Image } from 'react-native';
-import { StarIcon } from '../icons/Leaderboard';
+import { StarIcon } from '../icons/LeaderboardIcons';
 
 interface UserProfileHeaderProps {
   profile_image_url: string;
