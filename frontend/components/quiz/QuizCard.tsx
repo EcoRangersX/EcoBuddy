@@ -4,24 +4,19 @@ import AnswerOption from './AnswerOption';
 import QuizHeader from './QuizHeader';
 
 interface QuizScreenProps {
+  quiz_id: number;
   questionNumber: number;
   totalQuestions: number;
   question: string;
   options: string[];
   correctAnswer: string;
-  onNext: () => void;
-  onSkip: () => void;
-  onBack: () => void;
-  onBookmark: () => void;
 }
-
 
 const QuestionCard = ({ question }: { question: string }) => (
   <View className="bg-blue-500 rounded-lg p-6 m-4">
     <Text className="text-white text-xl text-center">{question}</Text>
   </View>
 );
-
 
 const NavigationButtons = ({
   onSkip,
@@ -45,24 +40,41 @@ const NavigationButtons = ({
 );
 
 const QuizCard = ({
+  quiz_id,
   questionNumber,
   totalQuestions,
   question,
   options,
-  onNext,
-  onSkip,
-  onBack,
-  onBookmark,
 }: QuizScreenProps) => {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+  
+  const handleBookmarkQuiz = () => {
+    // TODO: Implement hook to bookmark quiz by quiz_id
+    console.log(`Bookmarking quiz with id: ${quiz_id}`);
+  }
+
+  const previousQuestion = () => {
+    // Implement logic to navigate to the previous question
+    console.log("Navigating to the previous question")
+  }
+
+  const nextQuestion = () => {
+    // Implement logic to navigate to the next question
+    console.log("Navigating to the next question")
+  }
+
+  const handleOnSkip = () => {
+    // Implement logic to skip the current question
+    console.log("Skipping the current question")
+  }
 
   return (
     <View className="flex-1 bg-cyan-300">
       <QuizHeader
         questionNumber={questionNumber}
         totalQuestions={totalQuestions}
-        onBack={onBack}
-        onBookmark={onBookmark}
+        onBack={previousQuestion}
+        onBookmark={handleBookmarkQuiz}
       />
       <QuestionCard question={question} />
       <View className="flex-1 justify-center">
@@ -76,7 +88,7 @@ const QuizCard = ({
           />
         ))}
       </View>
-      <NavigationButtons onSkip={onSkip} onNext={onNext} />
+      <NavigationButtons onSkip={handleOnSkip} onNext={nextQuestion} />
     </View>
   );
 };
