@@ -1,11 +1,18 @@
 import { View, Text, Image } from 'react-native';
 import AppLogo from '@/components/icons/AppLogo';
 import { Button } from 'react-native-paper';
+import { useRouter } from 'expo-router';
 
 export default function WelcomeScreen() {
-  const handleCreateAccount = () => {};
+  const router = useRouter();
 
-  const handleLogin = () => {};
+  const handleCreateAccount = () => {
+    router.push('/signup');
+  };
+
+  const handleLogin = () => {
+    router.push('/login');
+  };
 
   return (
     <View className="flex-1 relative">
