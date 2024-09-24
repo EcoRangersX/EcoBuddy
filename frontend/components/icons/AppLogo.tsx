@@ -1,11 +1,11 @@
 import Svg, { Defs, Rect, G, Path } from 'react-native-svg';
 
 interface AppLogoProps {
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
 }
 
-const AppLogo = ({ width = 512, height = 512 }: AppLogoProps) => (
+const AppLogo = ({ width = 100, height = 100 }: AppLogoProps) => (
   <Svg
     width={width}
     height={height}
