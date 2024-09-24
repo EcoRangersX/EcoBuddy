@@ -10,17 +10,98 @@ const airQualityTipsStatic = [
 
 const quizCardDataStatic = {
   quiz_id: 1,
-  questionNumber: 3,
-  totalQuestions: 10,
-  question: "What Is The Primary Source Of Energy For Most Ecosystems?",
-  options: [
-    { id: 0, text: 'Water' },
-    { id: 1, text: 'Soil' },
-    { id: 2, text: 'The Sun' },
-    { id: 3, text: 'Wind' },
+  title: 'Ecology Basics',
+  questions: [
+    {
+      id: 1,
+      question: 'What Is The Primary Source Of Energy For Most Ecosystems?',
+      options: [
+        { id: 0, text: 'Water' },
+        { id: 1, text: 'Soil' },
+        { id: 2, text: 'The Sun' },
+        { id: 3, text: 'Wind' },
+      ],
+      "correct-answer": 2,
+    },
+    {
+      id: 2,
+      question: 'Which Gas Is Most Abundant In The Earth\'s Atmosphere?',
+      options: [
+        { id: 0, text: 'Oxygen' },
+        { id: 1, text: 'Carbon Dioxide' },
+        { id: 2, text: 'Nitrogen' },
+        { id: 3, text: 'Hydrogen' },
+      ],
+      "correct-answer": 2,
+    },
+    {
+      id: 3,
+      question: 'What Is The Process By Which Plants Make Their Food?',
+      options: [
+        { id: 0, text: 'Respiration' },
+        { id: 1, text: 'Photosynthesis' },
+        { id: 2, text: 'Transpiration' },
+        { id: 3, text: 'Digestion' },
+      ],
+      "correct-answer": 1,
+    },
+    {
+      id: 4,
+      question: 'Which Biome Is Characterized By Very Low Temperatures And Little Precipitation?',
+      options: [
+        { id: 0, text: 'Desert' },
+        { id: 1, text: 'Tundra' },
+        { id: 2, text: 'Rainforest' },
+        { id: 3, text: 'Savanna' },
+      ],
+      "correct-answer": 1,
+    },
+    {
+      id: 5,
+      question: 'What Is The Term For A Species That Has A Disproportionately Large Effect On Its Environment?',
+      options: [
+        { id: 0, text: 'Invasive Species' },
+        { id: 1, text: 'Endangered Species' },
+        { id: 2, text: 'Keystone Species' },
+        { id: 3, text: 'Indicator Species' },
+      ],
+      "correct-answer": 2,
+    },
+    {
+      id: 6,
+      question: 'Which Of The Following Is A Renewable Resource?',
+      options: [
+        { id: 0, text: 'Coal' },
+        { id: 1, text: 'Oil' },
+        { id: 2, text: 'Natural Gas' },
+        { id: 3, text: 'Solar Energy' },
+      ],
+      "correct-answer": 3,
+    },
+    {
+      id: 7,
+      question: 'What Is The Main Cause Of Coral Bleaching?',
+      options: [
+        { id: 0, text: 'Overfishing' },
+        { id: 1, text: 'Pollution' },
+        { id: 2, text: 'Climate Change' },
+        { id: 3, text: 'Tourism' },
+      ],
+      "correct-answer": 2,
+    },
+    {
+      id: 8,
+      question: 'Which Of The Following Is An Example Of An Abiotic Factor In An Ecosystem?',
+      options: [
+        { id: 0, text: 'Plants' },
+        { id: 1, text: 'Animals' },
+        { id: 2, text: 'Microorganisms' },
+        { id: 3, text: 'Temperature' },
+      ],
+      "correct-answer": 3,
+    }
   ],
-  correctAnswer: 2
-}
+};
 
 const userProfileHeaderStatic = {
   username: 'Kumala3',
