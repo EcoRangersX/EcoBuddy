@@ -2,6 +2,7 @@ import { View, Text, Image } from 'react-native';
 import AppLogo from '@/components/icons/AppLogo';
 import { Button } from 'react-native-paper';
 import { useRouter } from 'expo-router';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function WelcomeScreen() {
   const router = useRouter();
@@ -28,22 +29,28 @@ export default function WelcomeScreen() {
       </View>
       {/* SignUp/LogIn buttons section */}
       <View className="flex-1 justify-end mb-5 space-y-4 p-4">
-        <Button
-          onPress={handleCreateAccount}
-          mode="contained"
-          className="bg-[#098323] rounded-[40px]">
-          <Text className="text-white text-center text-lg">
-            Create an account
-          </Text>
-        </Button>
-        <Button
-          onPress={handleLogin}
-          mode="contained"
-          className="bg-[#098323] rounded-[40px]">
-          <Text className="text-white text-center text-lg">
-            Log in with EcoBuddy
-          </Text>
-        </Button>
+        <LinearGradient
+          colors={['#0b992a', '#086E1E']}
+          className="rounded-[40px]"
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}>
+          <Button onPress={handleCreateAccount} className="">
+            <Text className="text-white text-center text-lg">
+              Create an account
+            </Text>
+          </Button>
+        </LinearGradient>
+        <LinearGradient
+          colors={['#0b992a', '#086E1E']}
+          className="rounded-[40px]"
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}>
+          <Button onPress={handleLogin} className="">
+            <Text className="text-white text-center text-lg">
+              Log in with EcoBuddy
+            </Text>
+          </Button>
+        </LinearGradient>
       </View>
     </View>
   );
