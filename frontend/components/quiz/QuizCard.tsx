@@ -5,7 +5,6 @@ import QuizHeader from './QuizHeader';
 import QuizNavigationBottom from './QuizNavigationBottom';
 
 interface QuestionProps {
-  id: number;
   question: string;
   options: { id: number; text: string }[];
 }
