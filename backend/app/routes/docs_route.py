@@ -38,9 +38,18 @@ def endpoints():
                     "question": 'str',
                     "answers": 
                     [
-                        'str',
-                        'str',
-                        'str'
+                        {
+                            'id': 'int',
+                            'text': 'str'
+                        },
+                        {
+                            'id': 'int',
+                            'text': 'str'
+                        },
+                        {
+                            'id': 'int',
+                            'text': 'str'
+                        }
                     ],
                     "correct-answer": 'int index'
                 },
@@ -48,9 +57,18 @@ def endpoints():
                     "question": 'str',
                     "answers": 
                     [
-                        'str',
-                        'str',
-                        'str'
+                        {
+                            'id': 'int',
+                            'text': 'str'
+                        },
+                        {
+                            'id': 'int',
+                            'text': 'str'
+                        },
+                        {
+                            'id': 'int',
+                            'text': 'str'
+                        }
                     ],
                     "correct-answer": 'int index'
                 },
