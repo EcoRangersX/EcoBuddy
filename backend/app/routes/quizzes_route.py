@@ -30,6 +30,9 @@ def get_quiz_preview():
 @quizzes_bp.route("/",methods=["GET"])
 def get_quiz():
     id = request.args.get("id")
+    
+    if not id:
+        return "id was not passed", 400
 
     quizzes = Quizzes()
 
