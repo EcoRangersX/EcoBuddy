@@ -4,13 +4,14 @@ import AnswerOption from './AnswerOption';
 import QuizHeader from './QuizHeader';
 import QuizNavigationBottom from './QuizNavigationBottom';
 import { QuizQuestionProps } from '@/hooks/quizzes/useQuizInfo';
+import Modal from 'react-native-modal';
+import { Button } from 'react-native-paper';
 
 interface QuizScreenProps {
   quiz_id: number;
-  questions: QuizQuestionProps[] ;
+  questions: QuizQuestionProps[];
   totalQuestions: number;
 }
-
 
 const QuestionCard = ({ question }: { question: string }) => (
   <View className="bg-blue-500 rounded-lg p-2 m-4">
@@ -22,26 +23,14 @@ const QuestionCard = ({ question }: { question: string }) => (
  * QuizCard component renders a quiz interface with navigation and answer selection.
  *
  * @component
- * @param {QuizScreenProps} props - The properties for the QuizCard component.
  * @param {string} props.quiz_id - The unique identifier for the quiz.
  * @param {number} props.totalQuestions - The total number of questions in the quiz.
  * @param {Array} props.questions - The list of questions in the quiz.
  *
  * @returns {JSX.Element} The rendered QuizCard component.
  *
- * @description
- * This component handles the display and navigation of quiz questions. It allows users to select answers, skip questions, and submit their responses.
- * The component maintains the state of selected answers and the current question index.
- *
  * @example
- * <QuizCard quiz_id="123" totalQuestions={10} questions={questionsArray} />
- *
- * @function
- * @name QuizCard
- *
- * @remarks
- * The component uses the `selectedAnswers` state to keep track of the user's selected answers.
- * It determines whether an option is selected by checking if the `selectedAnswers` array contains an entry with the same `question_id` and `selected_option` as the current option.
+ * <QuizCard quiz_id={5} totalQuestions={10} questions={questionsArray} />
  */
 const QuizCard = ({ quiz_id, totalQuestions, questions }: QuizScreenProps) => {
   // const [selectedAnswers, setSelectedAnswers] = useState<AnswerProps[]>([]);
@@ -64,6 +53,7 @@ const QuizCard = ({ quiz_id, totalQuestions, questions }: QuizScreenProps) => {
     if (totalQuestions && currentIndex < totalQuestions - 1) {
       setCurrentIndex(currentIndex + 1);
     }
+    setShowFeedback(false);
   };
 
   const handleOnSkip = () => {
@@ -73,6 +63,10 @@ const QuizCard = ({ quiz_id, totalQuestions, questions }: QuizScreenProps) => {
   const handleOnSubmit = () => {
     // Implement logic to submit the current question
     console.log('Submitting the answers');
+  };
+
+  const handleCloseFeedback = () => {
+    setShowFeedback(false);
   };
 
   const currentQuestion = questions[currentIndex];
@@ -104,16 +98,47 @@ const QuizCard = ({ quiz_id, totalQuestions, questions }: QuizScreenProps) => {
             label={option.id + 1}
             option={option.text}
             // isSelected={()=>console.log()}
-            onSelect={() => handleOnSelect(option.id, currentQuestion['correct-answer'])}
+            onSelect={() =>
+              handleOnSelect(option.id, currentQuestion['correct-answer'])
+            }
           />
         ))}
-        {showFeedback && (
-          <View className="p-4">
-            <Text className={`text-center ${isCorrect ? 'text-green-500' : 'text-red-500'}`}>
-              {isCorrect ? 'Correct!' : 'Incorrect!'}
+        {/* Feedback Modal */}
+        <Modal isVisible={showFeedback}>
+          <View className="bg-white p-10 rounded-md">
+            <Text
+              className={`text-center text-lg ${
+                isCorrect ? 'text-green-500' : 'text-[#39c05b]'
+              }`}>
+              {isCorrect
+                ? `🎉 Keep it up! ${'\n'} You got it right!`
+                : `💪 Oops! Don't worry, you'll get the next one!`}
             </Text>
+            <View className="relative mt-16">
+              <Button
+                onPress={nextQuestion}
+                style={{
+                  position: 'absolute',
+                  bottom: -20,
+                  right: -20,
+                }}
+                textColor="black"
+                mode="contained-tonal">
+                <Text className="text-base">Next</Text>
+              </Button>
+              <Button
+                mode="contained-tonal"
+                style={{
+                  position: 'absolute',
+                  bottom: -20,
+                  left: -20,
+                }}
+                onPress={handleCloseFeedback}>
+                <Text className="text-base">Try Again</Text>
+              </Button>
+            </View>
           </View>
-        )}
+        </Modal>
         <QuizNavigationBottom
           onSkip={handleOnSkip}
           onNext={nextQuestion}
