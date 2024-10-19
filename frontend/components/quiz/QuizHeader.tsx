@@ -1,6 +1,6 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import { BookmarkIcon } from "../icons/Articles";
-import { PreviousIcon } from "../icons/Quiz";
+import { View, Text, TouchableOpacity } from 'react-native';
+import { BookmarkIcon } from '../icons/Articles';
+import { PreviousIcon } from '../icons/Quiz';
 
 interface QuizHeaderProps {
   questionNumber: number;
@@ -17,14 +17,24 @@ const QuizHeader = ({
 }: QuizHeaderProps) => {
   return (
     <View className="flex-row justify-between items-center">
-      <TouchableOpacity onPress={onBack}>
-        <PreviousIcon size={24} onPress={onBack} styles="shadow-sm shadow-black" />
-      </TouchableOpacity>
-      <Text className="text-white text-lg font-semibold">
+      {questionNumber > 1 && (
+        <TouchableOpacity onPress={onBack}>
+          <PreviousIcon
+            size={24}
+            onPress={onBack}
+            styles="shadow-sm shadow-black"
+          />
+        </TouchableOpacity>
+      )}
+      <Text className="bg-white shadow-md shadow-black text-black p-2 rounded-lg text-lg font-semibold">
         Question {questionNumber}/{totalQuestions}
       </Text>
       <TouchableOpacity onPress={onBookmark}>
-        <BookmarkIcon size={24} onPress={onBookmark} styles="shadow-sm shadow-black" />
+        <BookmarkIcon
+          size={24}
+          onPress={onBookmark}
+          styles="shadow-sm shadow-black"
+        />
       </TouchableOpacity>
     </View>
   );

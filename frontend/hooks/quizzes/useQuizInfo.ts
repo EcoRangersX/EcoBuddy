@@ -1,12 +1,16 @@
 import { BASE_API_URL } from '@/constants/Urls';
 import axios from 'axios';
 import { useState } from 'react';
-import globalLogger from "@/utils/logger";
+import { globalLogger } from '@/utils/logger';
+
+export interface QuizQuestionProps {
+  'correct-answer': number;
+  options: { id: number; text: string }[];
+  question: string;
+}
 
 interface QuizInfoData {
-  id: number;
-  title: string;
-  description: string;
+  quiz: QuizQuestionProps[];
 }
 
 export function useQuizInfo() {
@@ -14,9 +18,9 @@ export function useQuizInfo() {
   const [errorQuizInfoMsg, setErrorQuizInfoMsg] = useState<string | null>(null);
   const [quizInfo, setQuizInfo] = useState<QuizInfoData | null>();
 
-  async function getQuizInfo(id: number) {
+  const getQuizInfo = async (id: number) => {
     try {
-      const response = await axios.get(`${BASE_API_URL}/quiz/`, {
+      const response = await axios.get(`${BASE_API_URL}/api/quiz/`, {
         params: { id: id },
       });
       if (response.status === 200) {
@@ -27,7 +31,9 @@ export function useQuizInfo() {
       }
     } catch (err: any) {
       setErrorQuizInfoMsg('Failed to get quiz info');
-      globalLogger.error(`Error occurred while fetching quiz info: ${err.message}`);
+      globalLogger.error(
+        `Error occurred while fetching quiz info: ${err.message}`,
+      );
     } finally {
       setLoadingQuizInfo(false);
     }
