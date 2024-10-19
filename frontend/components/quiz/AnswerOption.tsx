@@ -25,13 +25,13 @@ const AnswerOption = ({
       <Text className={`text-lg text-black}`}>{label}</Text>
     </View>
     <Text className="text-lg flex-1 text-center">{option}</Text>
-    <View className="w-8 h-8 rounded-full items-center justify-center border-2 border-gray-300">
+    {/* <View className="w-8 h-8 rounded-full items-center justify-center border-2 border-gray-300">
       {isSelected && (
         <View className="w-8 h-8 bg-gray-400 rounded-full items-center justify-center">
           <Text className="text-white">✓</Text>
         </View>
       )}
-    </View>
+    </View> */}
   </TouchableOpacity>
 );
 
