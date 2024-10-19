@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Text } from 'react-native';
 interface AnswerOptionProps {
   label: number;
   option: string;
-  isSelected: boolean;
+  isSelected?: boolean;
   onSelect: () => void;
 }
 
