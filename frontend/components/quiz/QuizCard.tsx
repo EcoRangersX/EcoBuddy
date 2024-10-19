@@ -33,7 +33,9 @@ const QuestionCard = ({ question }: { question: string }) => (
  * <QuizCard quiz_id={5} totalQuestions={10} questions={questionsArray} />
  */
 const QuizCard = ({ quiz_id, totalQuestions, questions }: QuizScreenProps) => {
+  // Uncomment when implementing the logic for submitting answers
   // const [selectedAnswers, setSelectedAnswers] = useState<AnswerProps[]>([]);
+
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [showFeedback, setShowFeedback] = useState<boolean>(false);
@@ -56,14 +58,14 @@ const QuizCard = ({ quiz_id, totalQuestions, questions }: QuizScreenProps) => {
     setShowFeedback(false);
   };
 
-  const handleOnSkip = () => {
-    nextQuestion();
-  };
+  // const handleOnSkip = () => {
+  //   nextQuestion();
+  // };
 
-  const handleOnSubmit = () => {
-    // Implement logic to submit the current question
-    console.log('Submitting the answers');
-  };
+  // const handleOnSubmit = () => {
+  //   // Implement logic to submit the current question
+  //   console.log('Submitting the answers');
+  // };
 
   const handleCloseFeedback = () => {
     setShowFeedback(false);
@@ -113,44 +115,57 @@ const QuizCard = ({ quiz_id, totalQuestions, questions }: QuizScreenProps) => {
           <View className="bg-white p-10 rounded-md">
             <Text
               className={`text-center text-lg ${
-                isCorrect ? 'text-green-500' : 'text-[#39c05b]'
+                isCorrect ? 'text-green-500' : 'text-[#ec4444]'
               }`}>
               {isCorrect
                 ? `🎉 Keep it up! ${'\n'} You got it right!`
-                : `💪 Oops! Don't worry, you'll get the next one!`}
+                : `❌ Oops! Don't worry, you'll get the next one!`}
             </Text>
-            <View className="relative mt-16">
-              <Button
-                onPress={nextQuestion}
-                style={{
-                  position: 'absolute',
-                  bottom: -20,
-                  right: -20,
-                }}
-                textColor="black"
-                mode="contained-tonal">
-                <Text className="text-base">Next</Text>
-              </Button>
-              <Button
-                mode="contained-tonal"
-                style={{
-                  position: 'absolute',
-                  bottom: -20,
-                  left: -20,
-                }}
-                onPress={handleCloseFeedback}>
-                <Text className="text-base">Try Again</Text>
-              </Button>
+            <View className="relative">
+              {!isCorrect ? (
+                <View className='mt-16'>
+                  <Button
+                    mode="contained-tonal"
+                    style={{
+                      position: 'absolute',
+                      bottom: -20,
+                      left: -20,
+                    }}
+                    onPress={handleCloseFeedback}>
+                    <Text className="text-base">Try Again</Text>
+                  </Button>
+                  <Button
+                    onPress={nextQuestion}
+                    style={{
+                      position: 'absolute',
+                      bottom: -20,
+                      right: -20,
+                    }}
+                    textColor="black"
+                    mode="contained-tonal">
+                    <Text className="text-base">Next</Text>
+                  </Button>
+                </View>
+              ) : (
+                <Button
+                  className='mt-4'
+                  onPress={nextQuestion}
+                  textColor="black"
+                  mode="contained-tonal">
+                  <Text className="text-base">Next</Text>
+                </Button>
+              )}
             </View>
           </View>
         </Modal>
-        <QuizNavigationBottom
+        {/* <QuizNavigationBottom
+
           onSkip={handleOnSkip}
           onNext={nextQuestion}
           onSubmit={handleOnSubmit}
           totalQuestions={totalQuestions}
           currentIndex={currentIndex}
-        />
+        /> */}
       </View>
     </ScrollView>
   );
