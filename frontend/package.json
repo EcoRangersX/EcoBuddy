@@ -43,6 +43,7 @@
     "react-native-gesture-handler": "~2.16.1",
     "react-native-indicators": "^0.17.0",
     "react-native-logs": "^5.1.0",
+    "react-native-modal": "^13.0.1",
     "react-native-pager-view": "6.3.0",
     "react-native-paper": "^5.12.3",
     "react-native-picker-select": "^9.3.1",
