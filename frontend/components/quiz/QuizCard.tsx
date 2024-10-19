@@ -104,7 +104,12 @@ const QuizCard = ({ quiz_id, totalQuestions, questions }: QuizScreenProps) => {
           />
         ))}
         {/* Feedback Modal */}
-        <Modal isVisible={showFeedback}>
+        <Modal
+          isVisible={showFeedback}
+          animationInTiming={500}
+          animationOutTiming={500}
+          animationIn={'zoomIn'}
+          animationOut={'zoomOut'}>
           <View className="bg-white p-10 rounded-md">
             <Text
               className={`text-center text-lg ${
