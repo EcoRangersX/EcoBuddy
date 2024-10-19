@@ -3,22 +3,14 @@ import { ScrollView, View, Text } from 'react-native';
 import AnswerOption from './AnswerOption';
 import QuizHeader from './QuizHeader';
 import QuizNavigationBottom from './QuizNavigationBottom';
-
-interface QuestionProps {
-  question: string;
-  options: { id: number; text: string }[];
-}
+import { QuizQuestionProps } from '@/hooks/quizzes/useQuizInfo';
 
 interface QuizScreenProps {
   quiz_id: number;
-  questions: QuestionProps[];
+  questions: QuizQuestionProps[] ;
   totalQuestions: number;
 }
 
-interface AnswerProps {
-  question_id: number;
-  selected_option: number;
-}
 
 const QuestionCard = ({ question }: { question: string }) => (
   <View className="bg-blue-500 rounded-lg p-2 m-4">
@@ -52,8 +44,10 @@ const QuestionCard = ({ question }: { question: string }) => (
  * It determines whether an option is selected by checking if the `selectedAnswers` array contains an entry with the same `question_id` and `selected_option` as the current option.
  */
 const QuizCard = ({ quiz_id, totalQuestions, questions }: QuizScreenProps) => {
-  const [selectedAnswers, setSelectedAnswers] = useState<AnswerProps[]>([]);
+  // const [selectedAnswers, setSelectedAnswers] = useState<AnswerProps[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const [showFeedback, setShowFeedback] = useState<boolean>(false);
 
   const handleBookmarkQuiz = () => {
     // TODO: Implement hook to bookmark quiz by quiz_id
@@ -67,7 +61,7 @@ const QuizCard = ({ quiz_id, totalQuestions, questions }: QuizScreenProps) => {
   };
 
   const nextQuestion = () => {
-    if (currentIndex < totalQuestions - 1) {
+    if (totalQuestions && currentIndex < totalQuestions - 1) {
       setCurrentIndex(currentIndex + 1);
     }
   };
@@ -83,26 +77,14 @@ const QuizCard = ({ quiz_id, totalQuestions, questions }: QuizScreenProps) => {
 
   const currentQuestion = questions[currentIndex];
 
-  const handleOnSelect = (option_id: number) => {
-    setSelectedAnswers(prevAnswers => {
-      // Remove any existing answer for the current question
-      const filteredAnswers = prevAnswers.filter(
-        answer => answer.question_id !== currentQuestion.id,
-      );
-
-      // Add the new selected answer for the current question
-      return [
-        ...filteredAnswers,
-        {
-          question_id: currentQuestion.id,
-          selected_option: option_id,
-        },
-      ];
-    });
+  const handleOnSelect = (option_id: number, correct_id: number) => {
+    if (option_id === correct_id) {
+      setIsCorrect(true);
+    } else {
+      setIsCorrect(false);
+    }
+    setShowFeedback(true);
   };
-
-  console.log(`Current Question: ${JSON.stringify(currentQuestion)}`);
-  console.log(`The selected answers: ${JSON.stringify(selectedAnswers)}`);
 
   return (
     <ScrollView className="bg-cyan-300 p-3">
@@ -121,17 +103,17 @@ const QuizCard = ({ quiz_id, totalQuestions, questions }: QuizScreenProps) => {
             key={option.id}
             label={option.id + 1}
             option={option.text}
-            isSelected={
-              selectedAnswers?.some(
-                // Check if the selectedAnswers array contains an entry with the same question_id and selected_option as the current option
-                answer =>
-                  answer.question_id === currentQuestion.id &&
-                  answer.selected_option === option.id,
-              ) ?? false
-            }
-            onSelect={() => handleOnSelect(option.id)}
+            // isSelected={()=>console.log()}
+            onSelect={() => handleOnSelect(option.id, currentQuestion['correct-answer'])}
           />
         ))}
+        {showFeedback && (
+          <View className="p-4">
+            <Text className={`text-center ${isCorrect ? 'text-green-500' : 'text-red-500'}`}>
+              {isCorrect ? 'Correct!' : 'Incorrect!'}
+            </Text>
+          </View>
+        )}
         <QuizNavigationBottom
           onSkip={handleOnSkip}
           onNext={nextQuestion}
