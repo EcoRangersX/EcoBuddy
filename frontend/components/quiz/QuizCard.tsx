@@ -36,6 +36,7 @@ const QuizCard = ({ quiz_id, totalQuestions, questions }: QuizScreenProps) => {
   // Uncomment when implementing the logic for submitting answers
   // const [selectedAnswers, setSelectedAnswers] = useState<AnswerProps[]>([]);
 
+  const [correctAnswers, setCorrectAnswers] = useState<number>(0);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [showFeedback, setShowFeedback] = useState<boolean>(false);
@@ -67,98 +68,132 @@ const QuizCard = ({ quiz_id, totalQuestions, questions }: QuizScreenProps) => {
   //   console.log('Submitting the answers');
   // };
 
-  const handleCloseFeedback = () => {
-    setShowFeedback(false);
-  };
+  // Uncomment when implementing the logic for "Try Again" button
+  // const handleCloseFeedback = () => {
+  //   setShowFeedback(false);
+  // };
 
   const currentQuestion = questions[currentIndex];
 
   const handleOnSelect = (option_id: number, correct_id: number) => {
     if (option_id === correct_id) {
       setIsCorrect(true);
+      setCorrectAnswers(correctAnswers + 1);
     } else {
       setIsCorrect(false);
     }
     setShowFeedback(true);
   };
 
+  const correctAnswerIndex = currentQuestion['correct-answer'];
+  const correctAnswer = currentQuestion.options[correctAnswerIndex].text;
+  const isLastQuestion = currentIndex === totalQuestions - 1;
+
   return (
-    <ScrollView className="bg-cyan-300 p-3">
-      <View className="mb-3">
-        <QuizHeader
-          questionNumber={currentIndex + 1}
-          totalQuestions={totalQuestions}
-          onBack={previousQuestion}
-          onBookmark={handleBookmarkQuiz}
-        />
-      </View>
-      <View className="bg-[#e1f3f7] rounded-md mb-8">
-        <QuestionCard question={currentQuestion.question} />
-        {currentQuestion.options.map(option => (
-          <AnswerOption
-            key={option.id}
-            label={option.id + 1}
-            option={option.text}
-            // isSelected={()=>console.log()}
-            onSelect={() =>
-              handleOnSelect(option.id, currentQuestion['correct-answer'])
-            }
-          />
-        ))}
-        {/* Feedback Modal */}
-        <Modal
-          isVisible={showFeedback}
-          animationInTiming={500}
-          animationOutTiming={500}
-          animationIn={'zoomIn'}
-          animationOut={'zoomOut'}>
-          <View className="bg-white p-10 rounded-md">
-            <Text
-              className={`text-center text-lg ${
-                isCorrect ? 'text-green-500' : 'text-[#ec4444]'
-              }`}>
-              {isCorrect
-                ? `🎉 Keep it up! ${'\n'} You got it right!`
-                : `❌ Oops! Don't worry, you'll get the next one!`}
-            </Text>
-            <View className="relative">
-              {!isCorrect ? (
-                <View className='mt-16'>
+    <View>
+      {!isLastQuestion ? (
+        <ScrollView className="bg-cyan-300 p-3">
+          <View className="mb-3">
+            <QuizHeader
+              questionNumber={currentIndex + 1}
+              totalQuestions={totalQuestions}
+              onBack={previousQuestion}
+              onBookmark={handleBookmarkQuiz}
+            />
+          </View>
+          <View className="bg-[#e1f3f7] rounded-md mb-8">
+            <QuestionCard question={currentQuestion.question} />
+            {currentQuestion.options.map(option => (
+              <AnswerOption
+                key={option.id}
+                label={option.id + 1}
+                option={option.text}
+                // isSelected={()=>console.log()}
+                onSelect={() =>
+                  handleOnSelect(option.id, currentQuestion['correct-answer'])
+                }
+              />
+            ))}
+            {/* Feedback Modal */}
+            <Modal
+              isVisible={showFeedback}
+              animationInTiming={400}
+              animationOutTiming={600}
+              animationIn={'zoomIn'}
+              animationOut={'zoomOut'}>
+              <View className="bg-white p-10 rounded-md">
+                <Text
+                  className={`text-center text-lg ${
+                    isCorrect ? 'text-green-500' : 'text-[#ec4444]'
+                  }`}>
+                  {isCorrect
+                    ? `🎉 Keep it up! ${'\n'} You got it right!`
+                    : `❌ Oops! Don't worry, you'll get the next one!`}
+                </Text>
+                <View className="relative">
+                  {!isCorrect && (
+                    <Text>
+                      The correct answer: {''}
+                      <Text className="font-bold">{correctAnswer}</Text>
+                    </Text>
+                  )}
                   <Button
-                    mode="contained-tonal"
-                    style={{
-                      position: 'absolute',
-                      bottom: -20,
-                      left: -20,
-                    }}
-                    onPress={handleCloseFeedback}>
-                    <Text className="text-base">Try Again</Text>
-                  </Button>
-                  <Button
+                    className="mt-4"
                     onPress={nextQuestion}
-                    style={{
-                      position: 'absolute',
-                      bottom: -20,
-                      right: -20,
-                    }}
                     textColor="black"
                     mode="contained-tonal">
                     <Text className="text-base">Next</Text>
                   </Button>
-                </View>
+                  {/* Uncomment when implementing for the attempts of guessing logic */}
+                  {/* {!isCorrect ? ( 
+                // <View className='mt-16'>
+                //   <Button
+                //     mode="contained-tonal"
+                //     style={{
+                //       position: 'absolute',
+                //       bottom: -20,
+                //       left: -20,
+                //     }}
+                //     onPress={handleCloseFeedback}>
+                //     <Text className="text-base">Try Again</Text>
+                //   </Button>
+                //   <Button
+                //     onPress={nextQuestion}
+                //     style={{
+                //       position: 'absolute',
+                //       bottom: -20,
+                //       right: -20,
+                //     }}
+                //     textColor="black"
+                //     mode="contained-tonal">
+                //     <Text className="text-base">Next</Text>
+                //   </Button>
+                // </View>
               ) : (
-                <Button
-                  className='mt-4'
-                  onPress={nextQuestion}
-                  textColor="black"
-                  mode="contained-tonal">
-                  <Text className="text-base">Next</Text>
-                </Button>
+                // <Button
+                //   className='mt-4'
+                //   onPress={nextQuestion}
+                //   textColor="black"
+                //   mode="contained-tonal">
+                //   <Text className="text-base">Next</Text>
+                // </Button>
               )}
-            </View>
-          </View>
-        </Modal>
-        {/* <QuizNavigationBottom
+              */}
+                </View>
+              </View>
+            </Modal>
+            {currentIndex === totalQuestions - 1 && (
+              <View className="bg-white p-4 rounded-md mt-4">
+                <Text className="text-center text-lg">
+                  You have completed the quiz! 🎉
+                </Text>
+                <Text className="text-center text-lg">
+                  You scored {correctAnswers} out of {totalQuestions} questions.
+                </Text>
+              </View>
+            )}
+            {/* Bottom Navigation isn't useful if using Modal */}
+            {/* <QuizNavigationBottom
 
           onSkip={handleOnSkip}
           onNext={nextQuestion}
@@ -166,8 +201,19 @@ const QuizCard = ({ quiz_id, totalQuestions, questions }: QuizScreenProps) => {
           totalQuestions={totalQuestions}
           currentIndex={currentIndex}
         /> */}
-      </View>
-    </ScrollView>
+          </View>
+        </ScrollView>
+      ) : (
+        <View className="bg-white p-4 rounded-md mt-4">
+          <Text className="text-center text-lg">
+            You have completed the quiz! 🎉
+          </Text>
+          <Text className="text-center text-lg">
+            You scored {correctAnswers} out of {totalQuestions} questions.
+          </Text>
+        </View>
+      )}
+    </View>
   );
 };
 
