@@ -26,7 +26,7 @@ const QuizHeader = ({
           />
         </TouchableOpacity>
       )}
-      <Text className="text-white text-lg font-semibold">
+      <Text className="bg-white shadow-md shadow-black text-black p-2 rounded-lg text-lg font-semibold">
         Question {questionNumber}/{totalQuestions}
       </Text>
       <TouchableOpacity onPress={onBookmark}>
