@@ -1,56 +1,45 @@
 import { useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 import AnswerOption from './AnswerOption';
 import QuizHeader from './QuizHeader';
+// import QuizNavigationBottom from './QuizNavigationBottom';
+import { QuizQuestionProps } from '@/hooks/quizzes/useQuizInfo';
+import { ModalFeedback } from './ModalFeedback';
 
 interface QuizScreenProps {
   quiz_id: number;
-  questionNumber: number;
+  questions: QuizQuestionProps[];
   totalQuestions: number;
-  question: string;
-  options: { id: number; text: string }[];
-  correctAnswer: number;
 }
 
 const QuestionCard = ({ question }: { question: string }) => (
-  <View className="bg-blue-500 rounded-lg p-6 m-4">
+  <View className="bg-blue-500 rounded-lg p-2 m-4">
     <Text className="text-white text-xl text-center">{question}</Text>
   </View>
 );
 
-const NavigationButtons = ({
-  onSkip,
-  onNext,
-  onSubmit,
-}: {
-  onSkip: () => void;
-  onNext: () => void;
-  onSubmit: () => void;
-}) => {
-  return (
-    <View className="flex-row justify-between p-4">
-      <TouchableOpacity
-        className="bg-gray-300 rounded-full px-6 py-3"
-        onPress={onSkip}>
-        <Text className="text-gray-700 font-semibold">Skip</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        className="bg-blue-500 rounded-full px-6 py-3"
-        onPress={onNext}>
-        <Text className="text-white font-semibold">Next</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
+/**
+ * QuizCard component renders a quiz interface with navigation and answer selection.
+ *
+ * @component
+ * @param {string} props.quiz_id - The unique identifier for the quiz.
+ * @param {number} props.totalQuestions - The total number of questions in the quiz.
+ * @param {Array} props.questions - The list of questions in the quiz.
+ *
+ * @returns {JSX.Element} The rendered QuizCard component.
+ *
+ * @example
+ * <QuizCard quiz_id={5} totalQuestions={10} questions={questionsArray} />
+ */
+const QuizCard = ({ quiz_id, totalQuestions, questions }: QuizScreenProps) => {
+  // Uncomment when implementing the logic for submitting answers
+  // const [selectedAnswers, setSelectedAnswers] = useState<AnswerProps[]>([]);
 
-const QuizCard = ({
-  quiz_id,
-  questionNumber,
-  totalQuestions,
-  question,
-  options,
-}: QuizScreenProps) => {
-  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const [correctAnswers, setCorrectAnswers] = useState<number>(0);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean | null>(null);
+  const [showFeedback, setShowFeedback] = useState<boolean>(false);
+  const [isViewResults, setIsViewResults] = useState<boolean>(false);
 
   const handleBookmarkQuiz = () => {
     // TODO: Implement hook to bookmark quiz by quiz_id
@@ -58,56 +47,109 @@ const QuizCard = ({
   };
 
   const previousQuestion = () => {
-    // Implement logic to navigate to the previous question
-    console.log('Navigating to the previous question');
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
   };
 
   const nextQuestion = () => {
-    // Implement logic to navigate to the next question
-    console.log('Navigating to the next question');
+    if (totalQuestions && currentIndex < totalQuestions - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
+    setShowFeedback(false);
   };
 
-  const handleOnSkip = () => {
-    // Implement logic to skip the current question
-    console.log('Skipping the current question');
+  // const handleOnSkip = () => {
+  //   nextQuestion();
+  // };
+
+  // const handleOnSubmit = () => {
+  //   // Implement logic to submit the current question
+  //   console.log('Submitting the answers');
+  // };
+
+  // Uncomment when implementing the logic for "Try Again" button
+  // const handleCloseFeedback = () => {
+  //   setShowFeedback(false);
+  // };
+
+  const currentQuestion = questions[currentIndex];
+
+  const handleOnSelect = (option_id: number, correct_id: number) => {
+    if (option_id === correct_id) {
+      setIsAnswerCorrect(true);
+      setCorrectAnswers(correctAnswers + 1);
+    } else {
+      setIsAnswerCorrect(false);
+    }
+    setShowFeedback(true);
   };
 
-  const handleOnSubmit = () => {
-    // Implement logic to submit the current question
-    console.log('Submitting the answers');
+  const viewResults = () => {
+    setIsViewResults(true);
   };
 
-  console.log(`Selected answer: ${selectedAnswer}`);
+  const correctAnswerIndex = currentQuestion['correct-answer'];
+  const correctAnswer = currentQuestion.options[correctAnswerIndex].text;
+  const isLastQuestion = currentIndex === totalQuestions - 1;
 
   return (
-    <View className="flex-1 bg-cyan-300 ">
-      <View className='m-4'>
-        <QuizHeader
-          questionNumber={questionNumber}
-          totalQuestions={totalQuestions}
-          onBack={previousQuestion}
-          onBookmark={handleBookmarkQuiz}
-        />
-      </View>
-      <View className="bg-[#e1f3f7] flex-1">
-        <QuestionCard question={question} />
-        <View className="flex-1 justify-center">
-          {options.map((option, index) => (
-            <AnswerOption
-              key={index}
-              label={index + 1}
-              option={option.text}
-              isSelected={selectedAnswer === option.id}
-              onSelect={() => setSelectedAnswer(option.id)}
+    <View className="bg-cyan-300 h-full">
+      {!isViewResults ? (
+        <ScrollView className="p-3">
+          <View className="mb-3">
+            <QuizHeader
+              questionNumber={currentIndex + 1}
+              totalQuestions={totalQuestions}
+              onBack={previousQuestion}
+              onBookmark={handleBookmarkQuiz}
             />
-          ))}
+          </View>
+          <View className="bg-[#e1f3f7] rounded-md">
+            <QuestionCard question={currentQuestion.question} />
+            {currentQuestion.options.map(option => (
+              <AnswerOption
+                key={option.id}
+                label={option.id + 1}
+                option={option.text}
+                // isSelected={()=>console.log()}
+                onSelect={() =>
+                  handleOnSelect(option.id, currentQuestion['correct-answer'])
+                }
+              />
+            ))}
+            {/* Feedback Modal */}
+            <ModalFeedback
+              isAnswerCorrect={isAnswerCorrect}
+              correctAnswer={correctAnswer}
+              isVisible={showFeedback}
+              isLastQuestion={isLastQuestion}
+              nextQuestion={nextQuestion}
+              showResults={viewResults}
+            />
+            {/* Bottom Navigation isn't useful if using Modal */}
+            {/*             
+              <QuizNavigationBottom
+                onSkip={handleOnSkip}
+                onNext={nextQuestion}
+                onSubmit={handleOnSubmit}
+                totalQuestions={totalQuestions}
+                currentIndex={currentIndex}
+              /> 
+            */}
+          </View>
+        </ScrollView>
+      ) : (
+        <View className="bg-white rounded-md p-5 mt-2 shadow-lg m-5 shadow-black">
+          <Text className="text-center text-lg">
+            Congrats! You have completed the quiz! 🎉
+          </Text>
+          <Text className="text-center text-lg mt-1">
+            You scored <Text className="font-bold">{correctAnswers}</Text> out
+            of <Text className="font-bold">{totalQuestions}</Text> questions.
+          </Text>
         </View>
-        <NavigationButtons
-          onSkip={handleOnSkip}
-          onNext={nextQuestion}
-          onSubmit={handleOnSubmit}
-        />
-      </View>
+      )}
     </View>
   );
 };
