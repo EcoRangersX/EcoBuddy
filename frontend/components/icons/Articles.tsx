@@ -7,30 +7,27 @@ import {
 import { BasicIconProps } from './HomeIcons';
 
 
-interface SaveToFavoriteIcon extends BasicIconProps {
-  article_id: number;
-  saved: boolean;
+interface BookmarkIconProps extends BasicIconProps {
+  onPress: () => void;
+  saved?: boolean;
+  styles?: string;
 }
 
 interface ClearQueryIcon extends BasicIconProps {
   onPress: () => void;
 }
 
-const SaveToFavoriteIcon = ({
+const BookmarkIcon = ({
   size,
   color,
-  article_id,
   saved,
-}: SaveToFavoriteIcon) => {
-  const handleSaveToFavorite = (article_id: number) => {
-    //TODO: Implement the logic to save the article to the favorite list
-    console.log(`Saving article with the id: ${article_id} to favorite list`);
-  };
-
+  onPress,
+  styles,
+}: BookmarkIconProps) => {
   return (
     <TouchableOpacity
-      className="bg-white h-12 w-12 items-center justify-center rounded-full shadow-md shadow-black"
-      onPress={() => handleSaveToFavorite(article_id)}>
+      className={`bg-white h-12 w-12 items-center justify-center rounded-full ${styles}`}
+      onPress={onPress}>
       {saved ? (
         <FontAwesome name="bookmark" size={size} color={color} />
       ) : (
@@ -63,4 +60,4 @@ const ClearQueryIcon = ({
   );
 };
 
-export { SaveToFavoriteIcon, SearchIcon, ClearQueryIcon };
+export { BookmarkIcon, SearchIcon, ClearQueryIcon };

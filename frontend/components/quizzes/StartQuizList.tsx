@@ -1,9 +1,11 @@
 import StartQuiz from './StartQuiz';
 import { StartQuizProps } from '@/types/quizzes';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 interface StartQuizList {
-  quizzes: StartQuizProps[];
+  quizzes: StartQuizProps[] | undefined;
+  error: string | null;
+  loading: boolean;
 }
 
 /**
@@ -20,21 +22,35 @@ interface StartQuizList {
  * @param {string} quizzes[].description - The description of the quiz.
  * @returns {JSX.Element} The rendered component.
  */
-const StartQuizList = ({ quizzes }: StartQuizList) => {
+const StartQuizList = ({ quizzes, error, loading }: StartQuizList) => {
   return (
-    <View className="flex-col">
-      {quizzes.map((quiz, index) => (
-        <StartQuiz
-          key={index}
-          quiz_id={quiz.quiz_id}
-          level={quiz.level}
-          questionsCount={quiz.questionsCount}
-          bgColor={quiz.bgColor}
-          titleBgColor={quiz.titleBgColor}
-          title={quiz.title}
-          description={quiz.description}
-        />
-      ))}
+    <View>
+      {quizzes ? (
+        <View>
+          {quizzes?.map((quiz, index) => (
+            <StartQuiz
+              key={index}
+              id={quiz.id}
+              level={quiz.level}
+              amount-of-questions={quiz['amount-of-questions']}
+              bgColor={quiz.bgColor}
+              titleBgColor={quiz.titleBgColor}
+              title={quiz.title}
+              description={quiz.description}
+            />
+          ))}
+        </View>
+      ) : error ? (
+        <View className="bg-white rounded-xl p-5">
+          <Text className="text-center text-base">
+            {error} {'\n'}Please Contact the Support to resolve the issue
+          </Text>
+        </View>
+      ) : (
+        <View className="bg-white rounded-xl p-5">
+          <Text className="text-center text-base">Loading...</Text>
+        </View>
+      )}
     </View>
   );
 };

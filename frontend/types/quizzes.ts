@@ -1,7 +1,7 @@
 export interface StartQuizProps {
-  quiz_id: number;
+  id: number;
   level: 'Beginner' | 'Intermediate' | 'Advanced';
-  questionsCount: number;
+  "amount-of-questions": number;
   bgColor?: string;
   titleBgColor?: string;
   title: string;

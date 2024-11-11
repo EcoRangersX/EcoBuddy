@@ -1,0 +1,33 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "8081:8081"
+      - "19000:19000"
+      - "19001:19001"
+    environment:
+      - "./frontend/.env"
+      - CHOKIDAR_USEPOLLING=true  # Required for hot reloading to work in Windows
+    volumes:
+      - ./frontend:/home/app
+      - ./frontend/node_modules:/home/app/node_modules  # Prevents node_modules from being overriten
+    depends_on:
+      - backend
+    tty: true  # Enables the interactive terminal (shows the QR code for Expo Go)
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "5000:5000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./backend:/app
+    env_file:
+      - ./backend/.env

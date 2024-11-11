@@ -1,7 +1,8 @@
-import axios from "axios";
-import { BASE_API_URL } from "@/constants/Urls";
-import { useState } from "react";
-import { ArticleTitles } from "@/types/home";
+import axios from 'axios';
+import { BASE_API_URL } from '@/constants/Urls';
+import { useState } from 'react';
+import { ArticleTitles } from '@/types/home';
+import { globalLogger } from '@/utils/logger';
 
 /**
  * Custom hook for fetching article titles.
@@ -13,12 +14,11 @@ import { ArticleTitles } from "@/types/home";
  *   - `errorArticleTitleMsg`: An error message if there was an error fetching article titles.
  */
 export function useArticleTitles() {
-  const [loadingArticleTitles, setLoadingArticleTitles] = useState<boolean>(
-    false
-  );
-  const [errorArticleTitleMsg, setErrorArticleTitleMsg] = useState<string | null>(
-    null
-  );
+  const [loadingArticleTitles, setLoadingArticleTitles] =
+    useState<boolean>(false);
+  const [errorArticleTitleMsg, setErrorArticleTitleMsg] = useState<
+    string | null
+  >(null);
   const [articleTitles, setArticleTitles] = useState<ArticleTitles | null>();
 
   const getArticleTitles = async (number_of_titles: number) => {
@@ -27,22 +27,27 @@ export function useArticleTitles() {
     setArticleTitles(null);
 
     try {
-      const response = await axios.get(
-        `${BASE_API_URL}/api/article_titles`,
-        { params: { amount: number_of_titles } }
-      );
+      const response = await axios.get(`${BASE_API_URL}/api/article_titles`, {
+        params: { amount: number_of_titles },
+      });
       if (response.status === 200) {
         setArticleTitles(response.data);
       } else {
-        throw new Error("Error fetching article title");
+        setErrorArticleTitleMsg('Failed to fetch article titles');
+        globalLogger.warn('Failed to fetch article titles');
       }
     } catch (err: any) {
-      console.error(`Error fetching article titles: ${err}`);
-      setErrorArticleTitleMsg("An error occurred while fetching article titles.");
+      globalLogger.error(`Error occurred while fetching article titles: ${err}`);
+      setErrorArticleTitleMsg('Failed to fetch article titles');
     } finally {
       setLoadingArticleTitles(false);
     }
   };
 
-  return { getArticleTitles, articleTitles, loadingArticleTitles, errorArticleTitleMsg };
+  return {
+    getArticleTitles,
+    articleTitles,
+    loadingArticleTitles,
+    errorArticleTitleMsg,
+  };
 }

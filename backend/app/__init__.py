@@ -16,7 +16,7 @@ def create_app():
     CORS(app)
 
 
-    app.register_blueprint(quizes_bp)
+    app.register_blueprint(quizzes_bp)
     app.register_blueprint(air_bp)
     app.register_blueprint(articles_bp)
     app.register_blueprint(ai_bp)

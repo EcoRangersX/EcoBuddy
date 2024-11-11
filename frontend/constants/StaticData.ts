@@ -8,6 +8,118 @@ const airQualityTipsStatic = [
   'Use Natural Cleaning Products',
 ];
 
+const quizCardDataStatic = {
+  quiz_id: 1,
+  questions: [
+    {
+      question: 'What Is The Primary Source Of Energy For Most Ecosystems?',
+      options: [
+        { id: 0, text: 'Water' },
+        { id: 1, text: 'Soil' },
+        { id: 2, text: 'The Sun' },
+        { id: 3, text: 'Wind' },
+      ],
+      "correct-answer": 2,
+    },
+    {
+      question: 'Which Gas Is Most Abundant In The Earth\'s Atmosphere?',
+      options: [
+        { id: 0, text: 'Oxygen' },
+        { id: 1, text: 'Carbon Dioxide' },
+        { id: 2, text: 'Nitrogen' },
+        { id: 3, text: 'Hydrogen' },
+      ],
+      "correct-answer": 2,
+    },
+    {
+      question: 'What Is The Process By Which Plants Make Their Food?',
+      options: [
+        { id: 0, text: 'Respiration' },
+        { id: 1, text: 'Photosynthesis' },
+        { id: 2, text: 'Transpiration' },
+        { id: 3, text: 'Digestion' },
+      ],
+      "correct-answer": 1,
+    },
+    {
+      question: 'Which Biome Is Characterized By Very Low Temperatures And Little Precipitation?',
+      options: [
+        { id: 0, text: 'Desert' },
+        { id: 1, text: 'Tundra' },
+        { id: 2, text: 'Rainforest' },
+        { id: 3, text: 'Savanna' },
+      ],
+      "correct-answer": 1,
+    },
+    {
+      question: 'What Is The Term For A Species That Has A Disproportionately Large Effect On Its Environment?',
+      options: [
+        { id: 0, text: 'Invasive Species' },
+        { id: 1, text: 'Endangered Species' },
+        { id: 2, text: 'Keystone Species' },
+        { id: 3, text: 'Indicator Species' },
+      ],
+      "correct-answer": 2,
+    },
+    {
+      question: 'Which Of The Following Is A Renewable Resource?',
+      options: [
+        { id: 0, text: 'Coal' },
+        { id: 1, text: 'Oil' },
+        { id: 2, text: 'Natural Gas' },
+        { id: 3, text: 'Solar Energy' },
+      ],
+      "correct-answer": 3,
+    },
+    {
+      question: 'What Is The Main Cause Of Coral Bleaching?',
+      options: [
+        { id: 0, text: 'Overfishing' },
+        { id: 1, text: 'Pollution' },
+        { id: 2, text: 'Climate Change' },
+        { id: 3, text: 'Tourism' },
+      ],
+      "correct-answer": 2,
+    },
+    {
+      question: 'Which Of The Following Is An Example Of An Abiotic Factor In An Ecosystem?',
+      options: [
+        { id: 0, text: 'Plants' },
+        { id: 1, text: 'Animals' },
+        { id: 2, text: 'Microorganisms' },
+        { id: 3, text: 'Temperature' },
+      ],
+      "correct-answer": 3,
+    }
+  ],
+};
+
+const userProfileHeaderStatic = {
+  username: 'Kumala3',
+  profile_image_url:
+    'https://images.hdqwalls.com/download/horizon-forbidden-west-2020-gy-3840x2160.jpg',
+  level: 'advanced',
+  stars: 302,
+  id: 142,
+};
+
+const userProfileStatic = {
+  profile_image_url:
+    'https://images.hdqwalls.com/download/horizon-forbidden-west-2020-gy-3840x2160.jpg',
+  username: 'Kumala3',
+  fullName: 'Kumala Kirfa',
+  email: 'kumala32312@gmail.com',
+};
+
+const yourAchievementsStatic = {
+  streak: 1,
+  bestStreak: 11,
+  quizScore: 1933,
+  articleScore: 1522,
+  score: 3455,
+  maxScore: 10000,
+};
+
 const filteredArticlesStatic = [
   {
     id: 1,
@@ -28,32 +140,32 @@ const filteredArticlesStatic = [
 
 const quizzesStatic: StartQuizProps[] = [
   {
-    quiz_id: 1,
+    id: 1,
     level: 'Beginner',
-    questionsCount: 10,
+    'amount-of-questions': 10,
     title: 'Ecology basics',
     description:
       'Questions about ecosystems, biodiversity, and basic ecological concepts',
   },
   {
-    quiz_id: 2,
+    id: 2,
     level: 'Intermediate',
-    questionsCount: 15,
+    'amount-of-questions': 15,
     title: 'Climate Change',
     description:
       'Questions about the causes, impacts, and solutions to climate change',
   },
   {
-    quiz_id: 3,
+    id: 3,
     level: 'Intermediate',
-    questionsCount: 20,
+    'amount-of-questions': 20,
     title: 'Sustainable Development',
     description: 'Questions about sustainable development goals and strategies',
   },
   {
-    quiz_id: 4,
+    id: 4,
     level: 'Advanced',
-    questionsCount: 25,
+    'amount-of-questions': 25,
     title: 'Conservation Biology',
     description:
       'Questions about conservation strategies and endangered species',
@@ -61,9 +173,9 @@ const quizzesStatic: StartQuizProps[] = [
 ];
 
 const quizOfTheDayStatic: StartQuizProps = {
-  quiz_id: 1,
+  id: 1,
   level: 'Beginner',
-  questionsCount: 5,
+  'amount-of-questions': 5,
   title: 'Human Impact on the Environment',
   description: [
     'How human activities like deforestation, urbanization, and agriculture affect the environment.',
@@ -343,4 +455,8 @@ export {
   filteredArticlesStatic,
   savedArticlesStatic,
   countriesStatic,
+  userProfileHeaderStatic,
+  yourAchievementsStatic,
+  userProfileStatic,
+  quizCardDataStatic,
 };
