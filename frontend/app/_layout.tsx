@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 import { PaperProvider } from 'react-native-paper';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -38,10 +40,12 @@ export default function RootLayout() {
     <PaperProvider>
       <GestureHandlerRootView>
         <ThemeProvider value={DefaultTheme}>
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="+not-found" />
-          </Stack>
+          <NavigationContainer>
+            <Stack screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="+not-found" />
+            </Stack>
+          </NavigationContainer>
         </ThemeProvider>
       </GestureHandlerRootView>
     </PaperProvider>
